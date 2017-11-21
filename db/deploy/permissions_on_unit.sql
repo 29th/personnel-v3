@@ -10,9 +10,9 @@ create function public.permissions_on_unit(
 select array(
   select permission.ability
   from assignment
-  left join unit on (unit.id = assignment.unit_id)
-  left join position on (position.id = assignment.position_id)
-  left join permission on (
+  inner join unit on (unit.id = assignment.unit_id)
+  inner join position on (position.id = assignment.position_id)
+  inner join permission on (
     permission.unit_id = assignment.unit_id
     and permission.access_level = position.access_level
   )

@@ -29,9 +29,18 @@ insert into public.permission (unit_id, access_level, ability) values
   (3, 'leader', 'add_event'); -- ap1
 
 -- select diag(permissions_on_unit(3, 4));
-select ok(
+select is(
   'add_event' = any(permissions_on_unit(3, 4)),
+  true,
   'lieutenant cup can add_event on ap1s1'
+);
+
+select diag(permissions_on_unit(1, 4));
+
+select is(
+  'add_event' = any(permissions_on_unit(1, 4)),
+  false,
+  'private axe cannot add_event on ap1s1'
 );
 
 select * from finish();
