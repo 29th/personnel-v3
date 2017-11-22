@@ -14,7 +14,7 @@ select array(
   inner join position on (position.id = assignment.position_id)
   inner join permission on (
     permission.unit_id = assignment.unit_id
-    and permission.access_level = position.access_level
+    and permission.access_level <= position.access_level
   )
   where assignment.user_id = $1
   and (

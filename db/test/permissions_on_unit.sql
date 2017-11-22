@@ -10,7 +10,8 @@ select * from no_plan();
 insert into public.user (id, first_name, last_name) values
   (1, 'Private', 'Axe'),
   (2, 'Sergeant', 'Bug'),
-  (3, 'Lieutenant', 'Cup');
+  (3, 'Lieutenant', 'Cup'),
+  (4, 'Technician', 'Dew');
 
 insert into public.unit (id, abbr, parent_path) values
   (1, 'Bn HQ', 'root'),
@@ -21,29 +22,49 @@ insert into public.unit (id, abbr, parent_path) values
 insert into public.position (id, name, access_level) values
   (1, 'Rifleman', 'member'),
   (2, 'Squad Leader', 'leader'),
-  (3, 'Platoon Leader', 'leader');
+  (3, 'Platoon Leader', 'leader'),
+  (4, 'Platoon Clerk', 'clerk');
 
 insert into public.assignment (user_id, unit_id, position_id) values
   (1, 4, 1), -- private axe, ap1s1, rifleman
   (2, 4, 2), -- sergeant bug, ap1s1, squad leader
-  (3, 3, 3); -- lieutenant cup, ap1, platoon leader
+  (3, 3, 3), -- lieutenant cup, ap1, platoon leader
+  (4, 3, 4); -- technician dew, ap1, platoon clerk
 
 insert into public.permission (unit_id, access_level, ability) values
-  (3, 'leader', 'add_event'); -- ap1
+  (3, 'leader', 'add_promotion'), -- ap1
+  (3, 'clerk', 'add_event'), -- ap1
+  (4, 'member', 'view_event'); -- ap1s1
 
 -- select diag(permissions_on_unit(3, 4));
 select is(
-  'add_event' = any(permissions_on_unit(3, 4)),
-  true,
-  'lieutenant cup can add_event on ap1s1'
+  permissions_on_unit(3, 4), -- lieutenant cup, ap1s1
+  '{add_promotion,add_event}',
+  'lieutenant cup can add_promotion and add_event on ap1s1'
 );
 
-select diag(permissions_on_unit(1, 4));
+select is(
+  permissions_on_unit(4, 3), -- technician dew, ap1
+  '{add_event}',
+  'technician dew can add_event on ap1'
+);
 
 select is(
-  'add_event' = any(permissions_on_unit(1, 4)),
-  false,
-  'private axe cannot add_event on ap1s1'
+  permissions_on_unit(4, 4), -- technician dew, ap1s1
+  '{add_event}',
+  'technician dew can add_event on ap1s1'
+);
+
+select is(
+  permissions_on_unit(1, 4), -- private axe, ap1s1
+  '{view_event}',
+  'private axe can view_event on ap1s1'
+);
+
+select is(
+  permissions_on_unit(1, 3), -- private axe, ap1
+  '{}',
+  'private axe can do nothing on ap1'
 );
 
 select * from finish();
