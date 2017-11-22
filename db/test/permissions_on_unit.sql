@@ -1,7 +1,10 @@
 -- Test personnel:permission on pg
 
-begin;
+set client_min_messages to warning; -- disable warning from create extension
 create extension if not exists pgtap;
+reset client_min_messages;
+
+begin;
 select * from no_plan();
 
 insert into public.user (id, first_name, last_name) values

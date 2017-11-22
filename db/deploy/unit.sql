@@ -1,8 +1,10 @@
 -- Deploy personnel:unit to pg
 
-begin;
-
+set client_min_messages to warning; -- disable warning from create extension
 create extension if not exists ltree;
+reset client_min_messages;
+
+begin;
 
 create table public.unit (
   id          serial primary key,

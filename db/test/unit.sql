@@ -1,8 +1,10 @@
 -- Test personnel:unit on pg
-begin;
 
+set client_min_messages to warning; -- disable warning from create extension
 create extension if not exists pgtap;
+reset client_min_messages;
 
+begin;
 select * from no_plan();
 
 insert into unit (id, abbr, parent_path) values
@@ -25,5 +27,4 @@ select results_eq(
 );
 
 select * from finish();
-
 rollback;
