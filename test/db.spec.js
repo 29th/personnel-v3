@@ -17,16 +17,43 @@ describe('Database permission functions', () => {
 
   beforeEach(async () => {
     await client.query('begin')
+    await client.query(createOrgChart)
   })
 
   afterEach(async () => {
     await client.query('rollback')
   })
 
-  test('Proof of concept', async () => {
-    await client.query(createOrgChart)
-    const result = await client.query(`select permissions_on_unit(${ids.lieutenantCup}, ${ids.technicianDew})`)
-    const permissions = result.rows[0].permissions_on_unit
-    expect(permissions).toEqual(['add_promotion', 'add_event'])
+  describe('permissions_on_unit', () => {
+    test('lieutenant cup can add_promotion and add_event on ap1s1', async () => {
+      const permissions = await permissionsOnUnit(ids.lieutenantCup, ids.ap1s1)
+      expect(permissions).toEqual(['add_promotion', 'add_event'])
+    })
+
+    test('technician dew can add_event on ap1', async () => {
+      const permissions = await permissionsOnUnit(ids.technicianDew, ids.ap1)
+      expect(permissions).toEqual(['add_event'])
+    })
+
+    test('technician dew can add_event and view_event on ap1s1', async () => {
+      const permissions = await permissionsOnUnit(ids.technicianDew, ids.ap1s1)
+      expect(permissions).toEqual(['add_event', 'view_event'])
+    })
+
+    test('private axe can view_event on ap1s1', async () => {
+      const permissions = await permissionsOnUnit(ids.privateAxe, ids.ap1s1)
+      expect(permissions).toEqual(['view_event'])
+    })
+
+    test('private axe can do nothing on ap1', async () => {
+      const permissions = await permissionsOnUnit(ids.privateAxe, ids.ap1)
+      expect(permissions.length).toBe(0)
+    })
   })
 })
+
+async function permissionsOnUnit (actorId, unitId) {
+  const sql = `select permissions_on_unit(${actorId}, ${unitId})`
+  const result = await client.query(sql)
+  return result.rows[0].permissions_on_unit
+}
