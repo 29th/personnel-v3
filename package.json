@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^21.2.1",
-    "knex": "^0.14.1",
+    "mustache": "^2.3.0",
     "pg": "^7.4.0"
   },
   "standard": {
