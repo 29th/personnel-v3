@@ -1,0 +1,33 @@
+{
+  "name": "personnel",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-wilson29thid:wilson29thid/personnel-v3.git"
+  },
+  "author": "Wilson29thID <wilson@29th.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^21.2.1",
+    "knex": "^0.14.1",
+    "pg": "^7.4.0"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "expect",
+      "jest",
+      "test",
+      "beforeEach",
+      "afterEach",
+      "beforeAll",
+      "afterAll"
+    ]
+  }
+}
