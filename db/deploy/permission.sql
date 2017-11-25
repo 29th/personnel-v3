@@ -9,4 +9,6 @@ create table personnel.permission (
   ability     text not null check (char_length(ability) < 24)
 );
 
+grant select on table personnel.permission to personnel_user;
+
 commit;

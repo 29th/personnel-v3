@@ -14,4 +14,6 @@ create table personnel.position (
   access_level  personnel.access_level default 'member'
 );
 
+grant select on table personnel.position to personnel_user;
+
 commit;

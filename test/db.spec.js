@@ -1,6 +1,6 @@
 const assert = require('assert')
 const { Client } = require('pg')
-const { createOrgChart, ids } = require('./fixtures/org-chart')
+const { insertSampleData, ids } = require('./fixtures/sample-data')
 
 const DATABASE_URL = process.env.DATABASE_URL
 assert(DATABASE_URL, 'Expected DATABASE_URL environment variable to be set')
@@ -17,7 +17,7 @@ describe('Database permission functions', () => {
 
   beforeEach(async () => {
     await client.query('begin')
-    await client.query(createOrgChart)
+    await client.query(insertSampleData)
   })
 
   afterEach(async () => {
@@ -67,16 +67,39 @@ describe('Database permission functions', () => {
       expect(permissions).toContain('edit_profile')
     })
   })
+
+  describe('row level security', () => {
+    test('personnel_anonymous cannot select events', async () => {
+      await client.query(`set role personnel_anonymous`)
+      const sql = `select * from personnel.event`
+      expect(client.query(sql)).rejects.toBeDefined()
+    })
+
+    test('personnel_user with no claim gets empty set of events', async () => {
+      await client.query(`set role personnel_user`)
+      const sql = `select * from personnel.event`
+      const result = await client.query(sql)
+      expect(result.rows.length).toBe(0)
+    })
+
+    test('technician dew can see ap1 and ap1s1 events', async () => {
+      await client.query(`set role personnel_user`)
+      await client.query(`set local jwt.claims.user_id to '${ids.technicianDew}'`)
+      const sql = `select * from personnel.event`
+      const result = await client.query(sql)
+      expect(result.rows.length).toBe(2)
+    })
+  })
 })
 
 async function permissionsOnUnit (actorId, unitId) {
-  const sql = `select permissions_on_unit(${actorId}, ${unitId})`
+  const sql = `select personnel.permissions_on_unit(${actorId}, ${unitId})`
   const result = await client.query(sql)
   return result.rows[0].permissions_on_unit
 }
 
 async function permissionsOnUser (actorId, subjectId) {
-  const sql = `select permissions_on_user(${actorId}, ${subjectId})`
+  const sql = `select personnel.permissions_on_user(${actorId}, ${subjectId})`
   const result = await client.query(sql)
   return result.rows[0].permissions_on_user
 }

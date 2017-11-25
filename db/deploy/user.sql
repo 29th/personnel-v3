@@ -8,4 +8,6 @@ create table personnel.user (
   last_name   text not null check (char_length(last_name) < 80)
 );
 
+grant select on table personnel.user to personnel_user;
+
 commit;

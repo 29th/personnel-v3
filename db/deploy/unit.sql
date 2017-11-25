@@ -16,4 +16,6 @@ create table personnel.unit (
 create index unit_parent_path_gist_idx on personnel.unit using gist(parent_path);
 create index unit_parent_path_inx on personnel.unit using btree(parent_path);
 
+grant select on table personnel.unit to personnel_user;
+
 commit;
