@@ -89,6 +89,21 @@ describe('Database permission functions', () => {
       const result = await client.query(sql)
       expect(result.rows.length).toBe(2)
     })
+
+    test('technician dew can add events to ap1', async () => {
+      await client.query(`set role personnel_user`)
+      await client.query(`set local jwt.claims.user_id to '${ids.technicianDew}'`)
+      const sql = `insert into personnel.event (unit_id, name) values (${ids.ap1}, 'AP1 Test')`
+      expect(client.query(sql)).resolves.toBeDefined()
+    })
+
+    test('technician dew can not add events to able', async () => {
+      await client.query(`set role personnel_user`)
+      await client.query(`set local jwt.claims.user_id to '${ids.technicianDew}'`)
+      const sql = `insert into personnel.event (unit_id, name) values (${ids.able}, 'Able Test')`
+      expect(client.query(sql)).rejects.toBeDefined()
+    })
+
   })
 })
 
