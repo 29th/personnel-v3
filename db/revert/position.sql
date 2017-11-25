@@ -2,7 +2,7 @@
 
 begin;
 
-drop table public.position;
-drop type access_level;
+drop table personnel.position;
+drop type personnel.access_level;
 
 commit;

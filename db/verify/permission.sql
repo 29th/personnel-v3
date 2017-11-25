@@ -3,7 +3,7 @@
 begin;
 
 select id, unit_id, access_level, ability
-from public.permission
+from personnel.permission
 where false;
 
 rollback;

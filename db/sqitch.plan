@@ -1,6 +1,7 @@
 %syntax-version=1.0.0
 %project=personnel
 
+schemas 2017-11-25T20:50:44Z Wilson29thID <wilson@29th.org> # Add schemas
 user 2017-11-18T17:22:48Z Wilson29thID <wilson@29th.org> # Add user table
 unit 2017-11-19T22:23:47Z Wilson29thID <wilson@29th.org> # Add unit table
 position 2017-11-20T11:33:45Z Wilson29thID <wilson@29th.org> # Add position table
@@ -8,3 +9,4 @@ assignment 2017-11-20T11:41:14Z Wilson29thID <wilson@29th.org> # Add assignment 
 permission 2017-11-20T11:44:38Z Wilson29thID <wilson@29th.org> # Add permission table
 permissions_on_unit 2017-11-20T12:02:23Z Wilson29thID <wilson@29th.org> # Add functions to check permission on unit
 permissions_on_user 2017-11-22T21:48:04Z Wilson29thID <wilson@29th.org> # Add function to check permission on user
+event 2017-11-25T19:03:01Z Wilson29thID <wilson@29th.org> # Add event table

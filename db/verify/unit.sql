@@ -3,7 +3,7 @@
 begin;
 
 select id, name, abbr, parent_path
-from public.unit
+from personnel.unit
 where false;
 
 select 1/count(*) -- fails if dividing by 0

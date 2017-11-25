@@ -2,6 +2,6 @@
 
 begin;
 
-drop function public.permissions_on_user(integer, integer);
+drop function personnel.permissions_on_user(integer, integer);
 
 commit;

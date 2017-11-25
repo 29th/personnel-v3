@@ -2,11 +2,11 @@
 
 begin;
 
-create table public.assignment (
+create table personnel.assignment (
   id          serial primary key,
-  unit_id     integer not null references public.unit(id),
-  user_id     integer not null references public.user(id),
-  position_id integer not null references public.position(id)
+  unit_id     integer not null references personnel.unit(id),
+  user_id     integer not null references personnel.user(id),
+  position_id integer not null references personnel.position(id)
 );
 
 commit;

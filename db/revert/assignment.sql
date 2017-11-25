@@ -2,6 +2,6 @@
 
 begin;
 
-drop table public.assignment;
+drop table personnel.assignment;
 
 commit;

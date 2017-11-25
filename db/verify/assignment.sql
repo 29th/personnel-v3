@@ -3,7 +3,7 @@
 begin;
 
 select id, unit_id, user_id, position_id
-from assignment
+from personnel.assignment
 where false;
 
 rollback;

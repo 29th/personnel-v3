@@ -2,6 +2,6 @@
 
 begin;
 
-drop table public.permission;
+drop table personnel.permission;
 
 commit;

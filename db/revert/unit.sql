@@ -2,6 +2,6 @@
 
 begin;
 
-drop table public.unit;
+drop table personnel.unit;
 
 commit;

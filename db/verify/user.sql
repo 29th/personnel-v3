@@ -3,7 +3,7 @@
 begin;
 
 select id, first_name, last_name
-from public.user
+from personnel.user
 where false;
 
 rollback;

@@ -3,7 +3,7 @@
 begin;
 
 select id, name, access_level
-from public.position
+from personnel.position
 where false;
 
 select 1/count(*) -- fails if dividing by 0
