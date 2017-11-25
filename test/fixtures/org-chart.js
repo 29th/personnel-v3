@@ -42,7 +42,8 @@ const createOrgChart = `
   insert into public.permission (unit_id, access_level, ability) values
     (${ids.ap1}, 'leader', 'add_promotion'),
     (${ids.ap1}, 'clerk', 'add_event'),
-    (${ids.ap1s1}, 'member', 'view_event');
+    (${ids.ap1s1}, 'member', 'view_event'),
+    (${ids.ap1}, 'clerk', 'edit_profile');
 `
 
 module.exports = {
