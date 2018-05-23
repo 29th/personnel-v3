@@ -1,0 +1,32 @@
+{
+  "name": "personnel",
+  "version": "3.0.0-alpha",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js --exec babel-node",
+    "db:migrate": "knex migrate:latest",
+    "db:seed": "babel-node node_modules/.bin/knex seed:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-wilson29thid:wilson29thid/personnel-v3.git"
+  },
+  "author": "wilson29thid <wilson@29th.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "nodemon": "^1.17.4"
+  },
+  "dependencies": {
+    "apollo-server": "^2.0.0-beta.2",
+    "graphql": "^0.13.2",
+    "knex": "^0.14.6",
+    "lodash": "^4.17.10",
+    "objection": "^1.1.8",
+    "pg": "^7.4.3"
+  }
+}
