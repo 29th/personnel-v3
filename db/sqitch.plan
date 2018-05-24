@@ -3,6 +3,7 @@
 
 roles 2017-11-25T21:10:23Z Wilson29thID <wilson@29th.org> # Add postgres roles
 schemas 2017-11-25T20:50:44Z Wilson29thID <wilson@29th.org> # Add schemas
+rank 2018-05-23T13:00:00Z Wilson29thID <wilson@29th.org> # Add rank table
 user 2017-11-18T17:22:48Z Wilson29thID <wilson@29th.org> # Add user table
 unit 2017-11-19T22:23:47Z Wilson29thID <wilson@29th.org> # Add unit table
 position 2017-11-20T11:33:45Z Wilson29thID <wilson@29th.org> # Add position table
