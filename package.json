@@ -13,7 +13,10 @@
   "author": "Wilson29thID <wilson@29th.org>",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "jest": "^21.2.1",
+    "knex": "^0.14.6",
+    "knex-case-converter-plugin": "^0.1.1",
     "pg": "^7.4.0"
   },
   "standard": {

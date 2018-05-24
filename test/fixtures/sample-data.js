@@ -1,58 +1,149 @@
-const ids = {
-  privateAxe: 1,
-  sergeantBug: 2,
-  lieutenantCup: 3,
-  technicianDew: 4,
-  bnhq: 1,
-  able: 2,
-  ap1: 3,
-  ap1s1: 4,
-  rifleman: 1,
-  squadLeader: 2,
-  platoonLeader: 3,
-  platoonClerk: 4
-}
+export default async function insertSampleData (transaction) {
+  // Units
+  const bnhq = await insertOne('unit', {
+    abbr: 'Bn Hq',
+    parentPath: `root`
+  })
+  const able = await insertOne('unit', {
+    abbr: 'Able',
+    parentPath: `root.${bnhq}`
+  })
+  const ap1 = await insertOne('unit', {
+    abbr: 'AP1',
+    parentPath: `root.${bnhq}.${able}`
+  })
+  const ap1s1 = await insertOne('unit', {
+    abbr: 'AP1S1',
+    parentPath: `root.${bnhq}.${able}.${ap1}`
+  })
+  const units = { bnhq, able, ap1, ap1s1 }
 
-const insertSampleData = `
-  insert into personnel.user (id, first_name, last_name) values
-    (${ids.privateAxe}, 'Private', 'Axe'),
-    (${ids.sergeantBug}, 'Sergeant', 'Bug'),
-    (${ids.lieutenantCup}, 'Lieutenant', 'Cup'),
-    (${ids.technicianDew}, 'Technician', 'Dew');
+  // Ranks
+  const [
+    pvt,
+    sgt,
+    lt,
+    t5
+  ] = await insertMany('rank', [
+    { abbr: 'Pvt.' },
+    { abbr: 'Sgt.' },
+    { abbr: 'Lt.' },
+    { abbr: 'T/5' }
+  ])
+  const ranks = { pvt, sgt, lt, t5 }
 
-  insert into personnel.unit (id, abbr, parent_path) values
-    (${ids.bnhq}, 'Bn HQ', 'root'),
-    (${ids.able}, 'Able', 'root.${ids.bnhq}'), -- root.1
-    (${ids.ap1}, 'AP1', 'root.${ids.bnhq}.${ids.able}'), -- root.1.2
-    (${ids.ap1s1}, 'AP1S1', 'root.${ids.bnhq}.${ids.able}.${ids.ap1}'); -- root.1.2.3
+  // Positions
+  const [
+    rifleman,
+    squadLeader,
+    platoonLeader,
+    platoonClerk
+  ] = await insertMany('position', [
+    { name: 'Rifleman', accessLevel: 'member' },
+    { name: 'Squad Leader', accessLevel: 'leader' },
+    { name: 'Platoon Leader', accessLevel: 'leader' },
+    { name: 'Platoon Clerk', accessLevel: 'clerk' }
+  ])
+  const positions = { rifleman, squadLeader, platoonLeader, platoonClerk }
 
-  insert into personnel.position (id, name, access_level) values
-    (${ids.rifleman}, 'Rifleman', 'member'),
-    (${ids.squadLeader}, 'Squad Leader', 'leader'),
-    (${ids.platoonLeader}, 'Platoon Leader', 'leader'),
-    (${ids.platoonClerk}, 'Platoon Clerk', 'clerk');
+  // Users
+  const [
+    pvtAntelope,
+    sgtBaboon,
+    ltChicken,
+    t5Dingo
+  ] = await insertMany('user', [
+    { lastName: 'Antelope', rankId: ranks.pvt },
+    { lastName: 'Baboon', rankId: ranks.sgt },
+    { lastName: 'Chicken', rankId: ranks.lt },
+    { lastName: 'Dingo', rankId: ranks.t5 }
+  ])
+  const users = { pvtAntelope, sgtBaboon, ltChicken, t5Dingo }
 
-  insert into personnel.assignment (user_id, unit_id, position_id) values
-    (${ids.privateAxe}, ${ids.ap1s1}, ${ids.rifleman}),
-    (${ids.sergeantBug}, ${ids.ap1s1}, ${ids.squadLeader}),
-    (${ids.lieutenantCup}, ${ids.ap1}, ${ids.platoonLeader}),
-    (${ids.technicianDew}, ${ids.ap1s1}, ${ids.rifleman}),
-    (${ids.technicianDew}, ${ids.ap1}, ${ids.platoonClerk});
+  // Assignments
+  await insertMany('assignment', [
+    {
+      userId: users.pvtAntelope,
+      unitId: units.ap1s1,
+      positionId: positions.rifleman
+    },
+    {
+      userId: users.sgtBaboon,
+      unitId: units.ap1s1,
+      positionId: positions.squadLeader
+    },
+    {
+      userId: users.ltChicken,
+      unitId: units.ap1,
+      positionId: positions.platoonLeader
+    },
+    {
+      userId: users.t5Dingo,
+      unitId: units.ap1s1,
+      positionId: positions.rifleman
+    },
+    {
+      userId: users.t5Dingo,
+      unitId: units.ap1,
+      positionId: positions.platoonClerk
+    }
+  ])
 
-  insert into personnel.permission (unit_id, access_level, ability) values
-    (${ids.ap1}, 'leader', 'add_promotion'),
-    (${ids.ap1}, 'clerk', 'add_event'),
-    (${ids.ap1s1}, 'member', 'view_event'),
-    (${ids.ap1}, 'member', 'view_event'),
-    (${ids.ap1}, 'clerk', 'edit_profile');
+  // Permissions
+  await insertMany('permission', [
+    {
+      unitId: units.ap1,
+      accessLevel: 'leader',
+      ability: 'add_promotion'
+    },
+    {
+      unitId: units.ap1,
+      accessLevel: 'clerk',
+      ability: 'add_event'
+    },
+    {
+      unitId: units.ap1s1,
+      accessLevel: 'member',
+      ability: 'view_event'
+    },
+    {
+      unitId: units.ap1,
+      accessLevel: 'member',
+      ability: 'view_event'
+    },
+    {
+      unitId: units.ap1,
+      accessLevel: 'clerk',
+      ability: 'edit_profile'
+    }
+  ])
+ 
+  // Events
+  await insertMany('event', [
+    { unitId: units.able, name: 'Able Company Drills' },
+    { unitId: units.ap1, name: 'AP1 Platoon Drills' },
+    { unitId: units.ap1s1, name: 'AP1S1 Squad Drills' }
+  ])
 
-  insert into personnel.event (unit_id, name) values
-    (${ids.able}, 'Able Company Drills'),
-    (${ids.ap1}, 'AP1 Platoon Drills'),
-    (${ids.ap1s1}, 'AP1S1 Squad Drills');
-`
+  return {
+    units,
+    ranks,
+    positions,
+    users
+  }
 
-module.exports = {
-  insertSampleData,
-  ids
+  // Helper functions
+  function insertOne (table, row) {
+    return insertMany(table, row)
+      .then((results) => results[0])
+  }
+
+  function insertMany (table, rows) {
+    return transaction
+      .withSchema('personnel')
+      .insert(rows)
+      .into(table)
+      .returning('*') // returning('id') doesn't seem to work so we map it below
+      .then((rows) => rows.map((row) => row.id))
+  }
 }
