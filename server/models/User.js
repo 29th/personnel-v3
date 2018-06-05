@@ -1,6 +1,4 @@
 import { Model } from 'objection'
-import Assignment from './assignment'
-import Rank from './rank'
 
 export default class User extends Model {
   static tableName = 'users'
@@ -18,7 +16,7 @@ export default class User extends Model {
   static relationMappings = {
     assignments: {
       relation: Model.HasManyRelation,
-      modelClass: Assignment,
+      modelClass: __dirname + '/assignment',
       join: {
         from: 'users.id',
         to: 'assignments.userId'
@@ -26,7 +24,7 @@ export default class User extends Model {
     },
     rank: {
       relation: Model.BelongsToOneRelation,
-      modelClass: Rank,
+      modelClass: __dirname + '/rank',
       join: {
         from: 'users.rankId',
         to: 'ranks.id'

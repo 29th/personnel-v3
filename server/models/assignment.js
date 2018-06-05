@@ -1,7 +1,4 @@
 import { Model } from 'objection'
-// import Unit from './unit'
-// import User from './user'
-// import Position from './position'
 
 export default class Assignment extends Model {
   static tableName = 'assignments'
@@ -9,8 +6,7 @@ export default class Assignment extends Model {
   static relationMappings = {
     unit: {
       relation: Model.BelongsToOneRelation,
-      // modelClass: Unit,
-      modelClass: __dirname + '/Unit',
+      modelClass: __dirname + '/unit',
       join: {
         from: 'assignments.unitId',
         to: 'units.id'
@@ -18,8 +14,7 @@ export default class Assignment extends Model {
     },
     user: {
       relation: Model.BelongsToOneRelation,
-      // modelClass: User,
-      modelClass: __dirname + '/User',
+      modelClass: __dirname + '/user',
       join: {
         from: 'assignments.userId',
         to: 'users.id'
@@ -27,8 +22,7 @@ export default class Assignment extends Model {
     },
     position: {
       relation: Model.BelongsToOneRelation,
-      // modelClass: Position,
-      modelClass: __dirname + '/Position',
+      modelClass: __dirname + '/position',
       join: {
         from: 'assignments.positionId',
         to: 'positions.id'

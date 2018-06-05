@@ -9,10 +9,20 @@ input UserCreateInput {
   lastName: String!
 }
 
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+}
+
+input UserWhereUniqueInput {
+  id: Int!
+}
+
 type Query {
   users: [User!]!
 }
 
 type Mutation {
   createUser(data: UserCreateInput!): User
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
 }

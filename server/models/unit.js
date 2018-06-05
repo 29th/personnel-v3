@@ -1,6 +1,4 @@
 import { Model } from 'objection'
-import Assignment from './assignment'
-import Permission from './permission'
 
 export default class Unit extends Model {
   static tableName = 'units'
@@ -8,7 +6,7 @@ export default class Unit extends Model {
   static relationMappings = {
     assignments: {
       relation: Model.HasManyRelation,
-      modelClass: Assignment,
+      modelClass: __dirname + '/assignment',
       join: {
         from: 'units.id',
         to: 'assignments.unitId'
@@ -16,7 +14,7 @@ export default class Unit extends Model {
     },
     permissions: {
       relation: Model.HasManyRelation,
-      modelClass: Permission,
+      modelClass: __dirname + '/permission',
       join: {
         from: 'units.id',
         to: 'permissions.unitId'

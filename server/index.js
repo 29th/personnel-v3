@@ -2,11 +2,11 @@ import { ApolloServer, ForbiddenError } from 'apollo-server'
 import { Model } from 'objection'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import flatten from 'lodash/flatten'
 import Knex from 'knex'
 import knexfile from '../knexfile'
 
-import User from './models/User'
+import User from './models/user'
+import { getPermissions } from './permissions'
 const SCHEMA_FILE = join(__dirname, 'schema.graphql')
 const typeDefs = readFileSync(SCHEMA_FILE, 'utf8')
 
@@ -27,19 +27,20 @@ const resolvers = {
         .query()
         .insert(data)
         .returning('*')
+    },
+    updateUser: async (parent, { data, where }, { actorId }) => {
+      const subjectId = where.id
+      const permissions = await getPermissionsOnUser(actorId, subjectId)
+      if (!permissions.includes('edit_user')) {
+        throw ForbiddenError('Not authorised to edit_user')
+      }
+      return User
+        .query()
+        .patch(data)
+        .where(where)
+        .returning('*')
     }
   }
-}
-
-async function getPermissions (actorId) {
-  const user = await User.query()
-    .findById(actorId)
-    .eager('assignments.unit.permissions')
-
-  const assignmentPermissions = user.assignments.map((assignment) => assignment.unit.permissions)
-  const permissions = flatten(assignmentPermissions)
-  const abilities = permissions.map((permission) => permission.ability)
-  return abilities
 }
 
 const server = new ApolloServer({

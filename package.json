@@ -5,7 +5,9 @@
   "main": "server/index.js",
   "scripts": {
     "dev": "nodemon server/index.js --exec babel-node",
-    "db:migrate": "knex migrate:latest",
+    "test": "jest",
+    "db:migrate": "babel-node node_modules/.bin/knex migrate:latest",
+    "db:rollback": "babel-node node_modules/.bin/knex migrate:rollback",
     "db:seed": "babel-node node_modules/.bin/knex seed:run"
   },
   "repository": {
@@ -19,6 +21,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "jest": "^23.0.0",
     "nodemon": "^1.17.4"
   },
   "dependencies": {
