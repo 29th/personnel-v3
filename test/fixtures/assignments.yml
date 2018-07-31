@@ -1,11 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  unit: one
-  user: one
-  position: one
+pvt_antelope_ap1s1:
+  unit: ap1s1
+  user: pvt_antelope
+  position: rifleman
 
-two:
-  unit: two
-  user: two
-  position: two
+sgt_baboon_ap1s1:
+  unit: ap1s1
+  user: sgt_baboon
+  position: squad_leader
+
+lt_chicken_ap1:
+  unit: ap1
+  user: lt_chicken
+  position: platoon_leader
+
+t5_dingo_ap1s1:
+  unit: ap1s1
+  user: t5_dingo
+  position: rifleman
+
+t5_dingo_ap1:
+  unit: ap1
+  user: t5_dingo
+  position: platoon_clerk

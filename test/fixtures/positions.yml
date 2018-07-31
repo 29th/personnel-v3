@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  access_level: 1
+rifleman:
+  name: Rifleman
+  access_level: <%= Position.access_levels[:member] %>
 
-two:
-  name: MyString
-  access_level: 1
+squad_leader:
+  name: Squad Leader
+  access_level: <%= Position.access_levels[:leader] %>
+
+platoon_clerk:
+  name: Platoon Clerk
+  access_level: <%= Position.access_levels[:clerk] %>
+
+platoon_leader:
+  name: Platoon Leader
+  access_level: <%= Position.access_levels[:leader] %>

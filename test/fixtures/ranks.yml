@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  abbr: MyString
-  name: MyString
+pvt:
+  abbr: Pvt.
+  name: Private
 
-two:
-  abbr: MyString
-  name: MyString
+t5:
+  abbr: T/5
+  name: Technician, 5th Grade
+
+sgt:
+  abbr: Sgt.
+  name: Sergeant
+
+lt:
+  abbr: 2Lt.
+  name: Second Lieutenant

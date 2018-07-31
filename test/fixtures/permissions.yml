@@ -1,11 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  unit: one
-  access_level: 1
-  ability: MyString
+ap1_add_promotion:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:leader] %>
+  ability: add_promotion
 
-two:
-  unit: two
-  access_level: 1
-  ability: MyString
+ap1_add_event:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:clerk] %>
+  ability: add_event
+
+ap1s1_view_event:
+  unit: ap1s1
+  access_level: <%= Permission.access_levels[:member] %>
+  ability: view_event
+
+ap1_view_event:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:member] %>
+  ability: view_event
+
+ap1_edit_profile:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:clerk] %>
+  ability: edit_profile

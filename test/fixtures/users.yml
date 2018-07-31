@@ -1,11 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  steamid: MyString
+pvt_antelope:
+  last_name: Antelope
+  rank: pvt
 
-two:
-  first_name: MyString
-  last_name: MyString
-  steamid: MyString
+sgt_baboon:
+  last_name: Baboon
+  rank: sgt
+
+lt_chicken:
+  last_name: Chicken
+  rank: lt
+
+t5_dingo:
+  last_name: Dingo
+  rank: t5
