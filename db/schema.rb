@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_123735) do
+ActiveRecord::Schema.define(version: 2018_07_31_101652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -27,9 +27,25 @@ ActiveRecord::Schema.define(version: 2018_07_30_123735) do
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.bigint "unit_id"
+    t.integer "access_level"
+    t.string "ability"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_permissions_on_unit_id"
+  end
+
   create_table "positions", force: :cascade do |t|
     t.string "name"
     t.integer "access_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.string "abbr"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,9 +64,13 @@ ActiveRecord::Schema.define(version: 2018_07_30_123735) do
     t.string "steamid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "rank_id"
+    t.index ["rank_id"], name: "index_users_on_rank_id"
   end
 
   add_foreign_key "assignments", "positions"
   add_foreign_key "assignments", "units"
   add_foreign_key "assignments", "users"
+  add_foreign_key "permissions", "units"
+  add_foreign_key "users", "ranks"
 end
