@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unit: one
+  access_level: 1
+  ability: MyString
+
+two:
+  unit: two
+  access_level: 1
+  ability: MyString
