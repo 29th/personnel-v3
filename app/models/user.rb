@@ -9,10 +9,31 @@ class User < ApplicationRecord
     end
   end
 
-  def permissions
-    assignments
-      .joins(:position, unit: :permissions)
-      .where('permissions.access_level <= positions.access_level')
-      .pluck(:ability)
+  def has_permission?(permission)
+    permissions.pluck(:ability).include?(permission)
   end
+
+  def has_permission_on_unit?(permission, unit)
+    permissions_on_unit(unit).pluck(:ability).include?(permission)
+  end
+
+  private
+    def permissions
+      @permissions ||= assignments
+        .joins(:position, unit: :permissions)
+        .where('permissions.access_level <= positions.access_level')
+    end
+
+    def permissions_on_unit(unit)
+      is_unit_or_parent = <<~EOF
+        units.id = ?
+        OR units.parent_path @> (
+          SELECT parent_path FROM units WHERE id = ?
+        )
+      EOF
+
+      # TODO: We probably don't want to memoize this since there's args
+      @permissions_on_unit ||= permissions
+        .where(is_unit_or_parent, unit.id, unit.id)
+    end
 end
