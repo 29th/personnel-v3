@@ -62,4 +62,36 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not pvt_antelope.has_permission_on_unit? 'add_event', ap1 # clerk-level
   end
+
+  # has_permission_on_user?
+
+  test "Platoon leader has permissions on a member of one of their squads" do
+    lt_chicken = users(:lt_chicken)
+    pvt_antelope = users(:pvt_antelope)
+
+    assert lt_chicken.has_permission_on_user? 'edit_profile', pvt_antelope # clerk-level
+  end
+
+  test "Platoon leader does not have permissions on a member of another platoon's squads" do
+    lt_chicken = users(:lt_chicken)
+    pvt_emu = users(:pvt_emu)
+
+    assert_not lt_chicken.has_permission_on_user? 'edit_profile', pvt_emu # clerk-level
+  end
+
+  test "Lighthouse chief has permission to fire and qualify someone who's in their squad and also in lighthouse" do
+    sgt_baboon = users(:sgt_baboon)
+    pvt_antelope = users(:pvt_antelope)
+
+    assert sgt_baboon.has_permission_on_user? 'fire', pvt_antelope # lighthouse leader-level
+    assert sgt_baboon.has_permission_on_user? 'qualify', pvt_antelope # ap1s1 leader-level
+  end
+
+  test "Lighthouse chief has permission to fire but not qualify someone who's in lighthouse, but not their squad" do
+    sgt_baboon = users(:sgt_baboon)
+    pvt_emu = users(:pvt_emu)
+
+    assert sgt_baboon.has_permission_on_user? 'fire', pvt_emu # lighthouse leader-level
+    assert_not sgt_baboon.has_permission_on_user? 'qualify', pvt_emu # ap1s1 leader-level
+  end
 end

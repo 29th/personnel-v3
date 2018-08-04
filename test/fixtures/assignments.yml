@@ -35,8 +35,28 @@ lt_chicken_ap2_past:
   ended_at: <%= 1.week.ago.to_date.to_s :db %>
 
 # Pvt. Antelope starts as platoon clerk in a week
-pvt_antelope_ap1s1_future:
+pvt_antelope_ap1_future:
   unit: ap1
   user: pvt_antelope
   position: platoon_clerk
   started_at: <%= 1.week.from_now.to_date.to_s :db %>
+
+pvt_emu_ap2s1:
+  unit: ap2s1
+  user: pvt_emu
+  position: rifleman
+
+pvt_antelope_lighthouse:
+  unit: lighthouse
+  user: pvt_antelope
+  position: enlistment_liaison
+
+sgt_baboon_lighthouse:
+  unit: lighthouse
+  user: sgt_baboon
+  position: chief
+
+pvt_emu_lighthouse:
+  unit: lighthouse
+  user: pvt_emu
+  position: enlistment_liaison

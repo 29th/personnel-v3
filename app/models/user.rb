@@ -17,6 +17,10 @@ class User < ApplicationRecord
     permissions_on_unit(unit).pluck(:ability).include?(permission)
   end
 
+  def has_permission_on_user?(permission, user)
+    permissions_on_user(user).pluck(:ability).include?(permission)
+  end
+
   private
     def permissions
       @permissions ||= assignments
@@ -33,8 +37,24 @@ class User < ApplicationRecord
         )
       EOF
 
-      # TODO: We probably don't want to memoize this since there's args
-      @permissions_on_unit ||= permissions
+      # TODO: Do we want to memoize this somehow?
+      permissions
         .where(is_unit_or_parent, unit.id, unit.id)
+    end
+
+    def permissions_on_user(user)
+      units = user.assignments.current.map(&:unit)
+      unit_ids = units.pluck(:id)
+
+      is_unit_or_parent = <<~EOF
+        units.id IN (?)
+        OR units.path @> array(
+          SELECT path FROM units WHERE id IN (?)
+        )
+      EOF
+
+      # TODO: Do we want to memoize this somehow?
+      permissions
+        .where(is_unit_or_parent, unit_ids, unit_ids)
     end
 end

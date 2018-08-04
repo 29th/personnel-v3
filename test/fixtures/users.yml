@@ -15,3 +15,7 @@ lt_chicken:
 t5_dingo:
   last_name: Dingo
   rank: t5
+
+pvt_emu:
+  last_name: Emu
+  rank: pvt

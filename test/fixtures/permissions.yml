@@ -15,6 +15,11 @@ ap1s1_view_event:
   access_level: <%= Permission.access_levels[:member] %>
   ability: view_event
 
+ap1s1_qualify:
+  unit: ap1s1
+  access_level: <%= Permission.access_levels[:leader] %>
+  ability: qualify
+
 ap1_view_event:
   unit: ap1
   access_level: <%= Permission.access_levels[:member] %>
@@ -29,3 +34,23 @@ ap2_add_event:
   unit: ap2
   access_level: <%= Permission.access_levels[:clerk] %>
   ability: add_event
+
+ap1_edit_profile:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:clerk] %>
+  ability: edit_profile
+
+ap2_edit_profile:
+  unit: ap2
+  access_level: <%= Permission.access_levels[:clerk] %>
+  ability: edit_profile
+
+lighthouse_process_enlistment:
+  unit: lighthouse
+  access_level: <%= Permission.access_levels[:clerk] %>
+  ability: process_enlistment
+
+lighthouse_fire:
+  unit: lighthouse
+  access_level: <%= Permission.access_levels[:leader] %>
+  ability: fire

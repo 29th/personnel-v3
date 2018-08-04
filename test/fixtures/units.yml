@@ -34,3 +34,8 @@ ap2s1:
   name: Able Company, 2nd Platoon, 1st Squad
   abbr: AP2S1
   path: Bn.Able.AP2.AP2S1
+
+lighthouse:
+  name: Lighthouse Corps
+  abbr: Lighthouse
+  path: Bn.Lighthouse

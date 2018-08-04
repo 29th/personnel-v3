@@ -15,3 +15,11 @@ platoon_clerk:
 platoon_leader:
   name: Platoon Leader
   access_level: <%= Position.access_levels[:leader] %>
+
+enlistment_liaison:
+  name: Enlistment Liaison
+  access_level: <%= Position.access_levels[:clerk] %>
+
+chief:
+  name: Chief
+  access_level: <%= Position.access_levels[:leader] %>
