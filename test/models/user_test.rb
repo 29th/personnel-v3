@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "Platoon leader inherits member and clerk abilities" do
+  # has_permission?
+
+  test "Platoon leader inherits member and clerk permissions" do
     lt_chicken = users(:lt_chicken)
 
     assert lt_chicken.has_permission? 'add_promotion' # leader-level
@@ -9,7 +11,7 @@ class UserTest < ActiveSupport::TestCase
     assert lt_chicken.has_permission? 'view_event' # member-level
   end
 
-  test "Platoon clerk inherits member abilities but not leader abilities" do
+  test "Platoon clerk inherits member permissions but not leader abilities" do
     t5_dingo = users(:t5_dingo)
 
     refute t5_dingo.has_permission? 'add_promotion' # leader-level
@@ -17,10 +19,19 @@ class UserTest < ActiveSupport::TestCase
     assert t5_dingo.has_permission? 'view_event' # member-level
   end
 
-  test "Platoon leader platoon-level abilities apply to their squad" do
+  # has_permission_on_unit?
+
+  test "Platoon leader's platoon-level permissions apply to one of their squads" do
     lt_chicken = users(:lt_chicken)
     ap1s1 = units(:ap1s1)
 
     assert lt_chicken.has_permission_on_unit? 'add_event', ap1s1 # clerk-level
+  end
+
+  test "Platoon leader's permissions do not apply to another platoon's squad" do
+    lt_chicken = users(:lt_chicken)
+    ap2s1 = units(:ap2s1)
+
+    assert_not lt_chicken.has_permission_on_unit? 'add_event', ap2s1 # clerk-level
   end
 end

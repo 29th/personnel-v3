@@ -19,3 +19,18 @@ ap1s1:
   name: Able Company, 1st Platoon, 1st Squad
   abbr: AP1S1
   parent_path: root.<%= ActiveRecord::FixtureSet.identify(:bnhq) %>.<%= ActiveRecord::FixtureSet.identify(:able) %>.<%= ActiveRecord::FixtureSet.identify(:ap1) %>
+
+ap1s2:
+  name: Able Company, 1st Platoon, 2nd Squad
+  abbr: AP1S1
+  parent_path: root.<%= ActiveRecord::FixtureSet.identify(:bnhq) %>.<%= ActiveRecord::FixtureSet.identify(:able) %>.<%= ActiveRecord::FixtureSet.identify(:ap1) %>
+
+ap2:
+  name: Able Company, 2nd Platoon
+  abbr: AP2
+  parent_path: root.<%= ActiveRecord::FixtureSet.identify(:bnhq) %>.<%= ActiveRecord::FixtureSet.identify(:able) %>
+
+ap2s1:
+  name: Able Company, 2nd Platoon, 1st Squad
+  abbr: AP2S1
+  parent_path: root.<%= ActiveRecord::FixtureSet.identify(:bnhq) %>.<%= ActiveRecord::FixtureSet.identify(:able) %>.<%= ActiveRecord::FixtureSet.identify(:ap2) %>
