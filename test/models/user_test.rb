@@ -21,6 +21,13 @@ class UserTest < ActiveSupport::TestCase
 
   # has_permission_on_unit?
 
+  test "Platoon leader's platoon-level permission applies to the platoon" do
+    lt_chicken = users(:lt_chicken)
+    ap1 = units(:ap1)
+
+    assert lt_chicken.has_permission_on_unit? 'view_event', ap1 # member-level
+  end
+
   test "Platoon leader's platoon-level permissions apply to one of their squads" do
     lt_chicken = users(:lt_chicken)
     ap1s1 = units(:ap1s1)
@@ -33,5 +40,12 @@ class UserTest < ActiveSupport::TestCase
     ap2s1 = units(:ap2s1)
 
     assert_not lt_chicken.has_permission_on_unit? 'add_event', ap2s1 # clerk-level
+  end
+
+  test "Squad leader's permissions do not apply to their platoon" do
+    sgt_baboon = users(:sgt_baboon)
+    ap1 = units(:ap1)
+
+    assert_not sgt_baboon.has_permission_on_unit? 'view_event', ap1 # member-level
   end
 end
