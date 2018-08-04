@@ -24,6 +24,7 @@ t5_dingo_ap1:
   unit: ap1
   user: t5_dingo
   position: platoon_clerk
+  started_at: <%= 1.week.ago.to_date.to_s :db %>
 
 # Lt. Chicken used to run AP2
 lt_chicken_ap2_past:
@@ -32,3 +33,10 @@ lt_chicken_ap2_past:
   position: platoon_leader
   started_at: <%= 1.month.ago.to_date.to_s :db %>
   ended_at: <%= 1.week.ago.to_date.to_s :db %>
+
+# Pvt. Antelope starts as platoon clerk in a week
+pvt_antelope_ap1s1_future:
+  unit: ap1
+  user: pvt_antelope
+  position: platoon_clerk
+  started_at: <%= 1.week.from_now.to_date.to_s :db %>
