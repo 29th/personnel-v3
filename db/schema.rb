@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_31_101652) do
+ActiveRecord::Schema.define(version: 2018_08_04_153712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_101652) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["abbr"], name: "index_units_on_abbr", unique: true
+    t.index ["path"], name: "index_units_on_path", using: :gist
   end
 
   create_table "users", force: :cascade do |t|
