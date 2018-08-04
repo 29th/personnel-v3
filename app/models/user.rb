@@ -27,8 +27,8 @@ class User < ApplicationRecord
     def permissions_on_unit(unit)
       is_unit_or_parent = <<~EOF
         units.id = ?
-        OR units.parent_path @> (
-          SELECT parent_path FROM units WHERE id = ?
+        OR units.path @> (
+          SELECT path FROM units WHERE id = ?
         )
       EOF
 

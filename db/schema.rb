@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(version: 2018_07_31_101652) do
   create_table "units", force: :cascade do |t|
     t.string "name"
     t.string "abbr"
-    t.ltree "parent_path"
+    t.ltree "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["abbr"], name: "index_units_on_abbr", unique: true
   end
 
   create_table "users", force: :cascade do |t|
