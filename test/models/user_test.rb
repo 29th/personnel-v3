@@ -48,4 +48,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not sgt_baboon.has_permission_on_unit? 'view_event', ap1 # member-level
   end
+
+  test "Permissions from past assignments are ignored" do
+    lt_chicken = users(:lt_chicken)
+    ap2 = units(:ap2)
+
+    assert_not lt_chicken.has_permission_on_unit? 'add_event', ap2 # clerk-level
+  end
 end

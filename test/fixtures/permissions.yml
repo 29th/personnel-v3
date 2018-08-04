@@ -24,3 +24,8 @@ ap1_edit_profile:
   unit: ap1
   access_level: <%= Permission.access_levels[:clerk] %>
   ability: edit_profile
+
+ap2_add_event:
+  unit: ap2
+  access_level: <%= Permission.access_levels[:clerk] %>
+  ability: add_event

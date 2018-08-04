@@ -20,6 +20,7 @@ class User < ApplicationRecord
   private
     def permissions
       @permissions ||= assignments
+        .current
         .joins(:position, unit: :permissions)
         .where('permissions.access_level <= positions.access_level')
     end

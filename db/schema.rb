@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_04_153712) do
+ActiveRecord::Schema.define(version: 2018_08_04_155212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -22,7 +22,11 @@ ActiveRecord::Schema.define(version: 2018_08_04_153712) do
     t.bigint "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "started_at", default: -> { "('now'::text)::date" }, null: false
+    t.date "ended_at"
+    t.index ["ended_at"], name: "index_assignments_on_ended_at"
     t.index ["position_id"], name: "index_assignments_on_position_id"
+    t.index ["started_at"], name: "index_assignments_on_started_at"
     t.index ["unit_id"], name: "index_assignments_on_unit_id"
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end

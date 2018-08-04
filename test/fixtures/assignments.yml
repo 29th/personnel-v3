@@ -24,3 +24,11 @@ t5_dingo_ap1:
   unit: ap1
   user: t5_dingo
   position: platoon_clerk
+
+# Lt. Chicken used to run AP2
+lt_chicken_ap2_past:
+  unit: ap2
+  user: lt_chicken
+  position: platoon_leader
+  started_at: <%= 1.month.ago.to_date.to_s :db %>
+  ended_at: <%= 1.week.ago.to_date.to_s :db %>
