@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :assignments
+  has_many :assignments, dependent: :delete_all
   has_many :units, through: :assignments
   belongs_to :rank
 
