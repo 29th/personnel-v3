@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-
+  include Pundit
   helper_method :current_user
+  after_action :verify_authorized # enforce policy for every action
 
   private
     def current_user

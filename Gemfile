@@ -62,3 +62,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Authentication
 gem 'omniauth'
 gem 'omniauth-steam', '~> 1.0', '>= 1.0.6'
+
+# Authorisation
+gem 'pundit'

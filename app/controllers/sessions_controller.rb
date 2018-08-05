@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   # Steam uses ?_method=post so rails expects an authenticity token
   skip_before_action :verify_authenticity_token, only: :create
+  skip_after_action :verify_authorized # none of these methods require authentication
 
   def new
     redirect_to '/auth/steam'

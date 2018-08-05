@@ -111,6 +111,8 @@ GEM
     pg (1.0.0)
     public_suffix (3.0.2)
     puma (3.12.0)
+    pundit (2.0.0)
+      activesupport (>= 3.0.0)
     rack (2.0.5)
     rack-openid (1.3.1)
       rack (>= 1.1.0)
@@ -209,6 +211,7 @@ DEPENDENCIES
   omniauth-steam (~> 1.0, >= 1.0.6)
   pg
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
