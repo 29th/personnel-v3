@@ -1,5 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h1>
+  <%= @user.full_name %>
+</h1>
+
+<ul>
+  <% @user.assignments.current.each do |assignment| %>
+    <li>
+      <%= assignment.position.name %>,
+      <%= assignment.unit.name %>
+    </li>
+  <% end %>
+</ul>
+
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %>

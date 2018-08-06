@@ -3,6 +3,18 @@ class User < ApplicationRecord
   has_many :units, through: :assignments
   belongs_to :rank
 
+  def full_name
+    [rank.name, first_name, last_name]
+      .reject{ |s| s.nil? or s.empty? }
+      .join(' ')
+  end
+
+  def short_name
+    [rank.abbr, last_name]
+      .reject{ |s| s.nil? or s.empty? }
+      .join(' ')
+  end
+
   def self.create_with_auth(auth)
     create! do |user|
       user.steamid = auth['uid']
