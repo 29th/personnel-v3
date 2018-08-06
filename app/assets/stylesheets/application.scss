@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+$olive: #989788;
+$theme-colors: (
+  "green-dark": #515547,
+  "olive": $olive
+);
+
+$font-family-sans-serif: 'Roboto Condensed', sans-serif;
+$link-color: $olive;
+
+@import "bootstrap";
+
+h1, h2, h3, h4, h5, h6, th {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.navbar {
+  border-bottom: 25px $olive solid;
+}
+
+.navbar .navbar-brand img {
+  height: 46px;
+}

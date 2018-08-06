@@ -65,3 +65,6 @@ gem 'omniauth-steam', '~> 1.0', '>= 1.0.6'
 
 # Authorisation
 gem 'pundit'
+
+# UI framework
+gem 'bootstrap', '~> 4.1.3'

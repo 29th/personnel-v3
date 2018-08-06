@@ -1,5 +1,7 @@
 {
   "name": "personnel",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap.native": "^2.0.23"
+  }
 }
