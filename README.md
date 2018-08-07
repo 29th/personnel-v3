@@ -21,8 +21,6 @@ docker-compose up
 To view your app, go to `http://localhost:3000`.
 
 Exit using CTRL+C and stop the containers using `docker-compose down`.
-Every once in a while you may get an error while running `up` that there's already a server running.
-That occurs when it doesn't exit properly. Just delete `tmp/pids/server.pid` and try again.
 
 To issue rails commands, use:
 

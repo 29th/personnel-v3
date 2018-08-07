@@ -14,3 +14,6 @@ COPY Gemfile /personnel/Gemfile
 COPY Gemfile.lock /personnel/Gemfile.lock
 RUN bundle install
 COPY . /personnel
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["bundle", "exec", "rails", "server"]
