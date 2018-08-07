@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     authorize User
-    @users = User.includes(:rank).all
+    @users = User.includes(:rank).page(params[:page])
   end
 
   # GET /users/1
