@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :assignments, dependent: :delete_all
+  self.table_name = 'members'
+
+  has_many :assignments, dependent: :delete_all, foreign_key: 'member_id'
   has_many :units, through: :assignments
   belongs_to :rank
 
@@ -17,7 +19,7 @@ class User < ApplicationRecord
 
   def self.create_with_auth(auth)
     create! do |user|
-      user.steamid = auth['uid']
+      user.steam_id = auth['uid']
     end
   end
 

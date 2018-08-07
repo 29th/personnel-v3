@@ -12,9 +12,20 @@ services:
       - ./:/app
 
   db:
-    image: postgres
+    image: mysql:5.5
     volumes:
-      - db-persistence:/var/lib/postgresql/data
+      - ./db/dump:/docker-entrypoint-initdb.d
+      - db-persistence:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: personnel_development
+      MYSQL_ROOT_PASSWORD: pwd
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
 
 volumes:
   db-persistence:

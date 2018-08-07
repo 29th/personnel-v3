@@ -1,9 +1,9 @@
 class Assignment < ApplicationRecord
   belongs_to :unit
-  belongs_to :user
+  belongs_to :user, foreign_key: 'member_id'
   belongs_to :position
 
   scope :current, -> {
-    where('started_at <= current_date and (ended_at > current_date or ended_at is null)')
+    where('start_date <= current_date and (end_date > current_date or end_date is null)')
   }
 end
