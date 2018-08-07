@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./:/app
+      - ./:/personnel
 
   db:
     image: mysql:5.5

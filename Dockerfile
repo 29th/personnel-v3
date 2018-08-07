@@ -8,9 +8,9 @@ RUN apt-get update \
   && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
   && apt-get install -y nodejs
 
-RUN mkdir /app
-WORKDIR /app
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+RUN mkdir /personnel
+WORKDIR /personnel
+COPY Gemfile /personnel/Gemfile
+COPY Gemfile.lock /personnel/Gemfile.lock
 RUN bundle install
-COPY . /app
+COPY . /personnel
