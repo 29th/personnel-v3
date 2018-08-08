@@ -16,4 +16,4 @@ RUN bundle install
 COPY . /personnel
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["bundle", "exec", "rails", "server"]
+CMD ["rails", "server"]
