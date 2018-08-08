@@ -10,12 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_08_08_225526) do
 
   create_table "abilities", id: :integer, limit: 3, comment: "Ability's ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of abilities", force: :cascade do |t|
     t.string "name", limit: 40, null: false, comment: "Ability's Name"
     t.string "abbr", limit: 24, null: false, comment: "Ability's Abbreviation"
     t.text "description", null: false, comment: "Detailed description of Ability"
+  end
+
+  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "assignments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -355,7 +369,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "order", default: 0, null: false
     t.string "game", limit: 6, comment: "Game "
     t.string "timezone", limit: 3, null: false
-    t.string "class", limit: 8, default: "Training", null: false, comment: "Type of unit"
+    t.string "classification", limit: 8, default: "Training", null: false
     t.boolean "active", default: true, null: false
     t.string "steam_group_abbr", limit: 30, null: false, comment: "Abbreviation of Unit's Steam Group"
     t.string "slogan", limit: 200, null: false, comment: "Unit's Slogan"

@@ -71,3 +71,6 @@ gem 'bootstrap', '~> 4.1.3'
 
 # Pagination
 gem 'kaminari'
+
+# Admin UI
+gem 'activeadmin'
