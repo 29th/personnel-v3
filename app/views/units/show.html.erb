@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit.name %>
+</p>
+
+<p>
+  <strong>Abbr:</strong>
+  <%= @unit.abbr %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @unit.path %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @unit.order %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @unit.game %>
+</p>
+
+<p>
+  <strong>Timezone:</strong>
+  <%= @unit.timezone %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @unit.active %>
+</p>
+
+<%= link_to 'Edit', edit_unit_path(@unit) %> |
+<%= link_to 'Destroy', @unit, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', units_path %>
