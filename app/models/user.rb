@@ -24,31 +24,40 @@ class User < ApplicationRecord
   end
 
   def has_permission?(permission)
-    permissions.pluck(:ability).include?(permission)
+    permissions.pluck('abilities.abbr').include?(permission)
   end
 
   def has_permission_on_unit?(permission, unit)
-    permissions_on_unit(unit).pluck(:ability).include?(permission)
+    perms = permissions_on_unit(unit).pluck('abilities.abbr')
+    puts perms
+    perms.include?(permission)
   end
 
   def has_permission_on_user?(permission, user)
-    permissions_on_user(user).pluck(:ability).include?(permission)
+    permissions_on_user(user).pluck('abilities.abbr').include?(permission)
   end
 
   private
     def permissions
       @permissions ||= assignments
         .current
-        .joins(:position, unit: :permissions)
-        .where('permissions.access_level <= positions.access_level')
+        .joins(:position, unit: {permissions: :ability})
+        .where('unit_permissions.access_level <= positions.access_level')
     end
 
     def permissions_on_unit(unit)
+      # is_unit_or_parent = <<~EOF
+      #   units.id = ?
+      #   OR units.path @> (
+      #     SELECT path FROM units WHERE id = ?
+      #   )
+      # EOF
+      # TODO: I think this may be getting children not parents
       is_unit_or_parent = <<~EOF
         units.id = ?
-        OR units.path @> (
+        OR (
           SELECT path FROM units WHERE id = ?
-        )
+        ) LIKE CONCAT(units.path, '%')
       EOF
 
       # TODO: Do we want to memoize this somehow?
@@ -60,10 +69,16 @@ class User < ApplicationRecord
       units = user.assignments.current.map(&:unit)
       unit_ids = units.pluck(:id)
 
+      # is_unit_or_parent = <<~EOF
+      #   units.id IN (?)
+      #   OR units.path @> array(
+      #     SELECT path FROM units WHERE id IN (?)
+      #   )
+      # EOF
       is_unit_or_parent = <<~EOF
         units.id IN (?)
-        OR units.path @> array(
-          SELECT path FROM units WHERE id IN (?)
+        OR units.path IN (
+          SELECT LEFT(path, CHAR_LENGTH(units.path)) FROM units AS parents WHERE id IN (?)
         )
       EOF
 
