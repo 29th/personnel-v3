@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root 'home#index'
 
   post '/auth/:provider/callback' => 'sessions#create'

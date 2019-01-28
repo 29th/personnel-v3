@@ -11,7 +11,9 @@ services:
       - ./:/personnel
 
   db:
-    image: mysql:5.5
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
     volumes:
       - ./db/dump:/docker-entrypoint-initdb.d
       - db-persistence:/var/lib/mysql
