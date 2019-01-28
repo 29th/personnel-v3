@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+add_promotion:
+  abbr: add_promotion
+
+add_event:
+  abbr: add_event
+
+view_event:
+  abbr: view_event
+
+qualify:
+  abbr: qualify
+
+edit_profile:
+  abbr: edit_profile
+
+process_enlistment:
+  abbr: process_enlistment
+
+fire:
+  abbr: fire

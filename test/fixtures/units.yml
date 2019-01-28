@@ -3,39 +3,39 @@
 bnhq:
   name: First Battalion
   abbr: Bn
-  path: Bn
+  path: /
 
 able:
   name: Able Company
   abbr: Able
-  path: Bn.Able
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/
 
 ap1:
   name: Able Company, 1st Platoon
   abbr: AP1
-  path: Bn.Able.AP1
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/<%= ActiveRecord::FixtureSet.identify(:able) %>/
 
 ap1s1:
   name: Able Company, 1st Platoon, 1st Squad
   abbr: AP1S1
-  path: Bn.Able.AP1.AP1S1
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/<%= ActiveRecord::FixtureSet.identify(:able) %>/<%= ActiveRecord::FixtureSet.identify(:ap1) %>/
 
 ap1s2:
   name: Able Company, 1st Platoon, 2nd Squad
   abbr: AP1S2
-  path: Bn.Able.AP1.AP1S2
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/<%= ActiveRecord::FixtureSet.identify(:able) %>/<%= ActiveRecord::FixtureSet.identify(:ap1) %>/
 
 ap2:
   name: Able Company, 2nd Platoon
   abbr: AP2
-  path: Bn.Able.AP2
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/<%= ActiveRecord::FixtureSet.identify(:able) %>/
 
 ap2s1:
   name: Able Company, 2nd Platoon, 1st Squad
   abbr: AP2S1
-  path: Bn.Able.AP2.AP2S1
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/<%= ActiveRecord::FixtureSet.identify(:able) %>/<%= ActiveRecord::FixtureSet.identify(:ap2) %>/
 
 lighthouse:
   name: Lighthouse Corps
   abbr: Lighthouse
-  path: Bn.Lighthouse
+  path: /<%= ActiveRecord::FixtureSet.identify(:bnhq) %>/

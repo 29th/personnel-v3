@@ -1,21 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 pvt_antelope:
+  first_name: Alfred
   last_name: Antelope
   rank: pvt
 
 sgt_baboon:
+  first_name: Bobby
   last_name: Baboon
   rank: sgt
 
 lt_chicken:
+  first_name: Connie
   last_name: Chicken
   rank: lt
 
 t5_dingo:
+  first_name: Darryl
   last_name: Dingo
   rank: t5
 
 pvt_emu:
+  first_name: Elizabeth
   last_name: Emu
   rank: pvt
