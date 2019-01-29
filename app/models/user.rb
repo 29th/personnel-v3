@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def has_permission_on_user?(permission, user)
-    permissions_on_user(user).pluck('abilities.abbr').include?(permission)
+    permissions_on_user(user).pluck('abbr').include?(permission)
   end
 
   private
@@ -83,24 +83,51 @@ class User < ApplicationRecord
     end
 
     def permissions_on_user(user)
-      units = user.assignments.current.map(&:unit)
-      unit_ids = units.pluck(:id)
-
-      # is_unit_or_parent = <<~EOF
-      #   units.id IN (?)
-      #   OR units.path @> array(
-      #     SELECT path FROM units WHERE id IN (?)
-      #   )
-      # EOF
-      is_unit_or_parent = <<~EOF
-        units.id IN (?)
-        OR units.path IN (
-          SELECT LEFT(path, CHAR_LENGTH(units.path)) FROM units AS parents WHERE id IN (?)
+      query = <<~EOF
+        with recursive subject_units (id, name, parent_id) as (
+          select units.id, units.name, trim(trailing '/' from substring_index(path, '/', -2)) as parent_id
+          from units
+          inner join assignments on (
+            assignments.member_id = ?
+            and assignments.unit_id = units.id
+            and (
+              assignments.start_date <= current_date
+              and (assignments.end_date > current_date or assignments.end_date is null)
+            )
+          )
+        ),
+        unit_tree (id, name, parent_id) as (
+          select subject_units.id, subject_units.name, subject_units.parent_id
+            from subject_units
+          union all
+          select parent.id, parent.name, trim(trailing '/' from substring_index(parent.path, '/', -2)) as parent_id
+            from unit_tree as child
+            join units as parent
+              on child.parent_id = parent.id
+        ),
+        intersecting_assignments (unit_id, name, access_level) as (
+          select unit_tree.id as unit_id, unit_tree.name, positions.access_level
+          from unit_tree
+          inner join assignments on (
+            assignments.member_id = ?
+            and assignments.unit_id = unit_tree.id
+            and (
+              assignments.start_date <= current_date
+              and (assignments.end_date > current_date or assignments.end_date is null)
+            )
+          )
+          inner join positions on (positions.id = assignments.position_id)
         )
+        
+        select distinct abilities.abbr
+        from intersecting_assignments
+        inner join unit_permissions on (
+          unit_permissions.unit_id = intersecting_assignments.unit_id
+          and unit_permissions.access_level <= intersecting_assignments.access_level
+        )
+        inner join abilities on (abilities.id = unit_permissions.ability_id) 
       EOF
 
-      # TODO: Do we want to memoize this somehow?
-      permissions
-        .where(is_unit_or_parent, unit_ids, unit_ids)
+      Ability.find_by_sql([query, user, id])
     end
 end
