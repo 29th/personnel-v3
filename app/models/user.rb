@@ -28,9 +28,7 @@ class User < ApplicationRecord
   end
 
   def has_permission_on_unit?(permission, unit)
-    perms = permissions_on_unit(unit).pluck('abilities.abbr')
-    puts perms
-    perms.include?(permission)
+    permissions_on_unit(unit).pluck('abbr').include?(permission)
   end
 
   def has_permission_on_user?(permission, user)
@@ -46,23 +44,42 @@ class User < ApplicationRecord
     end
 
     def permissions_on_unit(unit)
-      # is_unit_or_parent = <<~EOF
-      #   units.id = ?
-      #   OR units.path @> (
-      #     SELECT path FROM units WHERE id = ?
-      #   )
-      # EOF
-      # TODO: I think this may be getting children not parents
-      is_unit_or_parent = <<~EOF
-        units.id = ?
-        OR (
-          SELECT path FROM units WHERE id = ?
-        ) LIKE CONCAT(units.path, '%')
+      query = <<~EOF
+        with recursive unit_tree (id, name, parent_id) as (
+          select id, name, trim(trailing '/' from substring_index(path, '/', -2)) as parent_id
+            from units
+            where id = ?
+          union all
+          select parent.id, parent.name, trim(trailing '/' from substring_index(parent.path, '/', -2)) as parent_id
+            from unit_tree as child
+            join units as parent
+              on child.parent_id = parent.id
+        ),
+        intersecting_assignments (unit_id, name, access_level) as (
+          select unit_tree.id as unit_id, unit_tree.name, positions.access_level
+          from unit_tree
+          inner join assignments on (
+            assignments.member_id = ?
+            and assignments.unit_id = unit_tree.id
+            and (
+              assignments.start_date <= current_date
+              and (assignments.end_date > current_date or assignments.end_date is null)
+            )
+          )
+          inner join positions on (positions.id = assignments.position_id)
+        )
+        
+        select distinct abilities.abbr
+        from intersecting_assignments
+        inner join unit_permissions on (
+          unit_permissions.unit_id = intersecting_assignments.unit_id
+          and unit_permissions.access_level <= intersecting_assignments.access_level
+        )
+        inner join abilities on (abilities.id = unit_permissions.ability_id) 
       EOF
 
       # TODO: Do we want to memoize this somehow?
-      permissions
-        .where(is_unit_or_parent, unit.id, unit.id)
+      Ability.find_by_sql([query, unit, id])
     end
 
     def permissions_on_user(user)
