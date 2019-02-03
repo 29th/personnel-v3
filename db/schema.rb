@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_11_203019) do
+ActiveRecord::Schema.define(version: 2019_02_03_191508) do
 
   create_table "abilities", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of abilities", force: :cascade do |t|
     t.string "name", limit: 40, comment: "Ability's Name"
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 2018_08_11_203019) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "assignments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "assignments", id: :integer, limit: 3, unsigned: true, options: "/*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "User ID", unsigned: true
     t.integer "unit_id", limit: 3, null: false, unsigned: true
     t.string "position", limit: 64
     t.integer "position_id", limit: 3, default: 35, unsigned: true
-    t.boolean "access_level", default: false
+    t.integer "access_level", limit: 2, default: 0
     t.date "start_date"
     t.date "end_date"
     t.index ["member_id", "unit_id", "position_id", "start_date"], name: "ttt", unique: true
@@ -271,12 +271,12 @@ ActiveRecord::Schema.define(version: 2018_08_11_203019) do
     t.index ["recruit_id"], name: "RecruitID"
   end
 
-  create_table "positions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+  create_table "positions", id: :integer, limit: 3, unsigned: true, options: "/*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.string "name", limit: 250, null: false, comment: "Name of position"
     t.boolean "active", default: true, null: false, comment: "Is position active"
     t.integer "order", limit: 1, default: 0, null: false, unsigned: true
     t.text "description"
-    t.boolean "access_level", default: false, null: false, comment: "is access granted?"
+    t.integer "access_level", limit: 2, default: 0, null: false, comment: "is access granted?"
     t.string "AIT", limit: 15, default: "N/A", null: false, comment: "AIT associated with position"
   end
 
@@ -345,18 +345,18 @@ ActiveRecord::Schema.define(version: 2018_08_11_203019) do
     t.text "details"
   end
 
-  create_table "unit_permissions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "unit_permissions", id: :integer, limit: 3, unsigned: true, options: "/*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "unit_id", limit: 3, null: false, unsigned: true
-    t.boolean "access_level", default: true, null: false
+    t.integer "access_level", limit: 2, default: 1, null: false
     t.integer "ability_id", limit: 3, null: false, comment: "ID of ability", unsigned: true
     t.index ["ability_id"], name: "Ability ID"
     t.index ["unit_id", "access_level", "ability_id"], name: "combo", unique: true
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "unit_roles", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "unit_roles", id: :integer, limit: 3, unsigned: true, options: "/*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "unit_id", limit: 3, unsigned: true
-    t.boolean "access_level", default: false, null: false
+    t.integer "access_level", limit: 2, default: 0, null: false
     t.integer "role_id", limit: 3, null: false, unsigned: true
     t.index ["unit_id", "role_id"], name: "unit_id", unique: true
   end
