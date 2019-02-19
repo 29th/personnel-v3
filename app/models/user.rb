@@ -17,6 +17,10 @@ class User < ApplicationRecord
       .join(' ')
   end
 
+  def display_name
+    short_name
+  end
+
   def self.create_with_auth(auth)
     create! do |user|
       user.steam_id = auth['uid']
