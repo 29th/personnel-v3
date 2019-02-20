@@ -10,7 +10,7 @@ squad_leader:
 
 platoon_clerk:
   name: Platoon Clerk
-  access_level: <%= Position.access_levels[:clerk] %>
+  access_level: <%= Position.access_levels[:elevated] %>
 
 platoon_leader:
   name: Platoon Leader
@@ -18,7 +18,7 @@ platoon_leader:
 
 enlistment_liaison:
   name: Enlistment Liaison
-  access_level: <%= Position.access_levels[:clerk] %>
+  access_level: <%= Position.access_levels[:elevated] %>
 
 chief:
   name: Chief

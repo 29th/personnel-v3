@@ -4,7 +4,7 @@ class ChangeAccessLevelToInt < ActiveRecord::Migration[5.2]
     tables = [:assignments, :positions, :unit_permissions, :unit_roles]
     tables.each do |table|
       change_table table do |t|
-        t.change :access_level, :integer, limit: 1
+        t.change :access_level, :integer, limit: 2
       end
     end
   end
