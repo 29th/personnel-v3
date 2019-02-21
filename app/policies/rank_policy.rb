@@ -1,4 +1,4 @@
-class UnitPolicy < ApplicationPolicy
+class RankPolicy < ApplicationPolicy
   def index?
     true
   end
@@ -12,10 +12,10 @@ class UnitPolicy < ApplicationPolicy
   end
 
   def update?
-    user and user.has_permission_on_unit?('edit_unit', record)
+    user and user.has_permission?('admin')
   end
 
   def destroy?
-    user and user.has_permission?('admin')
+    false
   end
 end
