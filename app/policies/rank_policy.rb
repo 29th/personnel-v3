@@ -16,6 +16,6 @@ class RankPolicy < ApplicationPolicy
   end
 
   def destroy?
-    false
+    user and user.has_permission?('admin')
   end
 end
