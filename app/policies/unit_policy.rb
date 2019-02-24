@@ -12,7 +12,7 @@ class UnitPolicy < ApplicationPolicy
   end
 
   def update?
-    user and user.has_permission_on_unit?('edit_unit', record)
+    user and user.has_permission_on_unit?('unit_add', record)
   end
 
   def destroy?

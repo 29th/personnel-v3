@@ -74,3 +74,5 @@ gem 'kaminari'
 
 # Admin UI
 gem 'activeadmin'
+
+gem 'nilify_blanks'
