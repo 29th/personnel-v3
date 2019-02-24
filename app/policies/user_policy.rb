@@ -12,7 +12,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user and user.has_permission_on_user?('edit_profile', record)
+    user and user.has_permission_on_user?('profile_edit', record)
   end
 
   def destroy?

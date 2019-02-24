@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :units, through: :assignments
   belongs_to :rank
 
+  nilify_blanks
+  validates_presence_of :last_name, :first_name, :rank
+
   def full_name
     [rank.name, first_name, last_name]
       .reject{ |s| s.nil? or s.empty? }
