@@ -4,4 +4,6 @@ class Permission < ApplicationRecord
 
   belongs_to :unit
   belongs_to :ability
+
+  validates_presence_of :unit, :ability, :access_level
 end

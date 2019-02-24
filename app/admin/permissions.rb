@@ -1,15 +1,15 @@
 ActiveAdmin.register Permission do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :unit_id, :access_level, :ability_id
 
+  filter :unit
+  filter :ability
+  filter :access_level, :as => :select, :collection => Permission.access_levels
+
+  index do
+    selectable_column
+    column :unit
+    column :access_level
+    column :ability
+    actions
+  end
 end
