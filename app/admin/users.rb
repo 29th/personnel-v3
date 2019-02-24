@@ -24,6 +24,9 @@ ActiveAdmin.register User do
   filter :steam_id
   filter :forum_member_id
 
+  scope :active, default: true
+  scope :all
+
   index do
     selectable_column
     column :last_name
