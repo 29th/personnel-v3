@@ -7,6 +7,8 @@ class Unit < ApplicationRecord
   TIMEZONE_OPTS = ['EST', 'GMT']
   CLASSIFICATION_OPTS = ['Combat', 'Staff', 'Training']
 
+  scope :active, -> { where(active: true) }
+
   nilify_blanks
   validates_presence_of :name, :abbr, :path, :class
   validates_inclusion_of :game, :in => GAME_OPTS, :message => 'Invalid game', :allow_blank => true

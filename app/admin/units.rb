@@ -25,10 +25,12 @@ ActiveAdmin.register Unit do
 
   filter :abbr
   filter :name
-  filter :active
   filter :game
   filter :timezone
   filter :classification
+
+  scope :active, default: true
+  scope :all, default: true
 
   index do
     selectable_column
