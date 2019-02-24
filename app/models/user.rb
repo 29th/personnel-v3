@@ -83,6 +83,7 @@ class User < ApplicationRecord
       EOF
 
       # TODO: Do we want to memoize this somehow?
+      # TODO: this could be self.find_by_sql()
       Ability.find_by_sql([query, unit, id])
     end
 
