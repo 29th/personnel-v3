@@ -6,4 +6,6 @@ class Assignment < ApplicationRecord
   scope :current, -> {
     where('start_date <= current_date and (end_date > current_date or end_date is null)')
   }
+
+  validates_presence_of :member, :unit, :position
 end

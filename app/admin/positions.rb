@@ -12,4 +12,6 @@ ActiveAdmin.register Position do
 #   permitted
 # end
 
+permit_params :name, :active, :order, :description, :access_level, :ait
+
 end
