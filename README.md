@@ -18,23 +18,7 @@ database by SSHing into the production server and running:
 mysqldump -u <username> -p <database> > dump.sql
 ```
 
-#### Upgrading the database snapshot
-At the time of this writing, the production database uses MySQL v5.6, so you'll need to upgrade the
-dump you created to MySQL v8.0 to be compatible with this application. This part is a bit of a pain,
-but once we upgrade the production database to v8.0 this won't be necessary.
-
-1. Put the v5.6 database dump in the `db/dump/` directory
-2. Load it into a MySQL v5.7 container by running `docker run --name db_upgrade_5.7 --rm -e MYSQL_DATABASE=personnel_development -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v $(pwd)/db/dump:/docker-entrypoint-initdb.d mysql:5.7`
-3. In a new terminal, upgrade the data to v5.7 by running `docker exec -it db_upgrade_5.7 mysql_upgrade personnel_development`
-4. Manually correct the date issue by running `docker exec -it db_upgrade_5.7 mysql personnel_development -e "update assignments set end_date = null where cast(end_date as char(20)) = '0000-00-00'; update assignments set start_date = null where cast(start_date as char(20)) = '0000-00-00'"`
-5. Export the upgraded database by running `docker exec -it db_upgrade_5.7 mysqldump personnel_development > dump-57.sql`
-6. Stop the MySQL v5.7 container by running `docker stop db_upgrade_5.7`
-7. Replace the v5.6 database dump in the `db/dump` directory with the v5.7 one you just exported
-8. Load it into a MySQL v8 container by running `docker run --name db_upgrade_8 --rm -e MYSQL_DATABASE=personnel_development -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v $(pwd)/db/dump:/docker-entrypoint-initdb.d mysql:8`
-9. In a new terminal, upgrade the data to v8 by running `docker exec -it db_upgrade_8 mysql_upgrade personnel_development`
-10. Export the upgraded database by running `docker exec -it db_upgrade_8 mysqldump personnel_development > dump-8.sql`
-11. Stop the MySQL v8 container by running `docker stop db_upgrade_8`
-12. Replace the v5.7 database dump in the `db/dump` directory with the v8 one you just exported
+Put the `dump.sql` file in the `db/dump/` directory.
 
 ### Secret key
 In order for the application to decrypt `config/credentials.yml.enc`, you'll need to get the `master.key`
