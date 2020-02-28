@@ -169,7 +169,7 @@ GEM
       omniauth-openid
     popper_js (1.14.5)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.3)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
     rack (2.0.6)
@@ -282,7 +282,7 @@ DEPENDENCIES
   nilify_blanks
   omniauth
   omniauth-steam (~> 1.0, >= 1.0.6)
-  puma (~> 3.11)
+  puma (~> 3.12)
   pundit
   rails (~> 5.2.2)
   sass-rails (~> 5.0)
