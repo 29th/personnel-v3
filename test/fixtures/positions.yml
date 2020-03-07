@@ -23,3 +23,7 @@ enlistment_liaison:
 chief:
   name: Chief
   access_level: <%= Position.access_levels[:leader] %>
+
+battalion_commander:
+  name: Battalion Commander
+  access_level: <%= Position.access_levels[:leader] %>

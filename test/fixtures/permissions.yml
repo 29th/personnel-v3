@@ -54,3 +54,8 @@ lighthouse_fire:
   unit: lighthouse
   access_level: <%= Permission.access_levels[:leader] %>
   ability: fire
+
+bnhq_admin:
+  unit: bnhq
+  access_level: <%= Permission.access_levels[:elevated] %>
+  ability: admin

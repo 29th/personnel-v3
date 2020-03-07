@@ -19,3 +19,8 @@ lt:
   abbr: 2Lt.
   name: Second Lieutenant
   order: 18
+
+ltc:
+  abbr: Lt. Col.
+  name: Lieutenant Colonel
+  order: 22

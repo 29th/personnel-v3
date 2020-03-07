@@ -68,3 +68,9 @@ pvt_emu_lighthouse:
   user: pvt_emu
   position: enlistment_liaison
   start_date: <%= Date.yesterday.to_s :db %>
+
+ltc_fish_bnhq:
+  unit: bnhq
+  user: ltc_fish
+  position: battalion_commander
+  start_date: <%= Date.yesterday.to_s :db %>

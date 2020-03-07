@@ -24,3 +24,9 @@ pvt_emu:
   first_name: Elizabeth
   last_name: Emu
   rank: pvt
+
+ltc_fish:
+  first_name: Francis
+  last_name: Fish
+  rank: ltc
+  steam_id: '12345'

@@ -20,3 +20,6 @@ process_enlistment:
 
 fire:
   abbr: fire
+
+admin:
+  abbr: admin
