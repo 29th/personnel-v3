@@ -92,6 +92,6 @@ class UserTest < ActiveSupport::TestCase
     pvt_emu = users(:pvt_emu)
 
     assert sgt_baboon.has_permission_on_user? 'fire', pvt_emu # lighthouse leader-level
-    assert_not sgt_baboon.has_permission_on_user? 'qualify', pvt_emu # ap1s1 leader-level
+    assert_not sgt_baboon.has_permission_on_user? 'qualify', pvt_emu # ap2s1 leader-level
   end
 end
