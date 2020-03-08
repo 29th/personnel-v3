@@ -3,6 +3,14 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:pvt_antelope)
+
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock(:steam, {:uid => '12345'})
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:steam]
+  end
+
+  teardown do
+    OmniAuth.config.mock_auth[:steam] = nil
   end
 
   test "should get index" do

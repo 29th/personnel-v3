@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_191508) do
+ActiveRecord::Schema.define(version: 2020_03_07_132842) do
 
-  create_table "abilities", id: :integer, limit: 3, comment: "Ability's ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT", comment: "List of abilities", force: :cascade do |t|
+  create_table "abilities", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT", comment: "List of abilities", force: :cascade do |t|
     t.string "name", limit: 40, comment: "Ability's Name"
     t.string "abbr", limit: 24, null: false, comment: "Ability's Abbreviation"
     t.text "description", comment: "Detailed description of Ability"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "attendance", id: :integer, limit: 3, comment: "Attendance log ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
+  create_table "attendance", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
     t.boolean "attended", comment: "Has member attended"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.integer "role_id", limit: 3, null: false, unsigned: true
   end
 
-  create_table "countries", id: :integer, limit: 2, comment: "Country ID", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "countries", id: :integer, limit: 2, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Country ID", force: :cascade do |t|
     t.string "abbr", limit: 2, null: false
     t.string "name", limit: 80, null: false
   end
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["member_id"], name: "User ID"
   end
 
-  create_table "discharges", id: :integer, limit: 3, comment: "Discharge's ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of members' discharges", force: :cascade do |t|
+  create_table "discharges", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of members' discharges", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "ID of discharged member ", unsigned: true
     t.date "date", null: false, comment: "Date of discharge"
     t.string "type", limit: 12, default: "General", null: false, comment: "Type of discharge"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "eloas", id: :integer, limit: 3, comment: "LOA's ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Extended Leaves of Absence", force: :cascade do |t|
+  create_table "eloas", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Extended Leaves of Absence", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Member's ID", unsigned: true
     t.datetime "posting_date", null: false, comment: "Date of posting"
     t.date "start_date", null: false, comment: "Planned start date"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "enlistments", id: :integer, limit: 3, comment: "Enlistment ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Enlistments into 29th ID", force: :cascade do |t|
+  create_table "enlistments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Enlistments into 29th ID", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Enlistee's ID", unsigned: true
     t.date "date", null: false, comment: "Enlistment Date"
     t.integer "liaison_member_id", limit: 3, comment: "Member ID of Enlistment Liaison", unsigned: true
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.string "game", limit: 6, default: "DH", comment: "Chosen game"
     t.string "ingame_name", limit: 60, null: false, comment: "In-game Name"
     t.string "steam_name", limit: 60, null: false, comment: "Steamfriends Name"
-    t.text "steam_id", limit: 255, null: false
+    t.text "steam_id", size: :tiny, null: false
     t.string "email", limit: 60, null: false, comment: "Working e-mail"
     t.text "experience", null: false
     t.string "recruiter", limit: 128, null: false
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "finances", id: :integer, limit: 3, comment: "Finance ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Finances Ledger", force: :cascade do |t|
+  create_table "finances", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Finances Ledger", force: :cascade do |t|
     t.date "date", null: false, comment: "Date of entry"
     t.integer "member_id", limit: 3, comment: "Member ID", unsigned: true
     t.string "vendor", limit: 15, null: false, comment: "Vendor of services"
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "log", id: :integer, comment: "Log record ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of actions", force: :cascade do |t|
+  create_table "log", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of actions", force: :cascade do |t|
     t.string "table", limit: 20, null: false, comment: "Name of table"
     t.integer "table_record_id", limit: 3, null: false, comment: "ID of table's record", unsigned: true
     t.string "action", limit: 6, default: "Add", null: false, comment: "Action taken"
@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.string "city", limit: 32
     t.integer "rank_id", limit: 3, default: 1, null: false, unsigned: true
     t.integer "primary_assignment_id", limit: 3, unsigned: true
-    t.text "steam_id", limit: 255
+    t.text "steam_id", size: :tiny
     t.string "email", default: ""
     t.string "im_type", limit: 7, comment: "Instant Messenger Type"
     t.string "im_handle", limit: 100, comment: "Instant Messenger Handle"
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["rank_id"], name: "Rank"
   end
 
-  create_table "notes", id: :integer, limit: 3, comment: "Note's ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Notes", force: :cascade do |t|
+  create_table "notes", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Notes", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Member ID of note's subject", unsigned: true
     t.integer "author_member_id", limit: 3, null: false, comment: "Member ID of note's author", unsigned: true
     t.datetime "date_add", null: false, comment: "Date & Time of adding"
@@ -257,7 +257,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "passes", id: :integer, comment: "Pass ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "passes", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Pass ID", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Receiver's Member ID", unsigned: true
     t.integer "author_id", limit: 3, null: false, comment: "Author's Member ID", unsigned: true
     t.integer "recruit_id", limit: 3, comment: "Recruit's Member ID (pass for recruiting)", unsigned: true
@@ -271,7 +271,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["recruit_id"], name: "RecruitID"
   end
 
-  create_table "positions", id: :integer, limit: 3, comment: "ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "positions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.string "name", limit: 250, null: false, comment: "Name of position"
     t.boolean "active", default: true, null: false, comment: "Is position active"
     t.integer "order", limit: 1, default: 0, null: false, unsigned: true
@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.string "AIT", limit: 15, default: "N/A", null: false, comment: "AIT associated with position"
   end
 
-  create_table "promotions", id: :integer, limit: 3, comment: "Promotion ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "V: Users <-> Rank", force: :cascade do |t|
+  create_table "promotions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "V: Users <-> Rank", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "ID of promoted member", unsigned: true
     t.date "date", null: false, comment: "Date of promotion"
     t.integer "old_rank_id", limit: 3, unsigned: true
@@ -317,7 +317,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["member_id"], name: "Member", unique: true
   end
 
-  create_table "schedules", id: :integer, limit: 3, comment: "Schedule ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Schedule of regular events", force: :cascade do |t|
+  create_table "schedules", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Schedule of regular events", force: :cascade do |t|
     t.integer "unit_id", limit: 3, null: false, comment: "Unit ID", unsigned: true
     t.string "type", limit: 40, null: false, comment: "Type of event"
     t.integer "server_id", limit: 3, null: false, comment: "Server ID", unsigned: true
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_191508) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "servers", id: :integer, limit: 3, comment: "Server ID", unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of 29th servers", force: :cascade do |t|
+  create_table "servers", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of 29th servers", force: :cascade do |t|
     t.string "name", limit: 40, null: false, comment: "Server Name"
     t.string "abbr", limit: 4, null: false, comment: "Abbreviation of Server Name"
     t.string "address", limit: 15, null: false, comment: "IP address of server"
