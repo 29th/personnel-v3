@@ -10,6 +10,16 @@ ap1_add_event:
   access_level: <%= Permission.access_levels[:elevated] %>
   ability: add_event
 
+ap1_add_assignment:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:elevated] %>
+  ability: assignment_add
+
+ap1_delete_assignment:
+  unit: ap1
+  access_level: <%= Permission.access_levels[:elevated] %>
+  ability: assignment_delete
+
 ap1s1_view_event:
   unit: ap1s1
   access_level: <%= Permission.access_levels[:member] %>

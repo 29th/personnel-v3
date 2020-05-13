@@ -9,6 +9,12 @@ add_event:
 view_event:
   abbr: view_event
 
+assignment_add:
+  abbr: assignment_add
+
+assignment_delete:
+  abbr: assignment_delete
+
 qualify:
   abbr: qualify
 
