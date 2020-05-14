@@ -3,14 +3,6 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:pvt_antelope)
-
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock(:steam, {:uid => '12345'})
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:steam]
-  end
-
-  teardown do
-    OmniAuth.config.mock_auth[:steam] = nil
   end
 
   test "should get index" do
@@ -19,11 +11,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    sign_in_as users(:ltc_fish)
     get new_user_url
     assert_response :success
   end
 
   test "should create user" do
+    sign_in_as users(:ltc_fish)
     assert_difference('User.count') do
       post users_url, params: { user: { first_name: @user.first_name, last_name: @user.last_name, rank_id: @user.rank_id, steam_id: @user.steam_id } }
     end
@@ -37,16 +31,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
+    sign_in_as users(:ltc_fish)
     get edit_user_url(@user)
     assert_response :success
   end
 
   test "should update user" do
+    sign_in_as users(:ltc_fish)
     patch user_url(@user), params: { user: { first_name: @user.first_name, last_name: @user.last_name, rank_id: @user.rank_id, steam_id: @user.steam_id } }
     assert_redirected_to user_url(@user)
   end
 
   test "should destroy user" do
+    sign_in_as users(:ltc_fish)
     assert_difference('User.count', -1) do
       delete user_url(@user)
     end

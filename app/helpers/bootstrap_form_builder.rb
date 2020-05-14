@@ -32,7 +32,6 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
-    puts('collection_select!')
     super(method, collection, value_method, text_method, options, insert_class("form-control", html_options))
   end
 
