@@ -12,21 +12,48 @@
 
 ActiveRecord::Schema.define(version: 2020_03_07_132842) do
 
-  create_table "abilities", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT", comment: "List of abilities", force: :cascade do |t|
+  create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
+    t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
+    t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
+    t.boolean "attended", comment: "Has member attended"
+    t.boolean "excused", default: false, null: false, comment: "Has member posted absence"
+    t.index ["event_id", "member_id"], name: "event and member", unique: true
+    t.index ["event_id"], name: "Event ID"
+    t.index ["member_id"], name: "User ID"
+  end
+
+  create_table "__eve1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "datetime", null: false
+    t.integer "unit_id", limit: 3, unsigned: true
+    t.string "title", limit: 64, null: false
+    t.string "type", limit: 32, null: false
+    t.boolean "mandatory", default: false, null: false
+    t.string "server", limit: 32, null: false
+    t.integer "server_id", limit: 3, unsigned: true
+    t.text "report", null: false
+    t.integer "reporter_member_id", limit: 3, unsigned: true
+    t.datetime "report_posting_date", comment: "Date of AAR posting"
+    t.datetime "report_edit_date", comment: "Date of last AAR editing"
+    t.index ["reporter_member_id"], name: "Reporter's ID"
+    t.index ["server_id"], name: "Server ID"
+    t.index ["unit_id"], name: "Unit ID"
+  end
+
+  create_table "abilities", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of abilities", force: :cascade do |t|
     t.string "name", limit: 40, comment: "Ability's Name"
     t.string "abbr", limit: 24, null: false, comment: "Ability's Abbreviation"
     t.text "description", comment: "Detailed description of Ability"
   end
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
     t.bigint "resource_id"
     t.string "author_type"
     t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
@@ -60,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.date "date", null: false
     t.integer "award_id", limit: 3, null: false, unsigned: true
-    t.string "forum_id", limit: 7, comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
     t.integer "topic_id", limit: 3, null: false, comment: "Negative means old forums"
     t.index ["award_id"], name: "Award ID"
     t.index ["member_id"], name: "User ID"
@@ -70,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.string "code", limit: 16, default: "", null: false
     t.string "title", default: "", null: false
     t.text "description", null: false
-    t.string "game", limit: 6, null: false
+    t.column "game", "enum('N/A','DH','DOD','Arma 3','RS','RS2','Squad')", null: false
     t.string "image", default: "", null: false
     t.string "thumbnail", default: "", null: false
     t.string "bar", default: "", null: false
@@ -95,17 +122,17 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
   end
 
   create_table "class_permissions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "class", limit: 8, comment: "Units table class"
+    t.column "class", "enum('Combat','Staff','Training')", comment: "Units table class"
     t.integer "ability_id", limit: 3, null: false, unsigned: true
     t.index ["ability_id"], name: "ability_id"
   end
 
   create_table "class_roles", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "class", limit: 8
+    t.column "class", "enum('Combat','Staff','Training')"
     t.integer "role_id", limit: 3, null: false, unsigned: true
   end
 
-  create_table "countries", id: :integer, limit: 2, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Country ID", force: :cascade do |t|
+  create_table "countries", id: :integer, limit: 2, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "abbr", limit: 2, null: false
     t.string "name", limit: 80, null: false
   end
@@ -113,7 +140,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
   create_table "demerits", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.integer "author_member_id", limit: 3, unsigned: true
-    t.string "forum_id", limit: 7, comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
     t.integer "topic_id", limit: 3, null: false
     t.date "date", null: false
     t.text "reason"
@@ -124,10 +151,10 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
   create_table "discharges", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "List of members' discharges", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "ID of discharged member ", unsigned: true
     t.date "date", null: false, comment: "Date of discharge"
-    t.string "type", limit: 12, default: "General", null: false, comment: "Type of discharge"
+    t.column "type", "enum('Honorable','General','Dishonorable')", default: "General", null: false, comment: "Type of discharge"
     t.text "reason", null: false, comment: "Description of discharging reason"
     t.boolean "was_reversed", default: false, null: false, comment: "Was the discharge reversed?"
-    t.string "forum_id", limit: 7, comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
     t.string "topic_id", limit: 20, null: false, comment: "ID of forum's topic"
     t.index ["member_id"], name: "Member ID"
   end
@@ -140,6 +167,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.date "return_date", comment: "Actual date of the return"
     t.text "reason", null: false, comment: "Reason for LOA"
     t.text "availability", comment: "Is member availaible during LOA"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "ID of forum where promotion was posted"
+    t.integer "topic_id", limit: 3, default: 0, null: false, comment: "ID of forums topic"
     t.index ["member_id"], name: "Member ID"
   end
 
@@ -147,17 +176,17 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.integer "member_id", limit: 3, null: false, comment: "Enlistee's ID", unsigned: true
     t.date "date", null: false, comment: "Enlistment Date"
     t.integer "liaison_member_id", limit: 3, comment: "Member ID of Enlistment Liaison", unsigned: true
-    t.string "forum_id", limit: 7, comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
     t.integer "topic_id", limit: 3, null: false, comment: "ID of forums topic "
     t.integer "unit_id", limit: 3, comment: "Unit ID of Training Platoon", unsigned: true
-    t.string "status", limit: 9, default: "Pending", null: false, comment: "Status of enlistment"
+    t.column "status", "enum('Pending','Accepted','Denied','Withdrawn','AWOL')", default: "Pending", null: false, comment: "Status of enlistment"
     t.string "first_name", limit: 30, null: false, comment: "Recruit's First Name"
     t.string "middle_name", limit: 1, null: false, comment: "Recruit's Middle Initial"
     t.string "last_name", limit: 40, null: false, comment: "Recruit's Last Name"
     t.string "age", limit: 8, null: false, comment: "Recruit's age"
     t.integer "country_id", limit: 2, comment: "Country ID"
-    t.string "timezone", limit: 7, comment: "Prefered time zone"
-    t.string "game", limit: 6, default: "DH", comment: "Chosen game"
+    t.column "timezone", "enum('EST','GMT','Either','Neither')", comment: "Prefered time zone"
+    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", comment: "Chosen game"
     t.string "ingame_name", limit: 60, null: false, comment: "In-game Name"
     t.string "steam_name", limit: 60, null: false, comment: "Steamfriends Name"
     t.text "steam_id", size: :tiny, null: false
@@ -195,11 +224,11 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
   create_table "finances", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Finances Ledger", force: :cascade do |t|
     t.date "date", null: false, comment: "Date of entry"
     t.integer "member_id", limit: 3, comment: "Member ID", unsigned: true
-    t.string "vendor", limit: 15, null: false, comment: "Vendor of services"
+    t.column "vendor", "enum('N/A','Game Servers','Branzone','Dreamhost','Nuclear Fallout','Other','Digital Ocean, Inc','Google')", null: false, comment: "Vendor of services"
     t.float "amount_received", comment: "Amount received"
     t.float "amount_paid", comment: "Amount paid"
     t.float "fee", comment: "Fee"
-    t.string "forum_id", limit: 7, comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
     t.string "topic_id", limit: 20, comment: "ID of forums' topic"
     t.text "notes", null: false, comment: "Additional notes"
     t.index ["member_id"], name: "Member ID"
@@ -208,25 +237,25 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
   create_table "log", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of actions", force: :cascade do |t|
     t.string "table", limit: 20, null: false, comment: "Name of table"
     t.integer "table_record_id", limit: 3, null: false, comment: "ID of table's record", unsigned: true
-    t.string "action", limit: 6, default: "Add", null: false, comment: "Action taken"
+    t.column "action", "enum('Add','Edit','Delete')", default: "Add", null: false, comment: "Action taken"
     t.timestamp "date", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "Time of action"
     t.integer "member_id", limit: 3, null: false, unsigned: true
   end
 
   create_table "maps", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", limit: 40, null: false
-    t.string "game", limit: 6
+    t.column "game", "enum('Arma 3','DH','RS','RS2','Squad')"
     t.text "descriptions", null: false
-    t.string "type", limit: 3, null: false
-    t.string "style", limit: 13, null: false
-    t.string "teams", limit: 20, null: false
-    t.string "size", limit: 6, null: false
+    t.column "type", "enum('A/A','A/D')", null: false
+    t.column "style", "enum('Training','Infantry','Combined Arms','Tank')", null: false
+    t.column "teams", "enum('Germany/USSR','Germany/USA','Germany/Commonwealth','Japan/USA')", null: false
+    t.column "size", "enum('Small','Medium','Large')", null: false
     t.boolean "linearity", default: true, null: false
     t.text "notes", null: false
   end
 
   create_table "members", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "status", limit: 11
+    t.column "status", "enum('N/A','Cadet','Active Duty','Reservist','Retired','Discharged')"
     t.string "last_name", limit: 32, default: "", null: false
     t.string "first_name", limit: 32, default: "", null: false
     t.string "middle_name", limit: 32, default: ""
@@ -237,7 +266,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.integer "primary_assignment_id", limit: 3, unsigned: true
     t.text "steam_id", size: :tiny
     t.string "email", default: ""
-    t.string "im_type", limit: 7, comment: "Instant Messenger Type"
+    t.column "im_type", "enum('AIM','''MSN','''ICQ','''YIM','''Skype')", comment: "Instant Messenger Type"
     t.string "im_handle", limit: 100, comment: "Instant Messenger Handle"
     t.integer "forum_member_id", limit: 3, comment: "Member ID on forums", unsigned: true
     t.index ["country_id"], name: "CountryID"
@@ -250,34 +279,34 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.integer "author_member_id", limit: 3, null: false, comment: "Member ID of note's author", unsigned: true
     t.datetime "date_add", null: false, comment: "Date & Time of adding"
     t.datetime "date_mod", comment: "Date & Time of last modification"
-    t.string "access", limit: 15, null: false, comment: "Access level"
+    t.column "access", "enum('Public','Members Only','Personal','Squad Level','Platoon Level','Company Level','Battalion HQ','Officers Only','Military Police','Lighthouse')", null: false, comment: "Access level"
     t.string "subject", limit: 120, null: false, comment: "Note's subject"
     t.text "content", null: false, comment: "Note's text"
     t.index ["author_member_id"], name: "Author ID"
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "passes", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Pass ID", force: :cascade do |t|
+  create_table "passes", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Receiver's Member ID", unsigned: true
     t.integer "author_id", limit: 3, null: false, comment: "Author's Member ID", unsigned: true
     t.integer "recruit_id", limit: 3, comment: "Recruit's Member ID (pass for recruiting)", unsigned: true
     t.date "add_date", comment: "Date of adding the WP record"
     t.date "start_date", null: false, comment: "Data of start "
     t.date "end_date", null: false, comment: "Date of end"
-    t.string "type", limit: 18, comment: "Type of Weapon Pass"
+    t.column "type", "enum('Recruitment','Recurring Donation','Award','Other')", comment: "Type of Weapon Pass"
     t.text "reason", null: false, comment: "Reason for pass"
     t.index ["author_id"], name: "AuthorID"
     t.index ["member_id"], name: "MemberID"
     t.index ["recruit_id"], name: "RecruitID"
   end
 
-  create_table "positions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+  create_table "positions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", limit: 250, null: false, comment: "Name of position"
     t.boolean "active", default: true, null: false, comment: "Is position active"
     t.integer "order", limit: 1, default: 0, null: false, unsigned: true
     t.text "description"
     t.integer "access_level", limit: 2, default: 0, null: false, comment: "is access granted?"
-    t.string "AIT", limit: 15, default: "N/A", null: false, comment: "AIT associated with position"
+    t.column "AIT", "enum('Leadership','Rifle','Submachine Gun','Automatic Rifle','Combat Engineer','Machine Gun','Armor','Mortar','Pilot','Sniper','N/A','Grenadier')", default: "N/A", null: false, comment: "AIT associated with position"
   end
 
   create_table "promotions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "V: Users <-> Rank", force: :cascade do |t|
@@ -285,7 +314,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.date "date", null: false, comment: "Date of promotion"
     t.integer "old_rank_id", limit: 3, unsigned: true
     t.integer "new_rank_id", limit: 3, null: false, comment: "Rank after promotion", unsigned: true
-    t.string "forum_id", limit: 7, comment: "ID of forum where promotion was posted"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "ID of forum where promotion was posted"
     t.integer "topic_id", limit: 3, null: false, comment: "ID of forums topic "
     t.index ["member_id"], name: "User ID"
     t.index ["new_rank_id"], name: "New Rank"
@@ -322,7 +351,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.string "type", limit: 40, null: false, comment: "Type of event"
     t.integer "server_id", limit: 3, null: false, comment: "Server ID", unsigned: true
     t.boolean "mandatory", null: false, comment: "Is mandatory?"
-    t.string "day_of_week", limit: 1, null: false, comment: "Day of week"
+    t.column "day_of_week", "enum('0','1','2','3','4','5','6')", null: false, comment: "Day of week"
     t.time "hour_of_day", null: false, comment: "Time of drill (UTC)"
     t.index ["server_id"], name: "Server ID"
     t.index ["unit_id"], name: "Unit ID"
@@ -333,14 +362,14 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.string "abbr", limit: 4, null: false, comment: "Abbreviation of Server Name"
     t.string "address", limit: 15, null: false, comment: "IP address of server"
     t.integer "port", limit: 3, null: false, comment: "Port of Server"
-    t.string "game", limit: 6, default: "DH", null: false, comment: "Type of game "
+    t.column "game", "enum('DH','Arma 3','RS','RS2','Squad')", default: "DH", null: false, comment: "Type of game "
     t.boolean "active", null: false, comment: "Is server active"
   end
 
   create_table "standards", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Standards required to achieve a badge for AIT", force: :cascade do |t|
-    t.string "weapon", limit: 15, default: "Rifle", null: false
-    t.string "game", limit: 6, default: "DH", null: false
-    t.string "badge", limit: 12, default: "Sharpshooter", null: false
+    t.column "weapon", "enum('EIB','Rifle','Automatic Rifle','Machine Gun','Armor','Sniper','Mortar','SLT','Combat Engineer','Submachine Gun','Pilot','Grenadier')", default: "Rifle", null: false
+    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", null: false
+    t.column "badge", "enum('N/A','Marksman','Sharpshooter','Expert')", default: "Sharpshooter", null: false
     t.text "description", null: false
     t.text "details"
   end
@@ -367,9 +396,9 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.string "old_path", limit: 32
     t.string "path", limit: 32, null: false
     t.integer "order", default: 0, null: false
-    t.string "game", limit: 6, comment: "Game "
+    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
-    t.string "classification", limit: 8, default: "Training", null: false
+    t.column "classification", "enum('Combat','Staff','Training')", default: "Training", null: false
     t.boolean "active", default: true, null: false
     t.string "steam_group_abbr", limit: 30, comment: "Abbreviation of Unit's Steam Group"
     t.string "slogan", limit: 200, comment: "Unit's Slogan"
