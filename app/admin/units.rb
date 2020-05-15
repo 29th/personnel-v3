@@ -2,8 +2,6 @@ ActiveAdmin.register Unit do
   permit_params :name, :abbr, :path, :order, :game, :timezone,
     :classification, :active, :steam_group_abbr, :slogan, :nickname, :logo
 
-  puts :permitted_params
-
   form do |f|
     f.semantic_errors
     inputs do
