@@ -9,6 +9,8 @@ services:
       - "3000:3000"
     volumes:
       - ./:/usr/src/app
+    environment:
+      DATABASE_URL: mysql2://root:pwd@db
 
   db:
     image: mysql:8
