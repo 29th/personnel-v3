@@ -55,11 +55,11 @@ class User < ApplicationRecord
     def permissions_on_unit(unit)
       query = <<~EOF
         with recursive unit_tree (id, name, parent_id) as (
-          select id, name, trim(trailing '/' from substring_index(path, '/', -2)) as parent_id
+          select id, name, parent_id
             from units
             where id = ?
           union all
-          select parent.id, parent.name, trim(trailing '/' from substring_index(parent.path, '/', -2)) as parent_id
+          select parent.id, parent.name, parent.parent_id
             from unit_tree as child
             join units as parent
               on child.parent_id = parent.id
@@ -95,7 +95,7 @@ class User < ApplicationRecord
     def permissions_on_user(user)
       query = <<~EOF
         with recursive subject_units (id, name, parent_id) as (
-          select units.id, units.name, trim(trailing '/' from substring_index(path, '/', -2)) as parent_id
+          select units.id, units.name, parent_id
           from units
           inner join assignments on (
             assignments.member_id = ?
@@ -110,7 +110,7 @@ class User < ApplicationRecord
           select subject_units.id, subject_units.name, subject_units.parent_id
             from subject_units
           union all
-          select parent.id, parent.name, trim(trailing '/' from substring_index(parent.path, '/', -2)) as parent_id
+          select parent.id, parent.name, parent.parent_id
             from unit_tree as child
             join units as parent
               on child.parent_id = parent.id

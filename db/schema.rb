@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_132842) do
+ActiveRecord::Schema.define(version: 2020_05_15_163650) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -394,7 +394,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.string "name", limit: 64, null: false
     t.string "abbr", limit: 32, null: false
     t.string "old_path", limit: 32
-    t.string "path", limit: 32, null: false
+    t.string "path", limit: 32
     t.integer "order", default: 0, null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
@@ -405,6 +405,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
     t.string "logo", limit: 40, comment: "Filename of a unit's logo"
     t.string "nickname", limit: 40
     t.text "aar_template", comment: "Template for AAR"
+    t.integer "parent_id", limit: 3, unsigned: true
+    t.index ["parent_id"], name: "index_units_on_parent_id"
   end
 
   create_table "usertracking", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -455,4 +457,5 @@ ActiveRecord::Schema.define(version: 2020_03_07_132842) do
   add_foreign_key "schedules", "servers", name: "schedules_ibfk_2", on_update: :cascade
   add_foreign_key "schedules", "units", name: "schedules_ibfk_1", on_update: :cascade
   add_foreign_key "unit_roles", "units", name: "unit_roles_ibfk_1", on_update: :cascade
+  add_foreign_key "units", "units", column: "parent_id"
 end

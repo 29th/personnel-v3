@@ -1,12 +1,8 @@
 FactoryBot.define do
   factory :unit do
-    transient do
-      parent { nil }
-    end
-
     abbr { 'Bn. HQ' }
     name { abbr || 'Battalion HQ' }
-    path { parent ? "#{parent.path}#{parent.id}/" : '/' }
+    classification { 'Combat' }
   end
 
   factory :user do

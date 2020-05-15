@@ -1,4 +1,6 @@
 class Unit < ApplicationRecord
+  belongs_to :parent, class_name: 'Unit', optional: true
+  has_many :children, class_name: 'Unit'
   has_many :assignments
   has_many :users, through: :assignments
   has_many :permissions
@@ -10,7 +12,7 @@ class Unit < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   nilify_blanks
-  validates_presence_of :name, :abbr, :path, :class
+  validates_presence_of :name, :abbr, :classification
   validates_inclusion_of :game, :in => GAME_OPTS, :message => 'Invalid game', :allow_blank => true
   validates_inclusion_of :timezone, :in => TIMEZONE_OPTS, :message => 'Invalid timezone', :allow_blank => true
   validates_inclusion_of :classification, :in => CLASSIFICATION_OPTS, :message => 'Invalid classification'
