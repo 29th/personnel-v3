@@ -3,95 +3,182 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   # has_permission?
 
-  test "Platoon leader inherits member and elevated permissions" do
-    lt_chicken = users(:lt_chicken)
+  test "leader inherits member and elevated permissions" do
+    unit = create(:unit)
+    create(:permission, :leader, abbr: 'leader_ability', unit: unit)
+    create(:permission, :elevated, abbr: 'elevated_ability', unit: unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert lt_chicken.has_permission? 'add_promotion' # leader-level
-    assert lt_chicken.has_permission? 'add_event' # elevated-level
-    assert lt_chicken.has_permission? 'view_event' # member-level
+    user = create(:user)
+    create(:assignment, :leader, user: user, unit: unit)
+
+    assert user.has_permission? 'leader_ability'
+    assert user.has_permission? 'elevated_ability'
+    assert user.has_permission? 'member_ability'
   end
 
-  test "Platoon elevated inherits member permissions but not leader abilities" do
-    t5_dingo = users(:t5_dingo)
+  test "elevated inherits member permissions but not leader" do
+    unit = create(:unit)
+    create(:permission, :leader, abbr: 'leader_ability', unit: unit)
+    create(:permission, :elevated, abbr: 'elevated_ability', unit: unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    refute t5_dingo.has_permission? 'add_promotion' # leader-level
-    assert t5_dingo.has_permission? 'add_event' # elevated-level
-    assert t5_dingo.has_permission? 'view_event' # member-level
+    user = create(:user)
+    create(:assignment, :elevated, user: user, unit: unit)
+
+    refute user.has_permission? 'leader_ability'
+    assert user.has_permission? 'elevated_ability'
+    assert user.has_permission? 'member_ability'
   end
 
   # has_permission_on_unit?
 
-  test "Platoon leader's platoon-level permission applies to the platoon" do
-    lt_chicken = users(:lt_chicken)
-    ap1 = units(:ap1)
+  test "permission applies to unit" do
+    unit = create(:unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert lt_chicken.has_permission_on_unit? 'view_event', ap1 # member-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    assert user.has_permission_on_unit? 'member_ability', unit
   end
 
-  test "Platoon leader's platoon-level permissions apply to one of their squads" do
-    lt_chicken = users(:lt_chicken)
-    ap1s1 = units(:ap1s1)
+  test "permission applies to child unit" do
+    unit = create(:unit)
+    child_unit = create(:unit, parent: unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert lt_chicken.has_permission_on_unit? 'add_event', ap1s1 # elevated-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    assert user.has_permission_on_unit? 'member_ability', child_unit
   end
 
-  test "Platoon leader's permissions do not apply to another platoon's squad" do
-    lt_chicken = users(:lt_chicken)
-    ap2s1 = units(:ap2s1)
+  test "permission does not apply to child unit of another unit" do
+    unit = create(:unit)
+    other_unit = create(:unit)
+    other_child_unit = create(:unit, parent: other_unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert_not lt_chicken.has_permission_on_unit? 'add_event', ap2s1 # elevated-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    refute user.has_permission_on_unit? 'member_ability', other_child_unit
   end
 
-  test "Squad leader's permissions do not apply to their platoon" do
-    sgt_baboon = users(:sgt_baboon)
-    ap1 = units(:ap1)
+  test "permission does not apply to parent unit" do
+    parent_unit = create(:unit)
+    unit = create(:unit, parent: parent_unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert_not sgt_baboon.has_permission_on_unit? 'view_event', ap1 # member-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    refute user.has_permission_on_unit? 'member_ability', parent_unit
   end
 
-  test "Permissions from past assignments are ignored" do
-    lt_chicken = users(:lt_chicken)
-    ap2 = units(:ap2)
+  test "permission from past assignments are ignored" do
+    unit = create(:unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert_not lt_chicken.has_permission_on_unit? 'add_event', ap2 # elevated-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit,
+           start_date: 2.weeks.ago, end_date: 1.week.ago)
+
+    refute user.has_permission_on_unit? 'member_ability', unit
   end
 
-  test "Permissions from future assignments are ignored" do
-    pvt_antelope = users(:pvt_antelope)
-    ap1 = units(:ap1)
+  test "permission from future assignments are ignored" do
+    unit = create(:unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert_not pvt_antelope.has_permission_on_unit? 'add_event', ap1 # elevated-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit,
+           start_date: 1.week.from_now)
+
+    refute user.has_permission_on_unit? 'member_ability', unit
   end
 
   # has_permission_on_user?
 
-  test "Platoon leader has permissions on a member of one of their squads" do
-    lt_chicken = users(:lt_chicken)
-    pvt_antelope = users(:pvt_antelope)
+  test "permission applies to user in their unit" do
+    unit = create(:unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert lt_chicken.has_permission_on_user? 'edit_profile', pvt_antelope # elevated-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    subject = create(:user)
+    create(:assignment, user: subject, unit: unit)
+
+    assert user.has_permission_on_user? 'member_ability', subject
   end
 
-  test "Platoon leader does not have permissions on a member of another platoon's squads" do
-    lt_chicken = users(:lt_chicken)
-    pvt_emu = users(:pvt_emu)
+  test "permission applies to user in child unit" do
+    unit = create(:unit)
+    child_unit = create(:unit, parent: unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert_not lt_chicken.has_permission_on_user? 'edit_profile', pvt_emu # elevated-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    subject = create(:user)
+    create(:assignment, user: subject, unit: child_unit)
+
+    assert user.has_permission_on_user? 'member_ability', subject
   end
 
-  test "Lighthouse chief has permission to fire and qualify someone who's in their squad and also in lighthouse" do
-    sgt_baboon = users(:sgt_baboon)
-    pvt_antelope = users(:pvt_antelope)
+  test "permission does not apply to user in child unit of another unit" do
+    unit = create(:unit)
+    other_unit = create(:unit)
+    other_child_unit = create(:unit, parent: other_unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
 
-    assert sgt_baboon.has_permission_on_user? 'fire', pvt_antelope # lighthouse leader-level
-    assert sgt_baboon.has_permission_on_user? 'qualify', pvt_antelope # ap1s1 leader-level
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    subject = create(:user)
+    create(:assignment, user: subject, unit: other_child_unit)
+
+    refute user.has_permission_on_user? 'member_ability', subject
   end
 
-  test "Lighthouse chief has permission to fire but not qualify someone who's in lighthouse, but not their squad" do
-    sgt_baboon = users(:sgt_baboon)
-    pvt_emu = users(:pvt_emu)
+  test "permission on user can come from multiple intersecting assignments" do
+    lighthouse = create(:unit)
+    create(:permission, abbr: 'fire', unit: lighthouse)
 
-    assert sgt_baboon.has_permission_on_user? 'fire', pvt_emu # lighthouse leader-level
-    assert_not sgt_baboon.has_permission_on_user? 'qualify', pvt_emu # ap2s1 leader-level
+    squad = create(:unit)
+    create(:permission, abbr: 'qualify', unit: squad)
+
+    user = create(:user)
+    create(:assignment, user: user, unit: lighthouse)
+    create(:assignment, user: user, unit: squad)
+
+    subject = create(:user)
+    create(:assignment, user: subject, unit: lighthouse)
+    create(:assignment, user: subject, unit: squad)
+
+    assert user.has_permission_on_user? 'fire', subject
+    assert user.has_permission_on_user? 'qualify', subject
+  end
+
+  test "permission is exclusive to the intersecting assignment" do
+    lighthouse = create(:unit)
+    create(:permission, abbr: 'fire', unit: lighthouse)
+
+    squad = create(:unit)
+    create(:permission, abbr: 'qualify', unit: squad)
+    other_squad = create(:unit)
+
+    user = create(:user)
+    create(:assignment, user: user, unit: lighthouse)
+    create(:assignment, user: user, unit: squad)
+
+    subject = create(:user)
+    create(:assignment, user: subject, unit: lighthouse)
+    create(:assignment, user: subject, unit: other_squad)
+
+    assert user.has_permission_on_user? 'fire', subject
+    refute user.has_permission_on_user? 'qualify', subject
   end
 end
