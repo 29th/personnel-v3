@@ -3,6 +3,13 @@ FactoryBot.define do
     abbr { 'Bn. HQ' }
     name { abbr || 'Battalion HQ' }
     classification { 'Combat' }
+
+    transient {
+      parent { nil }
+    }
+    ancestry {
+      parent ? [parent.ancestry, parent.id].compact.join('/') : nil
+    }
   end
 
   factory :user do
