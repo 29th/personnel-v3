@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_163650) do
+ActiveRecord::Schema.define(version: 2020_05_15_175714) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -406,6 +406,8 @@ ActiveRecord::Schema.define(version: 2020_05_15_163650) do
     t.string "nickname", limit: 40
     t.text "aar_template", comment: "Template for AAR"
     t.integer "parent_id", limit: 3, unsigned: true
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_units_on_ancestry"
     t.index ["parent_id"], name: "index_units_on_parent_id"
   end
 

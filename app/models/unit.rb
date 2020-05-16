@@ -1,6 +1,5 @@
 class Unit < ApplicationRecord
-  belongs_to :parent, class_name: 'Unit', optional: true
-  has_many :children, class_name: 'Unit'
+  has_ancestry
   has_many :assignments
   has_many :users, through: :assignments
   has_many :permissions
@@ -19,6 +18,14 @@ class Unit < ApplicationRecord
 
   def display_name
     abbr
+  end
+
+  # NOTE: Applies :active scope to subtree
+  # NOTE: You probably want to add .active when using this,
+  #       to only get active users
+  def subtree_users
+    User.joins(:assignments)
+        .where(assignments: { unit_id: subtree.active.ids })
   end
 
   # the database uses a column named `class`, which is a reserved

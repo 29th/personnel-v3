@@ -69,6 +69,8 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (3.0.7)
+      activerecord (>= 3.2.0)
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     autoprefixer-rails (9.7.4)
@@ -292,6 +294,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  ancestry
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.4.1)
   byebug

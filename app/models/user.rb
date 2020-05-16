@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :units, through: :assignments
   belongs_to :rank
 
-  scope :active, -> { joins(:assignments).merge(Assignment.current).distinct }
+  scope :active, -> { joins(:assignments).merge(Assignment.active).distinct }
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
