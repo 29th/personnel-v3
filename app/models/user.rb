@@ -46,27 +46,20 @@ class User < ApplicationRecord
 
   private
     def permissions
-      @permissions ||= assignments
-        .active
-        .joins(:position, unit: {permissions: :ability})
-        .where('unit_permissions.access_level <= positions.access_level')
+      # TODO: Use Ability instead of assignments? Doesn't matter much...
+      assignments.active
+                 .joins(:position, unit: { permissions: :ability })
+                 .where('unit_permissions.access_level <= positions.access_level')
+                 .where('units.active', true)
     end
 
     def permissions_on_unit(unit)
-      assignments.active
-                 .where(unit: unit.path_ids)
-                 .where('units.active', true)
-                 .joins(:position, unit: { permissions: :ability })
-                 .where('unit_permissions.access_level <= positions.access_level')
+      permissions.where(unit: unit.path_ids)
     end
 
     def permissions_on_user(subject)
       subject_path_ids = subject.units.flat_map(&:path_ids).uniq
 
-      assignments.active
-                 .where(unit: subject_path_ids)
-                 .where('units.active', true)
-                 .joins(:position, unit: { permissions: :ability })
-                 .where('unit_permissions.access_level <= positions.access_level')
+      permissions.where(unit: subject_path_ids)
     end
 end
