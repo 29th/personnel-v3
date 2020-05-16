@@ -143,6 +143,19 @@ class UserTest < ActiveSupport::TestCase
     refute user.has_permission_on_user? 'member_ability', subject
   end
 
+  test "permission does not apply to user who used to be in unit" do
+    unit = create(:unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
+
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    subject = create(:user)
+    create(:assignment, user: subject, unit: unit, end_date: 2.days.ago)
+
+    refute user.has_permission_on_user? 'member_ability', subject
+  end
+
   test "permission on user can come from multiple intersecting assignments" do
     lighthouse = create(:unit)
     create(:permission, abbr: 'fire', unit: lighthouse)
