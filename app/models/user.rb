@@ -58,7 +58,11 @@ class User < ApplicationRecord
     end
 
     def permissions_on_user(subject)
-      subject_path_ids = subject.units.flat_map(&:path_ids).uniq
+      subject_path_ids = subject.assignments
+                                .active
+                                .includes(:unit)
+                                .flat_map { |assignment| assignment.unit.path_ids }
+                                .uniq
 
       permissions.where(unit: subject_path_ids)
     end
