@@ -1,5 +1,5 @@
 ActiveAdmin.register Unit do
-  permit_params :name, :abbr, :path, :order, :game, :timezone,
+  permit_params :name, :abbr, :ancestry, :order, :game, :timezone,
     :classification, :active, :steam_group_abbr, :slogan, :nickname, :logo
 
   form do |f|
@@ -7,7 +7,7 @@ ActiveAdmin.register Unit do
     inputs do
       f.input :abbr
       f.input :name
-      f.input :path
+      f.input :ancestry
       f.input :order, :as => :number
       f.input :game, :as => :select, :collection => Unit::GAME_OPTS
       f.input :timezone, :as => :select, :collection => Unit::TIMEZONE_OPTS
@@ -34,7 +34,7 @@ ActiveAdmin.register Unit do
     selectable_column
     column :abbr
     column :name
-    column :path
+    column :ancestry
     column :game
     column :classification
     column :active

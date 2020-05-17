@@ -14,7 +14,7 @@ ActiveAdmin.register Assignment do
   filter :start_date
   filter :end_date
 
-  scope :current, default: true
+  scope :active, default: true
   scope :all
 
   index do

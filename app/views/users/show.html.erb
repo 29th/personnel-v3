@@ -3,7 +3,7 @@
 </h1>
 
 <ul>
-  <% @user.assignments.current.each do |assignment| %>
+  <% @user.assignments.active.each do |assignment| %>
     <li>
       <%= assignment.position.name %>,
       <%= assignment.unit.name %>

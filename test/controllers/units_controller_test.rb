@@ -19,7 +19,7 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
   test "should create unit" do
     sign_in_as users(:ltc_fish)
     assert_difference('Unit.count') do
-      post units_url, params: { unit: { abbr: @unit.abbr, active: @unit.active, game: @unit.game, name: @unit.name, order: @unit.order, path: @unit.path, timezone: @unit.timezone } }
+      post units_url, params: { unit: { abbr: @unit.abbr, active: @unit.active, game: @unit.game, name: @unit.name, order: @unit.order, ancestry: @unit.ancestry, timezone: @unit.timezone } }
     end
 
     assert_redirected_to unit_url(Unit.last)
@@ -38,7 +38,7 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update unit" do
     sign_in_as users(:ltc_fish)
-    patch unit_url(@unit), params: { unit: { abbr: @unit.abbr, active: @unit.active, game: @unit.game, name: @unit.name, order: @unit.order, path: @unit.path, timezone: @unit.timezone } }
+    patch unit_url(@unit), params: { unit: { abbr: @unit.abbr, active: @unit.active, game: @unit.game, name: @unit.name, order: @unit.order, ancestry: @unit.ancestry, timezone: @unit.timezone } }
     assert_redirected_to unit_url(@unit)
   end
 

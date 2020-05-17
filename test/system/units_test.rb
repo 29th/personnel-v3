@@ -19,7 +19,7 @@ class UnitsTest < ApplicationSystemTestCase
     fill_in "Game", with: @unit.game
     fill_in "Name", with: @unit.name
     fill_in "Order", with: @unit.order
-    fill_in "Path", with: @unit.path
+    fill_in "Ancestry", with: @unit.ancestry
     fill_in "Timezone", with: @unit.timezone
     click_on "Create Unit"
 
@@ -36,7 +36,7 @@ class UnitsTest < ApplicationSystemTestCase
     fill_in "Game", with: @unit.game
     fill_in "Name", with: @unit.name
     fill_in "Order", with: @unit.order
-    fill_in "Path", with: @unit.path
+    fill_in "Ancestry", with: @unit.ancestry
     fill_in "Timezone", with: @unit.timezone
     click_on "Update Unit"
 
