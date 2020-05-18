@@ -194,4 +194,38 @@ class UserTest < ActiveSupport::TestCase
     assert user.has_permission_on_user? 'fire', subject
     refute user.has_permission_on_user? 'qualify', subject
   end
+
+  # member?
+  test "member? is only true if user has active combat or staff assignment" do
+    combat_user = create(:user)
+    combat_unit = create(:unit, classification: :combat)
+    create(:assignment, user: combat_user, unit: combat_unit)
+    assert combat_user.member?
+
+    staff_user = create(:user)
+    staff_unit = create(:unit, classification: :staff)
+    create(:assignment, user: staff_user, unit: staff_unit)
+    assert staff_user.member?
+
+    training_user = create(:user)
+    training_unit = create(:unit, classification: :training)
+    create(:assignment, user: training_user, unit: training_unit)
+    refute training_user.member?
+
+    multi_user = create(:user)
+    create(:assignment, user: multi_user, unit: combat_unit)
+    create(:assignment, user: multi_user, unit: staff_unit)
+    assert multi_user.member?
+
+    guest_user = create(:user)
+    refute guest_user.member?
+  end
+
+  test "member? ignores past assignments" do
+    user = create(:user)
+    unit = create(:unit, classification: :combat)
+    create(:assignment, user: user, unit: unit,
+                        end_date: 2.days.ago)
+    refute user.member?
+  end
 end

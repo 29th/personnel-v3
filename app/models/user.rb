@@ -44,6 +44,13 @@ class User < ApplicationRecord
     permissions_on_user(user).pluck('abilities.abbr').include?(permission)
   end
 
+  def member?
+    assignments.active
+               .joins(:unit)
+               .where(units: { classification: %i[combat staff] })
+               .any?
+  end
+
   private
     def permissions
       # TODO: Use Ability instead of assignments? Doesn't matter much...
