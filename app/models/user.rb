@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :assignments, dependent: :delete_all, foreign_key: 'member_id'
   has_many :units, through: :assignments
+  has_many :passes, inverse_of: :user
   belongs_to :rank
 
   scope :active, -> { joins(:assignments).merge(Assignment.active).distinct }

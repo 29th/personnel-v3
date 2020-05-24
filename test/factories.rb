@@ -79,4 +79,13 @@ FactoryBot.define do
       access_level { :leader }
     end
   end
+
+  factory :pass do
+    user
+    author factory: :user
+    start_date { 1.day.from_now }
+    end_date { 2.days.from_now }
+    type { :recruitment }
+    reason { 'Recruited someone' }
+  end
 end
