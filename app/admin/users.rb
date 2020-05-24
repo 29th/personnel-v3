@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  includes :rank
+  actions :index, :show
   permit_params :rank, :last_name, :first_name, :middle_name, :name_prefix, # :country_id
     :steam_id, :forum_member_id
 

@@ -1,18 +1,13 @@
 ActiveAdmin.register Assignment do
   includes :unit, :position, user: :rank
+  actions :index, :show
 
-  # controller do
-    # def scoped_collection
-      # super.includes user: :rank
-      # super.includes({:user => :rank})
-    # end
-  # end
   permit_params :member_id, :unit_id, :position_id, :start_date,
                 :end_date
 
-  filter :unit
-  filter :user, collection: proc { User.includes(:rank) } # Doesn't seem to respect includes above
-  filter :position
+  filter :unit, collection: -> { Unit.active.order(:ancestry, :name) }
+  filter :user, collection: -> { User.active.includes(:rank).order(:last_name) }
+  filter :position, collection: -> { Position.active.order(:name) }
   filter :start_date
   filter :end_date
 

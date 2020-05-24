@@ -1,4 +1,5 @@
 ActiveAdmin.register Rank do
+  actions :index, :show
   permit_params :order, :abbr, :name, :grade, :filename
 
   index do

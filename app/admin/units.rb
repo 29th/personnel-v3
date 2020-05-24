@@ -1,4 +1,5 @@
 ActiveAdmin.register Unit do
+  actions :index, :show
   permit_params :name, :abbr, :ancestry, :order, :game, :timezone,
     :classification, :active, :steam_group_abbr, :slogan, :nickname, :logo
 
@@ -23,9 +24,9 @@ ActiveAdmin.register Unit do
 
   filter :abbr
   filter :name
-  filter :game
-  filter :timezone
-  filter :classification
+  filter :game, as: :select, collection: Unit.games
+  filter :timezone, as: :select, collection: Unit.timezones
+  filter :classification, as: :select, collection: Unit.classifications
 
   scope :active, default: true
   scope :all, default: true
