@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_175714) do
+ActiveRecord::Schema.define(version: 2020_05_24_150908) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -384,7 +384,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_175714) do
     t.integer "order", default: 0, null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
-    t.column "classification", "enum('Combat','Staff','Training')", default: "Training", null: false
+    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false
     t.boolean "active", default: true, null: false
     t.string "steam_group_abbr", limit: 30, comment: "Abbreviation of Unit's Steam Group"
     t.string "slogan", limit: 200, comment: "Unit's Slogan"
@@ -392,6 +392,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_175714) do
     t.string "nickname", limit: 40
     t.text "aar_template", comment: "Template for AAR"
     t.string "ancestry"
+    t.column "classification", "enum('Combat','Staff','Training')", default: "Training", null: false
     t.index ["ancestry"], name: "index_units_on_ancestry"
   end
 
