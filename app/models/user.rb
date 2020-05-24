@@ -34,7 +34,8 @@ class User < ApplicationRecord
   end
 
   def has_permission?(permission)
-    permissions.pluck('abilities.abbr').include?(permission)
+    @permissions ||= permissions.pluck('abilities.abbr')
+    @permissions.include?(permission)
   end
 
   def has_permission_on_unit?(permission, unit)
