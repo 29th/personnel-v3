@@ -64,7 +64,7 @@ FactoryBot.define do
     access_level { :member }
 
     transient do
-      abbr { nil }
+      abbr { 'ability' }
     end
 
     ability do
