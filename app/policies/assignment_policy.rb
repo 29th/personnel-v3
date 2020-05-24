@@ -13,7 +13,7 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def create?
-    user && (user.has_permission_on_unit?('assignment_add', record.unit) ||
+    user && (record.unit && user.has_permission_on_unit?('assignment_add', record.unit) ||
              user.has_permission?('assignment_add_any'))
   end
 

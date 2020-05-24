@@ -7,6 +7,8 @@ ActiveAdmin.register Assignment do
       # super.includes({:user => :rank})
     # end
   # end
+  permit_params :member_id, :unit_id, :position_id, :start_date,
+                :end_date
 
   filter :unit
   filter :user, collection: proc { User.includes(:rank) } # Doesn't seem to respect includes above
