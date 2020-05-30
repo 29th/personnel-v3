@@ -24,6 +24,9 @@ WORKDIR /usr/src/app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
+COPY package.json yarn.lock ./
+RUN yarn install
+
 COPY . ./
 COPY docker-entrypoint.sh /usr/local/bin/
 
