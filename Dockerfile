@@ -28,6 +28,7 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY . ./
+RUN RAILS_ENV=production SECRET_KEY_BASE=temp rails assets:precompile
 COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
