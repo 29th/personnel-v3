@@ -20,9 +20,10 @@ mysqldump -u <username> -p <database> > dump.sql
 
 Put the `dump.sql` file in the `db/dump/` directory.
 
-### Secret key
-In order for the application to decrypt `config/credentials.yml.enc`, you'll need to get the `master.key`
-file from another team member and place it into the `config/` directory.
+### Steam web api key
+Users sign in to the application via Steam. To enable this functionality, you'll need to pass it
+a Steam Web API Key. You can get one by [filling out this form](http://steamcommunity.com/dev/apikey).
+Once you have it, copy `.env.sample` to `.env` and add your key to it.
 
 ### Running the application
 

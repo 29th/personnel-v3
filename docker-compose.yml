@@ -11,6 +11,7 @@ services:
       - ./:/usr/src/app
     environment:
       DATABASE_URL: mysql2://root:pwd@db
+      STEAM_WEB_API_KEY: $STEAM_WEB_API_KEY
 
   db:
     image: mysql:8
