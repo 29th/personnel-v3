@@ -28,7 +28,7 @@ ActiveAdmin.register Pass do
       input :recruit, collection: User.active.includes(:rank)
       input :start_date, as: :datepicker
       input :end_date, as: :datepicker
-      input :type, as: :select, collection: Pass.types
+      input :type, as: :select, collection: Pass.types.map(&:reverse)
       input :reason
     end
     f.actions
