@@ -20,4 +20,9 @@ class PassTest < ActiveSupport::TestCase
     pass = build(:pass, start_date: nil)
     refute pass.valid?
   end
+
+  test "add_date is set automatically" do
+    pass = create(:pass)
+    assert_equal pass.add_date, Date.current
+  end
 end

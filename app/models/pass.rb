@@ -15,6 +15,8 @@ class Pass < ApplicationRecord
   validates :end_date, presence: true
   validate :end_date_cannot_be_before_start_date
 
+  before_create :set_add_date
+
   scope :active, -> { where('start_date <= ? AND end_date >= ?', Date.current, Date.current) }
 
   private
@@ -23,5 +25,9 @@ class Pass < ApplicationRecord
     if start_date? && end_date? && end_date < start_date
       errors.add(:end_date, "can't be before start date")
     end
+  end
+
+  def set_add_date
+    self.add_date = Date.current
   end
 end
