@@ -9,12 +9,6 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to 'Users', users_path, :class => 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Units', units_path, :class => 'nav-link' %>
-        </li>
       </ul>
 
       <ul class="navbar-nav">
@@ -24,7 +18,7 @@
             <%= current_user.short_name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'Profile', current_user, :class => 'dropdown-item' %>
+            <%= link_to 'Admin', admin_root_path, :class => 'dropdown-item' %>
             <div class="dropdown-divider"></div>
             <%= link_to 'Sign out', destroy_user_session_path, :class => 'dropdown-item' %>
           </div>
