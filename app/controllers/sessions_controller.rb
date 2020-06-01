@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    user = User.where(:steam_id => auth['uid']).first || User.create_with_auth(auth)
+    user = User.find_by_steam_id!(auth['uid'])
 
     reset_session
     session[:user_id] = user.id
