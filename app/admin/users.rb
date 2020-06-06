@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
-  actions :index, :show
   includes :rank, :country
+
+  actions :index, :show, :edit, :update
 
   permit_params :rank_id, :last_name, :first_name, :middle_name,
     :name_prefix, :steam_id, :forum_member_id, :country_id
@@ -40,5 +41,9 @@ ActiveAdmin.register User do
     column 'Steam ID', :steam_id
     column 'Forum ID', :forum_member_id
     actions
+  end
+
+  after_save do |user|
+    user.update_coat
   end
 end

@@ -54,6 +54,10 @@ class User < ApplicationRecord
                .any?
   end
 
+  def update_coat
+    PersonnelV2Service.new().update_coat(id)
+  end
+
   private
     def permissions
       # TODO: Use Ability instead of assignments? Doesn't matter much...
