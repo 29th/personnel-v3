@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :units, through: :assignments
   has_many :passes, inverse_of: :user
   belongs_to :rank
-  belongs_to :country
+  belongs_to :country, optional: true
 
   scope :active, -> { joins(:assignments).merge(Assignment.active).distinct }
 

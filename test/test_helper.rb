@@ -10,11 +10,10 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock(:steam, {:uid => user.steam_id})
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:steam]
-    post create_user_session_url(:steam)
-    OmniAuth.config.mock_auth[:steam] = nil
+    payload = { sub: user.forum_member_id }
+    token = JsonWebToken.encode(payload)
+    cookie_name = ENV['VANILLA_COOKIE_NAME']
+    cookies[cookie_name] = token
   end
 
   # Pundit helpers
