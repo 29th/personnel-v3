@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :units, through: :assignments
   has_many :passes, inverse_of: :user
   belongs_to :rank
+  belongs_to :country
 
   scope :active, -> { joins(:assignments).merge(Assignment.active).distinct }
 
@@ -51,6 +52,10 @@ class User < ApplicationRecord
                .joins(:unit)
                .where(units: { classification: %i[combat staff] })
                .any?
+  end
+
+  def update_coat
+    PersonnelV2Service.new().update_coat(id)
   end
 
   private

@@ -84,3 +84,5 @@ gem 'activeadmin'
 gem 'nilify_blanks'
 
 gem 'ancestry'
+
+gem 'httparty'
