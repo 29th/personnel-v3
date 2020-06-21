@@ -1,4 +1,6 @@
 ActiveAdmin.register Pass do
+  belongs_to :user, optional: true
+
   includes user: :rank
 
   permit_params :member_id, :recruit_id, :start_date, :end_date,

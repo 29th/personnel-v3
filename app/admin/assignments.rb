@@ -1,4 +1,7 @@
 ActiveAdmin.register Assignment do
+  belongs_to :user, optional: true
+  belongs_to :unit, optional: true
+
   includes :unit, :position, user: :rank
   actions :index, :show
 

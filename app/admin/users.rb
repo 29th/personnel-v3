@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  belongs_to :unit, optional: true
+ 
   includes :rank, :country
 
   actions :index, :show, :edit, :update
@@ -41,6 +43,14 @@ ActiveAdmin.register User do
     column 'Steam ID', :steam_id
     column 'Forum ID', :forum_member_id
     actions
+  end
+
+  sidebar 'Related records', only: [:show, :edit] do
+    ul do
+      li link_to 'Assignments', admin_user_assignments_path(resource)
+      li link_to 'User awards', admin_user_user_awards_path(resource)
+      li link_to 'Passes', admin_user_passes_path(resource)
+    end
   end
 
   after_save do |user|

@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :assignments, dependent: :delete_all, foreign_key: 'member_id'
   has_many :units, through: :assignments
-  has_many :passes, inverse_of: :user
+  has_many :passes, inverse_of: :user, foreign_key: 'member_id'
   has_many :user_awards, foreign_key: 'member_id'
   has_many :awards, through: :user_awards
   belongs_to :rank

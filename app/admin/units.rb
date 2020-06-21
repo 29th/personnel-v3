@@ -41,4 +41,10 @@ ActiveAdmin.register Unit do
     column :active
     actions
   end
+
+  sidebar 'Related records', only: [:show, :edit] do
+    ul do
+      li link_to 'Assignments', admin_unit_assignments_path(resource)
+    end
+  end
 end
