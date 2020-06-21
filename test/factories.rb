@@ -89,4 +89,22 @@ FactoryBot.define do
     type { :recruitment }
     reason { 'Recruited someone' }
   end
+
+  factory :award do
+    code { 'shiny' }
+    title { 'Shiny medal' }
+    description { 'Given to all the good soldiers' }
+    game { :not_applicable }
+    image { Faker::Internet.url }
+    thumbnail { Faker::Internet.url }
+    bar { Faker::Internet.url }
+  end
+
+  factory :user_award do
+    user
+    award
+    date { 1.day.ago }
+    forum_id { :vanilla }
+    topic_id { 123 }
+  end
 end
