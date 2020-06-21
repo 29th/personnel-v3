@@ -26,8 +26,7 @@ ActiveAdmin.register Pass do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs do
-      input :user, collection: User.active.includes(:rank)
-      input :recruit, collection: User.active.includes(:rank)
+      input :user, collection: User.active.includes(:rank).order(:last_name)
       input :start_date, as: :datepicker
       input :end_date, as: :datepicker
       input :type, as: :select, collection: Pass.types.map(&:reverse)
