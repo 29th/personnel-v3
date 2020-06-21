@@ -84,3 +84,5 @@ gem 'ancestry'
 gem 'httparty'
 
 gem 'jwt'
+
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
