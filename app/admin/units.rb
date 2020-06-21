@@ -44,7 +44,8 @@ ActiveAdmin.register Unit do
 
   sidebar 'Related records', only: [:show, :edit] do
     ul do
-      li link_to 'Assignments', admin_unit_assignments_path(resource)
+      # See https://github.com/activeadmin/activeadmin/issues/221#issuecomment-502802948
+      li link_to 'Assignments', [:admin, :assignments, q: { unit_id_eq: resource.id }]
     end
   end
 end

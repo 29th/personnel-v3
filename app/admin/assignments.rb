@@ -1,6 +1,6 @@
 ActiveAdmin.register Assignment do
   belongs_to :user, optional: true
-  belongs_to :unit, optional: true
+  # belongs_to :unit, optional: true # Does not support multiple per https://github.com/activeadmin/activeadmin/issues/221
 
   includes :unit, :position, user: :rank
   actions :index, :show
