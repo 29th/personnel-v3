@@ -4,6 +4,8 @@ class Pass < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :recruit, class_name: 'User', optional: true
 
+  attr_accessor :bulk_member_ids
+
   enum type: { recruitment: 'Recruitment',
                recurring_donation: 'Recurring Donation',
                award: 'Award',

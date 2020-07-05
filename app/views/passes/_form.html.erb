@@ -1,0 +1,10 @@
+<%= semantic_form_for @pass do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :bulk_member_ids, collection: @users, input_html: { class: 'choices', multiple: true } %>
+    <%= f.input :start_date, as: :date_picker %>
+    <%= f.input :end_date, as: :date_picker %>
+    <%= f.input :type, as: :select %>
+    <%= f.input :reason %>
+  <% end %>
+  <%= f.actions %>
+<% end %>

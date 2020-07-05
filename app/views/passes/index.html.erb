@@ -1,0 +1,27 @@
+<h1>Passes</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @passes.each do |pass| %>
+    <tr>
+      <td><%= pass.user.short_name %></td>
+      <td><%= pass.start_date %></td>
+      <td><%= pass.end_date %></td>
+      <td><%= pass.type %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @passes %>
+
+<%= link_to 'New Pass', new_pass_path %>
