@@ -26,6 +26,11 @@ class User < ApplicationRecord
       .join(' ')
   end
 
+  def to_s
+    short_name
+  end
+
+  # For active admin
   def display_name
     short_name
   end

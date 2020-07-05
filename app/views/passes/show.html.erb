@@ -1,0 +1,28 @@
+<h1>Pass <%= @pass.id %></h1>
+
+<dl>
+  <dt>User</dt>
+  <dd><%= @pass.user %></dd>
+
+  <dt>Author</dt>
+  <dd><%= @pass.author %></dd>
+
+  <dt>Start date</dt>
+  <dd><%= @pass.start_date %></dd>
+
+  <dt>End date</dt>
+  <dd><%= @pass.end_date %></dd>
+
+  <dt>Created at</dt>
+  <dd><%= @pass.add_date %></dd>
+
+  <dt>Type</dt>
+  <dd><%= @pass.type %></dd>
+
+  <dt>Reason</dt>
+  <dd><%= @pass.reason %></dd>
+</dl>
+
+<%= link_to 'Edit', edit_pass_path(@pass) %> |
+<%= link_to 'Destroy', @pass, method: :delete, data: { confirm: 'Are you sure?'  } %> |
+<%= link_to 'Back', passes_path %>

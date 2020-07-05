@@ -15,4 +15,9 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker')
+import Choices from 'choices.js'
+
+new Choices('.choices', {
+  removeItemButton: true,
+  maxItemCount: 5
+})
