@@ -86,17 +86,15 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    skip "Not implemented"
-    # sign_in_as users(:ltc_fish)
-    pass = create(:pass)
+    sign_in_as @user
+    pass = create(:pass, user: @subject)
     get edit_pass_url(pass)
     assert_response :success
   end
 
   test "should update pass" do
-    skip "Not implemented"
-    # sign_in_as users(:ltc_fish)
-    pass = create(:pass)
+    sign_in_as @user
+    pass = create(:pass, user: @subject)
     patch pass_url(pass), params: {
       pass: {
         member_id: pass.user.id,
@@ -110,9 +108,8 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy pass" do
-    skip "Not implemented"
-    # sign_in_as users(:ltc_fish)
-    pass = create(:pass)
+    sign_in_as @user
+    pass = create(:pass, user: @subject)
     assert_difference('Pass.count', -1) do
       delete pass_url(pass)
     end

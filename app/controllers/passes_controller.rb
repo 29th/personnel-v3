@@ -3,6 +3,7 @@ class PassesController < ApplicationController
     authorize Pass
     @passes = Pass.includes(user: :rank)
                   .page(params[:page])
+                  .order(add_date: :desc)
   end
 
   def show
@@ -28,7 +29,6 @@ class PassesController < ApplicationController
     end
 
     passes.each do |pass|
-      @pass = pass
       authorize pass
     end
 
@@ -49,6 +49,30 @@ class PassesController < ApplicationController
     end
   end
 
+  def edit
+    @pass = Pass.find(params[:id])
+    @users = users_for_select
+    authorize @pass
+  end
+
+  def update
+    @pass = Pass.find(params[:id])
+    authorize @pass
+    if @pass.update(pass_params)
+      redirect_to @pass, notice: 'Pass was successfully updated.'
+    else
+      @users = users_for_select
+      render :edit
+    end
+  end
+
+  def destroy
+    @pass = Pass.find(params[:id])
+    authorize @pass
+    @pass.destroy
+    redirect_to passes_path, notice: 'Pass was successfully destroyed.'
+  end
+
   private
 
   def users_for_select
@@ -57,7 +81,7 @@ class PassesController < ApplicationController
 
   def pass_params
     params.require(:pass).permit(:start_date, :end_date,
-                                 :type, :reason,
+                                 :type, :reason, :member_id,
                                  { bulk_member_ids: [] })
   end
 end
