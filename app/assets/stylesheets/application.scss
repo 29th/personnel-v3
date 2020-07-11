@@ -23,7 +23,7 @@ $font-family-sans-serif: 'Roboto Condensed', sans-serif;
 $link-color: $olive;
 
 @import "bootstrap";
-@import 'choices.js/public/assets/styles/choices.min.css';
+@import "choices.js/src/styles/choices";
 
 h1, h2, h3, h4, h5, h6, th {
   font-family: 'Oswald', sans-serif;
