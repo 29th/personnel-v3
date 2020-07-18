@@ -1,14 +1,13 @@
-<%= semantic_form_for @pass do |f| %>
-  <%= f.inputs do %>
-    <% if @pass.new_record? %>
-      <%= f.input :bulk_member_ids, as: :select, collection: @users, input_html: { class: 'choices', multiple: true } %>
-    <% else %>
-      <%= f.input :member_id, as: :select, collection: @users, input_html: { class: 'choices', multiple: false  } %>
-    <% end %>
-    <%= f.input :start_date, as: :date_picker %>
-    <%= f.input :end_date, as: :date_picker %>
-    <%= f.input :type, as: :select %>
-    <%= f.input :reason %>
+<%= simple_form_for @pass do |f| %>
+  <%= f.error_notification %>
+  <% if @pass.new_record? %>
+    <%= f.input :bulk_member_ids, as: :select, collection: @users, input_html: { class: 'choices', multiple: true } %>
+  <% else %>
+    <%= f.input :member_id, as: :select, collection: @users, input_html: { class: 'choices', multiple: false  } %>
   <% end %>
-  <%= f.actions %>
+  <%= f.input :start_date, as: :date, html5: true %>
+  <%= f.input :end_date, as: :date, html5: true %>
+  <%= f.input :type, as: :select %>
+  <%= f.input :reason %>
+  <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

@@ -261,6 +261,9 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (2.3.0)
+    simple_form (5.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -319,7 +322,6 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  formtastic (~> 3.0)
   httparty
   jbuilder (~> 2.5)
   jwt
@@ -331,8 +333,8 @@ DEPENDENCIES
   pundit
   rails (~> 6.0.2)
   sass-rails (~> 5.0)
-  select2-rails
   selenium-webdriver
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
