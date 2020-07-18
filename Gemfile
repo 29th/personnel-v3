@@ -90,3 +90,5 @@ gem 'validates_timeliness', '~> 5.0.0.alpha3'
 gem 'activeadmin_addons'
 
 gem 'simple_form'
+
+gem 'ransack'

@@ -332,6 +332,7 @@ DEPENDENCIES
   puma (~> 3.11)
   pundit
   rails (~> 6.0.2)
+  ransack
   sass-rails (~> 5.0)
   selenium-webdriver
   simple_form

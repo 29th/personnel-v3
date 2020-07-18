@@ -1,9 +1,12 @@
 class PassesController < ApplicationController
   def index
     authorize Pass
-    @passes = Pass.includes(user: :rank)
-                  .page(params[:page])
-                  .order(add_date: :desc)
+    @query = Pass.ransack(params[:q])
+    @passes = @query.result(distinct: true)
+                    .includes(user: :rank)
+                    .page(params[:page])
+                    .order(add_date: :desc)
+    @users = users_for_select
   end
 
   def show

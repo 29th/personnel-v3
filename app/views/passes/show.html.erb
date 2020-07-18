@@ -23,6 +23,12 @@
   <dd><%= @pass.reason %></dd>
 </dl>
 
-<%= link_to 'Edit', edit_pass_path(@pass) %> |
-<%= link_to 'Destroy', @pass, method: :delete, data: { confirm: 'Are you sure?'  } %> |
-<%= link_to 'Back', passes_path %>
+<% if policy(@pass).edit? %>
+  <%= link_to 'Edit', edit_pass_path(@pass), class: 'btn btn-secondary' %>
+<% end %>
+
+<% if policy(@pass).destroy? %>
+  <%= link_to 'Destroy', @pass, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'  } %>
+  <% end %>
+ 
+<%= link_to 'Back', passes_path, class: 'btn btn-outline-secondary' %>
