@@ -7,7 +7,7 @@
   <% end %>
   <%= f.input :start_date, as: :date, html5: true %>
   <%= f.input :end_date, as: :date, html5: true %>
-  <%= f.input :type, as: :select %>
+  <%= f.input :type, as: :select, collection: @types %>
   <%= f.input :reason %>
   <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

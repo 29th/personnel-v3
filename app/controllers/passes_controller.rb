@@ -18,6 +18,7 @@ class PassesController < ApplicationController
     authorize Pass
     @pass = Pass.new
     @users = users_for_select
+    @types = types_for_select
   end
 
   def create
@@ -41,6 +42,7 @@ class PassesController < ApplicationController
 
       @pass.bulk_member_ids = bulk_member_ids
       @users = users_for_select
+      @types = types_for_select
       render :new
       return
     end
@@ -55,6 +57,7 @@ class PassesController < ApplicationController
   def edit
     @pass = Pass.find(params[:id])
     @users = users_for_select
+    @types = types_for_select
     authorize @pass
   end
 
@@ -65,6 +68,7 @@ class PassesController < ApplicationController
       redirect_to @pass, notice: 'Pass was successfully updated.'
     else
       @users = users_for_select
+      @types = types_for_select
       render :edit
     end
   end
@@ -80,6 +84,10 @@ class PassesController < ApplicationController
 
   def users_for_select
     User.active.includes(:rank).order(:last_name)
+  end
+
+  def types_for_select
+    Pass.types.map(&:reverse)
   end
 
   def pass_params
