@@ -10,8 +10,6 @@ class Event < ApplicationRecord
   validates_datetime :datetime
   validates :mandatory, inclusion: { in: [true, false] }
 
-  scope :mandatory, -> { where(mandatory: true) }
-
   def self.ransackable_attributes(_auth_object)
     %w[datetime]
   end
@@ -24,12 +22,13 @@ class Event < ApplicationRecord
     %w[unit]
   end
 
-  def self.ransackable_scopes(_auth_object)
-    %i[mandatory]
-  end
-
   # Allow filtering a datetime field by a date
   ransacker :datetime do
     Arel.sql('date(datetime)')
+  end
+
+  # Alias for simple_calendar
+  def start_time
+    datetime
   end
 end

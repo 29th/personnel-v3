@@ -1,11 +1,17 @@
 class EventsController < ApplicationController
   def index
     authorize Event
+
+    date_param = params.fetch(:start_date, Date.today).to_date
+    start_date = date_param.beginning_of_month
+    end_date = date_param.end_of_month
+
     @query = Event.ransack(params[:q])
     @events = @query.result(distinct: true)
                     .includes(:unit)
-                    .page(params[:page])
-                    .order(datetime: :desc)
+                    .where('date(datetime) >= ? AND date(datetime) <= ?',
+                           start_date, end_date)
+                    .order(:datetime)
     @units = units_for_select
   end
 

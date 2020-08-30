@@ -2,32 +2,13 @@
 
 <div class="row">
   <div class="col-9">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><%= sort_link(@query, :datetime, 'Date/time') %></th>
-          <th><%= sort_link(@query, :unit) %></th>
-          <th><%= sort_link(@query, :type) %></th>
-          <th><%= sort_link(@query, :mandatory) %></th>
-          <th></th>
-        </tr>
-      </thead>
+    <%= month_calendar(events: @events) do |date, events| %>
+      <%= date.day %>
 
-      <tbody>
-        <% @events.each do |event| %>
-          <tr>
-            <td><%= event.datetime %></td>
-            <td><%= event.unit.abbr %></td>
-            <td><%= event.type %></td>
-            <td><%= event.mandatory %></td>
-            <td><%= link_to 'Show', event %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= paginate @events %>
-
+      <% events.each do |event| %>
+        <div><%= event.datetime.to_s(:time) %> <%= link_to event.unit.abbr, event %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="col">
     <% if policy(@events).new? %>
@@ -39,8 +20,6 @@
         <h5 class="card-title">Filters</h5>
         <%= search_form_for @query do |f| %>
         <%= f.input :unit_id_eq, label: 'Unit', as: :select, collection: @units, required: false, input_html: { class: 'choices' } %>
-        <%= f.input :datetime_eq, label: 'Date', as: :date, html5: true, required: false %>
-        <%= f.input :mandatory, as: :boolean %>
         <%= f.button :submit, 'Filter', class: 'btn-secondary' %>
         <%= link_to 'Clear filters', events_path, class: 'btn btn-outline-secondary' %>
         <% end %>
