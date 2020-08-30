@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
 
   resources :passes
+  resources :events
 end

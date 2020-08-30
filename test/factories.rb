@@ -107,4 +107,11 @@ FactoryBot.define do
     forum_id { :vanilla }
     topic_id { 123 }
   end
+
+  factory :event do
+    unit
+    type { 'Squad Drills' }
+    mandatory { false }
+    datetime { 1.hour.from_now }
+  end
 end
