@@ -3,6 +3,16 @@ class Event < ApplicationRecord
   belongs_to :unit
   # TODO: add server association
 
+  scope :by_user, -> (user) do
+    unit_ids = user.assignments
+                   .active
+                   .includes(:unit)
+                   .flat_map { |assignment| assignment.unit.path_ids }
+                   .uniq
+
+    where(unit: unit_ids)
+  end
+
   # TODO: Clean up data and convert field to enum
   validates :type, presence: true
 

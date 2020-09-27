@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
     @query = Event.ransack(params[:q])
     @events = @query.result(distinct: true)
+                    .by_user(current_user)
                     .includes(:unit)
                     .where('date(datetime) >= ? AND date(datetime) <= ?',
                            start_date, end_date)
