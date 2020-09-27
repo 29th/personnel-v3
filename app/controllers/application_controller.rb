@@ -3,13 +3,20 @@ require 'json_web_token'
 class ApplicationController < ActionController::Base
   include Pundit
   helper_method :current_user, :authenticate_user!
-  after_action :verify_authorized, unless: :active_admin_controller? # enforce policy for every action
+
+  # enforce policy for every action
+  after_action :verify_authorized,
+               unless: -> { :active_admin_controller? || :high_voltage_controller? }
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
     def active_admin_controller?
       is_a?(ActiveAdmin::BaseController)
+    end
+
+    def high_voltage_controller?
+      is_a?(HighVoltage::PagesController)
     end
 
     def authenticate_user!

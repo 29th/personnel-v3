@@ -1,34 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-green-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <%= image_tag '29th-navbar-logo.png', alt: '29th Infantry Division Logo' %>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<header class="<%= 'transparent' if local_assigns[:transparent?] %>">
+  <nav class="navbar navbar-expand-md navbar-dark bg-transparent">
+    <div class="container-sm">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo.png', alt: '29th Infantry Division Logo' %>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <% links = {
+            'Home': root_path,
+            'About': page_path('about'),
+            'Roster': 'https://personnel.29th.org',
+            'Forum': 'https://forums.29th.org',
+            'Enlist': page_path('about'),
+          } %>
+          <% links.each do |label, path| %>
+            <% if current_page?(path) %>
+              <li class="nav-item active">
+                <%= link_to path, class: 'nav-link' do %>
+                  <%= label %>
+                  <span class="sr-only">(current)</span>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to label, path, class: 'nav-link' %>
+            <% end %>
+          <% end %>
+        </ul>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-      </ul>
-
-      <ul class="navbar-nav" id="user-dropdown">
-        <% if current_user %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.short_name %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'Admin', admin_root_path, :class => 'dropdown-item' %>
-            <div class="dropdown-divider"></div>
-            <%= link_to 'Sign out', destroy_user_session_path, :class => 'dropdown-item' %>
-          </div>
-        </li>
-        <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign in', new_user_session_url, :class => 'nav-link' %>
-        <% end %>
-      </ul>
-
+        <ul class="navbar-nav" id="user-dropdown">
+          <% if current_user %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.short_name %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Admin', admin_root_path, :class => 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'Sign out', destroy_user_session_path, :class => 'dropdown-item' %>
+            </div>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign in', new_user_session_url, :class => 'nav-link' %>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
+
