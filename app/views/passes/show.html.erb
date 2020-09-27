@@ -1,34 +1,38 @@
-<h1>Pass <%= @pass.id %></h1>
+<article>
+  <h1>Pass <%= @pass.id %></h1>
 
-<dl>
-  <dt>User</dt>
-  <dd><%= @pass.user %></dd>
+  <dl>
+    <dt>User</dt>
+    <dd><%= @pass.user %></dd>
 
-  <dt>Author</dt>
-  <dd><%= @pass.author %></dd>
+    <dt>Author</dt>
+    <dd><%= @pass.author %></dd>
 
-  <dt>Start date</dt>
-  <dd><%= @pass.start_date %></dd>
+    <dt>Start date</dt>
+    <dd><%= @pass.start_date %></dd>
 
-  <dt>End date</dt>
-  <dd><%= @pass.end_date %></dd>
+    <dt>End date</dt>
+    <dd><%= @pass.end_date %></dd>
 
-  <dt>Created at</dt>
-  <dd><%= @pass.add_date %></dd>
+    <dt>Created at</dt>
+    <dd><%= @pass.add_date %></dd>
 
-  <dt>Type</dt>
-  <dd><%= @pass.type %></dd>
+    <dt>Type</dt>
+    <dd><%= @pass.type %></dd>
 
-  <dt>Reason</dt>
-  <dd><%= @pass.reason %></dd>
-</dl>
+    <dt>Reason</dt>
+    <dd><%= @pass.reason %></dd>
+  </dl>
 
-<% if policy(@pass).edit? %>
-  <%= link_to 'Edit', edit_pass_path(@pass), class: 'btn btn-secondary' %>
-<% end %>
+  <%= link_to 'Test', passes_path, class: 'btn btn-primary' %>
 
-<% if policy(@pass).destroy? %>
-  <%= link_to 'Destroy', @pass, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'  } %>
+  <% if policy(@pass).edit? %>
+    <%= link_to 'Edit', edit_pass_path(@pass), class: 'btn btn-secondary' %>
   <% end %>
- 
-<%= link_to 'Back', passes_path, class: 'btn btn-outline-secondary' %>
+
+  <% if policy(@pass).destroy? %>
+    <%= link_to 'Destroy', @pass, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'  } %>
+    <% end %>
+  
+  <%= link_to 'Back', passes_path, class: 'btn btn-outline-secondary' %>
+</article>
