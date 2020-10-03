@@ -1,6 +1,6 @@
 <section class="carousel slide carousel-fade" id="splash" data-ride="carousel">
   <div class="carousel-inner">
-    <% @splashes.each_with_index do |splash, index| %>
+    <% homepage_config.splashes.each_with_index do |splash, index| %>
       <div class="carousel-item <% if index == 0 %>active<% end %>">
         <%= image_tag 'splashes/' + splash, class: 'd-block w-100' %>
       </div>

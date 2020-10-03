@@ -1,7 +1,7 @@
 <section id="games">
   <h2>Games we're deployed in</h2>
   <div class="paralellogram">
-  <% @games.each do |game| %>
+  <% homepage_config.games.each do |game| %>
     <a class="game" href="<%= game['url'] %>" style="background-image: url('<%= image_path 'games/' + game['background'] %>')">
       <%= image_tag 'games/' + game['logo'], class: 'logo', title: game['name'] %>
     </a>

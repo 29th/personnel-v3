@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <%= render 'shared/navbar', transparent?: controller_name == 'home' %>
     <%= render 'home/carousel' if controller_name == 'home' %>
     <div class="container">
@@ -24,6 +24,7 @@
     </div>
     <%= render 'home/games' if controller_name == 'home' %>
     <%= render 'home/latest_videos' if controller_name == 'home' %>
+    <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
