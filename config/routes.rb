@@ -7,5 +7,11 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :destroy_user_session
   get '/auth/failure' => 'sessions#failure'
 
+  get '/about' => 'pages#about'
+  get '/about/realism' => 'pages#realism'
+  get '/about/ranks' => 'pages#ranks'
+  get '/servers' => 'pages#servers'
+  get '/enlist' => 'pages#enlist'
+
   resources :passes
 end

@@ -1,3 +1,163 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+header.transparent nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: inherit;
+}
+
+#splash {
+  height: 100vh;
+  position: relative;
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+
+  .carousel-inner {
+    clip-path: polygon(100% 85%, 50% 100%, 0 85%, 0 0, 55% 0, 100% 0);
+  }
+
+  .carousel-inner, .carousel-item, img {
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  .caption {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: rgba(0,0,0,.5);
+
+    .title, .subtitle {
+      font-family: 'Staatliches', sans-serif;
+      text-shadow: 2px 2px black;
+      letter-spacing: .15em;
+    }
+
+    .title {
+      font-size: 3rem;
+      text-align: center;
+
+      @media (min-width: 768px) {
+        font-size: 5vw;
+      }
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      text-align: center;
+
+      .separator {
+        color: $primary;
+        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+      }
+
+      @media (min-width: 768px) {
+        font-size: 2vw;
+
+        &::before, &::after {
+          content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+          text-decoration: line-through;
+          color: $primary;
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+}
+
+#games {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-image: image-url('background.jpg');
+  font-family: 'Staatliches';
+  text-shadow: 2px 2px black;
+  letter-spacing: .15em;
+
+  .paralellogram {
+    background-color: $jet;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      white-space: nowrap;
+      padding: 10px 60px;
+      clip-path: polygon(10.5% 0, 100% 0, 89.5% 100%, 0% 100%);
+    }
+
+    .game {
+      width: 90vw;
+      height: 20vh;
+      background-size: cover;
+      background-position: center;
+      display: inline-block;
+      position: relative;
+
+      @media (min-width: 768px) {
+        width: 35vw;
+        height: 45vh;
+        margin: 0 -50px;
+        clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
+      }
+
+      .art {
+        object-fit: cover;
+      }
+
+      .logo {
+        width: 40vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -10vw;
+        margin-left: -20vw;
+
+        @media (min-width: 768px) {
+          width: 22vw;
+          margin-top: -6vh;
+          margin-left: -11vw;
+        }
+      }
+    }
+  }
+}
+
+#videos {
+  h2 {
+    font-family: 'Staatliches';
+    text-shadow: 2px 2px black;
+    letter-spacing: .15em;
+  }
+}
+
+#stats {
+  .caption, .figure {
+    display: block;
+    text-align: center;
+  }
+
+  .figure {
+    font-size: 200%;
+    font-weight: bold;
+  }
+}

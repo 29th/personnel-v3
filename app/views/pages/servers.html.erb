@@ -1,0 +1,21 @@
+<%= content_for :page_title, 'Servers' %>
+
+<% @servers_by_game.each do |game, servers| %>
+  <h2><%= game %></h2>
+  <div class="row row-cols-1 row-cols-md-3">
+    <% servers.each do |server| %>
+      <div class="col mb-4 h-100">
+        <div class="card bg-dark">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= server.name %>
+            </h5>
+            <p class="card-text">
+              <%= server.address %>:<%= server.port %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

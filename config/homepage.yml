@@ -1,0 +1,55 @@
+default: &default
+  splashes:
+    - background1.jpg
+    - background2.jpg
+    - background3.jpg
+    - background4.jpg
+    - background5.jpg
+    - background6.jpg
+    - background7.jpg
+    - background8.jpg
+    - background9.jpg
+    - background10.jpg
+  games:
+    - name: ArmA 3
+      url: https://store.steampowered.com/app/107410/
+      background: arma3.jpg
+      logo: arma3_logo.png
+    - name: "Rising Storm 2: Vietnam"
+      url: https://store.steampowered.com/app/418460/
+      background: rs2.jpg
+      logo: rs2_logo.png
+    - name: Squad
+      url: https://store.steampowered.com/app/393380/
+      background: squad.jpg
+      logo: squad_logo.png
+  playlists:
+    - name: Latest Arma 3 video
+      youtube_id: PLe3Z2wpbiF1rNgRA9QwjfoCrI_N7CNzQj
+    - name: Latest Rising Storm 2 video
+      youtube_id: PLe3Z2wpbiF1oXsW6JTAMk5x1ZHJ1gOx-r
+    - name: Latest Squad video
+      youtube_id: PLe3Z2wpbiF1rJrjHIIcHSOFkXIqRbqM_c
+  social:
+    - name: Steam
+      url: https://steamcommunity.com/groups/29thID
+      icon: steam.svg
+    - name: Facebook
+      url: https://www.facebook.com/29thinfantrydivision
+      icon: facebook.svg
+    - name: Twitter
+      url: https://twitter.com/TwentyNinthID
+      icon: twitter.svg
+    - name: YouTube
+      url: https://www.youtube.com/channel/UC5mY7PbvGEtfBxH08HHP9Bg
+      icon: youtube.svg
+    - name: Twitch
+      url: https://www.twitch.tv/29thinfantrydivision
+      icon: twitch.svg
+
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  <<: *default
