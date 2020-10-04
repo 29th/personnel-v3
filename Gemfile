@@ -92,5 +92,3 @@ gem 'activeadmin_addons'
 gem 'simple_form'
 
 gem 'ransack'
-
-gem 'high_voltage', '~> 3.1'

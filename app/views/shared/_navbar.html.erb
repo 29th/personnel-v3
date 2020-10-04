@@ -11,10 +11,11 @@
         <ul class="navbar-nav mr-auto">
           <% links = {
             'Home': root_path,
-            'About': page_path('about'),
+            'About': about_path,
             'Roster': 'https://personnel.29th.org',
             'Forum': 'https://forums.29th.org',
-            'Enlist': page_path('about'),
+            'Servers': servers_path,
+            'Enlist': enlist_path,
           } %>
           <% links.each do |label, path| %>
             <% if current_page?(path) %>
