@@ -14,4 +14,17 @@ ActiveAdmin.register Rank do
     column :description
     actions
   end
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs do
+      input :name
+      input :abbr
+      input :grade
+      input :order
+      input :filename
+      input :description
+    end
+    f.actions
+  end
 end
