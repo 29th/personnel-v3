@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def ranks
-    @ranks = Rank.all
+    @ranks = Rank.all.order(order: :desc)
   end
 
   def enlist

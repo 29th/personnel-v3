@@ -1,6 +1,6 @@
 ActiveAdmin.register Rank do
-  actions :index, :show
-  permit_params :order, :abbr, :name, :grade, :filename
+  actions :index, :show, :edit, :update, :new, :create
+  permit_params :order, :abbr, :name, :grade, :filename, :description
 
   index do
     selectable_column
@@ -8,7 +8,10 @@ ActiveAdmin.register Rank do
     column :abbr
     column :name
     column :grade
-    column :filename
+    column :filename do |record|
+      image_tag "ranks/60x60/#{record.filename}"
+    end
+    column :description
     actions
   end
 end

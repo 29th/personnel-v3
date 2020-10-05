@@ -8,10 +8,13 @@
 
 <% @ranks.each do |rank| %>
   <div class="media mb-4">
-    <%= image_tag "ranks/60x60/#{rank.filename}", class: 'mr-3', alt: rank.abbr %>
+    <%= image_tag "ranks/60x60/#{rank.filename}", class: 'mr-3 is60x60', alt: rank.abbr %>
     <div class="media-body">
-      <h5 class="mt-0"><%= rank.name %></h5>
-      <%# rank.description %>
+      <h5 class="mt-0">
+        <%= rank.name %>
+        <small>(<%= rank.abbr %>)</small>
+      </h5>
+      <%= rank.description %>
     </div>
   </div>
 <% end %>

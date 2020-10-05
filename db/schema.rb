@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_135335) do
+ActiveRecord::Schema.define(version: 2020_10_05_172222) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -324,6 +324,7 @@ ActiveRecord::Schema.define(version: 2020_10_04_135335) do
     t.string "grade", limit: 4
     t.string "filename", limit: 32, default: ""
     t.integer "order", limit: 2, null: false
+    t.text "description"
   end
 
   create_table "restricted_names", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
