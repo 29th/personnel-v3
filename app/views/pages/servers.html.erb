@@ -12,6 +12,9 @@
             </h5>
             <p class="card-text">
               <%= server.address %>:<%= server.port %>
+              <% if server.battle_metrics_id %>
+                <script type="application/javascript">window.addEventListener('message',function(e){if(e.data.uid&&e.data.type==='sizeUpdate'){var i = document.querySelector('iframe[name="'+e.data.uid+'"]');i.style.width = e.data.payload.width;i.style.height = e.data.payload.height;}});</script><iframe src="https://cdn.battlemetrics.com/b/standardVertical/<%= server.battle_metrics_id %>.html?foreground=%23e8eddf&linkColor=%23f5cb5c&lines=%23333333&background=%232b2c28&chart=players%3A24H&chartColor=%23f5cb5c&showPlayers=&maxPlayersHeight=300" frameborder=0 style="border:0" name="igtnh"></iframe>
+              <% end %>
             </p>
           </div>
         </div>

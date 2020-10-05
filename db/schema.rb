@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_172222) do
+ActiveRecord::Schema.define(version: 2020_10_05_174506) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_172222) do
     t.integer "port", limit: 3, null: false, comment: "Port of Server"
     t.column "game", "enum('DH','Arma 3','RS','RS2','Squad')", default: "DH", null: false, comment: "Type of game "
     t.boolean "active", null: false, comment: "Is server active"
+    t.string "battle_metrics_id", limit: 16
   end
 
   create_table "standards", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Standards required to achieve a badge for AIT", force: :cascade do |t|

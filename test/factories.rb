@@ -107,4 +107,11 @@ FactoryBot.define do
     forum_id { :vanilla }
     topic_id { 123 }
   end
+
+  factory :server do
+    name { 'Platoon server' }
+    abbr { 'Plt' }
+    address { '0.0.0.0' }
+    game { :rs2 }
+  end
 end
