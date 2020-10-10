@@ -1,0 +1,13 @@
+<% content_for :page_title, 'Medals, badges, and citations' %>
+
+<p>All members of the 29th Infantry Division, 116th Regiment, 1st Battalion, have the opportunity of advancing throughout the battalion. You start out as a Private undergoing Basic Training for an entire week. If you show exceptional skills as a Private, you may be promoted to a higher rank in our chain of command.</p>
+
+<% @awards.each do |award| %>
+  <div class="media mb-4">
+    <%= image_tag award.thumbnail, class: 'mr-3', alt: award.title %>
+    <div class="media-body">
+      <h5 class="mt-0"><%= award.title %></h5>
+      <%= award.description %>
+    </div>
+  </div>
+<% end %>
