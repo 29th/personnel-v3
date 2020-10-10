@@ -5,8 +5,8 @@
         Copyright &copy; 2005&ndash;2020 29th Infantry Division
       </div>
       <div class="col-sm text-center text-sm-right">
-      <% homepage_config.social.each do |site| %>
-        <%= link_to image_tag('social/' + site['icon'], class: 'social-icon', title: site['name']), site['url'] %>
+      <% homepage_config[:social].each do |site| %>
+        <%= link_to image_tag('social/' + site[:icon], class: 'social-icon', title: site[:name]), site[:url] %>
       <% end %>
       </div>
     </div>
