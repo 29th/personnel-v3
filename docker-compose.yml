@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - ./:/usr/src/app
+    tmpfs: /usr/src/app/tmp
     environment:
       DATABASE_URL: mysql2://root:pwd@db
 
