@@ -29,12 +29,12 @@ jobs:
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
 
-      - name: Setup ruby cache
-        uses: actions/cache@v1
+      - name: Cache ruby gems
+        uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-bundle-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-bundle-
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-
 
       - name: Install gems
         run: |
@@ -48,10 +48,10 @@ jobs:
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Setup node cache
-        run: actions/cache@v1
+      - name: Cache yarn modules
+        run: actions/cache@v2
         with:
-          path: ${{ setps.yarn-cache-dir.outputs.dir }}
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**.yarn.lock') }}
           restore-keys: ${{ runner.os }}-yarn-
 
