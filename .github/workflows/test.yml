@@ -58,3 +58,6 @@ jobs:
 
       - name: Run tests
         run: bundle exec rails test
+        env:
+          VANILLA_COOKIE_NAME: Vanilla
+          VANILLA_COOKIE_SALT: test
