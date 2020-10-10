@@ -94,7 +94,7 @@ FactoryBot.define do
     code { 'shiny' }
     title { 'Shiny medal' }
     description { 'Given to all the good soldiers' }
-    game { :not_applicable }
+    game { :notapplicable }
     image { Faker::Internet.url }
     thumbnail { Faker::Internet.url }
     bar { Faker::Internet.url }

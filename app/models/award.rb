@@ -1,7 +1,7 @@
 class Award < ApplicationRecord
   has_many :user, through: :awardings
 
-  enum game: { not_applicable: 'N/A', dh: 'DH', rs: 'RS', arma3: 'Arma 3', rs2: 'RS2', squad: 'Squad' }
+  enum game: { notapplicable: 'N/A', dh: 'DH', rs: 'RS', arma3: 'Arma 3', rs2: 'RS2', squad: 'Squad' }
 
   validates :code, presence: true
   validates :title, presence: true
