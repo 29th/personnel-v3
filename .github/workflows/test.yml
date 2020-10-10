@@ -58,9 +58,9 @@ jobs:
         run: yarn install --pure-lockfile
 
       - name: Setup test database
-        run: rails db:setup
+        run: bundle exec rails db:setup
         env:
           RAILS_ENV: test
 
       - name: Run tests
-        run: rails test
+        run: bundle exec rails test
