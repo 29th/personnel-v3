@@ -1,0 +1,63 @@
+name: Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_DATABASE: personnel_test
+          MYSQL_ROOT_PASSWORD: pwd
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+
+      - name: Find yarn cache location
+        id: yarn-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**.yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install node modules
+        run: yarn install --pure-lockfile
+
+      - name: Setup test database
+        run: bundle exec rails db:setup
+        env:
+          RAILS_ENV: test
+
+      - name: Run tests
+        run: bundle exec rails test
+        env:
+          VANILLA_COOKIE_NAME: Vanilla
+          VANILLA_COOKIE_SALT: test
