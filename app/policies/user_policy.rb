@@ -8,15 +8,16 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    user and user.has_permission?('admin')
+    user&.has_permission?('admin')
   end
 
   def update?
-    user and (user.has_permission_on_user?('profile_edit', record) ||
-              user.has_permission?('admin'))
+    (record && user&.has_permission_on_user?('profile_edit', record)) ||
+      user&.has_permission?('profile_edit_any') ||
+      user&.has_permission?('admin')
   end
 
   def destroy?
-    user and user.has_permission?('admin')
+    user&.has_permission?('admin')
   end
 end

@@ -51,6 +51,7 @@ class User < ApplicationRecord
   end
 
   def has_permission_on_user?(permission, user)
+    return false if id == user.id # deny permissions on self
     permissions_on_user(user).pluck('abilities.abbr').include?(permission)
   end
 

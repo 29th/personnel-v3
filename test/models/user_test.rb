@@ -128,6 +128,16 @@ class UserTest < ActiveSupport::TestCase
     assert user.has_permission_on_user? 'member_ability', subject
   end
 
+  test "permission does not apply to self" do
+    unit = create(:unit)
+    create(:permission, abbr: 'member_ability', unit: unit)
+
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    refute user.has_permission_on_user? 'member_ability', user
+  end
+
   test "permission does not apply to user in child unit of another unit" do
     unit = create(:unit)
     other_unit = create(:unit)

@@ -10,6 +10,9 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
 
     @subject = create(:user)
     create(:assignment, user: @subject, unit: unit)
+
+    @subject2 = create(:user)
+    create(:assignment, user: @subject2, unit: unit)
   end
 
   test "should get index" do
@@ -47,7 +50,7 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Pass.count', 2) do
       post passes_url, params: {
         pass: {
-          bulk_member_ids: ['', @subject.id, @user.id],
+          bulk_member_ids: ['', @subject.id, @subject2.id],
           start_date: pass.start_date,
           end_date: pass.end_date,
           type: pass.type,
