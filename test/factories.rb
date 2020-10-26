@@ -114,4 +114,12 @@ FactoryBot.define do
     address { '0.0.0.0' }
     game { :rs2 }
   end
+
+  factory :note do
+    user
+    author factory: :user
+    access { :members_only }
+    subject { Faker::Lorem.sentence }
+    content { Faker::Lorem.paragraph }
+  end
 end
