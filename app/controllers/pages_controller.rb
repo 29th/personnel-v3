@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def about
   end
 
+  def awards
+    @awards = Award.all
+  end
+
   def realism
   end
 

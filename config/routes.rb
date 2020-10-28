@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
 
   get '/about' => 'pages#about'
+  get '/about/awards' => 'pages#awards'
   get '/about/realism' => 'pages#realism'
   get '/about/ranks' => 'pages#ranks'
   get '/servers' => 'pages#servers'

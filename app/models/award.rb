@@ -1,5 +1,6 @@
 class Award < ApplicationRecord
-  has_many :user, through: :awardings
+  has_many :user_awards
+  has_many :users, through: :user_awards
 
   enum game: { notapplicable: 'N/A', dh: 'DH', rs: 'RS', arma3: 'Arma 3', rs2: 'RS2', squad: 'Squad' }
 
@@ -19,4 +20,6 @@ class Award < ApplicationRecord
 
   # validates :active, inclusion: { in: [true, false] }, if: :present?
   validates :order, numericality: { only_integer: true }, if: :present?
+
+  scope :active, -> { where(active: true) }
 end
