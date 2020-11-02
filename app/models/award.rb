@@ -9,14 +9,9 @@ class Award < ApplicationRecord
   validates :game, presence: true
   validates :description, presence: true
 
-  validates :image, presence: true
-  validates :image, format: { with: URI.regexp }, if: :present?
-
-  validates :thumbnail, presence: true
-  validates :thumbnail, format: { with: URI.regexp }, if: :present?
-
-  validates :bar, presence: true
-  validates :bar, format: { with: URI.regexp }, if: :present?
+  validates :image, format: { with: URI.regexp }, allow_blank: true
+  validates :thumbnail, format: { with: URI.regexp }, allow_blank: true
+  validates :bar, format: { with: URI.regexp }, allow_blank: true
 
   # validates :active, inclusion: { in: [true, false] }, if: :present?
   validates :order, numericality: { only_integer: true }, if: :present?

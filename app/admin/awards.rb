@@ -1,6 +1,7 @@
 ActiveAdmin.register Award do
   permit_params :code, :title, :game, :description, :image,
-                :thumbnail, :bar, :order, :active
+                :thumbnail, :bar, :display_filename, :mini_filename,
+                :order, :active
 
   scope :active, default: true
   scope :all
@@ -8,19 +9,28 @@ ActiveAdmin.register Award do
   filter :title
   filter :game, as: :select
 
+  config.sort_order = 'order_desc'
+
   index do
     selectable_column
     column :title
     column :code
     column :game
-    column :image do |award|
-      image_tag award.image
+    column :display_filename do |award|
+      path = "awards/display/#{award.display_filename}"
+      if asset_exists?(path)
+        image_tag path
+      else
+        award.display_filename
+      end
     end
-    column :thumbnail do |award|
-      image_tag award.thumbnail
-    end
-    column :bar do |award|
-      image_tag award.bar
+    column :mini_filename do |award|
+      path = "awards/mini/#{award.mini_filename}"
+      if asset_exists?(path)
+        image_tag path
+      else
+        award.mini_filename
+      end
     end
     column :description
     column 'User awards' do |award|
@@ -38,14 +48,21 @@ ActiveAdmin.register Award do
       row 'User awards' do |award|
         link_to award.user_awards.count, admin_award_user_awards_path(award)
       end
-      row :image do |award|
-        image_tag award.image
+      row :display_filename do |award|
+        path = "awards/display/#{award.display_filename}"
+        if asset_exists?(path)
+          image_tag path
+        else
+          award.display_filename
+        end
       end
-      row :thumbnail do |award|
-        image_tag award.thumbnail
-      end
-      row :bar do |award|
-        image_tag award.bar
+      row :mini_filename do |award|
+        path = "awards/mini/#{award.mini_filename}"
+        if asset_exists?(path)
+          image_tag path
+        else
+          award.mini_filename
+        end
       end
     end
   end

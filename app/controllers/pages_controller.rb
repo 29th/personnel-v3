@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def awards
-    @awards = Award.all
+    @awards = Award.active.notapplicable
   end
 
   def realism
