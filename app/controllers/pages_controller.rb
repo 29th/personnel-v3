@@ -24,4 +24,22 @@ class PagesController < ApplicationController
                              .sort_by { |server| order.index(server.name.split.first) || 99 }
                              .group_by(&:game)
   end
+
+  def historical
+  end
+
+  def server
+  end
+
+  def donate
+  end
+
+  def faq
+  end
+
+  def record
+  end
+
+  def our_history
+  end
 end

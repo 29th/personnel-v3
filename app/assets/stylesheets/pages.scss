@@ -1,3 +1,5 @@
+@import "variables";
+
 .is60x60 {
   width: 60px;
   height: 60px;
@@ -16,4 +18,16 @@
 .award-display {
   width: 100%;
   min-height: 200px;
+}
+
+.victory {
+  color: green;
+}
+
+.draw {
+  color: $khaki-web;
+}
+
+.defeat {
+  color: $deep-chestnut;
 }
