@@ -46,6 +46,69 @@ default: &default
     - name: Twitch
       url: https://www.twitch.tv/29thinfantrydivision
       icon: twitch.svg
+  our_history:
+    - title: Creation of the 29th
+      date: 2005
+      description: |
+        Our journey started in 2005 in the game The Trenches
+        and Battle Grouds as a small group setting the very
+        first footprint in our path of history. It was founded
+        by at the time Captain Pak. Later was taken over by Captain
+        Radcliffe.
+    - title: Move to Day of Defeat
+      date: 2006
+      description: |
+        We completely moved to Day of Defeat and closed down the prior two
+        companies. We closed down the company in the prior two games and stuck
+        in one game each time we changed. This is where most of our roots can
+        be traced back too today and here is where major changes took place to
+        put in place the regulations that are still abided by today. These
+        changes were brought on by another Company HQ level change during a
+        transition from Captain Radcliffe to Captain Wilson in late 2006. He
+        would then bring in the one game rule.
+    - title: Move to Darkest Hour and growth to Battalion
+      date: 2008
+      description: |
+        After DOD became dated we moved to the next hottest thing striving and
+        alive as ever. We did another game change to darkest hour. We upgraded
+        to Battalion size right away. We went from four platoons and one
+        company into two platoons for two different comapnies each. So instead
+        of just being a company we created a different company. We mainly
+        utalized for for an eastern company and western company.
+    - title: Split into Arma 3 and RO2/RS
+      date: 2013
+      description: |
+        As new games came out that would be adequate for our needs we started
+        to check out our options. We learned that there was a demand for a a
+        realism unit such as ourself in the games Arma 3 and RO2/RS. After the
+        decission was made to break our one game tradition, we swiftly
+        transitioned into creating two new companies for the game, which is
+        where Charlie and Baker were formed. Baker was no longer associated
+        with Darkest Hour. We stayed in DH and put all the platoons under one
+        company that was called Able. That would leave dog company unattended
+        which left to it being disbanded and ressurected later. We solved the
+        time zone issue by making platoons dedicated to eastern and western
+        personnel.
+    - title: LTC Wheatley's appointment
+      date: 2015
+      description: |
+        There would soon be a huge change in the 29th, Lieutenent Colonel
+        Wilson had to step down due to a lack of time a new battalion commander
+        was appointed. After the previous Lt. Col.'s run of ten years LTC
+        Wheatley had a lot to live up to. He had a good foundation and
+        continued to help the 29th as it's new leader.
+    - title: "RS2: Vietnam and Squad"
+      date: 2017
+      description: |
+        All good things come to an end at some point, as our previous games
+        came to be dated it was time for another switch. New suitable games
+        were found that meet our needs entirely and provided a platform for us
+        to excell in. This is how we found our current homes in RS2: Vietnam
+        and the tactical shooter Squad. It enabled modding and had all the core
+        functionality for us to be able to run our drills. Shortly after this
+        switch after we stabilized we shut down Able and Baker companies
+        leaving Charlie company (Arma 3) and the newly created Dog
+        (RS2:Vietnam) and Easy (Squad) companies.
 
 development:
   <<: *default

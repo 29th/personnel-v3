@@ -7,3 +7,22 @@
 <p>Basic Combat Training, or BCT, is one of the ways we accomplish training new unit members, Cadets, into respectable soldiers of the 29th Infantry Division. Our intricate and well organized office, Lighthouse, takes care of BCT and trains every soldier that enters the unit.</p>
 
 <p>Because of Lighthouse and its efforts, our number are constantly growing. There are many other offices and ways to get involved in the unit; here in the 29th we don't simply "get by." Hundreds of individuals have put forth hundreds of hours building the foundation on which this unit stands today, and we are proud to call ourselves soldiers of the Fightin' 29th!</p>
+
+<div class="row">
+  <div class="col-lg-7 mx-auto">
+    <ul class="timeline">
+      <% homepage_config[:our_history].each do |event| %>
+        <li class="timeline-item rounded ml-3 p-4 shadow bg-dark">
+          <div class="timeline-arrow"></div>
+          <h2 class="h5 mb-0"><%= event[:title] %></h2>
+          <span class="text-gray">
+            <i class="fa fa-clock-o mr-1"><%= event[:date] %></i>
+          </span>
+          <p class="text-small mt-2 font-weight-light">
+            <%= event[:description] %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
