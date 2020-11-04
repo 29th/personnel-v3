@@ -28,7 +28,7 @@ class PagesController < ApplicationController
   def historical
   end
 
-  def server
+  def server_rules
   end
 
   def donate
@@ -41,5 +41,8 @@ class PagesController < ApplicationController
   end
 
   def our_history
+  end
+
+  def contact
   end
 end
