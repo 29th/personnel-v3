@@ -17,20 +17,10 @@ ActiveAdmin.register Award do
     column :code
     column :game
     column :display_filename do |award|
-      path = "awards/display/#{award.display_filename}"
-      if asset_exists?(path)
-        image_tag path
-      else
-        award.display_filename
-      end
+      image_tag "awards/display/#{award.display_filename}"
     end
     column :mini_filename do |award|
-      path = "awards/mini/#{award.mini_filename}"
-      if asset_exists?(path)
-        image_tag path
-      else
-        award.mini_filename
-      end
+      image_tag "awards/mini/#{award.mini_filename}"
     end
     column :description
     column 'User awards' do |award|
@@ -49,20 +39,10 @@ ActiveAdmin.register Award do
         link_to award.user_awards.count, admin_award_user_awards_path(award)
       end
       row :display_filename do |award|
-        path = "awards/display/#{award.display_filename}"
-        if asset_exists?(path)
-          image_tag path
-        else
-          award.display_filename
-        end
+        image_tag "awards/display/#{award.display_filename}"
       end
       row :mini_filename do |award|
-        path = "awards/mini/#{award.mini_filename}"
-        if asset_exists?(path)
-          image_tag path
-        else
-          award.mini_filename
-        end
+        image_tag "awards/mini/#{award.mini_filename}"
       end
     end
   end

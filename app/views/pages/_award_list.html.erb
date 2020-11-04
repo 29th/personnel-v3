@@ -2,12 +2,12 @@
 <div class="media mb-4">
   <div class="award-images mr-3">
   <% display_path = "awards/display/#{award.display_filename}" %>
-  <% if award.display_filename && asset_exists?(display_path) %>
+  <% if award.display_filename %>
     <%= image_tag display_path, class: 'award-display mb-3 d-block', alt: award.title %>
   <% end %>
 
   <% mini_path = "awards/mini/#{award.display_filename}" %>
-  <% if award.display_filename && asset_exists?(mini_path) %>
+  <% if award.display_filename %>
     <%= image_tag mini_path, class: 'award-mini mx-auto d-block', alt: award.title %>
   <% end %>
   </div>
