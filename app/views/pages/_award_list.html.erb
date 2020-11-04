@@ -6,7 +6,7 @@
     <%= image_tag display_path, class: 'award-display mb-3 d-block', alt: award.title %>
   <% end %>
 
-  <% mini_path = "awards/mini/#{award.display_filename}" %>
+  <% mini_path = "awards/mini/#{award.mini_filename}" %>
   <% if award.mini_filename.present? %>
     <%= image_tag mini_path, class: 'award-mini mx-auto d-block', alt: award.title %>
   <% end %>
