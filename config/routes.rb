@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'home#index'
 
-  post '/auth/:provider/callback' => 'sessions#create', :as => :create_user_session
-  get '/signin' => 'sessions#new', :as => :new_user_session
-  get '/signout' => 'sessions#destroy', :as => :destroy_user_session
-  get '/auth/failure' => 'sessions#failure'
+  sign_in_url = URI.join(ENV['FORUMS_BASE_URL'], '/entry/signin').to_s
+  sign_out_url = URI.join(ENV['FORUMS_BASE_URL'], '/entry/signout').to_s
+
+  get '/signin' => redirect(sign_in_url), :as => :new_user_session
+  get '/signout' => redirect(sign_out_url), :as => :destroy_user_session
 
   get '/about' => 'pages#about'
   get '/about/awards' => 'pages#awards'
