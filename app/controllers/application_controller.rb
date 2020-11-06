@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :authenticate_user!
 
   # enforce policy for every action
-  after_action :verify_authorized,
-               unless: -> { :active_admin_controller? || :high_voltage_controller? }
+  after_action :verify_authorized, unless: -> { :active_admin_controller? }
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -15,12 +14,25 @@ class ApplicationController < ActionController::Base
       is_a?(ActiveAdmin::BaseController)
     end
 
-    def high_voltage_controller?
-      is_a?(HighVoltage::PagesController)
-    end
-
     def authenticate_user!
       redirect_to new_user_session_url unless current_user
+    end
+
+    def authenticate_user_for_active_admin!
+      redirect_to new_user_session_url unless current_user && active_admin_editor?
+    end
+
+    def active_admin_editor?
+      # TODO get list of models from ActiveAdmin and iterate them
+      authorize(Assignment, :new?) ||
+      authorize(Award, :new?) ||
+      authorize(Pass, :new?) ||
+      authorize(Permission, :new?) ||
+      authorize(Rank, :new?) ||
+      authorize(Server, :new?) ||
+      authorize(Unit, :new?) ||
+      authorize(UserAward, :new?) ||
+      authorize(User, :new?)
     end
 
     def current_user
