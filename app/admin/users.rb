@@ -45,10 +45,25 @@ ActiveAdmin.register User do
     actions
   end
 
+  show do
+    attributes_table do
+      row :last_name
+      row :first_name
+      row :middle_name
+      row :rank
+      row :country
+      row 'Steam ID', :steam_id do |user|
+        link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
+      end
+      row 'Forum ID', :forum_member_id do |user|
+        link_to user.short_name, "https://forums.29th.org/profile/#{user.forum_member_id}/#{user.short_name}"
+      end
+    end
+  end
+
   sidebar 'Related records', only: [:show, :edit] do
     ul do
       li link_to 'Assignments', admin_user_assignments_path(resource)
-      li link_to 'User awards', admin_user_user_awards_path(resource)
       li link_to 'Passes', admin_user_passes_path(resource)
     end
   end
