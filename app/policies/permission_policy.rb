@@ -1,10 +1,10 @@
 class PermissionPolicy < ApplicationPolicy
   def index?
-    true
+    user&.has_permission?('admin')
   end
 
   def show?
-    true
+    user&.has_permission?('admin')
   end
 
   def create?
