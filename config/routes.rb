@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'home#index'
 
-  sign_in_url = URI.join(ENV['FORUMS_BASE_URL'], '/entry/signin').to_s
-  sign_out_url = URI.join(ENV['FORUMS_BASE_URL'], '/entry/signout').to_s
+  forums_base_url = ENV.fetch('FORUMS_BASE_URL', '')
+  sign_in_url = forums_base_url + '/entry/signin'
+  sign_out_url = forums_base_url + '/entry/signout'
 
   get '/signin' => redirect(sign_in_url), :as => :new_user_session
   get '/signout' => redirect(sign_out_url), :as => :destroy_user_session
