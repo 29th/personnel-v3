@@ -1,21 +1,21 @@
 class PermissionPolicy < ApplicationPolicy
   def index?
-    true
+    user&.has_permission?('admin')
   end
 
   def show?
-    true
+    user&.has_permission?('admin')
   end
 
   def create?
-    user and user.has_permission?('admin')
+    user&.has_permission?('admin')
   end
 
   def update?
-    user and user.has_permission?('admin')
+    user&.has_permission?('admin')
   end
 
   def destroy?
-    user and user.has_permission?('admin')
+    user&.has_permission?('admin')
   end
 end

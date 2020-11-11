@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-lg-7 mx-auto">
+    <ul class="timeline">
+      <% homepage_config[:our_history].each do |event| %>
+        <li class="timeline-item rounded ml-3 p-4 shadow bg-dark">
+          <div class="timeline-arrow"></div>
+          <h2 class="h5 mb-0"><%= event[:title] %></h2>
+          <span class="text-gray">
+            <i class="fa fa-clock-o mr-1"><%= event[:date] %></i>
+          </span>
+          <p class="text-small mt-2 font-weight-light">
+            <%= event[:description] %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

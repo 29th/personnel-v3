@@ -1,0 +1,9 @@
+<table class="table">
+  <% homepage_config[:scrims].each do |scrim| %>
+    <tr>
+      <td><%= link_to scrim[:title], scrim[:url] %></td>
+      <td><%= scrim[:date] %></td>
+      <td><span class="<%= scrim[:outcome_type] %>"><%= scrim[:outcome_label] %></span></td>
+    </tr>
+  <% end %>
+</table>

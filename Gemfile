@@ -92,3 +92,5 @@ gem 'activeadmin_addons'
 gem 'simple_form'
 
 gem 'ransack'
+
+gem 'redcarpet'

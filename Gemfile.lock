@@ -230,6 +230,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redcarpet (3.5.0)
     regexp_parser (1.8.0)
     require_all (1.5.0)
     responders (3.0.1)
@@ -334,6 +335,7 @@ DEPENDENCIES
   pundit
   rails (~> 6.0.2)
   ransack
+  redcarpet
   sass-rails (~> 5.0)
   selenium-webdriver
   simple_form
@@ -347,7 +349,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.1.4
