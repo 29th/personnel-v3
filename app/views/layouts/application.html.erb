@@ -11,8 +11,8 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <%= render 'shared/navbar', transparent?: controller_name == 'home' %>
-    <%= render 'home/carousel' if controller_name == 'home' %>
+    <%= render 'shared/navbar', transparent?: current_page?(action: 'landing') %>
+    <%= render 'home/carousel' if current_page?(action: 'landing') %>
     <div class="container">
       <% if notice %>
         <p class="alert alert-info"><%= notice %></p>
@@ -22,8 +22,8 @@
       <% end %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
-    <%= render 'home/games' if controller_name == 'home' %>
-    <%= render 'home/latest_videos' if controller_name == 'home' %>
+    <%= render 'home/games' if current_page?(action: 'landing') %>
+    <%= render 'home/latest_videos' if current_page?(action: 'landing') %>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>
   </body>

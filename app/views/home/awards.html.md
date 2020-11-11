@@ -6,4 +6,4 @@ Private undergoing Basic Training for an entire week. If you show exceptional
 skills as a Private, you may be promoted to a higher rank in our chain of
 command.
 
-<%= render 'pages/award_list' %>
+<%= render 'home/award_list' %>

@@ -13,7 +13,7 @@ Divisions are made up of Regiments, which are made up of Battalions, which are
 made up of Companies, which are made up of Platoons, which are made up of
 Squads.
 
-<%= render 'pages/rank_list' %>
+<%= render 'home/rank_list' %>
 
 ## Unit structure
 <%= image_tag 'unit-structure.png', class: 'img-fluid' %>

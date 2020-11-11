@@ -25,4 +25,4 @@ we don't simply "get by." Hundreds of individuals have put forth hundreds of
 hours building the foundation on which this unit stands today, and we are proud
 to call ourselves soldiers of the Fightin' 29th!
 
-<%= render 'pages/timeline' %>
+<%= render 'home/timeline' %>

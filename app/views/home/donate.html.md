@@ -1,6 +1,6 @@
 <%= content_for :page_title, 'Donate' %>
 
-<%= render 'pages/donate_buttons' %>
+<%= render 'home/donate_buttons' %>
 
 ### After you donate:
 
