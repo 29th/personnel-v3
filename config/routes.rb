@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   get '/servers' => 'home#servers'
   get '/enlist' => 'home#enlist'
 
+  get '/roster' => 'roster#index'
+
   resources :passes
 end
