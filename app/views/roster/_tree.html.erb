@@ -1,0 +1,31 @@
+<ul>
+  <% tree.each do |parent, children| %>
+    <li>
+      <details open>
+        <summary>
+          <strong><%= parent.name %></strong>
+          <small class="text-muted">
+            (<%= @assignments[parent.id]&.length %>)
+          </small>
+        </summary>
+        <% if @assignments[parent.id] %>
+          <ul>
+            <% @assignments[parent.id].each do |assignment| %>
+              <li>
+                <%= image_tag "ranks/16x16/#{assignment.user.rank.filename}",
+                              alt: assignment.user.rank.abbr,
+                              class: "is16x16" %>
+                <%= assignment.user.short_name %>,
+                <%= assignment.position.name %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <% if children.any? %>
+            <%= render partial: 'roster/tree', object: children %>
+        <% end %>
+      </details>
+    </li>
+  <% end %>
+</ul>
