@@ -114,4 +114,10 @@ FactoryBot.define do
     address { '0.0.0.0' }
     game { :rs2 }
   end
+
+  factory :unit_forum_role do
+    access_level { :member }
+    forum_id { :discourse }
+    role_id { Faker::Number.number(digits: 2) }
+  end
 end

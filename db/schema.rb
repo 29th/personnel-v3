@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_073647) do
+ActiveRecord::Schema.define(version: 2020_11_21_125507) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -195,12 +195,12 @@ ActiveRecord::Schema.define(version: 2020_10_29_073647) do
   create_table "events", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "datetime", null: false
     t.integer "unit_id", limit: 3, unsigned: true
-    t.string "title", limit: 64, null: false
+    t.string "title", limit: 64
     t.string "type", limit: 32, null: false
     t.boolean "mandatory", default: false, null: false
-    t.string "server", limit: 32, null: false
+    t.string "server", limit: 32
     t.integer "server_id", limit: 3, unsigned: true
-    t.text "report", null: false
+    t.text "report"
     t.integer "reporter_member_id", limit: 3, unsigned: true
     t.datetime "report_posting_date", comment: "Date of AAR posting"
     t.datetime "report_edit_date", comment: "Date of last AAR editing"
@@ -377,6 +377,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_073647) do
     t.integer "unit_id", limit: 3, unsigned: true
     t.integer "access_level", limit: 2, default: 0, null: false
     t.integer "role_id", limit: 3, null: false, unsigned: true
+    t.column "forum_id", "enum('Vanilla','Discourse')", null: false
     t.index ["unit_id", "role_id"], name: "unit_id", unique: true
   end
 
@@ -388,7 +389,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_073647) do
     t.integer "order", default: 0, null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
-    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false
+    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false, comment: "Type of unit"
     t.boolean "active", default: true, null: false
     t.string "steam_group_abbr", limit: 30, comment: "Abbreviation of Unit's Steam Group"
     t.string "slogan", limit: 200, comment: "Unit's Slogan"
@@ -404,7 +405,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_073647) do
     t.string "session_id", limit: 100, null: false
     t.string "user_identifier", null: false
     t.text "request_uri", null: false
-    t.string "request_method", limit: 16, null: false
+    t.text "request_method", null: false
     t.datetime "datetime", null: false
     t.string "client_ip", limit: 50, null: false
     t.text "client_user_agent", null: false
