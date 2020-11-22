@@ -116,7 +116,14 @@ FactoryBot.define do
   end
 
   factory :unit_forum_role do
+    unit
     access_level { :member }
+    forum_id { :discourse }
+    role_id { Faker::Number.number(digits: 2) }
+  end
+
+  factory :special_forum_role do
+    special_attribute { :everyone }
     forum_id { :discourse }
     role_id { Faker::Number.number(digits: 2) }
   end
