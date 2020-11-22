@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_073647) do
+ActiveRecord::Schema.define(version: 2020_11_22_132332) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -356,6 +356,12 @@ ActiveRecord::Schema.define(version: 2020_10_29_073647) do
     t.string "battle_metrics_id", limit: 16
   end
 
+  create_table "special_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "special_attribute", null: false
+    t.integer "role_id", null: false
+    t.column "forum_id", "enum('Vanilla','Discourse')", null: false
+  end
+
   create_table "standards", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Standards required to achieve a badge for AIT", force: :cascade do |t|
     t.column "weapon", "enum('EIB','Rifle','Automatic Rifle','Machine Gun','Armor','Sniper','Mortar','SLT','Combat Engineer','Submachine Gun','Pilot','Grenadier')", default: "Rifle", null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", null: false
@@ -377,6 +383,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_073647) do
     t.integer "unit_id", limit: 3, unsigned: true
     t.integer "access_level", limit: 2, default: 0, null: false
     t.integer "role_id", limit: 3, null: false, unsigned: true
+    t.column "forum_id", "enum('Vanilla','Discourse')", null: false
     t.index ["unit_id", "role_id"], name: "unit_id", unique: true
   end
 
