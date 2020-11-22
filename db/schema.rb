@@ -195,12 +195,12 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
   create_table "events", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "datetime", null: false
     t.integer "unit_id", limit: 3, unsigned: true
-    t.string "title", limit: 64
+    t.string "title", limit: 64, null: false
     t.string "type", limit: 32, null: false
     t.boolean "mandatory", default: false, null: false
-    t.string "server", limit: 32
+    t.string "server", limit: 32, null: false
     t.integer "server_id", limit: 3, unsigned: true
-    t.text "report"
+    t.text "report", null: false
     t.integer "reporter_member_id", limit: 3, unsigned: true
     t.datetime "report_posting_date", comment: "Date of AAR posting"
     t.datetime "report_edit_date", comment: "Date of last AAR editing"
@@ -395,7 +395,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.integer "order", default: 0, null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
-    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false, comment: "Type of unit"
+    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false
     t.boolean "active", default: true, null: false
     t.string "steam_group_abbr", limit: 30, comment: "Abbreviation of Unit's Steam Group"
     t.string "slogan", limit: 200, comment: "Unit's Slogan"
@@ -411,7 +411,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.string "session_id", limit: 100, null: false
     t.string "user_identifier", null: false
     t.text "request_uri", null: false
-    t.text "request_method", null: false
+    t.string "request_method", limit: 16, null: false
     t.datetime "datetime", null: false
     t.string "client_ip", limit: 50, null: false
     t.text "client_user_agent", null: false
