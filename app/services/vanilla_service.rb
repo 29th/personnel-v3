@@ -1,7 +1,6 @@
 class VanillaService
   include HTTParty
-  # base_uri ENV['VANILLA_BASE_URL'] + '/api/v2'
-  base_uri 'http://forums/api/v2'
+  base_uri ENV['VANILLA_BASE_URL'] + '/api/v2'
   headers 'Authorization' => "Bearer #{ENV['VANILLA_API_KEY']}"
 
   def get_roles()

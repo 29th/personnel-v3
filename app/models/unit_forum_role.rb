@@ -4,9 +4,7 @@ class UnitForumRole < ApplicationRecord
 
   enum access_level: { member: 0, elevated: 5, leader: 10 }
 
-  enum forum_id: { phpbb: 'PHPBB',
-                   smf: 'SMF',
-                   vanilla: 'Vanilla',
+  enum forum_id: { vanilla: 'Vanilla',
                    discourse: 'Discourse' }
 
   validates :forum_id, presence: true
