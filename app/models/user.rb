@@ -15,13 +15,15 @@ class User < ApplicationRecord
   validates_presence_of :last_name, :first_name, :rank
 
   def full_name
-    [rank.name, first_name, last_name]
+    middle_initial = middle_name.present? ? middle_name[0] + '.' : nil
+
+    [first_name, middle_initial, last_name]
       .reject{ |s| s.nil? or s.empty? }
       .join(' ')
   end
 
   def short_name
-    [rank.abbr, last_name]
+    [rank.abbr, name_prefix, last_name]
       .reject{ |s| s.nil? or s.empty? }
       .join(' ')
   end

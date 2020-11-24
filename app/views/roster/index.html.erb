@@ -1,4 +1,4 @@
-<article class="roster">
+<article>
   <h1>Roster</h1>
-  <%= render partial: 'roster/tree', object: @unit_tree %>
+  <%= render partial: 'roster/heavy_tree', locals: { units: @unit_tree } %>
 </article>

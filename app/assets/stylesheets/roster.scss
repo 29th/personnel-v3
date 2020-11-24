@@ -1,6 +1,6 @@
 @import "variables";
 
-.roster {
+.roster--slim {
   ul {
     margin: 1rem 0;
     padding-left: 1rem;
@@ -22,6 +22,58 @@
 
       img.is16x16 {
         width: 16px;
+      }
+    }
+  }
+}
+
+.roster--heavy {
+  .unit {
+    summary {
+      h3 {
+        display: inline-block;
+        margin-top: 1rem;
+      }
+    }
+
+    .unit-members {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      .unit-member {
+        width: 33%;
+        flex-grow: 1;
+        padding: 1rem;
+
+        &.unit-member--leader {
+          width: 100%;
+        }
+
+        .media {
+          width: 300px;
+          margin: 0 auto;
+          padding: 0.6rem;
+          border: 1px $dark solid;
+          border-radius: 0.2rem; 
+
+          .is60x60 {
+            margin-right: 0.6rem;
+          }
+
+          .media-body {
+            h5 {
+              margin: 0;
+              font-weight: heavy;
+            }
+            p {
+              margin: 0;
+              line-height: 1.2rem;
+            }
+          }
+        }
       }
     }
   }

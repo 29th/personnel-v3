@@ -1,0 +1,38 @@
+<div class="roster--heavy">
+  <% units.each do |parent, children| %>
+    <div class="unit">
+      <details open>
+        <summary>
+          <h3>
+            <%= parent.name %>
+            <small class="text-muted">
+              (<%= @assignments[parent.id]&.length %>)
+            </small>
+          </h3>
+        </summary>
+        <% if @assignments[parent.id] %>
+          <div class="unit-members d-flex">
+            <% @assignments[parent.id].each do |assignment| %>
+              <div class="unit-member unit-member--<%= assignment.position.access_level %>">
+                <div class="media flex-fill">
+                  <%= image_tag "ranks/60x60/#{assignment.user.rank.filename}",
+                                alt: assignment.user.rank.abbr,
+                                class: "is60x60" %>
+                  <div class="media-body">
+                    <h5><a href="#"><%= assignment.user.full_name %></a></h5>
+                    <p><%= assignment.user.rank.name %></p>
+                    <p><%= assignment.position.name %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if children.any? %>
+            <%= render partial: 'roster/heavy_tree', locals: { units: children } %>
+        <% end %>
+      </details>
+    </unit>
+  <% end %>
+</div>
