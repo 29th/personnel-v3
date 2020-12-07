@@ -110,6 +110,24 @@ default: &default
         leaving Charlie company (Arma 3) and the newly created Dog
         (RS2:Vietnam) and Easy (Squad) companies.
   scrims:
+    - date: October 16th 2020
+      title: EP4 vs SquadOPS
+      url: https://forums.29th.org/discussion/41652
+      outcome_type: draw
+      outcome_label: Draw
+      
+    - date: September 27th 2020
+      title: DP3 vs Phoenix Gaming
+      url: https://forums.29th.org/discussion/40917
+      outcome_type: victory
+      outcome_label: Victory
+      
+    - date: June - July 2020
+      title: EBoPs
+      url: https://forums.29th.org/discussion/39703
+      outcome_type: victory
+      outcome_label: EP3 Victory
+      
     - date: April 25th 2020
       title: EP3 vs Canadian Forces
       url: https://forums.29th.org/discussion/37465
