@@ -16,7 +16,7 @@
                   <%= image_tag "ranks/16x16/#{assignment.user.rank.filename}",
                                 alt: assignment.user.rank.abbr,
                                 class: "is16x16" %>
-                  <%= assignment.user.short_name %>,
+                  <%= link_to assignment.user.short_name, "https://personnel.29th.org/#members/#{assignment.user.id}" %>,
                   <%= assignment.position.name %>
                 </li>
               <% end %>
