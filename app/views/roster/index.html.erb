@@ -6,5 +6,5 @@
     <%= link_to 'Slim', roster_path + '?slim', class: 'btn btn-outline-primary' + (@slim ? ' active' : '') %>
   </div>
 
-  <%= render partial: @slim ? 'roster/slim_tree' : 'roster/heavy_tree', locals: { units: @unit_tree } %>
+  <%= render partial: @slim ? 'roster/slim_tree' : 'roster/wide_tree', locals: { units: @unit_tree } %>
 </article>

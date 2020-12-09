@@ -1,4 +1,4 @@
-<div class="roster--heavy">
+<div class="roster--wide">
   <% units.each do |parent, children| %>
     <div class="unit">
       <details open>
@@ -30,7 +30,7 @@
         <% end %>
 
         <% if children.any? %>
-            <%= render partial: 'roster/heavy_tree', locals: { units: children } %>
+            <%= render partial: 'roster/wide_tree', locals: { units: children } %>
         <% end %>
       </details>
     </unit>
