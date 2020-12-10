@@ -23,7 +23,7 @@ COPY Gemfile Gemfile.lock ./
 RUN time bundle install --jobs 6
 
 COPY package.json yarn.lock ./
-RUN time yarn install
+RUN time yarn install --frozen-lockfile
 
 COPY . ./
 RUN time rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=$(openssl rand -hex 32)
