@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_132332) do
+ActiveRecord::Schema.define(version: 2020_12_12_200216) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.date "date", null: false
     t.integer "award_id", limit: 3, null: false, unsigned: true
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
     t.integer "topic_id", limit: 3, null: false, comment: "Negative means old forums"
     t.index ["award_id"], name: "Award ID"
     t.index ["member_id"], name: "User ID"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
   create_table "demerits", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.integer "author_member_id", limit: 3, unsigned: true
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
     t.integer "topic_id", limit: 3, null: false
     t.date "date", null: false
     t.text "reason"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.column "type", "enum('Honorable','General','Dishonorable')", default: "General", null: false, comment: "Type of discharge"
     t.text "reason", null: false, comment: "Description of discharging reason"
     t.boolean "was_reversed", default: false, null: false, comment: "Was the discharge reversed?"
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
     t.string "topic_id", limit: 20, null: false, comment: "ID of forum's topic"
     t.index ["member_id"], name: "Member ID"
   end
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.date "return_date", comment: "Actual date of the return"
     t.text "reason", null: false, comment: "Reason for LOA"
     t.text "availability", comment: "Is member availaible during LOA"
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "ID of forum where promotion was posted"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "ID of forum where promotion was posted"
     t.integer "topic_id", limit: 3, default: 0, null: false, comment: "ID of forums topic"
     t.index ["member_id"], name: "Member ID"
   end
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.integer "member_id", limit: 3, null: false, comment: "Enlistee's ID", unsigned: true
     t.date "date", null: false, comment: "Enlistment Date"
     t.integer "liaison_member_id", limit: 3, comment: "Member ID of Enlistment Liaison", unsigned: true
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
     t.integer "topic_id", limit: 3, null: false, comment: "ID of forums topic "
     t.integer "unit_id", limit: 3, comment: "Unit ID of Training Platoon", unsigned: true
     t.column "status", "enum('Pending','Accepted','Denied','Withdrawn','AWOL')", default: "Pending", null: false, comment: "Status of enlistment"
@@ -195,12 +195,12 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
   create_table "events", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "datetime", null: false
     t.integer "unit_id", limit: 3, unsigned: true
-    t.string "title", limit: 64, null: false
+    t.string "title", limit: 64
     t.string "type", limit: 32, null: false
     t.boolean "mandatory", default: false, null: false
-    t.string "server", limit: 32, null: false
+    t.string "server", limit: 32
     t.integer "server_id", limit: 3, unsigned: true
-    t.text "report", null: false
+    t.text "report"
     t.integer "reporter_member_id", limit: 3, unsigned: true
     t.datetime "report_posting_date", comment: "Date of AAR posting"
     t.datetime "report_edit_date", comment: "Date of last AAR editing"
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.float "amount_received", comment: "Amount received"
     t.float "amount_paid", comment: "Amount paid"
     t.float "fee", comment: "Fee"
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "Which forums"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
     t.string "topic_id", limit: 20, comment: "ID of forums' topic"
     t.text "notes", null: false, comment: "Additional notes"
     t.index ["member_id"], name: "Member ID"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.column "im_type", "enum('AIM','''MSN','''ICQ','''YIM','''Skype')", comment: "Instant Messenger Type"
     t.string "im_handle", limit: 100, comment: "Instant Messenger Handle"
     t.integer "forum_member_id", limit: 3, comment: "Member ID on forums", unsigned: true
+    t.integer "vanilla_forum_member_id"
     t.index ["country_id"], name: "CountryID"
     t.index ["primary_assignment_id"], name: "Assignment"
     t.index ["rank_id"], name: "Rank"
@@ -302,7 +303,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.date "date", null: false, comment: "Date of promotion"
     t.integer "old_rank_id", limit: 3, unsigned: true
     t.integer "new_rank_id", limit: 3, null: false, comment: "Rank after promotion", unsigned: true
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla')", comment: "ID of forum where promotion was posted"
+    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "ID of forum where promotion was posted"
     t.integer "topic_id", limit: 3, null: false, comment: "ID of forums topic "
     t.index ["member_id"], name: "User ID"
     t.index ["new_rank_id"], name: "New Rank"
@@ -395,7 +396,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.integer "order", default: 0, null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
-    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false
+    t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false, comment: "Type of unit"
     t.boolean "active", default: true, null: false
     t.string "steam_group_abbr", limit: 30, comment: "Abbreviation of Unit's Steam Group"
     t.string "slogan", limit: 200, comment: "Unit's Slogan"
@@ -411,7 +412,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_132332) do
     t.string "session_id", limit: 100, null: false
     t.string "user_identifier", null: false
     t.text "request_uri", null: false
-    t.string "request_method", limit: 16, null: false
+    t.text "request_method", null: false
     t.datetime "datetime", null: false
     t.string "client_ip", limit: 50, null: false
     t.text "client_user_agent", null: false
