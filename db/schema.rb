@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_154622) do
+ActiveRecord::Schema.define(version: 2021_02_21_152124) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -387,7 +387,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_154622) do
     t.integer "access_level", limit: 2, default: 0, null: false
     t.integer "role_id", limit: 3, null: false, unsigned: true
     t.column "forum_id", "enum('Vanilla','Discourse')", null: false
-    t.index ["unit_id", "role_id"], name: "unit_id", unique: true
+    t.index ["unit_id", "role_id", "forum_id"], name: "index_unit_roles_on_unit_id_and_role_id_and_forum_id", unique: true
   end
 
   create_table "units", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
