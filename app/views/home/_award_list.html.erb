@@ -1,14 +1,12 @@
 <% @awards.each do |award| %>
 <div class="media mb-4">
   <div class="award-images mr-3">
-  <% display_path = "awards/display/#{award.display_filename}" %>
-  <% if award.display_filename.present? %>
-    <%= image_tag display_path, class: 'award-display mb-3 d-block', alt: award.title %>
+  <% if award.presentation_image.present? %>
+    <%= image_tag award.presentation_image_url, class: 'award-display mb-3 d-block', alt: award.title %>
   <% end %>
 
-  <% mini_path = "awards/mini/#{award.mini_filename}" %>
-  <% if award.mini_filename.present? %>
-    <%= image_tag mini_path, class: 'award-mini mx-auto d-block', alt: award.title %>
+  <% if award.ribbon_image.present? %>
+    <%= image_tag award.ribbon_image_url, class: 'award-mini mx-auto d-block', alt: award.title %>
   <% end %>
   </div>
   <div class="media-body">

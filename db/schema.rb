@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_152124) do
+ActiveRecord::Schema.define(version: 2021_02_21_162749) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -43,6 +43,27 @@ ActiveRecord::Schema.define(version: 2021_02_21_152124) do
     t.string "name", limit: 40, comment: "Ability's Name"
     t.string "abbr", limit: 24, null: false, comment: "Ability's Abbreviation"
     t.text "description", comment: "Detailed description of Ability"
+  end
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "assignments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -91,6 +112,8 @@ ActiveRecord::Schema.define(version: 2021_02_21_152124) do
     t.integer "order", default: 0, null: false, unsigned: true
     t.string "display_filename"
     t.string "mini_filename"
+    t.text "display_image_data"
+    t.text "mini_image_data"
   end
 
   create_table "banlog", id: :integer, limit: 3, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -173,7 +196,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_152124) do
     t.string "last_name", limit: 40, null: false, comment: "Recruit's Last Name"
     t.string "age", limit: 8, null: false, comment: "Recruit's age"
     t.integer "country_id", limit: 2, comment: "Country ID"
-    t.column "timezone", "enum('EST','GMT','Either','Neither')", comment: "Prefered time zone"
+    t.column "timezone", "enum('EST','GMT','PST','Any','None')", comment: "Prefered time zone"
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", comment: "Chosen game"
     t.string "ingame_name", limit: 60, null: false, comment: "In-game Name"
     t.string "steam_name", limit: 60, null: false, comment: "Steamfriends Name"
@@ -421,6 +444,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_152124) do
     t.text "referer_page", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assignments", "members", name: "assignments_ibfk_5", on_update: :cascade
   add_foreign_key "assignments", "positions", name: "assignments_ibfk_4", on_update: :cascade
   add_foreign_key "assignments", "units", name: "assignments_ibfk_2", on_update: :cascade
