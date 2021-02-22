@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_152124) do
+ActiveRecord::Schema.define(version: 2021_02_21_133301) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_152124) do
     t.string "last_name", limit: 40, null: false, comment: "Recruit's Last Name"
     t.string "age", limit: 8, null: false, comment: "Recruit's age"
     t.integer "country_id", limit: 2, comment: "Country ID"
-    t.column "timezone", "enum('EST','GMT','Either','Neither')", comment: "Prefered time zone"
+    t.column "timezone", "enum('EST','GMT','PST','Any','None')", comment: "Prefered time zone"
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", comment: "Chosen game"
     t.string "ingame_name", limit: 60, null: false, comment: "In-game Name"
     t.string "steam_name", limit: 60, null: false, comment: "Steamfriends Name"
