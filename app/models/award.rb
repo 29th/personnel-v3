@@ -1,6 +1,6 @@
 class Award < ApplicationRecord
-  include Shrine::Attachment(:presentation_image)
-  include Shrine::Attachment(:ribbon_image)
+  include AwardImageUploader::Attachment(:presentation_image)
+  include AwardImageUploader::Attachment(:ribbon_image)
 
   has_many :user_awards
   has_many :users, through: :user_awards
