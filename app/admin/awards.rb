@@ -1,6 +1,6 @@
 ActiveAdmin.register Award do
   permit_params :code, :title, :game, :description, :order, :active,
-                :display_image, :mini_image
+                :presentation_image, :ribbon_image
 
   scope :active, default: true
   scope :all
@@ -15,11 +15,11 @@ ActiveAdmin.register Award do
     column :title
     column :code
     column :game
-    column :display_image do |award|
-      image_tag award.display_image_url unless award.display_image.nil?
+    column :presentation_image do |award|
+      image_tag award.presentation_image_url unless award.presentation_image.nil?
     end
-    column :mini_image do |award|
-      image_tag award.mini_image_url unless award.mini_image.nil?
+    column :ribbon_image do |award|
+      image_tag award.ribbon_image_url unless award.ribbon_image.nil?
     end
     column :description
     column 'User awards' do |award|
@@ -37,11 +37,11 @@ ActiveAdmin.register Award do
       row 'User awards' do |award|
         link_to award.user_awards.count, admin_award_user_awards_path(award)
       end
-      row :display_image do |award|
-        image_tag award.display_image_url unless award.display_image.nil?
+      row :presentation_image do |award|
+        image_tag award.presentation_image_url unless award.presentation_image.nil?
       end
-      row :mini_image do |award|
-        image_tag award.mini_image_url unless award.mini_image.nil?
+      row :ribbon_image do |award|
+        image_tag award.ribbon_image_url unless award.ribbon_image.nil?
       end
     end
   end
@@ -56,11 +56,11 @@ ActiveAdmin.register Award do
       input :active
       input :order
 
-      input :display_image, as: :hidden, input_html: { value: object.cached_display_image_data }
-      input :display_image, as: :file
+      input :presentation_image, as: :hidden, input_html: { value: object.cached_presentation_image_data }
+      input :presentation_image, as: :file
 
-      input :mini_image, as: :hidden, input_html: { value: object.cached_mini_image_data }
-      input :mini_image, as: :file
+      input :ribbon_image, as: :hidden, input_html: { value: object.cached_ribbon_image_data }
+      input :ribbon_image, as: :file
     end
     f.actions
   end

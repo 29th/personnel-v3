@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2021_02_21_162749) do
     t.integer "order", default: 0, null: false, unsigned: true
     t.string "display_filename"
     t.string "mini_filename"
-    t.text "display_image_data"
-    t.text "mini_image_data"
+    t.text "presentation_image_data"
+    t.text "ribbon_image_data"
   end
 
   create_table "banlog", id: :integer, limit: 3, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
