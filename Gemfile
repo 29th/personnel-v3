@@ -80,3 +80,4 @@ gem 'ransack', '~> 2.4', '>= 2.4.2'
 gem 'redcarpet', '~> 3.5', '>= 3.5.1'
 gem 'shrine', '~> 3.0'
 gem 'aws-sdk-s3', '~> 1.14', require: false
+gem 'image_processing', '~> 1.0'

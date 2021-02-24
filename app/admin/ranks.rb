@@ -8,7 +8,7 @@ ActiveAdmin.register Rank do
     column :abbr
     column :name
     column :grade
-    column :filename do |record|
+    column :filename do |rank|
       image_tag rank.image_url if rank.image.present?
     end
     column :description
@@ -40,5 +40,9 @@ ActiveAdmin.register Rank do
       input :description
     end
     f.actions
+  end
+
+  before_save do |rank|
+    rank.image_derivatives! if rank.image_changed?
   end
 end

@@ -1,6 +1,6 @@
 require 'shrine'
 
-if Rails.env.test?
+if Rails.env.test? || ENV['PRECOMPILE']
   require 'shrine/storage/memory'
 
   Shrine.storages = {
