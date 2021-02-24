@@ -20,7 +20,7 @@ RUN curl --silent --show-error --location --retry 5 --retry-connrefuse --retry-d
 WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock ./
-RUN time bundle install --jobs 6
+RUN time bundle install --jobs 4
 
 COPY package.json yarn.lock ./
 RUN time yarn install --frozen-lockfile
