@@ -1,6 +1,7 @@
 ActiveAdmin.register Award do
   permit_params :code, :title, :game, :description, :order, :active,
-                :presentation_image, :ribbon_image
+                :presentation_image, :ribbon_image,
+                :remove_presentation_image, :remove_ribbon_image
 
   scope :active, default: true
   scope :all
@@ -58,9 +59,11 @@ ActiveAdmin.register Award do
 
       input :presentation_image, as: :hidden, input_html: { value: object.cached_presentation_image_data }
       input :presentation_image, as: :file
+      input :remove_presentation_image, as: :boolean if object.presentation_image.present?
 
       input :ribbon_image, as: :hidden, input_html: { value: object.cached_ribbon_image_data }
       input :ribbon_image, as: :file
+      input :remove_ribbon_image, as: :boolean if object.ribbon_image.present?
     end
     f.actions
   end

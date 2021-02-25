@@ -1,6 +1,6 @@
 ActiveAdmin.register Rank do
   actions :index, :show, :edit, :update, :new, :create
-  permit_params :order, :abbr, :name, :grade, :image, :description
+  permit_params :order, :abbr, :name, :grade, :image, :description, :remove_image
 
   index do
     selectable_column
@@ -37,6 +37,7 @@ ActiveAdmin.register Rank do
       input :order
       input :image, as: :hidden, input_html: { value: object.cached_image_data }
       input :image, as: :file
+      input :remove_image, as: :boolean if object.image.present?
       input :description
     end
     f.actions
