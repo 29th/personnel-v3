@@ -45,27 +45,6 @@ ActiveRecord::Schema.define(version: 2021_02_23_073227) do
     t.text "description", comment: "Detailed description of Ability"
   end
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
   create_table "assignments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "User ID", unsigned: true
     t.integer "unit_id", limit: 3, null: false, unsigned: true
@@ -445,7 +424,6 @@ ActiveRecord::Schema.define(version: 2021_02_23_073227) do
     t.text "referer_page", null: false
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assignments", "members", name: "assignments_ibfk_5", on_update: :cascade
   add_foreign_key "assignments", "positions", name: "assignments_ibfk_4", on_update: :cascade
   add_foreign_key "assignments", "units", name: "assignments_ibfk_2", on_update: :cascade
