@@ -7,6 +7,8 @@ if Rails.env.test? || ENV['PRECOMPILE']
     cache: Shrine::Storage::Memory.new,
     store: Shrine::Storage::Memory.new
   }
+
+  Shrine.logger.level = Logger::WARN
 else
   require 'shrine/storage/s3'
 
@@ -27,5 +29,8 @@ else
   Shrine.plugin :url_options, store: { host: ENV['STORAGE_PUBLIC_HOST'] }
 end
 
+Shrine.plugin :instrumentation, notifications: ActiveSupport::Notifications
 Shrine.plugin :activerecord
 Shrine.plugin :cached_attachment_data
+
+Shrine.logger = Rails.logger
