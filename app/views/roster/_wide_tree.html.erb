@@ -15,9 +15,9 @@
             <% @assignments[parent.id].each do |assignment| %>
               <div class="unit-member unit-member--<%= assignment.position.access_level %>">
                 <div class="media flex-fill">
-                  <%= image_tag "ranks/60x60/#{assignment.user.rank.filename}",
+                  <%= image_tag assignment.user.rank.image_url,
                                 alt: assignment.user.rank.abbr,
-                                class: "is60x60" %>
+                                class: "is60x60" unless assignment.user.rank.image.nil? %>
                   <div class="media-body">
                     <h5><%= link_to assignment.user.full_name, "https://personnel.29th.org/#members/#{assignment.user.id}" %></h5>
                     <p><%= assignment.user.rank.name %></p>

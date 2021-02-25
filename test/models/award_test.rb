@@ -13,12 +13,4 @@ class AwardTest < ActiveSupport::TestCase
       refute award.valid?
     end
   end
-
-  test "invalid if url fields are not a url" do
-    url_fields = %i[image thumbnail bar]
-    url_fields.each do |field|
-      award = build(:award, field => 'foo')
-      refute award.valid?
-    end
-  end
 end
