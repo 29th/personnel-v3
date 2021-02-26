@@ -134,6 +134,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
+    fastimage (2.2.2)
     ffi (1.13.1)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -349,6 +350,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  fastimage (~> 2.2, >= 2.2.2)
   httparty (~> 0.18.1)
   image_processing (~> 1.0)
   jbuilder (~> 2.5)
