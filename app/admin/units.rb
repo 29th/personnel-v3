@@ -1,6 +1,6 @@
 ActiveAdmin.register Unit do
   actions :index, :show, :edit, :update, :new, :create
-  permit_params :name, :abbr, :ancestry, :order, :game, :timezone,
+  permit_params :name, :abbr, :order, :game, :timezone, :parent_id,
                 :classification, :active, :steam_group_abbr, :slogan,
                 :nickname, :logo, :remove_logo
 
@@ -55,7 +55,7 @@ ActiveAdmin.register Unit do
     inputs do
       f.input :name
       f.input :abbr
-      f.input :ancestry
+      f.input :parent_id, as: :select, collection: Unit.order(:ancestry, :name)
       f.input :order, as: :number
       f.input :classification, as: :select, collection: Unit.classifications.map(&:reverse), include_blank: false
       f.input :game, as: :select, collection: Unit.games.map(&:reverse)
