@@ -64,9 +64,9 @@ ActiveAdmin.register Unit do
       f.input :nickname
       f.input :slogan
       f.input :steam_group_abbr
-      f.input :logo, as: :hidden, input_html: { value: object.cached_logo_data }
+      f.input :logo, as: :hidden, input_html: { value: object&.cached_logo_data }
       f.input :logo, as: :file
-      f.input :remove_logo, as: :boolean if object.logo.present?
+      f.input :remove_logo, as: :boolean if object&.logo.present?
     end
     f.actions
   end
