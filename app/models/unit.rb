@@ -18,6 +18,8 @@ class Unit < ApplicationRecord
   validates :classification, presence: true
   validates :slogan, length: { maximum: 140 }
 
+  before_save :update_path_from_ancestry
+
   def display_name
     abbr
   end
@@ -41,5 +43,12 @@ class Unit < ApplicationRecord
       return true if method_name == 'class'
       super
     end
+  end
+
+  private
+
+  def update_path_from_ancestry
+    # path is still used by v2, and is identical to ancestry, plus surrounding slashes
+    self.path = "/#{ancestry}/" if ancestry_changed?
   end
 end
