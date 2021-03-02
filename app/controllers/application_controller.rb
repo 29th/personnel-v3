@@ -45,8 +45,7 @@ class ApplicationController < ActionController::Base
         forum_member_id = decoded[:sub]
         User.find_by_forum_member_id(forum_member_id)
       rescue JWT::ExpiredSignature, JWT::VerificationError,
-             JWT::DecodeError, JWT::VerificationError,
-             ActiveRecord::RecordNotFound => e
+             JWT::DecodeError, ActiveRecord::RecordNotFound => e
         nil
       end
     end
