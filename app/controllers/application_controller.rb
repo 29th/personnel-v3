@@ -39,14 +39,13 @@ class ApplicationController < ActionController::Base
       return @current_user if defined? @current_user
 
       @current_user = begin
-        cookie_name = ENV['VANILLA_COOKIE_NAME']
+        cookie_name = ENV['FORUMS_COOKIE_NAME']
         token = cookies[cookie_name]
         decoded = JsonWebToken.decode(token)
         forum_member_id = decoded[:sub]
         User.find_by_forum_member_id(forum_member_id)
       rescue JWT::ExpiredSignature, JWT::VerificationError,
-             JWT::DecodeError, JWT::VerificationError,
-             ActiveRecord::RecordNotFound => e
+             JWT::DecodeError, ActiveRecord::RecordNotFound => e
         nil
       end
     end

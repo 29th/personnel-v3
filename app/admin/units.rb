@@ -1,26 +1,8 @@
 ActiveAdmin.register Unit do
-  actions :index, :show
-  permit_params :name, :abbr, :ancestry, :order, :game, :timezone,
-    :classification, :active, :steam_group_abbr, :slogan, :nickname, :logo
-
-  form do |f|
-    f.semantic_errors
-    inputs do
-      f.input :abbr
-      f.input :name
-      f.input :ancestry
-      f.input :order, :as => :number
-      f.input :game, :as => :select, :collection => Unit::GAME_OPTS
-      f.input :timezone, :as => :select, :collection => Unit::TIMEZONE_OPTS
-      f.input :classification, :as => :select, :collection => Unit::CLASSIFICATION_OPTS, :include_blank => false
-      f.input :active
-      f.input :steam_group_abbr
-      f.input :slogan
-      f.input :nickname
-      f.input :logo
-    end
-    f.actions
-  end
+  actions :index, :show, :edit, :update, :new, :create
+  permit_params :name, :abbr, :order, :game, :timezone, :parent_id,
+                :classification, :active, :steam_group_abbr, :slogan,
+                :nickname, :logo, :remove_logo
 
   filter :abbr
   filter :name
@@ -35,7 +17,7 @@ ActiveAdmin.register Unit do
     selectable_column
     column :abbr
     column :name
-    column :ancestry
+    column :ancestors
     column :game
     column :classification
     column :active
@@ -47,5 +29,45 @@ ActiveAdmin.register Unit do
       # See https://github.com/activeadmin/activeadmin/issues/221#issuecomment-502802948
       li link_to 'Assignments', [:admin, :assignments, q: { unit_id_eq: resource.id }]
     end
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :abbr
+      row :ancestors
+      row :order
+      row :classification
+      row :game
+      row :timezone
+      row :active
+      row :nickname
+      row :slogan
+      row :steam_group_abbr
+      row :logo do |unit|
+        image_tag unit.logo_url if unit.logo.present?
+      end
+    end
+  end
+
+  form do |f|
+    f.semantic_errors
+    inputs do
+      f.input :name
+      f.input :abbr
+      f.input :parent_id, as: :select, collection: Unit.order(:ancestry, :name)
+      f.input :order, as: :number
+      f.input :classification, as: :select, collection: Unit.classifications.map(&:reverse), include_blank: false
+      f.input :game, as: :select, collection: Unit.games.map(&:reverse)
+      f.input :timezone, as: :select, collection: Unit.timezones.map(&:reverse)
+      f.input :active
+      f.input :nickname
+      f.input :slogan
+      f.input :steam_group_abbr
+      f.input :logo, as: :hidden, input_html: { value: object&.cached_logo_data }
+      f.input :logo, as: :file
+      f.input :remove_logo, as: :boolean if object&.logo.present?
+    end
+    f.actions
   end
 end

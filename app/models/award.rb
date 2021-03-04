@@ -1,4 +1,7 @@
 class Award < ApplicationRecord
+  include AwardImageUploader::Attachment(:presentation_image)
+  include AwardImageUploader::Attachment(:ribbon_image)
+
   has_many :user_awards
   has_many :users, through: :user_awards
 
@@ -8,10 +11,6 @@ class Award < ApplicationRecord
   validates :title, presence: true
   validates :game, presence: true
   validates :description, presence: true
-
-  validates :image, format: { with: URI.regexp }, allow_blank: true
-  validates :thumbnail, format: { with: URI.regexp }, allow_blank: true
-  validates :bar, format: { with: URI.regexp }, allow_blank: true
 
   # validates :active, inclusion: { in: [true, false] }, if: :present?
   validates :order, numericality: { only_integer: true }, if: :present?

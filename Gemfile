@@ -65,32 +65,20 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Authorisation
-gem 'pundit'
-
-# UI framework
+gem 'pundit', '~> 2.1'
 gem 'bootstrap', '~> 4.4.1'
-
-# Pagination
-gem 'kaminari'
-
-# Admin UI
-gem 'activeadmin'
-
-gem 'nilify_blanks'
-
-gem 'ancestry'
-
-gem 'httparty'
-
-gem 'jwt'
-
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+gem 'activeadmin', '~> 2.9'
+gem 'nilify_blanks', '~> 1.4'
+gem 'ancestry', '~> 3.2', '>= 3.2.1'
+gem 'httparty', '~> 0.18.1'
+gem 'jwt', '~> 2.2', '>= 2.2.2'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
-
-gem 'activeadmin_addons'
-
-gem 'simple_form'
-
-gem 'ransack'
-
-gem 'redcarpet'
+gem 'activeadmin_addons', '~> 1.7', '>= 1.7.1'
+gem 'simple_form', '~> 5.1'
+gem 'ransack', '~> 2.4', '>= 2.4.2'
+gem 'redcarpet', '~> 3.5', '>= 3.5.1'
+gem 'shrine', '~> 3.0'
+gem 'aws-sdk-s3', '~> 1.14', require: false
+gem 'image_processing', '~> 1.0'
+gem 'fastimage', '~> 2.2', '>= 2.2.2'

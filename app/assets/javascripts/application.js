@@ -14,4 +14,3 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require bootstrap.native/dist/bootstrap-native-v4

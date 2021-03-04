@@ -1,0 +1,17 @@
+<% @awards.each do |award| %>
+<div class="media mb-4">
+  <div class="award-images mr-3">
+  <% if award.presentation_image.present? %>
+    <%= image_tag award.presentation_image_url, class: 'award-display mb-3 d-block', alt: award.title %>
+  <% end %>
+
+  <% if award.ribbon_image.present? %>
+    <%= image_tag award.ribbon_image_url, class: 'award-mini mx-auto d-block', alt: award.title %>
+  <% end %>
+  </div>
+  <div class="media-body">
+    <h5 class="mt-0"><%= award.title %></h5>
+    <%= award.description %>
+  </div>
+</div>
+<% end %>

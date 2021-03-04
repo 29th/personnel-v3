@@ -1,6 +1,6 @@
 ActiveAdmin.register Rank do
   actions :index, :show, :edit, :update, :new, :create
-  permit_params :order, :abbr, :name, :grade, :filename, :description
+  permit_params :order, :abbr, :name, :grade, :image, :description, :remove_image
 
   index do
     selectable_column
@@ -8,11 +8,24 @@ ActiveAdmin.register Rank do
     column :abbr
     column :name
     column :grade
-    column :filename do |record|
-      image_tag "ranks/60x60/#{record.filename}"
+    column :filename do |rank|
+      image_tag rank.image_url if rank.image.present?
     end
     column :description
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :abbr
+      row :grade
+      row :order
+      row :image do |rank|
+        image_tag rank.image_url if rank.image.present?
+      end
+      row :description
+    end
   end
 
   form do |f|
@@ -22,9 +35,15 @@ ActiveAdmin.register Rank do
       input :abbr
       input :grade
       input :order
-      input :filename
+      input :image, as: :hidden, input_html: { value: object.cached_image_data }
+      input :image, as: :file
+      input :remove_image, as: :boolean if object.image.present?
       input :description
     end
     f.actions
+  end
+
+  before_save do |rank|
+    rank.image_derivatives! if rank.image_changed?
   end
 end
