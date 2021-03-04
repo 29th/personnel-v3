@@ -1,7 +1,7 @@
 ActiveAdmin.register Note do
   actions :index, :show, :edit, :update, :new, :create
   includes user: :rank, author: :rank
-  permit_params :user, :access, :subject, :content
+  permit_params :user, :access, :subject, :content, :member_id
 
   # scope :all, default: true
 
@@ -48,6 +48,6 @@ ActiveAdmin.register Note do
   config.sort_order = 'date_mod_desc'
 
   before_create do |note|
-    pass.author = current_user
+    note.author = current_user
   end
 end
