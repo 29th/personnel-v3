@@ -136,6 +136,8 @@ GEM
       i18n (>= 1.6, < 2)
     fastimage (2.2.2)
     ffi (1.13.1)
+    flag-icons-rails (3.4.6.1)
+      sass-rails
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
@@ -351,6 +353,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fastimage (~> 2.2, >= 2.2.2)
+  flag-icons-rails (~> 3.4, >= 3.4.6.1)
   httparty (~> 0.18.1)
   image_processing (~> 1.0)
   jbuilder (~> 2.5)

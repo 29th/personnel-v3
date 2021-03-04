@@ -39,7 +39,9 @@ ActiveAdmin.register User do
     column :first_name
     column :middle_name
     column :rank
-    column :country
+    column :country do |user|
+      flag_icon(user.country.sym, title: user.country.name)
+    end
     column 'Steam ID', :steam_id
     column 'Forum ID', :forum_member_id
     actions
@@ -51,7 +53,10 @@ ActiveAdmin.register User do
       row :first_name
       row :middle_name
       row :rank
-      row :country
+      row :country do |user|
+        span flag_icon(user.country.sym, title: user.country.name)
+        span user.country.name
+      end
       row 'Steam ID', :steam_id do |user|
         link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
       end

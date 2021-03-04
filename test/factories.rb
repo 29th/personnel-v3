@@ -135,4 +135,9 @@ FactoryBot.define do
     forum_id { :discourse }
     role_id { Faker::Number.number(digits: 2) }
   end
+
+  factory :country do
+    abbr { 'US' }
+    name { 'United States' }
+  end
 end
