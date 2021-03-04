@@ -115,6 +115,14 @@ FactoryBot.define do
     game { :rs2 }
   end
 
+  factory :note do
+    user
+    author factory: :user
+    access { :members_only }
+    subject { Faker::Lorem.sentence }
+    content { Faker::Lorem.paragraph }
+  end
+
   factory :unit_forum_role do
     unit
     access_level { :member }
