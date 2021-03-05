@@ -1,4 +1,5 @@
 class UnitForumRole < ApplicationRecord
+  audited
   self.table_name = 'unit_roles'
   belongs_to :unit
 

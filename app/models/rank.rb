@@ -1,4 +1,5 @@
 class Rank < ApplicationRecord
+  audited
   include RankImageUploader::Attachment(:image)
 
   validates_presence_of :name, :abbr, :order

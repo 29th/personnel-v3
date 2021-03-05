@@ -80,6 +80,8 @@ GEM
     arbre (1.4.0)
       activesupport (>= 3.0.0, < 6.2)
       ruby2_keywords (>= 0.0.2, < 1.0)
+    audited (4.10.0)
+      activerecord (>= 4.2, < 6.2)
     autoprefixer-rails (10.0.0.2)
       execjs
     aws-eventstream (1.1.0)
@@ -344,6 +346,7 @@ DEPENDENCIES
   activeadmin (~> 2.9)
   activeadmin_addons (~> 1.7, >= 1.7.1)
   ancestry (~> 3.2, >= 3.2.1)
+  audited (~> 4.10)
   aws-sdk-s3 (~> 1.14)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.4.1)

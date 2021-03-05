@@ -1,4 +1,5 @@
 class SpecialForumRole < ApplicationRecord
+  audited
   self.table_name = 'special_roles'
 
   enum special_attribute: {

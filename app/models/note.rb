@@ -1,4 +1,5 @@
 class Note < ApplicationRecord
+  audited max_audits: 10
   belongs_to :user, foreign_key: 'member_id'
   belongs_to :author, class_name: 'User', foreign_key: 'author_member_id'
 

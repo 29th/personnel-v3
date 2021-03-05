@@ -1,4 +1,5 @@
 class Unit < ApplicationRecord
+  audited max_audits: 10
   include UnitLogoImageUploader::Attachment(:logo)
 
   has_ancestry orphan_strategy: :restrict

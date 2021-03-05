@@ -1,5 +1,6 @@
 class Pass < ApplicationRecord
   self.inheritance_column = nil # don't treat type field as STI
+  audited
   belongs_to :user, foreign_key: 'member_id'
   belongs_to :author, class_name: 'User'
   belongs_to :recruit, class_name: 'User', optional: true
