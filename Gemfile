@@ -83,3 +83,4 @@ gem 'aws-sdk-s3', '~> 1.14', require: false
 gem 'image_processing', '~> 1.0'
 gem 'fastimage', '~> 2.2', '>= 2.2.2'
 gem 'flag-icons-rails', '~> 3.4', '>= 3.4.6.1'
+gem 'audited', '~> 4.10'

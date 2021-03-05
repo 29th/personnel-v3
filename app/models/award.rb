@@ -1,4 +1,5 @@
 class Award < ApplicationRecord
+  audited
   include AwardImageUploader::Attachment(:presentation_image)
   include AwardImageUploader::Attachment(:ribbon_image)
 

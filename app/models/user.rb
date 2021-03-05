@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   self.table_name = 'members'
+  audited max_audits: 10
 
   has_many :assignments, dependent: :delete_all, foreign_key: 'member_id'
   has_many :units, through: :assignments
