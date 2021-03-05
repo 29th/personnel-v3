@@ -15,7 +15,7 @@ class Unit < ApplicationRecord
 
   nilify_blanks
   validates :name, presence: true
-  validates :abbr, presence: true, length: { maximum: 8 }
+  validates :abbr, presence: true, length: { maximum: 12 }
   validates :classification, presence: true
   validates :slogan, length: { maximum: 140 }
 
