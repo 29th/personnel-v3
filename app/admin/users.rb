@@ -74,6 +74,6 @@ ActiveAdmin.register User do
   end
 
   after_save do |user|
-    user.update_coat
+    user.delay.update_coat
   end
 end
