@@ -140,4 +140,11 @@ FactoryBot.define do
     abbr { 'US' }
     name { 'United States' }
   end
+
+  factory :ban_log do
+    date { 1.day.ago }
+    roid { Faker::Number.number(digits: 17).to_s }
+    admin factory: :user
+    poster factory: :user
+  end
 end
