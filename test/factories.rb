@@ -147,4 +147,13 @@ FactoryBot.define do
     admin factory: :user
     poster factory: :user
   end
+
+  factory :demerit do
+    user
+    author factory: :user
+    date { 1.day.ago }
+    reason { Faker::Lorem.sentence }
+    forum_id { :discourse }
+    topic_id { 123 }
+  end
 end
