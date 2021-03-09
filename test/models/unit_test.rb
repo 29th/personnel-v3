@@ -18,4 +18,22 @@ class UnitTest < ActiveSupport::TestCase
     unit = build(:unit, slogan: Faker::String.random(length: 141))
     refute unit.valid?
   end
+
+  test "end_assignments ends active assignments" do
+    unit = create(:unit)
+    active_assignments = [
+      create(:assignment, unit: unit),
+      create(:assignment, unit: unit)
+    ]
+    inactive_assignment = create(:assignment, unit: unit, end_date: Date.yesterday)
+
+    unit.end_assignments
+
+    active_assignments.each do |assignment|
+      assignment.reload
+      assert_equal Date.today, assignment.end_date
+    end
+
+    assert_equal Date.yesterday, inactive_assignment.end_date
+  end
 end
