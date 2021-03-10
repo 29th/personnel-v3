@@ -13,6 +13,7 @@ class RosterController < ApplicationController
                              .order('positions.access_level DESC, ranks.order DESC')
                              .group_by(&:unit_id)
 
-    @slim = params.has_key?(:slim)
+    @slim = params.key?(:slim)
+    @show_discourse_status = params.key?(:discourse)
   end
 end

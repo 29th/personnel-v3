@@ -70,4 +70,8 @@ ActiveAdmin.register Unit do
     end
     f.actions
   end
+
+  after_update do |unit|
+    unit.end_assignments if unit.saved_change_to_active? && unit.active == false
+  end
 end

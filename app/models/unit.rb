@@ -37,6 +37,10 @@ class Unit < ApplicationRecord
         .where(assignments: { unit_id: subtree.active.ids })
   end
 
+  def end_assignments
+    assignments.active.update_all(end_date: Date.today)
+  end
+
   # the database uses a column named `class`, which is a reserved
   # word in ruby. this hack prevents it breaking the app.
   class << self

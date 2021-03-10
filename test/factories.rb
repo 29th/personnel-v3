@@ -140,4 +140,20 @@ FactoryBot.define do
     abbr { 'US' }
     name { 'United States' }
   end
+
+  factory :ban_log do
+    date { 1.day.ago }
+    roid { Faker::Number.number(digits: 17).to_s }
+    admin factory: :user
+    poster factory: :user
+  end
+
+  factory :demerit do
+    user
+    author factory: :user
+    date { 1.day.ago }
+    reason { Faker::Lorem.sentence }
+    forum_id { :discourse }
+    topic_id { 123 }
+  end
 end
