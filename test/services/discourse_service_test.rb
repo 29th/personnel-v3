@@ -1,20 +1,35 @@
 require 'test_helper'
 
+BASE_URL = ENV['DISCOURSE_BASE_URL']
+
 class DiscourseServiceTest < ActiveSupport::TestCase
-  test "updates display name" do
+  def stub_username_request(user_id, username)
+    response_body = { username: username }
+    stub_request(:get, "#{BASE_URL}/admin/users/#{user_id}.json")
+      .to_return(body: response_body.to_json)
+  end
+
+  test "update_display_name uses user.short_name" do
     discourse_user_id = 1
     username = 'fluffy_panda'
-    pvt = create(:rank, abbr: 'Pvt.')
-    user = create(:user, last_name: 'Panda', rank: pvt, discourse_forum_member_id: discourse_user_id)
-    user_response_body = "{\"username\": \"#{username}\"}"
 
-    stub_get = stub_request(:get, "#{ENV['DISCOURSE_BASE_URL']}/admin/users/#{discourse_user_id}.json")
-               .to_return(body: user_response_body)
-    stub_update = stub_request(:put, "#{ENV['DISCOURSE_BASE_URL']}/u/#{username}")
+    user = create(:user, last_name: 'Panda', discourse_forum_member_id: discourse_user_id)
+    stub_username_request(discourse_user_id, username)
 
-    DiscourseService.new().update_user_display_name(user)
+    request_body = { name: user.short_name }
+    stub_update = stub_request(:put, "#{BASE_URL}/u/#{username}")
+                  .with(body: request_body.to_json)
 
-    assert_requested(stub_get)
+    DiscourseService.new.update_user_display_name(user)
+
     assert_requested(stub_update)
+  end
+
+  test "update_display_name throws NoLinkedAccountError when discourse_forum_member_id is empty" do
+    user = create(:user)
+
+    assert_raises DiscourseService::NoLinkedAccountError do
+      DiscourseService.new.update_user_display_name(user)
+    end
   end
 end

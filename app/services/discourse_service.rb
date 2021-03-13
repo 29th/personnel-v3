@@ -1,10 +1,14 @@
 class DiscourseService
+  class NoLinkedAccountError < StandardError; end
+
   include HTTParty
   base_uri ENV['DISCOURSE_BASE_URL']
   headers 'Api-Key' => ENV['DISCOURSE_API_KEY']
   headers 'Api-Username' => 'system'
+  headers 'Content-type' => 'application/json'
+  format :json
 
-  def get_groups()
+  def get_roles()
     groups = {}
     current_page = 0
     total_group_count = nil
@@ -28,13 +32,27 @@ class DiscourseService
 
   def update_user_display_name(user)
     discourse_user = get_discourse_user(user)
+    username = discourse_user['username']
+    puts discourse_user['a']
+
+    path = "/u/#{username}"
+    body = { name: user.short_name }
+    response = self.class.put(path, body: body.to_json)
+    raise HTTParty::ResponseError if response.code >= 400
+  end
   end
 
   private
 
   def get_discourse_user(user)
     discourse_user_id = user.discourse_forum_member_id
-    url = "/admin/users/#{discourse_user_id}.json"
-    response = self.class.get(url)
+    raise NoLinkedAccountError unless discourse_user_id
+
+    path = "/admin/users/#{discourse_user_id}.json"
+    response = self.class.get(path)
+    raise NoLinkedAccountError if response.code == 404
+
+    response
+  end
   end
 end
