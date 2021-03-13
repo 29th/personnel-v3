@@ -156,4 +156,13 @@ FactoryBot.define do
     forum_id { :discourse }
     topic_id { 123 }
   end
+
+  factory :discharge do
+    user
+    date { 1.day.ago }
+    type { :general }
+    reason { Faker::Lorem.sentence }
+    forum_id { :discourse }
+    topic_id { 123 }
+  end
 end

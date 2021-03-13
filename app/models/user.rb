@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :passes, inverse_of: :user, foreign_key: 'member_id'
   has_many :user_awards, foreign_key: 'member_id'
   has_many :awards, through: :user_awards
+  has_many :discharges, foreign_key: 'member_id'
   belongs_to :rank
   belongs_to :country, optional: true
 
