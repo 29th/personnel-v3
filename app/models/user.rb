@@ -83,6 +83,11 @@ class User < ApplicationRecord
     PersonnelV2Service.new().update_coat(id)
   end
 
+  def update_forum_display_name
+    DiscourseService.new.update_user_display_name(self) if discourse_forum_member_id.present?
+    VanillaService.new.update_user_display_name(self) if forum_member_id.present?
+  end
+
   private
 
   def permissions

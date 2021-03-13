@@ -73,7 +73,10 @@ ActiveAdmin.register User do
     end
   end
 
-  after_save do |user|
-    user.delay.update_coat
+  before_save do |user|
+    if user.last_name_changed? || user.name_prefix_changed? || user.rank_id_changed?
+      user.update_forum_display_name
+      user.update_coat
+    end
   end
 end
