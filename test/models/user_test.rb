@@ -31,6 +31,59 @@ class UserTest < ActiveSupport::TestCase
     assert user.has_permission? 'member_ability'
   end
 
+  # forum_role_ids
+
+  test "forum_role_ids leader inherits member and elevated permissions" do
+    unit = create(:unit)
+    leader_role = create(:unit_forum_role, :leader, unit: unit)
+    elevated_role = create(:unit_forum_role, :elevated, unit: unit)
+    member_role = create(:unit_forum_role, unit: unit)
+
+    user = create(:user)
+    create(:assignment, :leader, user: user, unit: unit)
+
+    roles = user.forum_role_ids(:discourse)
+
+    assert roles.include?(leader_role.role_id), 'missing leader role'
+    assert roles.include?(elevated_role.role_id), 'missing elevated role'
+    assert roles.include?(member_role.role_id), 'missing member role'
+  end
+
+  test "forum_role_ids elevated inherits member permissions but not leader" do
+    unit = create(:unit)
+    leader_role = create(:unit_forum_role, :leader, unit: unit)
+    elevated_role = create(:unit_forum_role, :elevated, unit: unit)
+    member_role = create(:unit_forum_role, unit: unit)
+
+    user = create(:user)
+    create(:assignment, :elevated, user: user, unit: unit)
+
+    roles = user.forum_role_ids(:discourse)
+
+    refute roles.include?(leader_role.role_id), 'includes leader role'
+    assert roles.include?(elevated_role.role_id), 'missing elevated role'
+    assert roles.include?(member_role.role_id), 'missing member role'
+  end
+
+  test "forum_role_ids returns unique values" do
+    unit = create(:unit)
+    role = create(:unit_forum_role, unit: unit)
+
+    other_unit = create(:unit)
+    other_role = create(:unit_forum_role, unit: other_unit)
+    create(:unit_forum_role, unit: other_unit, role_id: role.role_id) # duplicate
+
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+    create(:assignment, user: user, unit: other_unit)
+
+    roles = user.forum_role_ids(:discourse)
+
+    assert_equal roles.size, 2
+    assert roles.include?(role.role_id)
+    assert roles.include?(other_role.role_id)
+  end
+
   # has_permission_on_unit?
 
   test "permission applies to unit" do
@@ -237,5 +290,36 @@ class UserTest < ActiveSupport::TestCase
     create(:assignment, user: user, unit: unit,
                         end_date: 2.days.ago)
     refute user.member?
+  end
+
+  # honorably_discharged?
+  test "honorably_discharged? passes for honorably discharged member" do
+    user = create(:user)
+    unit = create(:unit, classification: :combat)
+    create(:assignment, user: user, unit: unit, end_date: 2.days.ago)
+    create(:discharge, user: user, type: :honorable)
+
+    assert user.honorably_discharged?
+  end
+
+  test "honorably_discharged? fails for member honorably discharged in the past, but more recently generally discharged" do
+    user = create(:user)
+    unit = create(:unit, classification: :combat)
+    create(:assignment, user: user, unit: unit, end_date: 2.years.ago)
+    create(:discharge, user: user, type: :honorable, date: 1.year.ago)
+    create(:assignment, user: user, unit: unit, end_date: 2.days.ago)
+    create(:discharge, user: user, type: :general, date: 1.day.ago)
+
+    refute user.honorably_discharged?
+  end
+
+  test "honorably_discharged? fails for member honorably discharged in the past, but currently active" do
+    user = create(:user)
+    unit = create(:unit, classification: :combat)
+    create(:assignment, user: user, unit: unit, end_date: 2.years.ago)
+    create(:discharge, user: user, type: :honorable)
+    create(:assignment, user: user, unit: unit, start_date: 2.days.ago)
+
+    refute user.honorably_discharged?
   end
 end

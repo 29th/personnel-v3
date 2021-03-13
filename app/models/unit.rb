@@ -6,6 +6,7 @@ class Unit < ApplicationRecord
   has_many :assignments
   has_many :users, through: :assignments
   has_many :permissions
+  has_many :unit_forum_roles
 
   enum game: { dh: 'DH', rs: 'RS', arma3: 'Arma 3', rs2: 'RS2', squad: 'Squad' }
   enum timezone: { est: 'EST', gmt: 'GMT', pst: 'PST' }
