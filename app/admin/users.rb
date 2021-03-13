@@ -18,7 +18,6 @@ ActiveAdmin.register User do
       f.input :name_prefix
       f.input :country
       f.input :steam_id, :as => :string
-      f.input :forum_member_id
     end
     f.actions
   end
