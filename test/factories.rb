@@ -1,4 +1,6 @@
 FactoryBot.define do
+  sequence(:random_id, (1..100000).to_a.shuffle.to_enum)
+
   factory :unit do
     abbr { 'Bn. HQ' }
     name { abbr || 'Battalion HQ' }
@@ -127,13 +129,21 @@ FactoryBot.define do
     unit
     access_level { :member }
     forum_id { :discourse }
-    role_id { Faker::Number.number(digits: 2) }
+    role_id { FactoryBot.generate(:random_id) }
+
+    trait :elevated do
+      access_level { :elevated }
+    end
+
+    trait :leader do
+      access_level { :leader }
+    end
   end
 
   factory :special_forum_role do
     special_attribute { :everyone }
     forum_id { :discourse }
-    role_id { Faker::Number.number(digits: 2) }
+    role_id { FactoryBot.generate(:random_id) }
   end
 
   factory :country do
@@ -152,6 +162,15 @@ FactoryBot.define do
     user
     author factory: :user
     date { 1.day.ago }
+    reason { Faker::Lorem.sentence }
+    forum_id { :discourse }
+    topic_id { 123 }
+  end
+
+  factory :discharge do
+    user
+    date { 1.day.ago }
+    type { :general }
     reason { Faker::Lorem.sentence }
     forum_id { :discourse }
     topic_id { 123 }
