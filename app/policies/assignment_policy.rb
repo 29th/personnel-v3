@@ -8,23 +8,29 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def new?
-    user && (user.has_permission?('assignment_add') ||
-             user.has_permission?('assignment_add_any'))
+    user&.has_permission?('assignment_add') ||
+      user&.has_permission?('assignment_add_any')
   end
 
   def create?
-    user && (record.unit && user.has_permission_on_unit?('assignment_add', record.unit) ||
-             user.has_permission?('assignment_add_any'))
+    if !record.persisted? && !record.changed?
+      new?
+    else
+      user&.has_permission_on_unit?('assignment_add', record.unit ||
+        user&.has_permission?('assignment_add_any')) ||
+        user&.has_permission?('admin')
+    end
   end
 
   def update?
-    user && (user.has_permission_on_unit?('assignment_add', record.unit) ||
-             user.has_permission?('assignment_add_any'))
+    user&.has_permission_on_unit?('assignment_add', record.unit) ||
+      user&.has_permission?('assignment_add_any') ||
+      user&.has_permission?('admin')
   end
 
   def destroy?
-    # This one is on user
-    user && (user.has_permission_on_user?('assignment_delete', record.user) ||
-             user.has_permission?('assignment_delete_any'))
+    user&.has_permission_on_unit?('assignment_delete', record.unit) ||
+      user&.has_permission?('assignment_delete_any') ||
+      user&.has_permission?('admin')
   end
 end

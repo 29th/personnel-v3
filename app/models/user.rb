@@ -88,6 +88,11 @@ class User < ApplicationRecord
     VanillaService.new.update_user_display_name(self) if forum_member_id.present?
   end
 
+  def update_forum_roles
+    DiscourseService.new.update_user_roles(self) if discourse_forum_member_id.present?
+    VanillaService.new.update_user_roles(self) if forum_member_id.present?
+  end
+
   private
 
   def permissions
@@ -125,7 +130,7 @@ class User < ApplicationRecord
     assignments.active
                .joins(:position, unit: :unit_forum_roles)
                .where('unit_roles.access_level <= positions.access_level')
-               .where('unit_roles.forum_id', forum)
+               .where('unit_roles.forum_id = ?', UnitForumRole.forum_ids[forum])
                .where('units.active', true)
                .select('unit_roles.id', 'unit_roles.role_id',
                        'unit_roles.access_level', 'unit_roles.unit_id')

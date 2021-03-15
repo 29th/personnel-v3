@@ -25,7 +25,7 @@ class VanillaService
     path = "/users/#{vanilla_user_id}"
     body = { name: sanitized_name }
     response = self.class.patch(path, body: body.to_json)
-    raise HTTParty::ResponseError if response.code >= 400
+    raise HTTParty::ResponseError, "Failed to update display name for user #{vanilla_user_id}" if response.code >= 400
   end
 
   def update_user_roles(user)
@@ -36,6 +36,6 @@ class VanillaService
     path = "/users/#{vanilla_user_id}"
     body = { roleID: expected_roles }
     response = self.class.patch(path, body: body.to_json)
-    raise HTTParty::ResponseError if response.code >= 400
+    raise HTTParty::ResponseError, "Failed to update role sfor user #{vanilla_user_id}" if response.code >= 400
   end
 end

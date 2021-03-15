@@ -84,6 +84,19 @@ class UserTest < ActiveSupport::TestCase
     assert roles.include?(other_role.role_id)
   end
 
+  test "forum_role_ids only returns roles for forum specified" do
+    unit = create(:unit)
+    discourse_role = create(:unit_forum_role, unit: unit, forum_id: :discourse)
+    vanilla_role = create(:unit_forum_role, unit: unit, forum_id: :vanilla)
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+
+    roles = user.forum_role_ids(:discourse)
+
+    assert roles.include?(discourse_role.role_id), 'missing role for specified forum'
+    refute roles.include?(vanilla_role.role_id), 'includes role for another forum'
+  end
+
   # has_permission_on_unit?
 
   test "permission applies to unit" do

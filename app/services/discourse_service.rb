@@ -38,7 +38,7 @@ class DiscourseService
     path = "/u/#{username}"
     body = { name: user.short_name }
     response = self.class.put(path, body: body.to_json)
-    raise HTTParty::ResponseError if response.code >= 400
+    raise HTTParty::ResponseError, "Failed to update display name for user #{username}" if response.code >= 400
   end
 
   def update_user_roles(user)
@@ -75,13 +75,13 @@ class DiscourseService
   def delete_role(discourse_user_id, role_id)
     path = "/admin/users/#{discourse_user_id}/groups/#{role_id}"
     response = self.class.delete(path)
-    raise HTTParty::ResponseError if response.code >= 400
+    raise HTTParty::ResponseError, "Failed to delete role #{role_id}" if response.code >= 400
   end
 
   def add_role(discourse_user_id, role_id)
     path = "/admin/users/#{discourse_user_id}/groups"
     body = { group_id: role_id }
-    response = self.class.post(path, body: body)
-    raise HTTParty::ResponseError if response.code >= 400
+    response = self.class.post(path, body: body.to_json)
+    raise HTTParty::ResponseError, "Failed to add role #{role_id} (#{response.code})" if response.code >= 400
   end
 end

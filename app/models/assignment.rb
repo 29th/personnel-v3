@@ -11,5 +11,11 @@ class Assignment < ApplicationRecord
                .or(arel[:end_date].eq(nil))))
   }
 
-  validates_presence_of :user, :unit, :position
+  nilify_blanks
+  validates :user, presence: true
+  validates :unit, presence: true
+  validates :position, presence: true
+  validates :start_date, presence: true
+  validates_date :start_date
+  validates_date :end_date, allow_blank: true
 end
