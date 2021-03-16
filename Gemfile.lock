@@ -85,7 +85,7 @@ GEM
     autoprefixer-rails (10.2.4.0)
       execjs
     aws-eventstream (1.1.1)
-    aws-partitions (1.432.0)
+    aws-partitions (1.433.0)
     aws-sdk-core (3.113.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -156,6 +156,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
     hashdiff (1.0.1)
+    honeybadger (4.7.3)
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -373,6 +374,7 @@ DEPENDENCIES
   faker
   fastimage (~> 2.2, >= 2.2.2)
   flag-icons-rails (~> 3.4, >= 3.4.6.1)
+  honeybadger (~> 4.0)
   httparty (~> 0.18.1)
   image_processing (~> 1.0)
   jbuilder (~> 2.5)

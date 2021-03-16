@@ -86,3 +86,4 @@ gem 'fastimage', '~> 2.2', '>= 2.2.2'
 gem 'flag-icons-rails', '~> 3.4', '>= 3.4.6.1'
 gem 'audited', '~> 4.10'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
+gem "honeybadger", "~> 4.0"
