@@ -3,8 +3,12 @@ ActiveAdmin.register Assignment do
 
   includes :unit, :position, user: :rank
 
-  permit_params :member_id, :unit_id, :position_id, :start_date,
-                :end_date
+  permit_params do
+    permitted = [:start_date, :end_date]
+    permitted += [:member_id, :unit_id, :position_id,
+                  :transfer_from_unit_id] if params[:action] == 'create'
+    permitted
+  end
 
   filter :unit, collection: -> { Unit.active.order(:ancestry, :name) }
   filter :user, collection: -> { User.active.includes(:rank).order(:last_name) }
@@ -55,12 +59,22 @@ ActiveAdmin.register Assignment do
         f.input :user, as: :select, collection: User.active.includes(:rank).order(:last_name)
         f.input :unit, as: :select, collection: Unit.active.order(:ancestry, :name)
         f.input :position, as: :select, collection: Position.active.order(:name)
+
+        f.input :transfer_from_unit_id, as: :select, collection: []
       end
 
       f.input :start_date
       f.input :end_date
     end
     f.actions
+  end
+
+  before_create do |assignment|
+    if assignment.transfer_from_unit_id.present?
+      Assignment.find_by(id: assignment.transfer_from_unit_id,
+                         user: assignment.user)
+                .end(assignment.start_date)
+    end
   end
 
   after_save do |assignment|
