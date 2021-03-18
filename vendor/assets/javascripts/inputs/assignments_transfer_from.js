@@ -1,27 +1,27 @@
 $(document).ready(function () {
+  if (!isNewAssignmentPage()) return
+
   const userInput = $('#assignment_member_id')
   const transferFromInput = $('#assignment_transfer_from_unit_id')
+  if (!userInput || !transferFromInput) return
 
-  userInput && userInput.on('change', function (evt) {
-    transferFromInput.val(null).trigger('change') // clear opts
-
-    const userId = evt.target.value
-    if (userId) fetchAssignmentsAndFillSelect(userId, transferFromInput)
-  })
-
-  // TODO: Trigger on load of userId has value too
-  // TODO: check isNewAssignmentPage or only load this on the right page
+  fetchAssignmentsAndFillSelect() // run on load
+  userInput.on('change', fetchAssignmentsAndFillSelect)
 
   function isNewAssignmentPage () {
-    const bodyClasses = document.body.classList
-    return bodyClasses.contains('admin_assignments') && bodyClasses.contains('new')
+    return !! document.querySelector('body.admin_assignments.new')
   }
 
-  function fetchAssignmentsAndFillSelect (userId, $select2Input) {
+  function fetchAssignmentsAndFillSelect () {
+    transferFromInput.val(null).trigger('change') // clear opts
+
+    const userId = userInput.val()
+    if (!userId) return
+
     const url = constructUrl(userId)
     $.getJSON(url, function (assignments) {
       const options = assignments.map(constructOption)
-      $select2Input.append(options).trigger('change')
+      transferFromInput.append(options).trigger('change')
     })
   }
 
