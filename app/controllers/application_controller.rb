@@ -24,15 +24,15 @@ class ApplicationController < ActionController::Base
 
     def active_admin_editor?
       # TODO get list of models from ActiveAdmin and iterate them
-      authorize(Assignment, :new?) ||
-      authorize(Award, :new?) ||
-      authorize(Pass, :new?) ||
-      authorize(Permission, :new?) ||
-      authorize(Rank, :new?) ||
-      authorize(Server, :new?) ||
-      authorize(Unit, :new?) ||
-      authorize(UserAward, :new?) ||
-      authorize(User, :new?)
+      policy(Assignment).new? ||
+        policy(Award).new? ||
+        policy(Pass).new? ||
+        policy(Permission).new? ||
+        policy(Rank).new? ||
+        policy(Server).new? ||
+        policy(Unit).new? ||
+        policy(UserAward).new? ||
+        policy(User).new?
     end
 
     def current_user
