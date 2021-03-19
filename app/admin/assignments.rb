@@ -71,9 +71,9 @@ ActiveAdmin.register Assignment do
 
   before_create do |assignment|
     if assignment.transfer_from_unit_id.present?
-      Assignment.find_by(id: assignment.transfer_from_unit_id,
-                         user: assignment.user)
-                .end(assignment.start_date)
+      transfer_from_unit = Assignment.find_by_unit_id!(assignment.transfer_from_unit_id)
+      authorize transfer_from_unit, :update?
+      transfer_from_unit.end(assignment.start_date)
     end
   end
 
