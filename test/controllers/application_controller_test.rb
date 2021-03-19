@@ -14,4 +14,20 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     get root_url
     assert_select '#user-dropdown', /^Pvt\. Foo/
   end
+
+  test "admin pages should only be viewable to someone with :new access on one of the pages" do
+    rifleman = create(:user)
+    clerk = create(:user)
+    clerk_unit = create(:unit)
+    create(:permission, :elevated, abbr: 'awarding_add', unit: clerk_unit)
+    create(:assignment, :elevated, user: clerk, unit: clerk_unit)
+
+    sign_in_as(rifleman)
+    get admin_root_url
+    assert_response 302
+
+    sign_in_as(clerk)
+    get admin_root_url
+    assert_response :success
+  end
 end
