@@ -18,4 +18,10 @@ class Assignment < ApplicationRecord
   validates :start_date, presence: true
   validates_date :start_date
   validates_date :end_date, allow_blank: true
+
+  attr_accessor :transfer_from_unit_id
+
+  def end(end_date = Date.current)
+    update(end_date: end_date)
+  end
 end

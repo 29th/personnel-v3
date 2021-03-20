@@ -28,7 +28,7 @@ class VanillaServiceTest < ActiveSupport::TestCase
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
 
-    roles = create_list(:unit_forum_role, 2, unit: unit)
+    roles = create_list(:unit_forum_role, 2, unit: unit, forum_id: :vanilla)
 
     expected_body = { roleID: roles.map(&:role_id).sort }
     stub = stub_request(:patch, %r{/users/#{vanilla_user_id}})
