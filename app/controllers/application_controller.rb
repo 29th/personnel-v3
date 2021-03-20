@@ -22,17 +22,14 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_url unless current_user && active_admin_editor?
     end
 
+    # Checks whether user has :new? permission on any active admin resources
     def active_admin_editor?
-      # TODO get list of models from ActiveAdmin and iterate them
-      policy(Assignment).new? ||
-        policy(Award).new? ||
-        policy(Pass).new? ||
-        policy(Permission).new? ||
-        policy(Rank).new? ||
-        policy(Server).new? ||
-        policy(Unit).new? ||
-        policy(UserAward).new? ||
-        policy(User).new?
+      namespace = ActiveAdmin.application.default_namespace
+      resources = ActiveAdmin.application.namespaces[namespace].resources
+      resource_classes = resources.grep(ActiveAdmin::Resource).map(&:resource_class)
+      resource_classes.any? do |resource_class|
+        Pundit.policy(current_user, resource_class)&.new?
+      end
     end
 
     def current_user
