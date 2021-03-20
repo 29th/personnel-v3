@@ -11,8 +11,8 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     @subject = create(:user)
     @position = create(:position)
 
-    stub_request(:any, /#{ENV['VANILLA_BASE_URL']}*/)
-    stub_request(:any, /#{ENV['DISCOURSE_BASE_URL']}*/)
+    stub_request(:any, /#{ENV['VANILLA_BASE_URL']}.*/)
+    stub_request(:any, /#{ENV['DISCOURSE_BASE_URL']}.*/)
   end
 
   test "should get index" do
