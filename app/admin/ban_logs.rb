@@ -44,7 +44,7 @@ ActiveAdmin.register BanLog do
       f.input :uid, label: "Unique ID"
       f.input :guid, label: "GUID"
       f.input :ip, label: "IP Address"
-      f.input :admin, as: :select, collection: User.for_dropdown
+      f.input :admin, as: :select, collection: -> { User.for_dropdown }
       f.input :reason
       f.input :comments
     end

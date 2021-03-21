@@ -3,7 +3,7 @@ ActiveAdmin.register Permission do
   actions :index, :show
   permit_params :unit_id, :access_level, :ability_id
 
-  filter :unit, collection: Unit.for_dropdown
+  filter :unit, collection: -> { Unit.for_dropdown }
   filter :ability
   filter :access_level, as: :select, collection: Permission.access_levels
 
