@@ -1,6 +1,30 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  test "full_name includes middle initial if middle name present" do
+    user = create(:user, first_name: 'Grace', middle_name: 'Brewster',
+                         last_name: 'Hopper')
+    assert_equal 'Grace B. Hopper', user.full_name
+  end
+
+  test "full_name excludes middle initial if middle name not present" do
+    user = create(:user, first_name: 'Grace', last_name: 'Hopper')
+    assert_equal 'Grace Hopper', user.full_name
+  end
+
+  test "short_name includes name prefix if present" do
+    user = create(:user, name_prefix: 'B.', last_name: 'Hopper')
+    assert_equal 'Pvt. B. Hopper', user.short_name
+  end
+
+  test "short_name excludes name prefix if not present" do
+    user = create(:user, last_name: 'Hopper')
+    assert_equal 'Pvt. Hopper', user.short_name
+
+    user = create(:user, name_prefix: '', last_name: 'Hopper')
+    assert_equal 'Pvt. Hopper', user.short_name
+  end
+
   # has_permission?
 
   test "leader inherits member and elevated permissions" do
