@@ -317,6 +317,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scout_apm (4.0.4)
+      parser
     select2-rails (4.0.13)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -415,6 +417,7 @@ DEPENDENCIES
   ransack (~> 2.4, >= 2.4.2)
   redcarpet (~> 3.5, >= 3.5.1)
   sass-rails (~> 5.0)
+  scout_apm (~> 4.0, >= 4.0.4)
   selenium-webdriver
   shrine (~> 3.0)
   simple_form (~> 5.1)
