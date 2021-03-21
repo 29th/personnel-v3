@@ -9,7 +9,7 @@ ActiveAdmin.register Pass do
   scope :active, default: true
   scope :all
 
-  filter :user, collection: -> { User.active.includes(:rank) }
+  filter :user, collection: User.for_dropdown
   filter :start_date
   filter :end_date
   filter :type, as: :select
@@ -26,7 +26,7 @@ ActiveAdmin.register Pass do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs do
-      input :user, collection: User.active.includes(:rank).order(:last_name)
+      input :user, collection: User.for_dropdown
       input :start_date, as: :datepicker
       input :end_date, as: :datepicker
       input :type, as: :select, collection: Pass.types.map(&:reverse)

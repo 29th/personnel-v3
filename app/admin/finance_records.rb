@@ -8,8 +8,8 @@ ActiveAdmin.register FinanceRecord do
   scope :income
   scope :expenses
 
-  filter :user, collection: -> { User.active.includes(:rank).order(:last_name) }
-  filter :vendor, as: :select, collection: -> { FinanceRecord.vendors.map(&:reverse) }
+  filter :user, collection: User.for_dropdown
+  filter :vendor, as: :select, collection: FinanceRecord.vendors.map(&:reverse)
   filter :date
   filter :amount_received
   filter :amount_paid
@@ -64,7 +64,7 @@ ActiveAdmin.register FinanceRecord do
     f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :date
-      f.input :user, as: :select, collection: User.active.includes(:rank).order(:last_name)
+      f.input :user, as: :select, collection: User.for_dropdown
       f.input :vendor, as: :select, collection: FinanceRecord.vendors.map(&:reverse)
       f.input :amount_received
       f.input :amount_paid

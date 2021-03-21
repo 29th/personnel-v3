@@ -12,6 +12,7 @@ class User < ApplicationRecord
   belongs_to :country, optional: true
 
   scope :active, -> { joins(:assignments).merge(Assignment.active).distinct }
+  scope :for_dropdown, -> { active.includes(:rank).order(:last_name) }
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
