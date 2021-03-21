@@ -4,7 +4,7 @@ ActiveAdmin.register Demerit do
 
   permit_params :date, :member_id, :reason, :forum_id, :topic_id
 
-  filter :user, collection: User.for_dropdown
+  filter :user, collection: -> { User.for_dropdown }
   filter :date
   filter :reason_cont
 
@@ -36,7 +36,7 @@ ActiveAdmin.register Demerit do
     f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :date
-      f.input :user, as: :select, collection: User.for_dropdown
+      f.input :user, as: :select, collection: -> { User.for_dropdown }
       f.input :reason
       f.input :forum_id, as: :select, collection: Demerit.forum_ids.map(&:reverse)
       f.input :topic_id, label: 'Topic ID'

@@ -5,7 +5,7 @@ ActiveAdmin.register Note do
 
   # scope :all, default: true
 
-  filter :user, collection: User.for_dropdown
+  filter :user, collection: -> { User.for_dropdown }
   filter :date_add
   filter :access, as: :select
 
@@ -37,7 +37,7 @@ ActiveAdmin.register Note do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs do
-      input :user, collection: User.for_dropdown
+      input :user, collection: -> { User.for_dropdown }
       input :access, as: :select, collection: Note.accesses.map(&:reverse)
       input :subject
       input :content

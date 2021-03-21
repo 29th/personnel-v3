@@ -6,7 +6,7 @@ ActiveAdmin.register UserAward do
 
   permit_params :member_id, :award_id, :date, :forum_id, :topic_id
 
-  filter :user, collection: User.for_dropdown
+  filter :user, collection: -> { User.for_dropdown }
   filter :award
   filter :date
 
@@ -24,7 +24,7 @@ ActiveAdmin.register UserAward do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs do
-      input :user, collection: User.for_dropdown
+      input :user, collection: -> { User.for_dropdown }
       input :award, collection: Award.order(:title)
       input :date, as: :datepicker
       input :forum_id, as: :select, collection: UserAward.forum_ids.map(&:reverse)
