@@ -35,7 +35,7 @@ ActiveAdmin.register Note do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       input :user, collection: User.for_dropdown
       input :access, as: :select, collection: Note.accesses.map(&:reverse)
@@ -45,7 +45,7 @@ ActiveAdmin.register Note do
     f.actions
   end
 
-  config.sort_order = 'date_mod_desc'
+  config.sort_order = "date_mod_desc"
 
   before_create do |note|
     note.author = current_user

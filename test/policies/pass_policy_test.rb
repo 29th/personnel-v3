@@ -1,9 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class PassPolicyTest < ActiveSupport::TestCase
   test "create permits user with pass_edit_any" do
     unit = create(:unit)
-    create(:permission, abbr: 'pass_edit_any', unit: unit)
+    create(:permission, abbr: "pass_edit_any", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -16,7 +16,7 @@ class PassPolicyTest < ActiveSupport::TestCase
 
   test "create permits user with pass_edit on subject in scope" do
     unit = create(:unit)
-    create(:permission, abbr: 'pass_edit', unit: unit)
+    create(:permission, abbr: "pass_edit", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -30,7 +30,7 @@ class PassPolicyTest < ActiveSupport::TestCase
 
   test "create denies user with pass_edit on subject out of scope" do
     unit = create(:unit)
-    create(:permission, abbr: 'pass_edit', unit: unit)
+    create(:permission, abbr: "pass_edit", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)

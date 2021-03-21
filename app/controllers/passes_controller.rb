@@ -3,9 +3,9 @@ class PassesController < ApplicationController
     authorize Pass
     @query = Pass.ransack(params[:q])
     @passes = @query.result(distinct: true)
-                    .includes(user: :rank)
-                    .page(params[:page])
-                    .order(add_date: :desc)
+      .includes(user: :rank)
+      .page(params[:page])
+      .order(add_date: :desc)
     @users = users_for_select
   end
 
@@ -23,7 +23,7 @@ class PassesController < ApplicationController
 
   def create
     bulk_member_ids = pass_params[:bulk_member_ids].select(&:present?)
-                                                   .first(5) # Restrict over-loading
+      .first(5) # Restrict over-loading
 
     passes = bulk_member_ids.map do |member_id|
       pass = Pass.new(pass_params)
@@ -48,9 +48,9 @@ class PassesController < ApplicationController
     end
 
     if bulk_member_ids.length == 1
-      redirect_to @pass, notice: 'Pass was successfully created.'
+      redirect_to @pass, notice: "Pass was successfully created."
     else
-      redirect_to passes_path, notice: 'Passes were successfully created.'
+      redirect_to passes_path, notice: "Passes were successfully created."
     end
   end
 
@@ -65,7 +65,7 @@ class PassesController < ApplicationController
     @pass = Pass.find(params[:id])
     authorize @pass
     if @pass.update(pass_params)
-      redirect_to @pass, notice: 'Pass was successfully updated.'
+      redirect_to @pass, notice: "Pass was successfully updated."
     else
       @users = users_for_select
       @types = types_for_select
@@ -77,7 +77,7 @@ class PassesController < ApplicationController
     @pass = Pass.find(params[:id])
     authorize @pass
     @pass.destroy
-    redirect_to passes_path, notice: 'Pass was successfully destroyed.'
+    redirect_to passes_path, notice: "Pass was successfully destroyed."
   end
 
   private
@@ -92,7 +92,7 @@ class PassesController < ApplicationController
 
   def pass_params
     params.require(:pass).permit(:start_date, :end_date,
-                                 :type, :reason, :member_id,
-                                 { bulk_member_ids: [] })
+      :type, :reason, :member_id,
+      {bulk_member_ids: []})
   end
 end

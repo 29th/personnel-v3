@@ -1,4 +1,4 @@
-require 'image_processing/mini_magick'
+require "image_processing/mini_magick"
 
 class RankImageUploader < Shrine
   plugin :pretty_location, identifier: :slug

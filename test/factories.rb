@@ -2,15 +2,15 @@ FactoryBot.define do
   sequence(:random_id, (1..100000).to_a.shuffle.to_enum)
 
   factory :unit do
-    abbr { 'Bn. HQ' }
-    name { abbr || 'Battalion HQ' }
-    classification { 'Combat' }
+    abbr { "Bn. HQ" }
+    name { abbr || "Battalion HQ" }
+    classification { "Combat" }
 
     transient {
       parent { nil }
     }
     ancestry {
-      parent ? [parent.ancestry, parent.id].compact.join('/') : nil
+      parent ? [parent.ancestry, parent.id].compact.join("/") : nil
     }
   end
 
@@ -32,13 +32,13 @@ FactoryBot.define do
   end
 
   factory :rank do
-    abbr { 'Pvt.' }
-    name { abbr || 'Private' }
+    abbr { "Pvt." }
+    name { abbr || "Private" }
     order { 0 }
   end
 
   factory :position do
-    name { 'Rifleman' }
+    name { "Rifleman" }
     access_level { :member }
   end
 
@@ -58,7 +58,7 @@ FactoryBot.define do
   end
 
   factory :ability do
-    abbr { 'admin' }
+    abbr { "admin" }
     name { abbr }
   end
 
@@ -67,7 +67,7 @@ FactoryBot.define do
     access_level { :member }
 
     transient do
-      abbr { 'ability' }
+      abbr { "ability" }
     end
 
     ability do
@@ -89,13 +89,13 @@ FactoryBot.define do
     start_date { 1.day.from_now }
     end_date { 2.days.from_now }
     type { :recruitment }
-    reason { 'Recruited someone' }
+    reason { "Recruited someone" }
   end
 
   factory :award do
-    code { 'shiny' }
-    title { 'Shiny medal' }
-    description { 'Given to all the good soldiers' }
+    code { "shiny" }
+    title { "Shiny medal" }
+    description { "Given to all the good soldiers" }
     game { :notapplicable }
     image { Faker::Internet.url }
     thumbnail { Faker::Internet.url }
@@ -111,9 +111,9 @@ FactoryBot.define do
   end
 
   factory :server do
-    name { 'Platoon server' }
-    abbr { 'Plt' }
-    address { '0.0.0.0' }
+    name { "Platoon server" }
+    abbr { "Plt" }
+    address { "0.0.0.0" }
     game { :rs2 }
   end
 
@@ -147,8 +147,8 @@ FactoryBot.define do
   end
 
   factory :country do
-    abbr { 'US' }
-    name { 'United States' }
+    abbr { "US" }
+    name { "United States" }
   end
 
   factory :ban_log do

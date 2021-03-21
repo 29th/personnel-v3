@@ -8,14 +8,14 @@ class ServerPolicy < ApplicationPolicy
   end
 
   def create?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 
   def update?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 
   def destroy?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 end

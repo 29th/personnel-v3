@@ -1,25 +1,25 @@
-require 'test_helper'
-require 'json_web_token'
+require "test_helper"
+require "json_web_token"
 
 class ApplicationControllerTest < ActionDispatch::IntegrationTest
   test "nav bar should show sign in link when not logged in" do
     get root_url
     assert_response :success
-    assert_select '#user-dropdown', 'Sign in'
+    assert_select "#user-dropdown", "Sign in"
   end
 
   test "nav bar should show short name when logged in" do
-    user = create(:user, rank_abbr: 'Pvt.', last_name: 'Foo')
+    user = create(:user, rank_abbr: "Pvt.", last_name: "Foo")
     sign_in_as(user)
     get root_url
-    assert_select '#user-dropdown', /^Pvt\. Foo/
+    assert_select "#user-dropdown", /^Pvt\. Foo/
   end
 
   test "admin pages should only be viewable to someone with :new access on one of the pages" do
     rifleman = create(:user)
     clerk = create(:user)
     clerk_unit = create(:unit)
-    create(:permission, :elevated, abbr: 'awarding_add', unit: clerk_unit)
+    create(:permission, :elevated, abbr: "awarding_add", unit: clerk_unit)
     create(:assignment, :elevated, user: clerk, unit: clerk_unit)
 
     sign_in_as(rifleman)

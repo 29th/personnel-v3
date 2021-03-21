@@ -1,8 +1,8 @@
-require 'test_helper'
+require "test_helper"
 
 class UnitTest < ActiveSupport::TestCase
   test "invalid without required fields" do
-    required_fields = %i(name abbr classification)
+    required_fields = %i[name abbr classification]
     required_fields.each do |field|
       unit = build(:unit, field => nil)
       refute unit.valid?

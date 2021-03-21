@@ -8,8 +8,8 @@ class UnitPolicy < ApplicationPolicy
   end
 
   def new?
-    user&.has_permission?('unit_add') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("unit_add") ||
+      user&.has_permission?("admin")
   end
 
   def create?
@@ -21,6 +21,6 @@ class UnitPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 end

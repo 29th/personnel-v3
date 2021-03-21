@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PassTest < ActiveSupport::TestCase
   test "invalid without user" do

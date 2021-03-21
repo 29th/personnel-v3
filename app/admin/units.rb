@@ -1,8 +1,8 @@
 ActiveAdmin.register Unit do
   actions :index, :show, :edit, :update, :new, :create
   permit_params :name, :abbr, :order, :game, :timezone, :parent_id,
-                :classification, :active, :steam_group_abbr, :slogan,
-                :nickname, :logo, :remove_logo
+    :classification, :active, :steam_group_abbr, :slogan,
+    :nickname, :logo, :remove_logo
 
   filter :abbr
   filter :name
@@ -24,10 +24,10 @@ ActiveAdmin.register Unit do
     actions
   end
 
-  sidebar 'Related records', only: [:show, :edit] do
+  sidebar "Related records", only: [:show, :edit] do
     ul do
       # See https://github.com/activeadmin/activeadmin/issues/221#issuecomment-502802948
-      li link_to 'Assignments', [:admin, :assignments, q: { unit_id_eq: resource.id }]
+      li link_to "Assignments", [:admin, :assignments, q: {unit_id_eq: resource.id}]
     end
   end
 
@@ -64,7 +64,7 @@ ActiveAdmin.register Unit do
       f.input :nickname
       f.input :slogan
       f.input :steam_group_abbr
-      f.input :logo, as: :hidden, input_html: { value: object&.cached_logo_data }
+      f.input :logo, as: :hidden, input_html: {value: object&.cached_logo_data}
       f.input :logo, as: :file
       f.input :remove_logo, as: :boolean if object&.logo.present?
     end

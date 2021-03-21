@@ -3,13 +3,13 @@ ActiveAdmin.register BanLog do
   includes admin: :rank
 
   permit_params :date, :handle, :roid, :uid, :guid, :ip, :id_admin,
-                :reason, :comments
+    :reason, :comments
 
   filter :admin, collection: -> { User.active.includes(:rank).order(:last_name) }
   filter :date
-  filter :roid_or_uid_or_guid_or_handle_or_reason_or_comments_or_ip_cont, as: :string, label: 'Contains'
+  filter :roid_or_uid_or_guid_or_handle_or_reason_or_comments_or_ip_cont, as: :string, label: "Contains"
 
-  config.sort_order = 'date_desc'
+  config.sort_order = "date_desc"
 
   index do
     selectable_column
@@ -36,14 +36,14 @@ ActiveAdmin.register BanLog do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       f.input :date
       f.input :handle
-      f.input :roid, label: 'ROID'
-      f.input :uid, label: 'Unique ID'
-      f.input :guid, label: 'GUID'
-      f.input :ip, label: 'IP Address'
+      f.input :roid, label: "ROID"
+      f.input :uid, label: "Unique ID"
+      f.input :guid, label: "GUID"
+      f.input :ip, label: "IP Address"
       f.input :admin, as: :select, collection: User.for_dropdown
       f.input :reason
       f.input :comments
