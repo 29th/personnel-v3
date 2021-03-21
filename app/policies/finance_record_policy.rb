@@ -1,7 +1,7 @@
 class FinanceRecordPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?('finance_view_any') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("finance_view_any") ||
+      user&.has_permission?("admin")
   end
 
   def show?
@@ -9,8 +9,8 @@ class FinanceRecordPolicy < ApplicationPolicy
   end
 
   def new?
-    user&.has_permission?('finance_add') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("finance_add") ||
+      user&.has_permission?("admin")
   end
 
   def create?
@@ -22,6 +22,6 @@ class FinanceRecordPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 end

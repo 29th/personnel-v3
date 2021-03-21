@@ -1,9 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_unit = create(:unit)
-    create(:permission, :leader, abbr: 'assignment_add', unit: @user_unit)
+    create(:permission, :leader, abbr: "assignment_add", unit: @user_unit)
 
     @user = create(:user)
     create(:assignment, :leader, user: @user, unit: @user_unit)
@@ -26,8 +26,8 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     unit = create(:unit, parent: @user_unit)
     assignment = build(:assignment, user: @subject, unit: unit, position: @position)
 
-    assert_difference('Assignment.count', 1) do
-      post admin_assignments_url, params: { assignment: required_attributes(assignment) }
+    assert_difference("Assignment.count", 1) do
+      post admin_assignments_url, params: {assignment: required_attributes(assignment)}
     end
 
     assert_redirected_to admin_assignment_url(Assignment.last)
@@ -38,8 +38,8 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     unit = create(:unit)
     assignment = build(:assignment, user: @subject, unit: unit, position: @position)
 
-    assert_difference('Assignment.count', 0) do
-      post admin_assignments_url, params: { assignment: required_attributes(assignment) }
+    assert_difference("Assignment.count", 0) do
+      post admin_assignments_url, params: {assignment: required_attributes(assignment)}
     end
 
     assert_equal "You are not authorized to perform this action.", flash[:error]
@@ -72,7 +72,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     old_unit = create(:unit)
     old_assignment = create(:assignment, user: @subject, unit: old_unit)
 
-    assert_difference('Assignment.count', 0) do
+    assert_difference("Assignment.count", 0) do
       post admin_assignments_url, params: {
         assignment: {
           **required_attributes(assignment),
@@ -90,8 +90,8 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def required_attributes(assignment)
-      assignment.attributes
-                .symbolize_keys
-                .slice(:member_id, :unit_id, :position_id, :start_date, :end_date)
+    assignment.attributes
+      .symbolize_keys
+      .slice(:member_id, :unit_id, :position_id, :start_date, :end_date)
   end
 end

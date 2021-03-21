@@ -18,7 +18,7 @@ ActiveAdmin.register Server do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       input :game, collection: Server.games.map(&:reverse)
       input :name

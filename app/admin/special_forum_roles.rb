@@ -1,6 +1,6 @@
 ActiveAdmin.register SpecialForumRole do
   permit_params :special_attribute, :forum_id, :role_id,
-                :discourse_role_id, :vanilla_role_id
+    :discourse_role_id, :vanilla_role_id
 
   scope :all, default: true
   scope :discourse
@@ -22,21 +22,21 @@ ActiveAdmin.register SpecialForumRole do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       input :special_attribute, as: :select, collection: SpecialForumRole.special_attributes.map(&:reverse)
       input :forum_id, as: :select, collection: SpecialForumRole.forum_ids.map(&:reverse)
-      input :role_id, as: :select, label: 'Discourse role',
+      input :role_id, as: :select, label: "Discourse role",
                       collection: controller.roles[:discourse].map(&:reverse),
                       input_html: {
-                        name: 'special_forum_role[discourse_role_id]',
-                        id: 'special_forum_role_discourse_role_id'
+                        name: "special_forum_role[discourse_role_id]",
+                        id: "special_forum_role_discourse_role_id"
                       }
-      input :role_id, as: :select, label: 'Vanilla role',
+      input :role_id, as: :select, label: "Vanilla role",
                       collection: controller.roles[:vanilla].map(&:reverse),
                       input_html: {
-                        name: 'special_forum_role[vanilla_role_id]',
-                        id: 'special_forum_role_vanilla_role_id'
+                        name: "special_forum_role[vanilla_role_id]",
+                        id: "special_forum_role_vanilla_role_id"
                       }
     end
     f.actions
@@ -69,9 +69,17 @@ ActiveAdmin.register SpecialForumRole do
   controller do
     def roles
       @roles ||= begin
-        discourse = DiscourseService.new().get_roles rescue {}
-        vanilla = VanillaService.new().get_roles rescue {}
-        { discourse: discourse, vanilla: vanilla }
+        discourse = begin
+          DiscourseService.new.get_roles
+        rescue
+          {}
+        end
+        vanilla = begin
+          VanillaService.new.get_roles
+        rescue
+          {}
+        end
+        {discourse: discourse, vanilla: vanilla}
       end
     end
   end

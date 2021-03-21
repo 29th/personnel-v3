@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   belongs_to :unit, optional: true
- 
+
   includes :rank, :country
 
   actions :index, :show, :edit, :update
@@ -17,7 +17,7 @@ ActiveAdmin.register User do
       f.input :middle_name
       f.input :name_prefix
       f.input :country
-      f.input :steam_id, :as => :string
+      f.input :steam_id, as: :string
     end
     f.actions
   end
@@ -41,8 +41,8 @@ ActiveAdmin.register User do
     column :country do |user|
       flag_icon(user.country.sym, title: user.country.name)
     end
-    column 'Steam ID', :steam_id
-    column 'Forum ID', :forum_member_id
+    column "Steam ID", :steam_id
+    column "Forum ID", :forum_member_id
     actions
   end
 
@@ -56,19 +56,19 @@ ActiveAdmin.register User do
         span flag_icon(user.country.sym, title: user.country.name)
         span user.country.name
       end
-      row 'Steam ID', :steam_id do |user|
+      row "Steam ID", :steam_id do |user|
         link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
       end
-      row 'Forum ID', :forum_member_id do |user|
+      row "Forum ID", :forum_member_id do |user|
         link_to user.short_name, "https://forums.29th.org/profile/#{user.forum_member_id}/#{user.short_name}"
       end
     end
   end
 
-  sidebar 'Related records', only: [:show, :edit] do
+  sidebar "Related records", only: [:show, :edit] do
     ul do
-      li link_to 'Assignments', admin_user_assignments_path(resource)
-      li link_to 'Passes', admin_user_passes_path(resource)
+      li link_to "Assignments", admin_user_assignments_path(resource)
+      li link_to "Passes", admin_user_passes_path(resource)
     end
   end
 

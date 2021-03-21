@@ -1,13 +1,13 @@
 class User < ApplicationRecord
-  self.table_name = 'members'
+  self.table_name = "members"
   audited max_audits: 10
 
-  has_many :assignments, dependent: :delete_all, foreign_key: 'member_id'
+  has_many :assignments, dependent: :delete_all, foreign_key: "member_id"
   has_many :units, through: :assignments
-  has_many :passes, inverse_of: :user, foreign_key: 'member_id'
-  has_many :user_awards, foreign_key: 'member_id'
+  has_many :passes, inverse_of: :user, foreign_key: "member_id"
+  has_many :user_awards, foreign_key: "member_id"
   has_many :awards, through: :user_awards
-  has_many :discharges, foreign_key: 'member_id'
+  has_many :discharges, foreign_key: "member_id"
   belongs_to :rank
   belongs_to :country, optional: true
 
@@ -22,13 +22,13 @@ class User < ApplicationRecord
 
     [first_name, middle_initial, last_name]
       .reject(&:nil?)
-      .join(' ')
+      .join(" ")
   end
 
   def short_name
     [rank.abbr, name_prefix, last_name]
       .reject(&:nil?)
-      .join(' ')
+      .join(" ")
   end
 
   def to_s
@@ -42,35 +42,35 @@ class User < ApplicationRecord
 
   def self.create_with_auth(auth)
     create! do |user|
-      user.steam_id = auth['uid']
+      user.steam_id = auth["uid"]
     end
   end
 
   def has_permission?(permission)
-    @permissions ||= permissions.pluck('abilities.abbr')
+    @permissions ||= permissions.pluck("abilities.abbr")
     @permissions.include?(permission)
   end
 
   def has_permission_on_unit?(permission, unit)
-    permissions_on_unit(unit).pluck('abilities.abbr').include?(permission)
+    permissions_on_unit(unit).pluck("abilities.abbr").include?(permission)
   end
 
   def has_permission_on_user?(permission, user)
     return false if id == user.id # deny permissions on self
-    permissions_on_user(user).pluck('abilities.abbr').include?(permission)
+    permissions_on_user(user).pluck("abilities.abbr").include?(permission)
   end
 
   def member?
     assignments.active
-               .joins(:unit)
-               .where(units: { classification: %i[combat staff] })
-               .any?
+      .joins(:unit)
+      .where(units: {classification: %i[combat staff]})
+      .any?
   end
 
   def honorably_discharged?
     assignments.active.size.zero? &&
       discharges.size >= 1 &&
-      discharges.order('date').last.honorable?
+      discharges.order("date").last.honorable?
   end
 
   def forum_role_ids(forum)
@@ -81,7 +81,7 @@ class User < ApplicationRecord
   end
 
   def update_coat
-    PersonnelV2Service.new().update_coat(id)
+    PersonnelV2Service.new.update_coat(id)
   end
 
   def update_forum_display_name
@@ -99,9 +99,9 @@ class User < ApplicationRecord
   def permissions
     # TODO: Use Ability instead of assignments? Doesn't matter much...
     assignments.active
-               .joins(:position, unit: { permissions: :ability })
-               .where('unit_permissions.access_level <= positions.access_level')
-               .where('units.active', true)
+      .joins(:position, unit: {permissions: :ability})
+      .where("unit_permissions.access_level <= positions.access_level")
+      .where("units.active", true)
   end
 
   def permissions_on_unit(unit)
@@ -110,30 +110,30 @@ class User < ApplicationRecord
 
   def permissions_on_user(subject)
     subject_path_ids = subject.assignments
-                              .active
-                              .includes(:unit)
-                              .flat_map { |assignment| assignment.unit.path_ids }
-                              .uniq
+      .active
+      .includes(:unit)
+      .flat_map { |assignment| assignment.unit.path_ids }
+      .uniq
 
     permissions.where(unit: subject_path_ids)
   end
 
   def special_forum_roles(forum)
     special_attributes = []
-    special_attributes << 'member' if member?
-    special_attributes << 'honorably_discharged' if honorably_discharged?
-    special_attributes << 'officer' if rank.officer?
+    special_attributes << "member" if member?
+    special_attributes << "honorably_discharged" if honorably_discharged?
+    special_attributes << "officer" if rank.officer?
 
     SpecialForumRole.where(special_attribute: special_attributes, forum_id: forum)
   end
 
   def unit_forum_roles(forum)
     assignments.active
-               .joins(:position, unit: :unit_forum_roles)
-               .where('unit_roles.access_level <= positions.access_level')
-               .where('unit_roles.forum_id = ?', UnitForumRole.forum_ids[forum])
-               .where('units.active', true)
-               .select('unit_roles.id', 'unit_roles.role_id',
-                       'unit_roles.access_level', 'unit_roles.unit_id')
+      .joins(:position, unit: :unit_forum_roles)
+      .where("unit_roles.access_level <= positions.access_level")
+      .where("unit_roles.forum_id = ?", UnitForumRole.forum_ids[forum])
+      .where("units.active", true)
+      .select("unit_roles.id", "unit_roles.role_id",
+        "unit_roles.access_level", "unit_roles.unit_id")
   end
 end

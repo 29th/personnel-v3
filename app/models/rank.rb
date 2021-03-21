@@ -13,10 +13,10 @@ class Rank < ApplicationRecord
   end
 
   def slug
-    abbr.gsub(/[^0-9a-zA-Z]/i, '').downcase
+    abbr.gsub(/[^0-9a-zA-Z]/i, "").downcase
   end
 
   def officer?
-    grade&.starts_with? 'O-'
+    grade&.starts_with? "O-"
   end
 end

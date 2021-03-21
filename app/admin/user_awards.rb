@@ -1,7 +1,7 @@
 ActiveAdmin.register UserAward do
   belongs_to :user, optional: true
   belongs_to :award, optional: true
- 
+
   includes :award, user: :rank
 
   permit_params :member_id, :award_id, :date, :forum_id, :topic_id
@@ -10,7 +10,7 @@ ActiveAdmin.register UserAward do
   filter :award
   filter :date
 
-  config.sort_order = 'date_desc'
+  config.sort_order = "date_desc"
 
   index do
     selectable_column
@@ -22,13 +22,13 @@ ActiveAdmin.register UserAward do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       input :user, collection: -> { User.for_dropdown }
       input :award, collection: Award.order(:title)
       input :date, as: :datepicker
       input :forum_id, as: :select, collection: UserAward.forum_ids.map(&:reverse)
-      input :topic_id, label: 'Topic ID'
+      input :topic_id, label: "Topic ID"
     end
     f.actions
   end

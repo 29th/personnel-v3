@@ -5,8 +5,10 @@ ActiveAdmin.register Assignment do
 
   permit_params do
     permitted = [:start_date, :end_date]
-    permitted += [:member_id, :unit_id, :position_id,
-                  :transfer_from_unit_id] if params[:action] == 'create'
+    if params[:action] == "create"
+      permitted += [:member_id, :unit_id, :position_id,
+        :transfer_from_unit_id]
+    end
     permitted
   end
 
@@ -40,19 +42,19 @@ ActiveAdmin.register Assignment do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       if f.object.persisted?
         li do
-          label 'User'
+          label "User"
           span f.object.user
         end
         li do
-          label 'Unit'
+          label "Unit"
           span f.object.unit.abbr
         end
         li do
-          label 'Position'
+          label "Position"
           span f.object.position.name
         end
       else

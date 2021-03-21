@@ -22,11 +22,11 @@ class NotePolicy < ApplicationPolicy
   end
 
   def new?
-    user && (user.has_permission?('note_view_sq') ||
-             user.has_permission?('note_view_pl') ||
-             user.has_permission?('note_view_co') ||
-             user.has_permission?('note_view_mp') ||
-             user.has_permission?('admin'))
+    user && (user.has_permission?("note_view_sq") ||
+             user.has_permission?("note_view_pl") ||
+             user.has_permission?("note_view_co") ||
+             user.has_permission?("note_view_mp") ||
+             user.has_permission?("admin"))
   end
 
   def create?
@@ -35,42 +35,42 @@ class NotePolicy < ApplicationPolicy
 
   def update?
     new? && access_to_note?(record) &&
-      (user == record.author || user&.has_permission?('admin'))
+      (user == record.author || user&.has_permission?("admin"))
   end
 
   def destroy?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 
   def self.access_permission_map
     {
-      members_only: -> user { user.member? },
-      squad_level: -> user {
-        user.has_permission?('note_view_sq') ||
-        user.has_permission?('note_view_pl') ||
-        user.has_permission?('note_view_co') ||
-        user.has_permission?('note_view_mp') ||
-        user.has_permission?('admin')
+      members_only: ->(user) { user.member? },
+      squad_level: ->(user) {
+        user.has_permission?("note_view_sq") ||
+          user.has_permission?("note_view_pl") ||
+          user.has_permission?("note_view_co") ||
+          user.has_permission?("note_view_mp") ||
+          user.has_permission?("admin")
       },
-      platoon_level: -> user {
-        user.has_permission?('note_view_pl') ||
-        user.has_permission?('note_view_co') ||
-        user.has_permission?('note_view_mp') ||
-        user.has_permission?('admin')
+      platoon_level: ->(user) {
+        user.has_permission?("note_view_pl") ||
+          user.has_permission?("note_view_co") ||
+          user.has_permission?("note_view_mp") ||
+          user.has_permission?("admin")
       },
-      company_level: -> user {
-        user.has_permission?('note_view_co') ||
-        user.has_permission?('note_view_mp') ||
-        user.has_permission?('admin')
+      company_level: ->(user) {
+        user.has_permission?("note_view_co") ||
+          user.has_permission?("note_view_mp") ||
+          user.has_permission?("admin")
       },
-      military_police: -> user {
-        user.has_permission?('note_view_mp') ||
-        user.has_permission?('admin')
+      military_police: ->(user) {
+        user.has_permission?("note_view_mp") ||
+          user.has_permission?("admin")
       },
-      lighthouse: -> user {
-        user.has_permission?('note_view_lh') ||
-        user.has_permission?('note_view_mp') ||
-        user.has_permission?('admin')
+      lighthouse: ->(user) {
+        user.has_permission?("note_view_lh") ||
+          user.has_permission?("note_view_mp") ||
+          user.has_permission?("admin")
       }
     }
   end

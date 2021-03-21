@@ -1,8 +1,8 @@
 class AddForumIdToUnitRoles < ActiveRecord::Migration[6.0]
   def up
     add_column :unit_roles, :forum_id,
-               "enum('Vanilla','Discourse')",
-               null: false
+      "enum('Vanilla','Discourse')",
+      null: false
 
     execute <<~SQL
       UPDATE unit_roles

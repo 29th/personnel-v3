@@ -8,15 +8,15 @@ class UserAwardPolicy < ApplicationPolicy
   end
 
   def new?
-    user&.has_permission?('awarding_add') ||
-      user&.has_permission?('awarding_add_any') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("awarding_add") ||
+      user&.has_permission?("awarding_add_any") ||
+      user&.has_permission?("admin")
   end
 
   def create?
-    (record.user && user&.has_permission_on_user?('awarding_add', record.user)) ||
-      user&.has_permission?('awarding_add_any') ||
-      user&.has_permission?('admin')
+    (record.user && user&.has_permission_on_user?("awarding_add", record.user)) ||
+      user&.has_permission?("awarding_add_any") ||
+      user&.has_permission?("admin")
   end
 
   def update?

@@ -2,7 +2,7 @@ ActiveAdmin.register FinanceRecord do
   includes user: :rank
 
   permit_params :date, :member_id, :forum_id, :topic_id, :notes,
-                :amount_received, :amount_paid, :fee, :vendor
+    :amount_received, :amount_paid, :fee, :vendor
 
   scope :all, default: true
   scope :income
@@ -14,7 +14,7 @@ ActiveAdmin.register FinanceRecord do
   filter :amount_received
   filter :amount_paid
 
-  config.sort_order = 'date_desc'
+  config.sort_order = "date_desc"
 
   sidebar :balance, only: :index do
     span number_to_currency(FinanceRecord.balance)
@@ -35,7 +35,7 @@ ActiveAdmin.register FinanceRecord do
       number_to_currency(record.fee)
     end
     column :notes do |finance_record|
-      finance_record.notes.truncate 75, omission: '…'
+      finance_record.notes.truncate 75, omission: "…"
     end
     actions
   end
@@ -61,7 +61,7 @@ ActiveAdmin.register FinanceRecord do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       f.input :date
       f.input :user, as: :select, collection: -> { User.for_dropdown }
@@ -70,7 +70,7 @@ ActiveAdmin.register FinanceRecord do
       f.input :amount_paid
       f.input :fee
       f.input :forum_id, as: :select, collection: FinanceRecord.vendors.map(&:reverse)
-      f.input :topic_id, label: 'Topic ID'
+      f.input :topic_id, label: "Topic ID"
       f.input :notes
     end
     f.actions

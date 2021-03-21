@@ -4,7 +4,7 @@ class AddSpecialRoles < ActiveRecord::Migration[6.0]
       t.string :special_attribute, null: false
       t.integer :role_id, null: false
       t.column :forum_id, "enum('Vanilla','Discourse')",
-                          null: false
+        null: false
     end
   end
 end

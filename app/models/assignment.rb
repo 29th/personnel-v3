@@ -1,7 +1,7 @@
 class Assignment < ApplicationRecord
   audited
   belongs_to :unit
-  belongs_to :user, foreign_key: 'member_id'
+  belongs_to :user, foreign_key: "member_id"
   belongs_to :position
 
   scope :active, -> {

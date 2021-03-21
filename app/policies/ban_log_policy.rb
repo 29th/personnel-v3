@@ -1,7 +1,7 @@
 class BanLogPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?('banlog_view_any') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("banlog_view_any") ||
+      user&.has_permission?("admin")
   end
 
   def show?
@@ -9,8 +9,8 @@ class BanLogPolicy < ApplicationPolicy
   end
 
   def new?
-    user&.has_permission?('banlog_edit_any') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("banlog_edit_any") ||
+      user&.has_permission?("admin")
   end
 
   def create?
@@ -22,6 +22,6 @@ class BanLogPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 end

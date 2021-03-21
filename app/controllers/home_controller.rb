@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout 'about', except: :landing
+  layout "about", except: :landing
 
   def landing
   end
@@ -24,8 +24,8 @@ class HomeController < ApplicationController
   def servers
     order = %w[Battalion Company Platoon Squad Public Euro]
     @servers_by_game = Server.active
-                             .sort_by { |server| order.index(server.name.split.first) || 99 }
-                             .group_by { |server| Server.games[server.game] }
+      .sort_by { |server| order.index(server.name.split.first) || 99 }
+      .group_by { |server| Server.games[server.game] }
   end
 
   def historical

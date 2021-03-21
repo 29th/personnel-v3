@@ -1,58 +1,58 @@
-require 'test_helper'
+require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   test "full_name includes middle initial if middle name present" do
-    user = create(:user, first_name: 'Grace', middle_name: 'Brewster',
-                         last_name: 'Hopper')
-    assert_equal 'Grace B. Hopper', user.full_name
+    user = create(:user, first_name: "Grace", middle_name: "Brewster",
+                         last_name: "Hopper")
+    assert_equal "Grace B. Hopper", user.full_name
   end
 
   test "full_name excludes middle initial if middle name not present" do
-    user = create(:user, first_name: 'Grace', last_name: 'Hopper')
-    assert_equal 'Grace Hopper', user.full_name
+    user = create(:user, first_name: "Grace", last_name: "Hopper")
+    assert_equal "Grace Hopper", user.full_name
   end
 
   test "short_name includes name prefix if present" do
-    user = create(:user, name_prefix: 'B.', last_name: 'Hopper')
-    assert_equal 'Pvt. B. Hopper', user.short_name
+    user = create(:user, name_prefix: "B.", last_name: "Hopper")
+    assert_equal "Pvt. B. Hopper", user.short_name
   end
 
   test "short_name excludes name prefix if not present" do
-    user = create(:user, last_name: 'Hopper')
-    assert_equal 'Pvt. Hopper', user.short_name
+    user = create(:user, last_name: "Hopper")
+    assert_equal "Pvt. Hopper", user.short_name
 
-    user = create(:user, name_prefix: '', last_name: 'Hopper')
-    assert_equal 'Pvt. Hopper', user.short_name
+    user = create(:user, name_prefix: "", last_name: "Hopper")
+    assert_equal "Pvt. Hopper", user.short_name
   end
 
   # has_permission?
 
   test "leader inherits member and elevated permissions" do
     unit = create(:unit)
-    create(:permission, :leader, abbr: 'leader_ability', unit: unit)
-    create(:permission, :elevated, abbr: 'elevated_ability', unit: unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, :leader, abbr: "leader_ability", unit: unit)
+    create(:permission, :elevated, abbr: "elevated_ability", unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, :leader, user: user, unit: unit)
 
-    assert user.has_permission? 'leader_ability'
-    assert user.has_permission? 'elevated_ability'
-    assert user.has_permission? 'member_ability'
+    assert user.has_permission? "leader_ability"
+    assert user.has_permission? "elevated_ability"
+    assert user.has_permission? "member_ability"
   end
 
   test "elevated inherits member permissions but not leader" do
     unit = create(:unit)
-    create(:permission, :leader, abbr: 'leader_ability', unit: unit)
-    create(:permission, :elevated, abbr: 'elevated_ability', unit: unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, :leader, abbr: "leader_ability", unit: unit)
+    create(:permission, :elevated, abbr: "elevated_ability", unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, :elevated, user: user, unit: unit)
 
-    refute user.has_permission? 'leader_ability'
-    assert user.has_permission? 'elevated_ability'
-    assert user.has_permission? 'member_ability'
+    refute user.has_permission? "leader_ability"
+    assert user.has_permission? "elevated_ability"
+    assert user.has_permission? "member_ability"
   end
 
   # forum_role_ids
@@ -68,9 +68,9 @@ class UserTest < ActiveSupport::TestCase
 
     roles = user.forum_role_ids(:discourse)
 
-    assert roles.include?(leader_role.role_id), 'missing leader role'
-    assert roles.include?(elevated_role.role_id), 'missing elevated role'
-    assert roles.include?(member_role.role_id), 'missing member role'
+    assert roles.include?(leader_role.role_id), "missing leader role"
+    assert roles.include?(elevated_role.role_id), "missing elevated role"
+    assert roles.include?(member_role.role_id), "missing member role"
   end
 
   test "forum_role_ids elevated inherits member permissions but not leader" do
@@ -84,9 +84,9 @@ class UserTest < ActiveSupport::TestCase
 
     roles = user.forum_role_ids(:discourse)
 
-    refute roles.include?(leader_role.role_id), 'includes leader role'
-    assert roles.include?(elevated_role.role_id), 'missing elevated role'
-    assert roles.include?(member_role.role_id), 'missing member role'
+    refute roles.include?(leader_role.role_id), "includes leader role"
+    assert roles.include?(elevated_role.role_id), "missing elevated role"
+    assert roles.include?(member_role.role_id), "missing member role"
   end
 
   test "forum_role_ids returns unique values" do
@@ -117,83 +117,83 @@ class UserTest < ActiveSupport::TestCase
 
     roles = user.forum_role_ids(:discourse)
 
-    assert roles.include?(discourse_role.role_id), 'missing role for specified forum'
-    refute roles.include?(vanilla_role.role_id), 'includes role for another forum'
+    assert roles.include?(discourse_role.role_id), "missing role for specified forum"
+    refute roles.include?(vanilla_role.role_id), "includes role for another forum"
   end
 
   # has_permission_on_unit?
 
   test "permission applies to unit" do
     unit = create(:unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
 
-    assert user.has_permission_on_unit? 'member_ability', unit
+    assert user.has_permission_on_unit? "member_ability", unit
   end
 
   test "permission applies to child unit" do
     unit = create(:unit)
     child_unit = create(:unit, parent: unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
 
-    assert user.has_permission_on_unit? 'member_ability', child_unit
+    assert user.has_permission_on_unit? "member_ability", child_unit
   end
 
   test "permission does not apply to child unit of another unit" do
     unit = create(:unit)
     other_unit = create(:unit)
     other_child_unit = create(:unit, parent: other_unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
 
-    refute user.has_permission_on_unit? 'member_ability', other_child_unit
+    refute user.has_permission_on_unit? "member_ability", other_child_unit
   end
 
   test "permission does not apply to parent unit" do
     parent_unit = create(:unit)
     unit = create(:unit, parent: parent_unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
 
-    refute user.has_permission_on_unit? 'member_ability', parent_unit
+    refute user.has_permission_on_unit? "member_ability", parent_unit
   end
 
   test "permission from past assignments are ignored" do
     unit = create(:unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit,
-           start_date: 2.weeks.ago, end_date: 1.week.ago)
+                        start_date: 2.weeks.ago, end_date: 1.week.ago)
 
-    refute user.has_permission_on_unit? 'member_ability', unit
+    refute user.has_permission_on_unit? "member_ability", unit
   end
 
   test "permission from future assignments are ignored" do
     unit = create(:unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit,
-           start_date: 1.week.from_now)
+                        start_date: 1.week.from_now)
 
-    refute user.has_permission_on_unit? 'member_ability', unit
+    refute user.has_permission_on_unit? "member_ability", unit
   end
 
   # has_permission_on_user?
 
   test "permission applies to user in their unit" do
     unit = create(:unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -201,13 +201,13 @@ class UserTest < ActiveSupport::TestCase
     subject = create(:user)
     create(:assignment, user: subject, unit: unit)
 
-    assert user.has_permission_on_user? 'member_ability', subject
+    assert user.has_permission_on_user? "member_ability", subject
   end
 
   test "permission applies to user in child unit" do
     unit = create(:unit)
     child_unit = create(:unit, parent: unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -215,24 +215,24 @@ class UserTest < ActiveSupport::TestCase
     subject = create(:user)
     create(:assignment, user: subject, unit: child_unit)
 
-    assert user.has_permission_on_user? 'member_ability', subject
+    assert user.has_permission_on_user? "member_ability", subject
   end
 
   test "permission does not apply to self" do
     unit = create(:unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
 
-    refute user.has_permission_on_user? 'member_ability', user
+    refute user.has_permission_on_user? "member_ability", user
   end
 
   test "permission does not apply to user in child unit of another unit" do
     unit = create(:unit)
     other_unit = create(:unit)
     other_child_unit = create(:unit, parent: other_unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -240,12 +240,12 @@ class UserTest < ActiveSupport::TestCase
     subject = create(:user)
     create(:assignment, user: subject, unit: other_child_unit)
 
-    refute user.has_permission_on_user? 'member_ability', subject
+    refute user.has_permission_on_user? "member_ability", subject
   end
 
   test "permission does not apply to user who used to be in unit" do
     unit = create(:unit)
-    create(:permission, abbr: 'member_ability', unit: unit)
+    create(:permission, abbr: "member_ability", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -253,15 +253,15 @@ class UserTest < ActiveSupport::TestCase
     subject = create(:user)
     create(:assignment, user: subject, unit: unit, end_date: 2.days.ago)
 
-    refute user.has_permission_on_user? 'member_ability', subject
+    refute user.has_permission_on_user? "member_ability", subject
   end
 
   test "permission on user can come from multiple intersecting assignments" do
     lighthouse = create(:unit)
-    create(:permission, abbr: 'fire', unit: lighthouse)
+    create(:permission, abbr: "fire", unit: lighthouse)
 
     squad = create(:unit)
-    create(:permission, abbr: 'qualify', unit: squad)
+    create(:permission, abbr: "qualify", unit: squad)
 
     user = create(:user)
     create(:assignment, user: user, unit: lighthouse)
@@ -271,16 +271,16 @@ class UserTest < ActiveSupport::TestCase
     create(:assignment, user: subject, unit: lighthouse)
     create(:assignment, user: subject, unit: squad)
 
-    assert user.has_permission_on_user? 'fire', subject
-    assert user.has_permission_on_user? 'qualify', subject
+    assert user.has_permission_on_user? "fire", subject
+    assert user.has_permission_on_user? "qualify", subject
   end
 
   test "permission is exclusive to the intersecting assignment" do
     lighthouse = create(:unit)
-    create(:permission, abbr: 'fire', unit: lighthouse)
+    create(:permission, abbr: "fire", unit: lighthouse)
 
     squad = create(:unit)
-    create(:permission, abbr: 'qualify', unit: squad)
+    create(:permission, abbr: "qualify", unit: squad)
     other_squad = create(:unit)
 
     user = create(:user)
@@ -291,8 +291,8 @@ class UserTest < ActiveSupport::TestCase
     create(:assignment, user: subject, unit: lighthouse)
     create(:assignment, user: subject, unit: other_squad)
 
-    assert user.has_permission_on_user? 'fire', subject
-    refute user.has_permission_on_user? 'qualify', subject
+    assert user.has_permission_on_user? "fire", subject
+    refute user.has_permission_on_user? "qualify", subject
   end
 
   # member?

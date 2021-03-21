@@ -29,13 +29,13 @@ ActiveAdmin.register Rank do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       input :name
       input :abbr
       input :grade
       input :order
-      input :image, as: :hidden, input_html: { value: object.cached_image_data }
+      input :image, as: :hidden, input_html: {value: object.cached_image_data}
       input :image, as: :file
       input :remove_image, as: :boolean if object.image.present?
       input :description

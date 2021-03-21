@@ -1,7 +1,7 @@
 class DemeritPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?('demerit_view_any') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("demerit_view_any") ||
+      user&.has_permission?("admin")
   end
 
   def show?
@@ -9,14 +9,14 @@ class DemeritPolicy < ApplicationPolicy
   end
 
   def new?
-    user&.has_permission?('demerit_add_any') ||
-      user&.has_permission?('admin')
+    user&.has_permission?("demerit_add_any") ||
+      user&.has_permission?("admin")
   end
 
   def create?
-    (record.user && user&.has_permission_on_user?('demerit_add', record.user)) ||
-      user&.has_permission?('demerit_add_any') ||
-      user&.has_permission?('admin')
+    (record.user && user&.has_permission_on_user?("demerit_add", record.user)) ||
+      user&.has_permission?("demerit_add_any") ||
+      user&.has_permission?("admin")
   end
 
   def update?
@@ -24,6 +24,6 @@ class DemeritPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user&.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 end

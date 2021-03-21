@@ -4,26 +4,26 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def help_block(message)
-    %Q(<span class="help-block">#{message}</span>).html_safe
+    %(<span class="help-block">#{message}</span>).html_safe
   end
 
   def group(method, &block)
-    if object.errors.has_key?(method)
-      class_names = "form-group has-error"
+    class_names = if object.errors.has_key?(method)
+      "form-group has-error"
     else
-      class_names = "form-group"
+      "form-group"
     end
 
     content = @template.capture(&block)
 
-    %Q(<div class="#{class_names}">#{content}</div>).html_safe
+    %(<div class="#{class_names}">#{content}</div>).html_safe
   end
 
   def label(method, text = nil, options = {}, &block)
     super(method, text, insert_class("control-label", options), &block)
   end
 
-  %w(text_field email_field password_field).each do |selector|
+  %w[text_field email_field password_field].each do |selector|
     class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
       def #{selector}(method, options = {})
         super(method, insert_class("form-control", options))

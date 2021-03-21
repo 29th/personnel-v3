@@ -4,7 +4,7 @@ ActiveAdmin.register Pass do
   includes user: :rank
 
   permit_params :member_id, :recruit_id, :start_date, :end_date,
-                :type, :reason
+    :type, :reason
 
   scope :active, default: true
   scope :all
@@ -24,7 +24,7 @@ ActiveAdmin.register Pass do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       input :user, collection: -> { User.for_dropdown }
       input :start_date, as: :datepicker
@@ -35,7 +35,7 @@ ActiveAdmin.register Pass do
     f.actions
   end
 
-  config.sort_order = 'end_date_desc'
+  config.sort_order = "end_date_desc"
 
   before_create do |pass|
     pass.author = current_user

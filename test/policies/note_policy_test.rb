@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class NotePolicyTest < ActiveSupport::TestCase
   def scope(user)
@@ -57,7 +57,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "show permits user with note_view_pl on squad_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_pl', unit: unit)
+    create(:permission, abbr: "note_view_pl", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -68,7 +68,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "show denies user with note_view_pl on company_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_pl', unit: unit)
+    create(:permission, abbr: "note_view_pl", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -79,7 +79,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "create permits user with note_view_sq on squad_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_sq', unit: unit)
+    create(:permission, abbr: "note_view_sq", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -90,7 +90,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "create denies user with note_view_sq on platoon_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_sq', unit: unit)
+    create(:permission, abbr: "note_view_sq", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -101,7 +101,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "create denies user acting on self" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_sq', unit: unit)
+    create(:permission, abbr: "note_view_sq", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -112,7 +112,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "update permits original author with note_view_pl on platoon_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_pl', unit: unit)
+    create(:permission, abbr: "note_view_pl", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -123,7 +123,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "update denies user who is not original author" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_pl', unit: unit)
+    create(:permission, abbr: "note_view_pl", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -134,7 +134,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "update denies original author with note_view_sq on platoon_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_sq', unit: unit)
+    create(:permission, abbr: "note_view_sq", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -145,7 +145,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "update permits original author with note_view_co on platoon_level note" do
     unit = create(:unit)
-    create(:permission, abbr: 'note_view_co', unit: unit)
+    create(:permission, abbr: "note_view_co", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
@@ -167,7 +167,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "update permits user who is not original author but has admin" do
     unit = create(:unit)
-    create(:permission, abbr: 'admin', unit: unit)
+    create(:permission, abbr: "admin", unit: unit)
 
     user = create(:user)
     create(:assignment, user: user, unit: unit)
