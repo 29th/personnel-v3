@@ -30,11 +30,7 @@ class NotePolicy < ApplicationPolicy
   end
 
   def create?
-    if !record.persisted? && !record.changed?
-      new?
-    else
-      new? && access_to_note?(record) && user != record.user
-    end
+    new? && access_to_note?(record) && user != record.user
   end
 
   def update?

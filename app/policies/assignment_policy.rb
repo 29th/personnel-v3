@@ -13,14 +13,10 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def create?
-    if !record.persisted? && !record.changed?
-      new?
-    else
-      (user&.has_permission_on_unit?('assignment_add', record.unit ||
-        user&.has_permission?('assignment_add_any')) ||
-        user&.has_permission?('admin')) &&
-        record.user != user
-    end
+    (user&.has_permission_on_unit?('assignment_add', record.unit ||
+      user&.has_permission?('assignment_add_any')) ||
+      user&.has_permission?('admin')) &&
+      record.user != user
   end
 
   def update?
