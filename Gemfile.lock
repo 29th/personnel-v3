@@ -427,7 +427,7 @@ DEPENDENCIES
   validates_timeliness (~> 5.0.0.alpha3)
   web-console (>= 3.3.0)
   webmock (~> 3.12, >= 3.12.1)
-  webpacker
+  webpacker (~> 5.2, >= 5.2.1)
 
 RUBY VERSION
    ruby 2.7.2p137
