@@ -12,9 +12,9 @@ ActiveAdmin.register Assignment do
     permitted
   end
 
-  filter :unit, collection: -> { Unit.active.order(:ancestry, :name) }
-  filter :user, collection: -> { User.active.includes(:rank).order(:last_name) }
-  filter :position, collection: -> { Position.active.order(:name) }
+  filter :unit, collection: -> { Unit.for_dropdown }
+  filter :user, collection: -> { User.for_dropdown }
+  filter :position, collection: -> { Position.for_dropdown }
   filter :start_date
   filter :end_date
 
@@ -58,9 +58,9 @@ ActiveAdmin.register Assignment do
           span f.object.position.name
         end
       else
-        f.input :user, as: :select, collection: User.active.includes(:rank).order(:last_name)
-        f.input :unit, as: :select, collection: Unit.active.order(:ancestry, :name)
-        f.input :position, as: :select, collection: Position.active.order(:name)
+        f.input :user, as: :select, collection: User.for_dropdown
+        f.input :unit, as: :select, collection: Unit.for_dropdown
+        f.input :position, as: :select, collection: Position.for_dropdown
 
         f.input :transfer_from_unit_id, as: :select, collection: []
       end

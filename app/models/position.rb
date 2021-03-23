@@ -18,4 +18,5 @@ class Position < ApplicationRecord
   validates :order, numericality: {only_integer: true}, allow_nil: true
 
   scope :active, -> { where(active: true) }
+  scope :for_dropdown, -> { active.order(:name) }
 end

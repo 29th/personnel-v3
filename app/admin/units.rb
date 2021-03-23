@@ -6,9 +6,9 @@ ActiveAdmin.register Unit do
 
   filter :abbr
   filter :name
-  filter :game, as: :select, collection: Unit.games
-  filter :timezone, as: :select, collection: Unit.timezones
-  filter :classification, as: :select, collection: Unit.classifications
+  filter :game, as: :select, collection: -> { Unit.games }
+  filter :timezone, as: :select, collection: -> { Unit.timezones }
+  filter :classification, as: :select, collection: -> { Unit.classifications }
 
   scope :active, default: true
   scope :all, default: true
@@ -55,7 +55,7 @@ ActiveAdmin.register Unit do
     inputs do
       f.input :name
       f.input :abbr
-      f.input :parent_id, as: :select, collection: -> { Unit.for_dropdown }
+      f.input :parent_id, as: :select, collection: Unit.for_dropdown
       f.input :order, as: :number
       f.input :classification, as: :select, collection: Unit.classifications.map(&:reverse), include_blank: false
       f.input :game, as: :select, collection: Unit.games.map(&:reverse)

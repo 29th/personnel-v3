@@ -26,7 +26,7 @@ ActiveAdmin.register Pass do
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
     f.inputs do
-      input :user, collection: -> { User.for_dropdown }
+      input :user, collection: User.for_dropdown
       input :start_date, as: :datepicker
       input :end_date, as: :datepicker
       input :type, as: :select, collection: Pass.types.map(&:reverse)

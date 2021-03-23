@@ -6,8 +6,8 @@ ActiveAdmin.register SpecialForumRole do
   scope :discourse
   scope :vanilla
 
-  filter :special_attribute, as: :select, collection: SpecialForumRole.special_attributes
-  filter :forum_id, as: :select, collection: SpecialForumRole.forum_ids.map(&:reverse)
+  filter :special_attribute, as: :select, collection: -> { SpecialForumRole.special_attributes }
+  filter :forum_id, as: :select, collection: -> { SpecialForumRole.forum_ids.map(&:reverse) }
   filter :role_id
 
   index do

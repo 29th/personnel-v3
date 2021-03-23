@@ -9,8 +9,8 @@ ActiveAdmin.register UnitForumRole do
   scope :vanilla
 
   filter :unit, collection: -> { Unit.for_dropdown }
-  filter :access_level, as: :select, collection: UnitForumRole.access_levels
-  filter :forum_id, as: :select, collection: UnitForumRole.forum_ids
+  filter :access_level, as: :select, collection: -> { UnitForumRole.access_levels }
+  filter :forum_id, as: :select, collection: -> { UnitForumRole.forum_ids }
   filter :role_id
 
   index do
@@ -28,7 +28,7 @@ ActiveAdmin.register UnitForumRole do
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
     f.inputs do
-      input :unit, collection: -> { Unit.for_dropdown }
+      input :unit, collection: Unit.for_dropdown
       input :access_level, as: :select, collection: UnitForumRole.access_levels.keys
       input :forum_id, as: :select, collection: UnitForumRole.forum_ids.map(&:reverse)
       input :role_id, as: :select, label: "Discourse role",
