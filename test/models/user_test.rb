@@ -25,6 +25,22 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "Pvt. Hopper", user.short_name
   end
 
+  test "refresh_rank uses latest promotion" do
+    user = create(:user, rank_abbr: "Pvt.")
+    create(:promotion, user: user, date: 3.days.ago, rank_abbr: "Cpl.") # latest
+    create(:promotion, user: user, date: 1.week.ago, rank_abbr: "Sgt.")
+
+    user.refresh_rank
+    assert_equal "Cpl.", user.rank.abbr
+  end
+
+  test "refresh_rank uses default rank if no promotions exist" do
+    user = create(:user, rank_abbr: "Cpl.")
+
+    user.refresh_rank
+    assert_equal "Pvt.", user.rank.abbr
+  end
+
   # has_permission?
 
   test "leader inherits member and elevated permissions" do

@@ -175,4 +175,21 @@ FactoryBot.define do
     forum_id { :discourse }
     topic_id { 123 }
   end
+
+  factory :promotion do
+    user
+    date { 1.day.ago }
+    forum_id { :discourse }
+    topic_id { 123 }
+
+    transient do
+      rank_abbr { nil }
+    end
+
+    new_rank do
+      rank_attrs = {}
+      rank_attrs[:abbr] = rank_abbr if rank_abbr.present?
+      association(:rank, **rank_attrs)
+    end
+  end
 end

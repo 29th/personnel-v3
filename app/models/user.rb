@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :user_awards, foreign_key: "member_id"
   has_many :awards, through: :user_awards
   has_many :discharges, foreign_key: "member_id"
+  has_many :promotions, foreign_key: "member_id"
   belongs_to :rank
   belongs_to :country, optional: true
 
@@ -92,6 +93,16 @@ class User < ApplicationRecord
   def update_forum_roles
     DiscourseService.new.update_user_roles(self) if discourse_forum_member_id.present?
     VanillaService.new.update_user_roles(self) if forum_member_id.present?
+  end
+
+  def refresh_rank
+    latest_promotion = promotions.order(date: :desc).first
+    if latest_promotion
+      update(rank: latest_promotion.new_rank)
+    else
+      default_rank_id = self.class.columns_hash["rank_id"].default
+      update(rank_id: default_rank_id)
+    end
   end
 
   private
