@@ -105,6 +105,10 @@ class User < ApplicationRecord
     end
   end
 
+  def end_assignments(end_date = Date.current)
+    assignments.active.each { |assignment| assignment.end(end_date) }
+  end
+
   private
 
   def permissions
@@ -131,6 +135,7 @@ class User < ApplicationRecord
 
   def special_forum_roles(forum)
     special_attributes = []
+    special_attributes << "everyone"
     special_attributes << "member" if member?
     special_attributes << "honorably_discharged" if honorably_discharged?
     special_attributes << "officer" if rank.officer?

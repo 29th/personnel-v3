@@ -8,6 +8,14 @@ class Discharge < ApplicationRecord
               general: "General",
               dishonorable: "Dishonorable"}
 
+  enum forum_id: {phpbb: "PHPBB",
+                  smf: "SMF",
+                  vanilla: "Vanilla",
+                  discourse: "Discourse"}
+
+  attr_accessor :end_assignments
+
+  validates :user, presence: true
   validates :date, presence: true
   validates_date :date
   validates :type, presence: true
