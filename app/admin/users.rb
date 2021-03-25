@@ -39,7 +39,7 @@ ActiveAdmin.register User do
     column :middle_name
     column :rank
     column :country do |user|
-      flag_icon(user.country.sym, title: user.country.name)
+      flag_icon(user.country.sym, title: user.country.name) if user.country.present?
     end
     column "Steam ID", :steam_id
     column "Forum ID", :forum_member_id
@@ -53,8 +53,10 @@ ActiveAdmin.register User do
       row :middle_name
       row :rank
       row :country do |user|
-        span flag_icon(user.country.sym, title: user.country.name)
-        span user.country.name
+        if user.country.present?
+          span flag_icon(user.country.sym, title: user.country.name)
+          span user.country.name
+        end
       end
       row "Steam ID", :steam_id do |user|
         link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"

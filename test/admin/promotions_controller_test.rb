@@ -60,18 +60,4 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
       .symbolize_keys
       .slice(:member_id, :date, :old_rank_id, :new_rank_id, :forum_id, :topic_id)
   end
-
-  def start_trace
-    trace = TracePoint.new(:call) do |tp|
-      p [tp.path, tp.lineno, tp.method_id, extract_arguments(tp)] unless tp.path.include?("menu")
-    end
-    trace.enable
-    yield
-    trace.disable
-  end
-
-  def extract_arguments(trace)
-    param_names = trace.parameters.map(&:last)
-    param_names.map { |n| [n, trace.binding.eval(n.to_s)] }.to_h
-  end
 end
