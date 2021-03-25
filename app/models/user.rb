@@ -100,8 +100,8 @@ class User < ApplicationRecord
     if latest_promotion
       update(rank: latest_promotion.new_rank)
     else
-      default_rank_id = self.class.columns_hash["rank_id"].default
-      update(rank_id: default_rank_id)
+      default_rank = Rank.find_by_abbr("Pvt.")
+      update(rank: default_rank)
     end
   end
 
