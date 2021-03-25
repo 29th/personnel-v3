@@ -36,6 +36,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "refresh_rank uses default rank if no promotions exist" do
     user = create(:user, rank_abbr: "Cpl.")
+    create(:rank, abbr: "Pvt.")
 
     user.refresh_rank
     assert_equal "Pvt.", user.rank.abbr

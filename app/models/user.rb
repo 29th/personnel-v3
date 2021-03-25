@@ -100,9 +100,13 @@ class User < ApplicationRecord
     if latest_promotion
       update(rank: latest_promotion.new_rank)
     else
-      default_rank_id = self.class.columns_hash["rank_id"].default
-      update(rank_id: default_rank_id)
+      default_rank = Rank.find_by_abbr("Pvt.")
+      update(rank: default_rank)
     end
+  end
+
+  def end_assignments(end_date = Date.current)
+    assignments.active.each { |assignment| assignment.end(end_date) }
   end
 
   private
@@ -131,6 +135,7 @@ class User < ApplicationRecord
 
   def special_forum_roles(forum)
     special_attributes = []
+    special_attributes << "everyone"
     special_attributes << "member" if member?
     special_attributes << "honorably_discharged" if honorably_discharged?
     special_attributes << "officer" if rank.officer?
