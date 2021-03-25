@@ -21,7 +21,7 @@ class Admin::DischargesControllerTest < ActionDispatch::IntegrationTest
     User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
       post admin_discharges_url, params: {
         discharge: {
-          **required_attributes(discharge),
+          **discharge_attributes(discharge),
           end_assignments: true
         }
       }
@@ -41,7 +41,7 @@ class Admin::DischargesControllerTest < ActionDispatch::IntegrationTest
 
     methods_called = []
     User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
-      post admin_discharges_url, params: {promotion: required_attributes(discharge)}
+      post admin_discharges_url, params: {promotion: discharge_attributes(discharge)}
     end
 
     assert @subject.member?, "user is no longer a member"
@@ -50,8 +50,8 @@ class Admin::DischargesControllerTest < ActionDispatch::IntegrationTest
 
   private
 
-  def required_attributes(promotion)
-    promotion.attributes
+  def discharge_attributes(discharge)
+    discharge.attributes
       .symbolize_keys
       .slice(:member_id, :date, :type, :reason, :forum_id, :topic_id)
   end

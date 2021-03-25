@@ -21,7 +21,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     methods_called = []
     User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
       User.stub_any_instance(:update_coat, -> { methods_called << :update_coat }) do
-        post admin_promotions_url, params: {promotion: required_attributes(promotion)}
+        post admin_promotions_url, params: {promotion: promotion_attributes(promotion)}
       end
     end
 
@@ -55,7 +55,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   private
 
-  def required_attributes(promotion)
+  def promotion_attributes(promotion)
     promotion.attributes
       .symbolize_keys
       .slice(:member_id, :date, :old_rank_id, :new_rank_id, :forum_id, :topic_id)
