@@ -3,4 +3,8 @@ class Ability < ApplicationRecord
   audited
 
   validates_presence_of :name, :abbr
+
+  def display_name
+    abbr
+  end
 end
