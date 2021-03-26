@@ -192,4 +192,11 @@ FactoryBot.define do
       association(:rank, **rank_attrs)
     end
   end
+
+  factory :extended_loa do
+    user
+    start_date { 1.day.from_now }
+    end_date { 1.week.from_now }
+    reason { Faker::Lorem.sentence }
+  end
 end
