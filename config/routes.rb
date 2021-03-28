@@ -25,5 +25,7 @@ Rails.application.routes.draw do
 
   get "/roster" => "roster#index"
 
+  post "/api/webhooks/discourse" => "discourse_webhooks#receive"
+
   resources :passes
 end
