@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
+  validates :discourse_forum_member_id, uniqueness: true, allow_nil: true
 
   def full_name
     middle_initial = "#{middle_name.first}." if middle_name.present?
