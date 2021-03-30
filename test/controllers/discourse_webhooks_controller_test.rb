@@ -50,10 +50,19 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
     assert_nil User.find_by_discourse_forum_member_id(@discourse_user_id)
   end
 
-  test "should update user's discourse_forum_member_id" do
-    post discourse_webhooks_url, params: @body, headers: @headers, as: :json
+  test "should update user's discourse_forum_member_id, forum roles, and display name" do
+    methods_called = []
+    User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
+      User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
+        post discourse_webhooks_url, params: @body, headers: @headers, as: :json
+      end
+    end
+
     assert_response :no_content
     assert_equal @subject, User.find_by_discourse_forum_member_id(@discourse_user_id)
+
+    assert_includes methods_called, :update_forum_display_name
+    assert_includes methods_called, :update_forum_roles
   end
 
   test "should return 422 if another user already has that discourse_forum_member_id" do
