@@ -1,6 +1,6 @@
 class RosterController < ApplicationController
   def index
-    units = Unit.find_by_id(1)
+    units = Unit.find_root
       .subtree
       .active
 

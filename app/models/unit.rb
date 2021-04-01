@@ -31,6 +31,10 @@ class Unit < ApplicationRecord
     abbr.delete(" ").downcase
   end
 
+  def self.find_root
+    active.where(ancestry: nil, classification: :combat).first
+  end
+
   # NOTE: Applies :active scope to subtree
   # NOTE: You probably want to add .active when using this,
   #       to only get active users
