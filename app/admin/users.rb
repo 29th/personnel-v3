@@ -74,6 +74,17 @@ ActiveAdmin.register User do
     end
   end
 
+  member_action :update_forum_roles, method: :post do
+    authorize! :update_forum_roles, resource
+    resource.update_forum_roles
+    redirect_to resource_path, notice: "Forum roles updated"
+  end
+
+  action_item :update_forum_roles, only: :show,
+                                   if: -> { authorized?(:update_forum_roles, resource) } do
+    link_to "Update forum roles", update_forum_roles_admin_user_path(resource), method: :post
+  end
+
   before_save do |user|
     if user.last_name_changed? || user.name_prefix_changed? || user.rank_id_changed?
       user.update_forum_display_name
