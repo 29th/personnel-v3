@@ -9,7 +9,7 @@ class DiscourseWebhooksController < ApplicationController
     discourse_email = params["user"]["email"]
 
     matching_user = User.find_by_email!(discourse_email)
-    matching_user.update!(discourse_forum_member_id: discourse_user_id)
+    matching_user.update!(forum_member_id: discourse_user_id)
     matching_user.update_forum_display_name
     matching_user.update_forum_roles
 

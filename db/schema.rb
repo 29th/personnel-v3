@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_103639) do
+ActiveRecord::Schema.define(version: 2021_04_02_141259) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -295,11 +295,10 @@ ActiveRecord::Schema.define(version: 2021_03_06_103639) do
     t.string "email", default: ""
     t.column "im_type", "enum('AIM','''MSN','''ICQ','''YIM','''Skype')", comment: "Instant Messenger Type"
     t.string "im_handle", limit: 100, comment: "Instant Messenger Handle"
-    t.integer "forum_member_id", limit: 3, comment: "Member ID on forums", unsigned: true
-    t.integer "vanilla_forum_member_id"
-    t.integer "discourse_forum_member_id"
+    t.integer "vanilla_forum_member_id", limit: 3, unsigned: true
+    t.integer "forum_member_id", limit: 3, unsigned: true
     t.index ["country_id"], name: "CountryID"
-    t.index ["discourse_forum_member_id"], name: "index_members_on_discourse_forum_member_id", unique: true
+    t.index ["forum_member_id"], name: "index_members_on_forum_member_id", unique: true
     t.index ["primary_assignment_id"], name: "Assignment"
     t.index ["rank_id"], name: "Rank"
   end

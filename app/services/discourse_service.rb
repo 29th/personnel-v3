@@ -44,9 +44,9 @@ class DiscourseService
 
   def update_user_roles(user)
     discourse_user = get_discourse_user(user)
-    discourse_user_id = user.discourse_forum_member_id
+    discourse_user_id = user.forum_member_id
     expected_roles = user.forum_role_ids(:discourse)
-    current_roles = select_assigned_role_ids(discourse_user["groups"])
+    current_roles = select_assigned_role_ids(discourse_user["groups"] || [])
 
     roles_to_delete = current_roles.difference(expected_roles)
     roles_to_delete.each { |role_id| delete_role(discourse_user_id, role_id) }
@@ -58,7 +58,7 @@ class DiscourseService
   private
 
   def get_discourse_user(user)
-    discourse_user_id = user.discourse_forum_member_id
+    discourse_user_id = user.forum_member_id
     raise NoLinkedAccountError unless discourse_user_id
 
     path = "/admin/users/#{discourse_user_id}.json"

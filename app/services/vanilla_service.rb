@@ -17,7 +17,7 @@ class VanillaService
   end
 
   def update_user_display_name(user)
-    vanilla_user_id = user.forum_member_id
+    vanilla_user_id = user.vanilla_forum_member_id
     raise NoLinkedAccountError unless vanilla_user_id
 
     sanitized_name = user.short_name.delete("/")
@@ -28,7 +28,7 @@ class VanillaService
   end
 
   def update_user_roles(user)
-    vanilla_user_id = user.forum_member_id
+    vanilla_user_id = user.vanilla_forum_member_id
     raise NoLinkedAccountError unless vanilla_user_id
 
     expected_roles = user.forum_role_ids(:vanilla)

@@ -18,7 +18,7 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     steam_id { Faker::Number.number(digits: 17).to_s }
-    forum_member_id { Faker::Number.number(digits: 3) }
+    forum_member_id { FactoryBot.generate(:random_id) }
 
     transient do
       rank_abbr { nil }

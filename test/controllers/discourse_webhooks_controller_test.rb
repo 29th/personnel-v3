@@ -33,24 +33,24 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
     headers = @headers.except("X-Discourse-Event-Signature".to_sym)
     post discourse_webhooks_url, params: @body, headers: headers, as: :json
     assert_response :unauthorized
-    assert_nil User.find_by_discourse_forum_member_id(@discourse_user_id)
+    assert_nil User.find_by_forum_member_id(@discourse_user_id)
   end
 
   test "should return 401 if signature invalid" do
     headers = @headers.merge({"X-Discourse-Event-Signature": "invalidsignature"})
     post discourse_webhooks_url, params: @body, headers: headers, as: :json
     assert_response :unauthorized
-    assert_nil User.find_by_discourse_forum_member_id(@discourse_user_id)
+    assert_nil User.find_by_forum_member_id(@discourse_user_id)
   end
 
   test "should do nothing if event header is not user_activated" do
     headers = @headers.merge({"X-Discourse-Event": "user_updated"})
     post discourse_webhooks_url, params: @body, headers: headers, as: :json
     assert_response :no_content
-    assert_nil User.find_by_discourse_forum_member_id(@discourse_user_id)
+    assert_nil User.find_by_forum_member_id(@discourse_user_id)
   end
 
-  test "should update user's discourse_forum_member_id, forum roles, and display name" do
+  test "should update user's forum_member_id, forum roles, and display name" do
     methods_called = []
     User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
       User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
@@ -59,17 +59,17 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :no_content
-    assert_equal @subject, User.find_by_discourse_forum_member_id(@discourse_user_id)
+    assert_equal @subject, User.find_by_forum_member_id(@discourse_user_id)
 
     assert_includes methods_called, :update_forum_display_name
     assert_includes methods_called, :update_forum_roles
   end
 
-  test "should return 422 if another user already has that discourse_forum_member_id" do
-    other_subject = create(:user, discourse_forum_member_id: @discourse_user_id)
+  test "should return 422 if another user already has that forum_member_id" do
+    other_subject = create(:user, forum_member_id: @discourse_user_id)
     post discourse_webhooks_url, params: @body, headers: @headers, as: :json
     assert_response :unprocessable_entity
-    assert_equal other_subject, User.find_by_discourse_forum_member_id(@discourse_user_id)
+    assert_equal other_subject, User.find_by_forum_member_id(@discourse_user_id)
   end
 
   test "should return 404 if no user found with that email" do
@@ -77,7 +77,7 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
     headers = @headers.merge({"X-Discourse-Event-Signature": sign(body)})
     post discourse_webhooks_url, params: body, headers: headers, as: :json
     assert_response :not_found
-    assert_nil User.find_by_discourse_forum_member_id(@discourse_user_id)
+    assert_nil User.find_by_forum_member_id(@discourse_user_id)
   end
 
   private
