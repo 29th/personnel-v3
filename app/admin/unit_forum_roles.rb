@@ -1,4 +1,5 @@
 ActiveAdmin.register UnitForumRole do
+  belongs_to :unit, optional: true
   permit_params :unit_id, :access_level, :forum_id, :role_id,
     :discourse_role_id, :vanilla_role_id
 

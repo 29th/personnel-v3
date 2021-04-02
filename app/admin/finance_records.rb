@@ -1,4 +1,5 @@
 ActiveAdmin.register FinanceRecord do
+  belongs_to :user, optional: true
   includes user: :rank
 
   permit_params :date, :member_id, :forum_id, :topic_id, :notes,

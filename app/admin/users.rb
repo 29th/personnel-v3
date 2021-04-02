@@ -69,8 +69,15 @@ ActiveAdmin.register User do
 
   sidebar "Related records", only: [:show, :edit] do
     ul do
-      li link_to "Assignments", admin_user_assignments_path(resource)
-      li link_to "Passes", admin_user_passes_path(resource)
+      li link_to "Assignments", admin_user_assignments_path(resource) if authorized?(:index, Assignment)
+      li link_to "Demerits", admin_user_demerits_path(resource) if authorized?(:index, Demerit)
+      li link_to "Discharges", admin_user_discharges_path(resource) if authorized?(:index, Discharge)
+      li link_to "Extended LOAs", admin_user_extended_loas_path(resource) if authorized?(:index, ExtendedLOA)
+      li link_to "Finance Records", admin_user_finance_records_path(resource) if authorized?(:index, FinanceRecord)
+      li link_to "Notes", admin_user_notes_path(resource) if authorized?(:index, Note)
+      li link_to "Passes", admin_user_passes_path(resource) if authorized?(:index, Pass)
+      li link_to "Promotions", admin_user_promotions_path(resource) if authorized?(:index, Promotion)
+      li link_to "User Awards", admin_user_user_awards_path(resource) if authorized?(:index, UserAward)
     end
   end
 

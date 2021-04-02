@@ -3,12 +3,16 @@ class User < ApplicationRecord
   audited max_audits: 10
 
   has_many :assignments, dependent: :delete_all, foreign_key: "member_id"
-  has_many :units, through: :assignments
-  has_many :passes, inverse_of: :user, foreign_key: "member_id"
-  has_many :user_awards, foreign_key: "member_id"
   has_many :awards, through: :user_awards
+  has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
+  has_many :extended_loas, foreign_key: "member_id"
+  has_many :finance_records, foreign_key: "member_id"
+  has_many :notes, foreign_key: "member_id"
+  has_many :passes, inverse_of: :user, foreign_key: "member_id"
   has_many :promotions, foreign_key: "member_id"
+  has_many :units, through: :assignments
+  has_many :user_awards, foreign_key: "member_id"
   belongs_to :rank
   belongs_to :country, optional: true
 

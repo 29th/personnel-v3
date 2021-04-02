@@ -1,6 +1,5 @@
 ActiveAdmin.register UserAward do
   belongs_to :user, optional: true
-  belongs_to :award, optional: true
 
   includes :award, user: :rank
 

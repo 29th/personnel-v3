@@ -27,7 +27,9 @@ ActiveAdmin.register Unit do
   sidebar "Related records", only: [:show, :edit] do
     ul do
       # See https://github.com/activeadmin/activeadmin/issues/221#issuecomment-502802948
-      li link_to "Assignments", [:admin, :assignments, q: {unit_id_eq: resource.id}]
+      li link_to "Assignments", [:admin, :assignments, q: {unit_id_eq: resource.id}] if authorized?(:index, Assignment)
+      li link_to "Unit Forum Roles", admin_unit_unit_forum_roles_path(resource) if authorized?(:index, UnitForumRole)
+      li link_to "Users", admin_unit_users_path(resource) if authorized?(:index, User)
     end
   end
 
