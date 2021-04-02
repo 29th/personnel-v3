@@ -24,7 +24,7 @@ ActiveAdmin.register Award do
     end
     column :description
     column "User awards" do |award|
-      link_to award.user_awards.count, admin_award_user_awards_path(award)
+      link_to award.user_awards.count, [:admin, :user_awards, q: {award_id_eq: award.id}]
     end
     actions
   end
