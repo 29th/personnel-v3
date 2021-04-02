@@ -22,7 +22,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update_forum_roles?
-    user&.has_permission_on_user?("assignment_edit", record) ||
+    # Support record being the User class or an instance of a User,
+    # which is needed by admin batch action
+    (record.is_a?(User) && user&.has_permission_on_user?("assignment_edit", record)) ||
+      (record == User && user&.has_permission?("assignment_edit")) ||
       user&.has_permission?("assignment_edit_any") ||
       user&.has_permission?("admin")
   end

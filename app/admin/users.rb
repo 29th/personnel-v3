@@ -81,8 +81,16 @@ ActiveAdmin.register User do
   end
 
   action_item :update_forum_roles, only: :show,
-                                   if: -> { authorized?(:update_forum_roles, resource) } do
+                                   if: proc { authorized?(:update_forum_roles, resource) } do
     link_to "Update forum roles", update_forum_roles_admin_user_path(resource), method: :post
+  end
+
+  batch_action :update_forum_roles, if: proc { authorized?(:update_forum_roles, User) } do |ids|
+    batch_action_collection.find(ids).each do |user|
+      authorize! :update_forum_roles, user
+      user.update_forum_roles
+    end
+    redirect_to collection_path, notice: "Forum roles updated"
   end
 
   before_save do |user|
