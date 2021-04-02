@@ -61,3 +61,5 @@ jobs:
         env:
           FORUMS_COOKIE_NAME: Vanilla
           FORUMS_SECRET_KEY: test
+          DISCOURSE_COOKIE_NAME: discourse_jwt
+          DISCOURSE_SECRET_KEY: test
