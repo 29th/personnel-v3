@@ -21,6 +21,8 @@ ActiveAdmin.register Assignment do
   scope :active, default: true
   scope :all
 
+  config.create_another = true
+
   index do
     selectable_column
     column :user

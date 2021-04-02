@@ -10,6 +10,7 @@ ActiveAdmin.register UserAward do
   filter :date
 
   config.sort_order = "date_desc"
+  config.create_another = true
 
   index do
     selectable_column
