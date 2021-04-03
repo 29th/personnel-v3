@@ -6,6 +6,8 @@ ActiveAdmin.register Permission do
   filter :ability
   filter :access_level, as: :select, collection: Permission.access_levels
 
+  config.create_another = true
+
   index do
     selectable_column
     column :unit
