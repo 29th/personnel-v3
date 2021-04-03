@@ -276,6 +276,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    retryable (3.0.5)
     rexml (3.2.4)
     rubocop (1.11.0)
       parallel (~> 1.10)
@@ -416,6 +417,7 @@ DEPENDENCIES
   rails (~> 6.0.3.6)
   ransack (~> 2.4, >= 2.4.2)
   redcarpet (~> 3.5, >= 3.5.1)
+  retryable (~> 3.0, >= 3.0.5)
   sass-rails (~> 5.0)
   scout_apm (~> 4.0, >= 4.0.4)
   selenium-webdriver

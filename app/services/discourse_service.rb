@@ -1,5 +1,6 @@
 class DiscourseService
   class NoLinkedAccountError < StandardError; end
+  class TooManyRequestsError < StandardError; end
 
   include HTTParty
   base_uri ENV["DISCOURSE_BASE_URL"]
@@ -74,14 +75,22 @@ class DiscourseService
 
   def delete_role(discourse_user_id, role_id)
     path = "/admin/users/#{discourse_user_id}/groups/#{role_id}"
-    response = self.class.delete(path)
-    raise HTTParty::ResponseError, "Failed to delete role #{role_id}" if response.code >= 400
+    Retryable.retryable(tries: 4, on: TooManyRequestsError, sleep: BACKOFF) do
+      response = self.class.delete(path)
+      raise TooManyRequestsError if response.code == 429
+      raise HTTParty::ResponseError, "Failed to delete role #{role_id}" if response.code >= 400
+    end
   end
 
   def add_role(discourse_user_id, role_id)
     path = "/admin/users/#{discourse_user_id}/groups"
     body = {group_id: role_id}
-    response = self.class.post(path, body: body.to_json)
-    raise HTTParty::ResponseError, "Failed to add role #{role_id} (#{response.code})" if response.code >= 400
+    Retryable.retryable(tries: 4, on: TooManyRequestsError, sleep: BACKOFF) do
+      response = self.class.post(path, body: body.to_json)
+      raise TooManyRequestsError if response.code == 429
+      raise HTTParty::ResponseError, "Failed to add role #{role_id} (#{response.code})" if response.code >= 400
+    end
   end
+
+  BACKOFF = lambda { |interval| 4**interval }
 end
