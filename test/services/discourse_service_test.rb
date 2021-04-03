@@ -33,7 +33,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
   test "update_display_name throws if status is 500" do
     discourse_user_id = 1
     username = "fluffy_panda"
-    user = create(:user, last_name: "Panda", discourse_forum_member_id: discourse_user_id)
+    user = create(:user, last_name: "Panda", forum_member_id: discourse_user_id)
     stub_user_request(discourse_user_id, username: username)
 
     stub_request(:put, %r{/u/#{username}}).to_return(status: [500, "Internal Server Error"])
@@ -72,7 +72,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     discourse_user_id = 1
     username = "fluffy_panda"
 
-    user = create(:user, discourse_forum_member_id: discourse_user_id)
+    user = create(:user, forum_member_id: discourse_user_id)
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
     missing_role = create(:unit_forum_role, unit: unit)
@@ -92,7 +92,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     discourse_user_id = 1
     username = "fluffy_panda"
 
-    user = create(:user, discourse_forum_member_id: discourse_user_id)
+    user = create(:user, forum_member_id: discourse_user_id)
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
     create(:unit_forum_role, unit: unit)
