@@ -12,7 +12,7 @@ ActiveAdmin.register Permission do
     selectable_column
     column :unit
     column :access_level
-    column :ability
+    column :ability, sortable: "abilities.abbr"
     column :ability_name do |permission|
       permission.ability.name if permission.ability.present?
     end
