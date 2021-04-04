@@ -18,19 +18,20 @@ to the commander of the 29th - and every new member needs to complete it as
 well.
 
 ##### What will I learn in BCT?
-AThe basics about realism gaming, the 29th, and the game you choose: Darkest
-Hour, Rising Storm/Red Orchestra 2, Arma 3.
+The basics about realism gaming, the 29th, and the game you choose: 
+Arma 3, Rising Storm 2: Vietnam, or Squad.
 
-##### Do I have to use my in-game name and tag all the time when playing DH?
+##### Do I have to use my in-game name and tag all the time when playing?
 In the 29th servers you must wear your name and tag at all times. Outside of
 the 29th servers it is not required, but it is recommended, as the 29th tag
 carries weight and respect.
 
 ##### How long will it take to get my application processed?
 If you fill out all the information asked, as detailed as possible, it will
-be accepted or denied within roughly 48 hours.
+be accepted or denied within roughly 48 hours. Complications that require
+Headquarters approval may cause your application to take longer to process.
 
-##### Can I practice in the Platoon Server when it's empty?
+##### Can I practice in the BCT Server when it's empty?
 No, you're only allowed on the Platoon Server during the times of BCT.
 
 ##### Does the 29th use Teamspeak?
@@ -38,12 +39,10 @@ Yes, and it is open to the public. You may find the information
 [here](https://forums.29th.org/discussion/15744/29th-id-social-media-and-server-information#latest).
 
 ##### How do I get my full name as my in-game name? I can't get my name to fit!
-Drop down the console, type this command: set input KEY setname Pvt.
-Lastname [29th 301] Replace KEY with any key that you wish to bind this command
-to, replace your name and TP number accordingly. Hit "enter" key, and close
-console. When You enter the server, hit that binded key, and you will have your
-full in-game name. For details on this, see [this
-page](http://29th.org/dh/index.php?title=Name_Changing).
+Some names, due to character limits in the games we play, simply do not fit.
+This is often an issue in Rising Storm 2: Vietnam with longer names. You may 
+find it necessary to shorten your in-game name if this is the case. 
+Our Lighthouse staff will assist you if this is the case.
 
 ### During BCT
 
@@ -75,7 +74,7 @@ Until you graduate, it is not your duty to enforce 29th rules on our
 servers. You can report troublemakers to your Enlistment Liaison by PM (Private
 Message) on the forums (nickname, server, time, description of problem).
 
-##### Can I just use any class available in DH, while being in the 29th?
+##### Can I just use any class available in my Company's game, while being in the 29th?
 As the rifle is the most common and most effective weapon in the game, all
 of our incoming soldiers learn its ins-and-outs. After graduating BCT, soldiers
 are given the opportunity to choose an AIT (Advanced Infantry Training) class
