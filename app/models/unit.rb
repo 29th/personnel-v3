@@ -26,6 +26,10 @@ class Unit < ApplicationRecord
 
   before_save :update_path_from_ancestry
 
+  def to_s
+    abbr
+  end
+
   def display_name
     abbr
   end
