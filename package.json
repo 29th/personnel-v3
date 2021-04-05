@@ -2,7 +2,9 @@
   "name": "personnel",
   "private": true,
   "dependencies": {
+    "@activeadmin/activeadmin": "^2.9.0",
     "@rails/webpacker": "5.2.1",
+    "activeadmin_addons": "^1.0.0",
     "bootstrap.native": "^2.0.23",
     "choices.js": "^9.0.1"
   },
