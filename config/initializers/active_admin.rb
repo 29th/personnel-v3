@@ -300,3 +300,16 @@ ActiveAdmin.setup do |config|
   #
   config.use_webpacker = true
 end
+
+module AdminPageLayoutOverride
+  def build_active_admin_head(*args)
+    within head do
+      text_node stylesheet_link_tag "country_flags"
+    end
+
+    super
+  end
+end
+
+ActiveAdmin::Views::Pages::Base.send :prepend, AdminPageLayoutOverride
+Rails.application.config.assets.precompile += %w[country_flags.css]
