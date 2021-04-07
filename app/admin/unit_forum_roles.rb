@@ -28,40 +28,32 @@ ActiveAdmin.register UnitForumRole do
 
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
-    f.inputs do
+    f.inputs "data-controller" => "forum-roles" do
       input :unit, collection: Unit.for_dropdown
       input :access_level, as: :select, collection: UnitForumRole.access_levels.keys
-      input :forum_id, as: :select, collection: UnitForumRole.forum_ids.map(&:reverse)
+      input :forum_id, as: :select,
+                       collection: UnitForumRole.forum_ids.map(&:reverse),
+                       input_html: {
+                         "data-controller" => "select2-shim",
+                         "data-action" => "forum-roles#showForumRoles",
+                         "data-forum-roles-target" => "forum"
+                       }
       input :role_id, as: :select, label: "Discourse role",
                       collection: controller.roles[:discourse].map(&:reverse),
                       input_html: {
-                        name: "unit_forum_role[discourse_role_id]",
-                        id: "unit_forum_role_discourse_role_id"
+                        "data-forum-roles-target" => "discourseRoles",
+                        :name => "unit_forum_role[discourse_role_id]",
+                        :id => "unit_forum_role_discourse_role_id"
                       }
       input :role_id, as: :select, label: "Vanilla role",
                       collection: controller.roles[:vanilla].map(&:reverse),
                       input_html: {
-                        name: "unit_forum_role[vanilla_role_id]",
-                        id: "unit_forum_role_vanilla_role_id"
+                        "data-forum-roles-target" => "vanillaRoles",
+                        :name => "unit_forum_role[vanilla_role_id]",
+                        :id => "unit_forum_role_vanilla_role_id"
                       }
     end
     f.actions
-
-    script do
-      raw <<~JS
-        function showForumRoleInput (forum) {
-          $('#unit_forum_role_discourse_role_id').parent('li').toggle(forum === 'discourse')
-          $('#unit_forum_role_vanilla_role_id').parent('li').toggle(forum === 'vanilla')
-        }
-
-        forumInput = $('#unit_forum_role_forum_id')
-        forumInput.on('change', function (evt) {
-          showForumRoleInput(evt.target.value)
-        })
-
-        showForumRoleInput(forumInput.val())
-      JS
-    end
   end
 
   before_save do |unit_forum_role|
