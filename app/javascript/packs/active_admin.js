@@ -1,9 +1,10 @@
-// Load Active Admin's styles into Webpacker,
-// see `active_admin.scss` for customization.
-import "../stylesheets/active_admin";
+import { Application } from 'stimulus'
+import { definitionsFromContext } from 'stimulus/webpack-helpers'
+import '@activeadmin/activeadmin'
+import 'activeadmin_addons'
+import '../stylesheets/active_admin'
+import '../src/assignments_transfer_from'
 
-import "@activeadmin/activeadmin";
-import "activeadmin_addons";
-import "./active_admin/assignments_transfer_from";
-
-console.log('ActiveAdmin js!')
+const application = Application.start()
+const context = require.context('../src/controllers', true, /\.js$/)
+application.load(definitionsFromContext(context))
