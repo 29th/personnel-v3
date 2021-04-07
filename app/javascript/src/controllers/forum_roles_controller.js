@@ -5,10 +5,6 @@ export default class extends Controller {
   static targets = ['forum', 'discourseRoles', 'vanillaRoles']
 
   connect() {
-    $(this.forumTarget).on('select2:select', function () {
-      const event = new Event('change', { bubbles: true })
-      this.dispatchEvent(event)
-    })
     this.showForumRoles()
   }
 

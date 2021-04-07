@@ -34,6 +34,7 @@ ActiveAdmin.register UnitForumRole do
       input :forum_id, as: :select,
                        collection: UnitForumRole.forum_ids.map(&:reverse),
                        input_html: {
+                         "data-controller" => "select2-shim",
                          "data-action" => "forum-roles#showForumRoles",
                          "data-forum-roles-target" => "forum"
                        }
