@@ -10,7 +10,7 @@ class RosterController < ApplicationController
       .includes(user: :rank)
       .includes(:position)
       .where(unit_id: units.ids)
-      .order("positions.access_level DESC, ranks.order DESC")
+      .order("positions.order DESC, ranks.order DESC")
       .group_by(&:unit_id)
 
     @slim = params.key?(:slim)
