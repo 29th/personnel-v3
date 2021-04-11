@@ -1,6 +1,7 @@
 ActiveAdmin.register SpecialForumRole do
   permit_params :special_attribute, :forum_id, :role_id,
     :discourse_role_id, :vanilla_role_id
+  menu parent: "Permissions"
 
   scope :all, default: true
   scope :discourse

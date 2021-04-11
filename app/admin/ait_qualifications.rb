@@ -2,6 +2,7 @@ ActiveAdmin.register AITQualification do
   belongs_to :user, optional: true
   actions :index, :show, :new, :create, :destroy
   permit_params :member_id, :standard_id, :author_member_id, :date
+  menu parent: "AIT"
 
   filter :user, as: :select, collection: -> { User.for_dropdown }
   filter :date

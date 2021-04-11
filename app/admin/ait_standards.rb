@@ -1,5 +1,6 @@
 ActiveAdmin.register AITStandard do
   permit_params :weapon, :game, :badge, :description, :details
+  menu parent: "AIT"
 
   filter :weapon, as: :select, collection: -> { AITStandard.weapons.map(&:reverse) }
   filter :game, as: :select, collection: -> { AITStandard.games.map(&:reverse) }
