@@ -14,4 +14,19 @@ class AITStandard < ApplicationRecord
   validates :game, presence: true
   validates :badge, presence: true
   validates :description, presence: true
+
+  def to_s
+    description
+  end
+
+  def with_prefix
+    prefix = [game, weapon, badge].reject(&method(:nil_or_na)).join(":")
+    "[#{prefix}] #{description}"
+  end
+
+  private
+
+  def nil_or_na(value)
+    value.nil? || value == "notapplicable"
+  end
 end

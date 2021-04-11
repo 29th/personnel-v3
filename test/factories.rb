@@ -199,4 +199,18 @@ FactoryBot.define do
     end_date { 1.week.from_now }
     reason { Faker::Lorem.sentence }
   end
+
+  factory :ait_standard do
+    weapon { :rifle }
+    game { :squad }
+    badge { :marksman }
+    description { Faker::Lorem.sentence }
+  end
+
+  factory :ait_qualification do
+    user
+    ait_standard
+    author factory: :user
+    date { 1.day.ago }
+  end
 end

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :promotions, foreign_key: "member_id"
   has_many :units, through: :assignments
   has_many :user_awards, foreign_key: "member_id"
+  has_many :ait_qualifications, foreign_key: "member_id"
+  has_many :ait_standards, through: :ait_qualifications
   belongs_to :rank
   belongs_to :country, optional: true
 
