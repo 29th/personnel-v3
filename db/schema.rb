@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_103639) do
+ActiveRecord::Schema.define(version: 2021_04_14_064400) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_103639) do
     t.integer "recruiter_member_id", limit: 3, comment: "Recruiter's MemberID", unsigned: true
     t.text "comments", null: false, comment: "Comments from Recruit"
     t.text "body", null: false, comment: "The enlistment papers"
-    t.text "units", null: false, comment: "List of previous units"
+    t.text "previous_units", null: false
     t.index ["country_id"], name: "Country"
     t.index ["liaison_member_id"], name: "Liaison ID"
     t.index ["member_id"], name: "Member ID"
