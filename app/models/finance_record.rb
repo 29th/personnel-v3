@@ -1,5 +1,6 @@
 class FinanceRecord < ApplicationRecord
   self.table_name = "finances"
+  include HasForumTopic
   audited
   belongs_to :user, foreign_key: "member_id"
 
@@ -12,16 +13,9 @@ class FinanceRecord < ApplicationRecord
                 digital_ocean: "Digital Ocean, Inc",
                 google: "Google"}
 
-  enum forum_id: {phpbb: "PHPBB",
-                  smf: "SMF",
-                  vanilla: "Vanilla",
-                  discourse: "Discourse"}
-
   validates :date, presence: true
   validates_date :date
   validates :user, presence: true
-  validates :forum_id, presence: true, if: -> { topic_id.present? }
-  validates :topic_id, numericality: {only_integer: true}, allow_nil: true
   validates :notes, presence: true
   validates :amount_received, numericality: true, allow_nil: true
   validates :amount_paid, numericality: true, allow_nil: true

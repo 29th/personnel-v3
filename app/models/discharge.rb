@@ -1,5 +1,6 @@
 class Discharge < ApplicationRecord
   self.inheritance_column = nil
+  include HasForumTopic
   audited
 
   belongs_to :user, foreign_key: "member_id"
@@ -8,11 +9,6 @@ class Discharge < ApplicationRecord
               general: "General",
               dishonorable: "Dishonorable"}
 
-  enum forum_id: {phpbb: "PHPBB",
-                  smf: "SMF",
-                  vanilla: "Vanilla",
-                  discourse: "Discourse"}
-
   attr_accessor :end_assignments
 
   validates :user, presence: true
@@ -20,6 +16,4 @@ class Discharge < ApplicationRecord
   validates_date :date
   validates :type, presence: true
   validates :reason, presence: true
-  validates :forum_id, presence: true, if: -> { topic_id.present? }
-  validates :topic_id, numericality: {only_integer: true}, allow_nil: true
 end
