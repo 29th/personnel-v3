@@ -1,7 +1,6 @@
 class FinanceRecordPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?("finance_view_any") ||
-      user&.has_permission?("admin")
+    user&.member?
   end
 
   def show?
