@@ -7,7 +7,7 @@ class UserAwardTest < ActiveSupport::TestCase
   end
 
   test "invalid without required fields" do
-    required_fields = %i[user award date forum_id topic_id]
+    required_fields = %i[user award date]
     required_fields.each do |field|
       user_award = build(:user_award, field => nil)
       refute user_award.valid?
