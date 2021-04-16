@@ -4,7 +4,7 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
   includes user: :rank
 
   permit_params :member_id, :posting_date, :start_date, :end_date, :return_date,
-    :reason, :availability, :forum_id, :topic_id
+    :reason, :availability
 
   scope :active, default: true
   scope :all
@@ -36,8 +36,6 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
       input :return_date, label: "Actual return date"
       input :reason
       input :availability
-      input :forum_id, as: :select, collection: UserAward.forum_ids.map(&:reverse)
-      input :topic_id, label: "Topic ID"
     end
     actions
   end
