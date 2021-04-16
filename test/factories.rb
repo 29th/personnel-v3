@@ -213,4 +213,26 @@ FactoryBot.define do
     author factory: :user
     date { 1.day.ago }
   end
+
+  factory :enlistment do
+    user
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    age { rand(13..85) }
+    date { Date.current }
+    country
+    timezone { :est }
+    steam_id { Faker::Number.number(digits: 17).to_s }
+    experience { "none" }
+    recruiter { "private pyle" }
+    comments { "hello" }
+    previous_units { "" }
+
+    ingame_name { "player_one" } # don't require
+    steam_name { "player_one" } # don't require
+    email { "" } # don't require
+    body { "" }
+    forum_id { :discourse }
+    topic_id { 0 }
+  end
 end
