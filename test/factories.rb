@@ -229,4 +229,9 @@ FactoryBot.define do
     recruiter { "" }
     ingame_name { "" }
   end
+
+  factory :restricted_name do
+    user
+    name { user.last_name }
+  end
 end

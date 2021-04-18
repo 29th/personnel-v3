@@ -24,4 +24,10 @@ class EnlistmentTest < ActiveSupport::TestCase
       build_stubbed(:enlistment, previous_units: previous_units)
     end
   end
+
+  test "last_name is invalid if present in restricted names" do
+    restricted_name = create(:restricted_name)
+    enlistment = build_stubbed(:enlistment, last_name: restricted_name.name)
+    refute enlistment.valid?
+  end
 end

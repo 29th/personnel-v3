@@ -19,6 +19,7 @@ class Enlistment < ApplicationRecord
   validates :first_name, presence: true, length: {in: 1..30}
   validates :middle_name, length: {maximum: 1}
   validates :last_name, presence: true, length: {in: 2..40}
+  validate :last_name, :last_name_not_restricted
   validates :age, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 13, less_than_or_equal_to: 99}
   validates :timezone, presence: true
   validates :game, presence: true
@@ -29,10 +30,6 @@ class Enlistment < ApplicationRecord
 
   serialize :previous_units, JSON
   validates_associated :previous_units
-
-  # change table to allow nulls in unused fields
-  # check last_name against restricted names
-  # serialize units as array of objects, ideally typed/validated
 
   before_create :set_date
   before_validation :shorten_middle_name
@@ -52,5 +49,11 @@ class Enlistment < ApplicationRecord
 
   def shorten_middle_name
     self.middle_name = middle_name ? middle_name[0] : ""
+  end
+
+  def last_name_not_restricted
+    if RestrictedName.where(name: last_name).where.not(user: user).exists?
+      errors.add(:last_name, "is already taken")
+    end
   end
 end
