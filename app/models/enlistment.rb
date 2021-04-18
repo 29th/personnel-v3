@@ -28,6 +28,7 @@ class Enlistment < ApplicationRecord
   validates :recruiter, length: {maximum: 128}
 
   serialize :previous_units, JSON
+  validates_associated :previous_units
 
   # change table to allow nulls in unused fields
   # check last_name against restricted names
@@ -35,6 +36,13 @@ class Enlistment < ApplicationRecord
 
   before_create :set_date
   before_validation :shorten_middle_name
+
+  attr_reader :previous_units
+
+  def previous_units=(hashes)
+    @previous_units = hashes.empty? ? [] : hashes.map { |hash| PreviousUnit.new(hash) }
+    super(@previous_units)
+  end
 
   private
 
