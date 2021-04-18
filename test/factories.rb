@@ -225,7 +225,6 @@ FactoryBot.define do
     steam_id { Faker::Number.number(digits: 17).to_s }
     experience { "none" }
     comments { "" }
-    previous_units { "" }
     recruiter { "" }
     ingame_name { "" }
   end

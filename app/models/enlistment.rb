@@ -28,18 +28,11 @@ class Enlistment < ApplicationRecord
   validates :experience, presence: true
   validates :recruiter, length: {maximum: 128}
 
-  serialize :previous_units, JSON
+  serialize :previous_units, PreviousUnit::ArraySerializer
   validates_associated :previous_units
 
   before_create :set_date
   before_validation :shorten_middle_name
-
-  attr_reader :previous_units
-
-  def previous_units=(hashes)
-    @previous_units = hashes.empty? ? [] : hashes.map { |hash| PreviousUnit.new(hash) }
-    super(@previous_units)
-  end
 
   private
 

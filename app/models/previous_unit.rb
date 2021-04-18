@@ -14,4 +14,15 @@ class PreviousUnit
     # Don't store validation properties in database
     super(options).except("validation_context", "errors")
   end
+
+  class ArraySerializer < ::ActiveRecord::Coders::JSON
+    def self.load(value)
+      json = super(value)
+      json&.map { |hash| PreviousUnit.new(hash) } || []
+    end
+
+    def self.dump(models)
+      super(models) unless models.empty?
+    end
+  end
 end

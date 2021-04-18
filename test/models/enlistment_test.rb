@@ -7,8 +7,8 @@ class EnlistmentTest < ActiveSupport::TestCase
     assert_equal JSON.dump(previous_units), enlistment.previous_units_before_type_cast
   end
 
-  test "treats previous_units as an empty array when blank" do
-    enlistment = create(:enlistment, previous_units: "")
+  test "treats previous_units as an empty array when nil" do
+    enlistment = create(:enlistment)
     assert_equal [], enlistment.previous_units
   end
 
