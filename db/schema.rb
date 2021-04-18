@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_060305) do
+ActiveRecord::Schema.define(version: 2021_04_18_090727) do
 
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_060305) do
     t.date "date", null: false, comment: "Enlistment Date"
     t.integer "liaison_member_id", limit: 3, comment: "Member ID of Enlistment Liaison", unsigned: true
     t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
-    t.integer "topic_id", limit: 3, null: false, comment: "ID of forums topic "
+    t.integer "topic_id", limit: 3, comment: "ID of forums topic "
     t.integer "unit_id", limit: 3, comment: "Unit ID of Training Platoon", unsigned: true
     t.column "status", "enum('Pending','Accepted','Denied','Withdrawn','AWOL')", default: "Pending", null: false, comment: "Status of enlistment"
     t.string "first_name", limit: 30, null: false, comment: "Recruit's First Name"
@@ -213,15 +213,15 @@ ActiveRecord::Schema.define(version: 2021_04_16_060305) do
     t.column "timezone", "enum('EST','GMT','PST','Any','None')", comment: "Prefered time zone"
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", comment: "Chosen game"
     t.string "ingame_name", limit: 60, null: false, comment: "In-game Name"
-    t.string "steam_name", limit: 60, null: false, comment: "Steamfriends Name"
+    t.string "steam_name", limit: 60, comment: "Steamfriends Name"
     t.text "steam_id", size: :tiny, null: false
-    t.string "email", limit: 60, null: false, comment: "Working e-mail"
+    t.string "email", limit: 60, comment: "Working e-mail"
     t.text "experience", null: false
     t.string "recruiter", limit: 128, null: false
     t.integer "recruiter_member_id", limit: 3, comment: "Recruiter's MemberID", unsigned: true
     t.text "comments", null: false, comment: "Comments from Recruit"
-    t.text "body", null: false, comment: "The enlistment papers"
-    t.text "previous_units", null: false
+    t.text "body", comment: "The enlistment papers"
+    t.text "previous_units"
     t.index ["country_id"], name: "Country"
     t.index ["liaison_member_id"], name: "Liaison ID"
     t.index ["member_id"], name: "Member ID"
