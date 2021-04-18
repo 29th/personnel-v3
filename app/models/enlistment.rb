@@ -19,10 +19,10 @@ class Enlistment < ApplicationRecord
   validates :first_name, presence: true, length: {in: 1..30}
   validates :middle_name, length: {maximum: 1}
   validates :last_name, presence: true, length: {in: 2..40}
-  validates :age, presence: true, numericality: {only_integer: true}
+  validates :age, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 13, less_than_or_equal_to: 99}
   validates :timezone, presence: true
   validates :game, presence: true
-  validates :ingame_name, length: {in: 1..60} # don't require
+  validates :ingame_name, length: {maximum: 60}
   validates :steam_id, numericality: {only_integer: true} # validate length?
   validates :experience, presence: true
   validates :recruiter, length: {maximum: 128}

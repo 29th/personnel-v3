@@ -224,15 +224,9 @@ FactoryBot.define do
     timezone { :est }
     steam_id { Faker::Number.number(digits: 17).to_s }
     experience { "none" }
-    recruiter { "private pyle" }
-    comments { "hello" }
+    comments { "" }
     previous_units { "" }
-
-    ingame_name { "player_one" } # don't require
-    steam_name { "player_one" } # don't require
-    email { "" } # don't require
-    body { "" }
-    forum_id { :discourse }
-    topic_id { 0 }
+    recruiter { "" }
+    ingame_name { "" }
   end
 end
