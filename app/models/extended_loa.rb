@@ -1,6 +1,5 @@
 class ExtendedLOA < ApplicationRecord
   self.table_name = "eloas"
-  include HasForumTopic
   audited
   belongs_to :user, foreign_key: "member_id"
 

@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_04_18_090727) do
-
   create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -194,8 +193,6 @@ ActiveRecord::Schema.define(version: 2021_04_18_090727) do
     t.date "return_date", comment: "Actual date of the return"
     t.text "reason", null: false, comment: "Reason for LOA"
     t.text "availability", comment: "Is member availaible during LOA"
-    t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "ID of forum where promotion was posted"
-    t.integer "topic_id", limit: 3, default: 0, null: false, comment: "ID of forums topic"
     t.index ["member_id"], name: "Member ID"
   end
 
