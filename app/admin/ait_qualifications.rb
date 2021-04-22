@@ -1,6 +1,8 @@
 ActiveAdmin.register AITQualification do
   belongs_to :user, optional: true
   actions :index, :show, :new, :create, :destroy
+  includes user: :rank, author: :rank
+  includes :ait_standard
   permit_params :member_id, :standard_id, :author_member_id, :date
   menu parent: "AIT"
 

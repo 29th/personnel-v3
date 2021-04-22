@@ -69,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def member?
-    assignments.active
+    @member ||= assignments.active
       .joins(:unit)
       .where(units: {classification: %i[combat staff]})
       .any?
