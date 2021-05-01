@@ -1,6 +1,7 @@
 ActiveAdmin.register Permission do
   includes :unit, :ability
   permit_params :unit_id, :access_level, :ability_id
+  menu parent: "Permissions"
 
   filter :unit, collection: -> { Unit.for_dropdown }
   filter :ability
@@ -12,7 +13,7 @@ ActiveAdmin.register Permission do
     selectable_column
     column :unit
     column :access_level
-    column :ability
+    column :ability, sortable: "abilities.abbr"
     column :ability_name do |permission|
       permission.ability.name if permission.ability.present?
     end

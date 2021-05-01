@@ -33,6 +33,13 @@ header nav {
     height: 50px;
   }
 
+  .navbar-collapse.show {
+    background-color: $rifle-green;
+    z-index: 100;
+    padding: 10px;
+    border: 1px black solid;
+  }
+
   .nav-item {
     text-transform: uppercase;
 

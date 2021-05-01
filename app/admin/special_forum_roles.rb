@@ -1,6 +1,7 @@
 ActiveAdmin.register SpecialForumRole do
   permit_params :special_attribute, :forum_id, :role_id,
     :discourse_role_id, :vanilla_role_id
+  menu parent: "Permissions"
 
   scope :all, default: true
   scope :discourse
@@ -23,39 +24,31 @@ ActiveAdmin.register SpecialForumRole do
 
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
-    f.inputs do
+    f.inputs "data-controller" => "forum-roles" do
       input :special_attribute, as: :select, collection: SpecialForumRole.special_attributes.map(&:reverse)
-      input :forum_id, as: :select, collection: SpecialForumRole.forum_ids.map(&:reverse)
+      input :forum_id, as: :select,
+                       collection: SpecialForumRole.forum_ids.map(&:reverse),
+                       input_html: {
+                         "data-controller" => "select2-shim",
+                         "data-action" => "forum-roles#showForumRoles",
+                         "data-forum-roles-target" => "forum"
+                       }
       input :role_id, as: :select, label: "Discourse role",
                       collection: controller.roles[:discourse].map(&:reverse),
                       input_html: {
-                        name: "special_forum_role[discourse_role_id]",
-                        id: "special_forum_role_discourse_role_id"
+                        "data-forum-roles-target" => "discourseRoles",
+                        :name => "special_forum_role[discourse_role_id]",
+                        :id => "special_forum_role_discourse_role_id"
                       }
       input :role_id, as: :select, label: "Vanilla role",
                       collection: controller.roles[:vanilla].map(&:reverse),
                       input_html: {
-                        name: "special_forum_role[vanilla_role_id]",
-                        id: "special_forum_role_vanilla_role_id"
+                        "data-forum-roles-target" => "vanillaRoles",
+                        :name => "special_forum_role[vanilla_role_id]",
+                        :id => "special_forum_role_vanilla_role_id"
                       }
     end
     f.actions
-
-    script do
-      raw <<~JS
-        function showForumRoleInput (forum) {
-          $('#special_forum_role_discourse_role_id').parent('li').toggle(forum === 'discourse')
-          $('#special_forum_role_vanilla_role_id').parent('li').toggle(forum === 'vanilla')
-        }
-
-        forumInput = $('#special_forum_role_forum_id')
-        forumInput.on('change', function (evt) {
-          showForumRoleInput(evt.target.value)
-        })
-
-        showForumRoleInput(forumInput.val())
-      JS
-    end
   end
 
   before_save do |special_forum_role|

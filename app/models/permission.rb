@@ -7,4 +7,5 @@ class Permission < ApplicationRecord
   belongs_to :ability
 
   validates_presence_of :unit, :ability, :access_level
+  validates :ability, uniqueness: {scope: [:unit, :access_level], message: "Permission combination already exists"}
 end

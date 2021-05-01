@@ -3,17 +3,11 @@ class ExtendedLOA < ApplicationRecord
   audited
   belongs_to :user, foreign_key: "member_id"
 
-  enum forum_id: {phpbb: "PHPBB",
-                  smf: "SMF",
-                  vanilla: "Vanilla",
-                  discourse: "Discourse"}
-
   validates :user, presence: true
   validates :start_date, presence: true, timeliness: {type: :date}
   validates :end_date, presence: true, timeliness: {type: :date, after: :start_date}
   validates :return_date, timeliness: {type: :date, after: :start_date}, allow_blank: true
   validates :reason, presence: true
-  validates :topic_id, numericality: {only_integer: true}, allow_nil: true
 
   before_create :set_posting_date
 

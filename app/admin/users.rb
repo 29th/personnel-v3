@@ -69,6 +69,7 @@ ActiveAdmin.register User do
 
   sidebar "Related records", only: [:show, :edit] do
     ul do
+      li link_to "AIT Qualifications", admin_user_ait_qualifications_path(resource) if authorized?(:index, AITQualification)
       li link_to "Assignments", admin_user_assignments_path(resource) if authorized?(:index, Assignment)
       li link_to "Demerits", admin_user_demerits_path(resource) if authorized?(:index, Demerit)
       li link_to "Discharges", admin_user_discharges_path(resource) if authorized?(:index, Discharge)

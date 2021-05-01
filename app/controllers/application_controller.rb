@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
     namespace = ActiveAdmin.application.default_namespace
     resources = ActiveAdmin.application.namespaces[namespace].resources
     resource_classes = resources.grep(ActiveAdmin::Resource).map(&:resource_class)
+    resource_classes -= [Enlistment]
     resource_classes.any? do |resource_class|
       Pundit.policy(current_user, resource_class)&.new?
     end

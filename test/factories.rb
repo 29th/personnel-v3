@@ -199,4 +199,38 @@ FactoryBot.define do
     end_date { 1.week.from_now }
     reason { Faker::Lorem.sentence }
   end
+
+  factory :ait_standard do
+    weapon { :rifle }
+    game { :squad }
+    badge { :marksman }
+    description { Faker::Lorem.sentence }
+  end
+
+  factory :ait_qualification do
+    user
+    ait_standard
+    author factory: :user
+    date { 1.day.ago }
+  end
+
+  factory :enlistment do
+    user
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    age { rand(13..85) }
+    date { Date.current }
+    country
+    timezone { :est }
+    steam_id { Faker::Number.number(digits: 17).to_s }
+    experience { "none" }
+    comments { "" }
+    recruiter { "" }
+    ingame_name { "" }
+  end
+
+  factory :restricted_name do
+    user
+    name { user.last_name }
+  end
 end

@@ -70,7 +70,7 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "pundit", "~> 2.1"
-gem "bootstrap", "~> 4.4.1"
+gem "bootstrap", "~> 4.6"
 gem "kaminari", "~> 1.2", ">= 1.2.1"
 gem "activeadmin", "~> 2.9"
 gem "nilify_blanks", "~> 1.4"
@@ -92,3 +92,4 @@ gem "delayed_job_active_record", "~> 4.1", ">= 4.1.5"
 gem "honeybadger", "~> 4.0"
 gem "scout_apm", "~> 4.0", ">= 4.0.4"
 gem "retryable", "~> 3.0", ">= 3.0.5"
+gem "sassc", "~> 2.1.0"

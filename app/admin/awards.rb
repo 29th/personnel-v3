@@ -36,7 +36,7 @@ ActiveAdmin.register Award do
       row :game
       row :description
       row "User awards" do |award|
-        link_to award.user_awards.count, admin_award_user_awards_path(award)
+        link_to award.user_awards.count, [:admin, :user_awards, q: {award_id_eq: award.id}]
       end
       row :presentation_image do |award|
         image_tag award.presentation_image_url unless award.presentation_image.nil?

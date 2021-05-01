@@ -5,7 +5,7 @@ ActiveAdmin.register BanLog do
   permit_params :date, :handle, :roid, :uid, :guid, :ip, :id_admin,
     :reason, :comments
 
-  filter :admin, collection: -> { User.active.includes(:rank).order(:last_name) }
+  filter :admin, collection: -> { User.for_dropdown }
   filter :date
   filter :roid_or_uid_or_guid_or_handle_or_reason_or_comments_or_ip_cont, as: :string, label: "Contains"
 
