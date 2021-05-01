@@ -46,7 +46,7 @@ stick with rifle training.
 
 Here's how enlisting works:
 
-1. <%= link_to 'Create an account', 'https://forums.29th.org/entry/register' %>
+1. <%= link_to 'Create an account', 'https://forums.29th.org/signup' %>
    on our forums
 2. Confirm your email address by clicking the link in the registration email
 3. While logged in, <%= link_to 'fill out an enlistment form', 'https://personnel.29th.org/#enlist' %>
