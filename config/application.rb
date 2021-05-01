@@ -26,6 +26,7 @@ module Personnel
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.homepage = config_for(:homepage)
+    config.siblings = config_for(:siblings)
 
     endpoints_config_path = Rails.root.join("config", "endpoints", "#{Rails.env}.yml")
     config.endpoints = config_for(endpoints_config_path)

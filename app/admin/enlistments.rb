@@ -79,5 +79,16 @@ ActiveAdmin.register Enlistment do
       end
       row :comments
     end
+
+    panel "Additional Information" do
+      table_for(enlistment.linked_users) do
+        column "User" do |row|
+          link_to row[:name], row[:profile_url]
+        end
+        column "IP" do |row|
+          row[:ips].join(", ")
+        end
+      end
+    end
   end
 end
