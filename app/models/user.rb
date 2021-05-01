@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
-  validates :discourse_forum_member_id, uniqueness: true, allow_nil: true
+  validates :forum_member_id, uniqueness: true, allow_nil: true
 
   def full_name
     middle_initial = "#{middle_name.first}." if middle_name.present?
@@ -93,13 +93,13 @@ class User < ApplicationRecord
   end
 
   def update_forum_display_name
-    DiscourseService.new.update_user_display_name(self) if discourse_forum_member_id.present?
-    VanillaService.new.update_user_display_name(self) if forum_member_id.present?
+    DiscourseService.new.update_user_display_name(self) if forum_member_id.present?
+    VanillaService.new.update_user_display_name(self) if vanilla_forum_member_id.present?
   end
 
   def update_forum_roles
-    DiscourseService.new.update_user_roles(self) if discourse_forum_member_id.present?
-    VanillaService.new.update_user_roles(self) if forum_member_id.present?
+    DiscourseService.new.update_user_roles(self) if forum_member_id.present?
+    VanillaService.new.update_user_roles(self) if vanilla_forum_member_id.present?
   end
 
   def refresh_rank

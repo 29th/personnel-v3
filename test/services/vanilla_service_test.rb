@@ -3,7 +3,7 @@ require "test_helper"
 class VanillaServiceTest < ActiveSupport::TestCase
   test "update_display_name uses user.short_name" do
     vanilla_user_id = 1
-    user = create(:user, last_name: "Panda", forum_member_id: vanilla_user_id)
+    user = create(:user, last_name: "Panda", vanilla_forum_member_id: vanilla_user_id)
 
     request_body = {name: user.short_name}
     stub_update = stub_request(:patch, %r{/users/#{vanilla_user_id}})
@@ -14,8 +14,8 @@ class VanillaServiceTest < ActiveSupport::TestCase
     assert_requested(stub_update)
   end
 
-  test "update_display_name throws NoLinkedAccountError when forum_member_id is empty" do
-    user = create(:user, forum_member_id: nil)
+  test "update_display_name throws NoLinkedAccountError when vanilla_forum_member_id is empty" do
+    user = create(:user, vanilla_forum_member_id: nil)
 
     assert_raises VanillaService::NoLinkedAccountError do
       VanillaService.new.update_user_display_name(user)
@@ -24,7 +24,7 @@ class VanillaServiceTest < ActiveSupport::TestCase
 
   test "update_user_roles sends expected roles" do
     vanilla_user_id = 1
-    user = create(:user, forum_member_id: vanilla_user_id)
+    user = create(:user, vanilla_forum_member_id: vanilla_user_id)
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
 
