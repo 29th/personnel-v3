@@ -40,6 +40,10 @@ class Enlistment < ApplicationRecord
   before_create :set_date
   before_validation :shorten_middle_name
 
+  def linked_users
+    @linked_vanilla_users ||= VanillaService.new.get_linked_users(user) if user&.forum_member_id
+  end
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object = nil)

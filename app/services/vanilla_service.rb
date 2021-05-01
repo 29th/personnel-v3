@@ -33,4 +33,38 @@ class VanillaService
     body = {roleID: expected_roles}
     @conn.patch(path, body)
   end
+
+  def get_linked_users(user)
+    vanilla_user_id = user.forum_member_id
+    raise NoLinkedAccountError unless vanilla_user_id
+
+    path = "/users/#{vanilla_user_id}"
+    response = @conn.get(path)
+    return unless response.body["ips"].present?
+
+    rows = response.body["ips"].map { |row| row.deep_transform_keys(&:underscore) }
+    rows = key_ips_by_user(rows)
+    rows.map(&method(:add_user_profile_url))
+  end
+
+  private
+
+  # Invert structure to be keyed by user
+  def key_ips_by_user(rows)
+    users = rows.each_with_object({}) do |row, memo|
+      row["other_users"].each do |other_user|
+        name = other_user["name"]
+        user_id = other_user["user_id"]
+        memo[name] ||= {name: name, user_id: user_id, ips: []}
+        memo[name][:ips] << row["ip"]
+      end
+    end
+    users.values
+  end
+
+  def add_user_profile_url(row)
+    base_url = Rails.configuration.siblings.vanilla
+    row[:profile_url] = "#{base_url}/profile/#{row[:user_id]}/#{row[:name]}"
+    row
+  end
 end
