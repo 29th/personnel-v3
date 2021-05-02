@@ -70,7 +70,7 @@ ActiveAdmin.register FinanceRecord do
       f.input :amount_received
       f.input :amount_paid
       f.input :fee
-      f.input :forum_id, as: :select, collection: FinanceRecord.vendors.map(&:reverse)
+      f.input :forum_id, as: :select, collection: FinanceRecord.forum_ids.map(&:reverse)
       f.input :topic_id, label: "Topic ID"
       f.input :notes
     end
