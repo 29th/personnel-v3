@@ -23,6 +23,7 @@ ActiveAdmin.register Discharge do
     attributes_table do
       row :user
       row :date
+      row :type
       row :reason
       row :was_reversed
       row :forum_id
@@ -43,6 +44,7 @@ ActiveAdmin.register Discharge do
       end
 
       f.input :date
+      f.input :type, as: :select, collection: Discharge.types.map(&:reverse)
       f.input :reason
       f.input :was_reversed unless f.object.new_record?
       f.input :forum_id, as: :select, collection: Discharge.forum_ids.map(&:reverse)
