@@ -34,12 +34,11 @@ class DiscourseService
   def update_user_display_name(user)
     discourse_user = get_discourse_user(user)
     username = discourse_user["username"]
-    puts discourse_user["a"]
 
     path = "/u/#{username}"
     body = {name: user.short_name}
     response = self.class.put(path, body: body.to_json)
-    raise HTTParty::ResponseError, "Failed to update display name for user #{username}" if response.code >= 400
+    raise HTTParty::ResponseError, "Failed to update display name for discourse user #{username} (status: #{response.code}): #{response.body}" if response.code >= 400
   end
 
   def update_user_roles(user)
@@ -78,7 +77,7 @@ class DiscourseService
     Retryable.retryable(tries: 4, on: TooManyRequestsError, sleep: BACKOFF) do
       response = self.class.delete(path)
       raise TooManyRequestsError if response.code == 429
-      raise HTTParty::ResponseError, "Failed to delete role #{role_id}" if response.code >= 400
+      raise HTTParty::ResponseError, "Failed to remove role #{role_id} from discourse user #{discourse_user_id} (status: #{response.code}): #{response.body}" if response.code >= 400
     end
   end
 
@@ -88,7 +87,7 @@ class DiscourseService
     Retryable.retryable(tries: 4, on: TooManyRequestsError, sleep: BACKOFF) do
       response = self.class.post(path, body: body.to_json)
       raise TooManyRequestsError if response.code == 429
-      raise HTTParty::ResponseError, "Failed to add role #{role_id} (#{response.code})" if response.code >= 400
+      raise HTTParty::ResponseError, "Failed to add role #{role_id} to discourse user #{discourse_user_id} (status: #{response.code}): #{response.body}" if response.code >= 400
     end
   end
 
