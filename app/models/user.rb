@@ -116,6 +116,13 @@ class User < ApplicationRecord
     assignments.active.each { |assignment| assignment.end(end_date) }
   end
 
+  def forum_role_ids(forum)
+    (special_forum_roles(forum) + unit_forum_roles(forum))
+      .pluck(:role_id)
+      .uniq
+      .sort
+  end
+
   private
 
   def permissions
@@ -138,13 +145,6 @@ class User < ApplicationRecord
       .uniq
 
     permissions.where(unit: subject_path_ids)
-  end
-
-  def forum_role_ids(forum)
-    (special_forum_roles(forum) + unit_forum_roles(forum))
-      .pluck(:role_id)
-      .uniq
-      .sort
   end
 
   def special_forum_roles(forum)

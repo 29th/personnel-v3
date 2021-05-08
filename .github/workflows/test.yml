@@ -63,3 +63,5 @@ jobs:
           FORUMS_SECRET_KEY: test
           DISCOURSE_COOKIE_NAME: discourse_jwt
           DISCOURSE_SECRET_KEY: test
+          VANILLA_BASE_URL: http://vanilla
+          DISCOURSE_BASE_URL: http://discourse
