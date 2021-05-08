@@ -8,6 +8,7 @@ class VanillaService
       conn.request :json
       conn.response :raise_error
       conn.response :json, content_type: /\bjson$/
+      conn.response :logger, nil, {headers: false, bodies: true}
     end
   end
 

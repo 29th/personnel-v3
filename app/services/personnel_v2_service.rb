@@ -8,6 +8,7 @@ class PersonnelV2Service
       }
       conn.request :json
       conn.response :json
+      conn.response :logger, nil, {headers: false, bodies: true}
     end
   end
 
