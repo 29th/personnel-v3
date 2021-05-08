@@ -7,47 +7,39 @@ class DiscourseServiceTest < ActiveSupport::TestCase
   end
 
   test "update_display_name uses user.short_name" do
-    discourse_user_id = 1
+    forum_member_id = 1
     username = "fluffy_panda"
 
-    user = create(:user, last_name: "Panda", forum_member_id: discourse_user_id)
-    stub_user_request(discourse_user_id, username: username)
+    user = create(:user, last_name: "Panda", forum_member_id: forum_member_id)
+    stub_user_request(forum_member_id, username: username)
 
     request_body = {name: user.short_name}
     stub_update = stub_request(:put, %r{/u/#{username}})
       .with(body: request_body.to_json)
 
-    DiscourseService.new.update_user_display_name(user)
+    DiscourseService.new.update_user_display_name(forum_member_id, user.short_name)
 
     assert_requested(stub_update)
   end
 
-  test "update_display_name throws NoLinkedAccountError when forum_member_id is empty" do
-    user = create(:user, forum_member_id: nil)
-
-    assert_raises DiscourseService::NoLinkedAccountError do
-      DiscourseService.new.update_user_display_name(user)
-    end
-  end
-
   test "update_display_name throws if status is 500" do
-    discourse_user_id = 1
+    forum_member_id = 1
     username = "fluffy_panda"
-    user = create(:user, last_name: "Panda", forum_member_id: discourse_user_id)
-    stub_user_request(discourse_user_id, username: username)
+    user = create(:user, last_name: "Panda", forum_member_id: forum_member_id)
+    stub_user_request(forum_member_id, username: username)
 
     stub_request(:put, %r{/u/#{username}}).to_return(status: [500, "Internal Server Error"])
 
     assert_raises Faraday::ServerError do
-      DiscourseService.new.update_user_display_name(user)
+      DiscourseService.new.update_user_display_name(forum_member_id, user.short_name)
     end
   end
 
   test "update_user_roles adds missing roles and deletes extra roles" do
-    discourse_user_id = 1
+    forum_member_id = 1
     username = "fluffy_panda"
 
-    user = create(:user, forum_member_id: discourse_user_id)
+    user = create(:user, forum_member_id: forum_member_id)
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
 
@@ -56,53 +48,53 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     extra_role = create(:unit_forum_role)
 
     discourse_roles = synced_roles.push(extra_role).map { |role| {id: role.role_id} }
-    stub_user_request(discourse_user_id, username: username, groups: discourse_roles)
+    stub_user_request(forum_member_id, username: username, groups: discourse_roles)
 
-    stub_request(:any, %r{/admin/users/#{discourse_user_id}/groups*})
-    DiscourseService.new.update_user_roles(user)
+    stub_request(:any, %r{/admin/users/#{forum_member_id}/groups*})
+    user.update_forum_roles
 
-    assert_requested(:post, %r{/admin/users/#{discourse_user_id}/groups}) do |req|
+    assert_requested(:post, %r{/admin/users/#{forum_member_id}/groups}) do |req|
       req.body = {group_id: missing_role.role_id}
     end
 
-    assert_requested(:delete, %r{/admin/users/#{discourse_user_id}/groups/#{extra_role.role_id}})
+    assert_requested(:delete, %r{/admin/users/#{forum_member_id}/groups/#{extra_role.role_id}})
   end
 
   test "update_user_roles retries on 429 response" do
-    discourse_user_id = 1
+    forum_member_id = 1
     username = "fluffy_panda"
 
-    user = create(:user, forum_member_id: discourse_user_id)
+    user = create(:user, forum_member_id: forum_member_id)
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
     missing_role = create(:unit_forum_role, unit: unit)
 
-    stub_user_request(discourse_user_id, username: username, groups: [])
-    stub_request(:post, %r{/admin/users/#{discourse_user_id}/groups})
+    stub_user_request(forum_member_id, username: username, groups: [])
+    stub_request(:post, %r{/admin/users/#{forum_member_id}/groups})
       .to_return({status: 429}, {status: 200})
 
-    DiscourseService.new.update_user_roles(user)
+    user.update_forum_roles
 
-    assert_requested(:post, %r{/admin/users/#{discourse_user_id}/groups}, times: 2) do |req|
+    assert_requested(:post, %r{/admin/users/#{forum_member_id}/groups}, times: 2) do |req|
       req.body = {group_id: missing_role.role_id}
     end
   end
 
   test "update_user_roles throws on 500 response" do
-    discourse_user_id = 1
+    forum_member_id = 1
     username = "fluffy_panda"
 
-    user = create(:user, forum_member_id: discourse_user_id)
+    user = create(:user, forum_member_id: forum_member_id)
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
     create(:unit_forum_role, unit: unit)
 
-    stub_user_request(discourse_user_id, username: username, groups: [])
-    stub_request(:post, %r{/admin/users/#{discourse_user_id}/groups})
+    stub_user_request(forum_member_id, username: username, groups: [])
+    stub_request(:post, %r{/admin/users/#{forum_member_id}/groups})
       .to_return(status: 500)
 
     assert_raises Faraday::ServerError do
-      DiscourseService.new.update_user_roles(user)
+      user.update_forum_roles
     end
   end
 end

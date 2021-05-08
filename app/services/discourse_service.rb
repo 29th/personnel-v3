@@ -9,7 +9,7 @@ class DiscourseService
         "Api-Username" => "system"
       }
       conn.request :json
-      conn.response :raise_error
+      conn.response :raise_error # Must be before :retry
       conn.request :retry, {
         retry_statuses: [429],
         methods: %i[post delete],
@@ -44,38 +44,31 @@ class DiscourseService
     groups
   end
 
-  def update_user_display_name(user)
-    discourse_user = get_discourse_user(user)
+  def update_user_display_name(forum_member_id, display_name)
+    discourse_user = get_discourse_user(forum_member_id)
     username = discourse_user["username"]
 
     path = "/u/#{username}"
-    body = {name: user.short_name}
+    body = {name: display_name}
     @conn.put(path, body)
   end
 
-  def update_user_roles(user)
-    discourse_user = get_discourse_user(user)
-    discourse_user_id = user.forum_member_id
-    expected_roles = user.forum_role_ids(:discourse)
+  def update_user_roles(forum_member_id, expected_roles)
+    discourse_user = get_discourse_user(forum_member_id)
     current_roles = select_assigned_role_ids(discourse_user["groups"] || [])
 
     roles_to_delete = current_roles.difference(expected_roles)
-    roles_to_delete.each { |role_id| delete_role(discourse_user_id, role_id) }
+    roles_to_delete.each { |role_id| delete_role(forum_member_id, role_id) }
 
     roles_to_add = expected_roles.difference(current_roles)
-    roles_to_add.each { |role_id| add_role(discourse_user_id, role_id) }
+    roles_to_add.each { |role_id| add_role(forum_member_id, role_id) }
   end
 
   private
 
-  def get_discourse_user(user)
-    discourse_user_id = user.forum_member_id
-    raise NoLinkedAccountError unless discourse_user_id
-
-    path = "/admin/users/#{discourse_user_id}.json"
+  def get_discourse_user(forum_member_id)
+    path = "/admin/users/#{forum_member_id}.json"
     response = @conn.get(path)
-    raise NoLinkedAccountError if response.status == 404
-
     response.body
   end
 
@@ -84,13 +77,13 @@ class DiscourseService
       .collect { |group| group["id"] }
   end
 
-  def delete_role(discourse_user_id, role_id)
-    path = "/admin/users/#{discourse_user_id}/groups/#{role_id}"
+  def delete_role(forum_member_id, role_id)
+    path = "/admin/users/#{forum_member_id}/groups/#{role_id}"
     @conn.delete(path)
   end
 
-  def add_role(discourse_user_id, role_id)
-    path = "/admin/users/#{discourse_user_id}/groups"
+  def add_role(forum_member_id, role_id)
+    path = "/admin/users/#{forum_member_id}/groups"
     body = {group_id: role_id}
     @conn.post(path, body)
   end

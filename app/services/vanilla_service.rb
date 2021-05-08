@@ -20,22 +20,15 @@ class VanillaService
     end
   end
 
-  def update_user_display_name(user)
-    vanilla_user_id = user.vanilla_forum_member_id
-    raise NoLinkedAccountError unless vanilla_user_id
-
-    sanitized_name = user.short_name.delete("/")
-    path = "users/#{vanilla_user_id}"
+  def update_user_display_name(forum_member_id, display_name)
+    sanitized_name = display_name.delete("/")
+    path = "users/#{forum_member_id}"
     body = {name: sanitized_name}
     @conn.patch(path, body)
   end
 
-  def update_user_roles(user)
-    vanilla_user_id = user.vanilla_forum_member_id
-    raise NoLinkedAccountError unless vanilla_user_id
-
-    expected_roles = user.forum_role_ids(:vanilla)
-    path = "users/#{vanilla_user_id}"
+  def update_user_roles(forum_member_id, expected_roles)
+    path = "users/#{forum_member_id}"
     body = {roleID: expected_roles}
     @conn.patch(path, body)
   end

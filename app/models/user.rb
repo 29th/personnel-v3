@@ -81,25 +81,25 @@ class User < ApplicationRecord
       discharges.order("date").last.honorable?
   end
 
-  def forum_role_ids(forum)
-    (special_forum_roles(forum) + unit_forum_roles(forum))
-      .pluck(:role_id)
-      .uniq
-      .sort
-  end
-
   def update_coat
     PersonnelV2Service.new.update_coat(id)
   end
 
   def update_forum_display_name
-    DiscourseService.new.update_user_display_name(self) if forum_member_id.present?
-    VanillaService.new.update_user_display_name(self) if vanilla_forum_member_id.present?
+    DiscourseService.new.update_user_display_name(forum_member_id, short_name) if forum_member_id.present?
+    VanillaService.new.update_user_display_name(vanilla_forum_member_id, short_name) if vanilla_forum_member_id.present?
   end
 
   def update_forum_roles
-    DiscourseService.new.update_user_roles(self) if forum_member_id.present?
-    VanillaService.new.update_user_roles(self) if vanilla_forum_member_id.present?
+    if forum_member_id.present?
+      expected_roles = forum_role_ids(:discourse)
+      DiscourseService.new.update_user_roles(forum_member_id, expected_roles)
+    end
+
+    if vanilla_forum_member_id.present?
+      expected_roles = forum_role_ids(:vanilla)
+      VanillaService.new.update_user_roles(vanilla_forum_member_id, expected_roles)
+    end
   end
 
   def refresh_rank
@@ -138,6 +138,13 @@ class User < ApplicationRecord
       .uniq
 
     permissions.where(unit: subject_path_ids)
+  end
+
+  def forum_role_ids(forum)
+    (special_forum_roles(forum) + unit_forum_roles(forum))
+      .pluck(:role_id)
+      .uniq
+      .sort
   end
 
   def special_forum_roles(forum)
