@@ -9,6 +9,15 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action do
+    if current_user
+      Honeybadger.context({
+        user_id: current_user.id,
+        user_name: current_user.short_name
+      })
+    end
+  end
+
   protected
 
   def active_admin_controller?
