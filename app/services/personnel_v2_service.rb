@@ -8,7 +8,7 @@ class PersonnelV2Service
       }
       conn.request :json
       conn.response :json
-      conn.response :logger, nil, {headers: false, bodies: true}
+      conn.response :logger, nil, {headers: false, bodies: true} unless Rails.env.test?
     end
   end
 

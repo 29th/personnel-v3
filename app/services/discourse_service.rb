@@ -19,7 +19,7 @@ class DiscourseService
         backoff_factor: 2
       }
       conn.response :json, content_type: /\bjson$/
-      conn.response :logger, nil, {headers: false, bodies: true}
+      conn.response :logger, nil, {headers: false, bodies: true} unless Rails.env.test?
     end
   end
 

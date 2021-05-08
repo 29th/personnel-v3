@@ -8,7 +8,7 @@ class VanillaService
       conn.request :json
       conn.response :raise_error
       conn.response :json, content_type: /\bjson$/
-      conn.response :logger, nil, {headers: false, bodies: true}
+      conn.response :logger, nil, {headers: false, bodies: true} unless Rails.env.test?
     end
   end
 
