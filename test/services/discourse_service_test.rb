@@ -3,7 +3,7 @@ require "test_helper"
 class DiscourseServiceTest < ActiveSupport::TestCase
   def stub_user_request(user_id, **kwargs)
     stub_request(:get, %r{/admin/users/#{user_id}.json})
-      .to_return(body: kwargs.to_json)
+      .to_return(body: kwargs.to_json, headers: {"Content-type": "application/json"})
   end
 
   test "update_display_name uses user.short_name" do
@@ -38,7 +38,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
 
     stub_request(:put, %r{/u/#{username}}).to_return(status: [500, "Internal Server Error"])
 
-    assert_raises HTTParty::ResponseError do
+    assert_raises Faraday::ServerError do
       DiscourseService.new.update_user_display_name(user)
     end
   end
@@ -101,7 +101,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     stub_request(:post, %r{/admin/users/#{discourse_user_id}/groups})
       .to_return(status: 500)
 
-    assert_raises HTTParty::ResponseError do
+    assert_raises Faraday::ServerError do
       DiscourseService.new.update_user_roles(user)
     end
   end

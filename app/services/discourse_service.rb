@@ -1,13 +1,26 @@
 class DiscourseService
   class NoLinkedAccountError < StandardError; end
-  class TooManyRequestsError < StandardError; end
 
-  include HTTParty
-  base_uri ENV["DISCOURSE_BASE_URL"]
-  headers "Api-Key" => ENV["DISCOURSE_API_KEY"]
-  headers "Api-Username" => "system"
-  headers "Content-type" => "application/json"
-  format :json
+  def initialize
+    url = ENV["DISCOURSE_BASE_URL"]
+    @conn = Faraday.new(url) do |conn|
+      conn.headers = {
+        "Api-Key" => ENV["DISCOURSE_API_KEY"],
+        "Api-Username" => "system"
+      }
+      conn.request :json
+      conn.response :raise_error
+      conn.request :retry, {
+        retry_statuses: [429],
+        methods: %i[post delete],
+        max: 3,
+        interval: 0.05,
+        interval_randomness: 0.5,
+        backoff_factor: 2
+      }
+      conn.response :json, content_type: /\bjson$/
+    end
+  end
 
   def get_roles
     groups = {}
@@ -17,14 +30,13 @@ class DiscourseService
 
     while (groups.size.zero? || groups.size < total_group_count) && current_page < max_loop_requests
       query = {page: current_page}
-      response = self.class.get("/groups.json", query: query)
-      return if response.body.nil? || response.body.empty?
+      response = @conn.get("/groups.json", query)
 
-      groups = response["groups"].each_with_object(groups) do |role, accum|
+      groups = response.body["groups"].each_with_object(groups) do |role, accum|
         accum[role["id"]] = role["name"]
       end
 
-      total_group_count = response["total_rows_groups"]
+      total_group_count = response.body["total_rows_groups"]
       current_page += 1
     end
 
@@ -37,8 +49,7 @@ class DiscourseService
 
     path = "/u/#{username}"
     body = {name: user.short_name}
-    response = self.class.put(path, body: body.to_json)
-    raise HTTParty::ResponseError, "Failed to update display name for discourse user #{username} (status: #{response.code}): #{response.body}" if response.code >= 400
+    @conn.put(path, body)
   end
 
   def update_user_roles(user)
@@ -61,10 +72,10 @@ class DiscourseService
     raise NoLinkedAccountError unless discourse_user_id
 
     path = "/admin/users/#{discourse_user_id}.json"
-    response = self.class.get(path)
-    raise NoLinkedAccountError if response.code == 404
+    response = @conn.get(path)
+    raise NoLinkedAccountError if response.status == 404
 
-    response
+    response.body
   end
 
   def select_assigned_role_ids(groups)
@@ -74,22 +85,12 @@ class DiscourseService
 
   def delete_role(discourse_user_id, role_id)
     path = "/admin/users/#{discourse_user_id}/groups/#{role_id}"
-    Retryable.retryable(tries: 4, on: TooManyRequestsError, sleep: BACKOFF) do
-      response = self.class.delete(path)
-      raise TooManyRequestsError if response.code == 429
-      raise HTTParty::ResponseError, "Failed to remove role #{role_id} from discourse user #{discourse_user_id} (status: #{response.code}): #{response.body}" if response.code >= 400
-    end
+    @conn.delete(path)
   end
 
   def add_role(discourse_user_id, role_id)
     path = "/admin/users/#{discourse_user_id}/groups"
     body = {group_id: role_id}
-    Retryable.retryable(tries: 4, on: TooManyRequestsError, sleep: BACKOFF) do
-      response = self.class.post(path, body: body.to_json)
-      raise TooManyRequestsError if response.code == 429
-      raise HTTParty::ResponseError, "Failed to add role #{role_id} to discourse user #{discourse_user_id} (status: #{response.code}): #{response.body}" if response.code >= 400
-    end
+    @conn.post(path, body)
   end
-
-  BACKOFF = lambda { |interval| 4**interval }
 end
