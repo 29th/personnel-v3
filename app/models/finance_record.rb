@@ -2,7 +2,7 @@ class FinanceRecord < ApplicationRecord
   self.table_name = "finances"
   include HasForumTopic
   audited
-  belongs_to :user, foreign_key: "member_id"
+  belongs_to :user, foreign_key: "member_id", optional: true
 
   enum vendor: {notapplicable: "N/A",
                 game_servers: "Game Servers",
@@ -15,8 +15,6 @@ class FinanceRecord < ApplicationRecord
 
   validates :date, presence: true
   validates_date :date
-  validates :user, presence: true
-  validates :notes, presence: true
   validates :amount_received, numericality: true, allow_nil: true
   validates :amount_paid, numericality: true, allow_nil: true
   validates :fee, numericality: true, allow_nil: true

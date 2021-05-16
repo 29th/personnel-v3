@@ -78,6 +78,6 @@ ActiveAdmin.register FinanceRecord do
   end
 
   after_save do |finance_record|
-    finance_record.user.update_coat
+    finance_record.user.update_coat if finance_record.user.present?
   end
 end
