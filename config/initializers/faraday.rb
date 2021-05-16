@@ -3,7 +3,12 @@ Faraday::ClientError.class_eval do
     {
       response_status: response_status,
       response_headers: response_headers,
-      response_body: response_body
+      response_body: response_body,
+      request: request
     }
+  end
+
+  def request
+    @response[:request] if @response
   end
 end
