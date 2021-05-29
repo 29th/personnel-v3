@@ -41,7 +41,7 @@ class Enlistment < ApplicationRecord
   before_validation :shorten_middle_name
 
   def linked_users
-    @linked_vanilla_users ||= VanillaService.new.get_linked_users(user) if user&.forum_member_id
+    @linked_vanilla_users ||= VanillaService.new.get_linked_users(user.vanilla_forum_member_id) if user&.vanilla_forum_member_id
   end
 
   private_class_method :ransackable_attributes, :ransackable_associations
