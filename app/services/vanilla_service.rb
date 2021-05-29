@@ -34,11 +34,8 @@ class VanillaService
     @conn.patch(path, body)
   end
 
-  def get_linked_users(user)
-    vanilla_user_id = user.forum_member_id
-    raise NoLinkedAccountError unless vanilla_user_id
-
-    path = "/users/#{vanilla_user_id}"
+  def get_linked_users(forum_member_id)
+    path = "users/#{forum_member_id}"
     response = @conn.get(path)
     return unless response.body["ips"].present?
 

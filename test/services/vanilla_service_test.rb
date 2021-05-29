@@ -33,7 +33,6 @@ class VanillaServiceTest < ActiveSupport::TestCase
 
   test "get_linked_users groups ips by user" do
     vanilla_user_id = 1
-    user = build(:user, forum_member_id: vanilla_user_id)
 
     response_body = {ips: [
       {ip: "1.2.3.4", otherUsers: []},
@@ -48,7 +47,7 @@ class VanillaServiceTest < ActiveSupport::TestCase
     stub_request(:get, %r{/users/#{vanilla_user_id}})
       .to_return(body: response_body.to_json, headers: {"Content-Type" => "application/json"})
 
-    linked_users = VanillaService.new.get_linked_users(user)
+    linked_users = VanillaService.new.get_linked_users(vanilla_user_id)
 
     assert_equal 2, linked_users.size
 
