@@ -9,7 +9,7 @@ if Rails.env.test? || ENV["PRECOMPILE"]
   }
 
   Shrine.logger.level = Logger::WARN
-else
+elsif Rails.env.production?
   require "shrine/storage/s3"
 
   s3_opts = {
@@ -27,6 +27,13 @@ else
   }
 
   Shrine.plugin :url_options, store: {host: ENV["STORAGE_PUBLIC_HOST"]}
+else # development
+  require "shrine/storage/file_system"
+
+  Shrine.storages = {
+    cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"),
+    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads")
+  }
 end
 
 Shrine.plugin :instrumentation, notifications: ActiveSupport::Notifications
