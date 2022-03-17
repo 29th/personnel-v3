@@ -83,8 +83,15 @@ ActiveAdmin.register User do
       row "Steam ID", :steam_id do |user|
         link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
       end
-      row "Forum ID", :forum_member_id do |user|
-        link_to user.short_name, "https://forums.29th.org/profile/#{user.forum_member_id}/#{user.short_name}"
+      row "Discourse Forum Account", :vanilla_forum_member_id do |user|
+        if user.forum_member_id.present?
+          link_to user.forum_member_id, "https://forums.29th.org/user-by-id/#{user.forum_member_id}/summary"
+        end
+      end
+      row "Vanilla Forum Account", :vanilla_forum_member_id do |user|
+        if user.vanilla_forum_member_id.present?
+          link_to user.vanilla_forum_member_id, "https://vanilla.29th.org/profile/#{user.vanilla_forum_member_id}/#{user.short_name}"
+        end
       end
     end
   end
