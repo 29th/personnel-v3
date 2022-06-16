@@ -138,6 +138,13 @@ FactoryBot.define do
   factory :position do
     name { "Rifleman" }
     access_level { :member }
+
+    # # Re-use records this factory creates
+    # to_create do |instance|
+    #   instance.id = Position.find_or_create_by(name: instance.name,
+    #     access_level: instance.access_level).id
+    #   instance.instance_variable_set(:@new_record, false)
+    # end
   end
 
   factory :promotion do
@@ -161,6 +168,12 @@ FactoryBot.define do
     abbr { "Pvt." }
     name { abbr || "Private" }
     order { 0 }
+
+    # # Re-use records this factory creates
+    # to_create do |instance|
+    #   instance.id = Rank.find_or_create_by(abbr: instance.abbr).id
+    #   instance.instance_variable_set(:@new_record, false)
+    # end
   end
 
   factory :restricted_name do
@@ -192,6 +205,12 @@ FactoryBot.define do
     ancestry {
       parent ? [parent.ancestry, parent.id].compact.join("/") : nil
     }
+
+    # # Re-use records this factory creates
+    # to_create do |instance|
+    #   instance.id = Unit.find_or_create_by(abbr: instance.abbr).id
+    #   instance.instance_variable_set(:@new_record, false)
+    # end
   end
 
   factory :unit_forum_role do
