@@ -1,3 +1,12 @@
 .env
 config/master.key
 node_modules
+backups
+db/dump/*
+.git
+tmp/cache/*
+tmp/pids/*
+tmp/sockets/*
+log/*.log
+public/assets
+Dockerfile

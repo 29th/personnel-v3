@@ -1,7 +1,7 @@
-require_relative 'boot'
-ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
+require_relative "boot"
+ENV["RANSACK_FORM_BUILDER"] = "::SimpleForm::FormBuilder"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -16,5 +16,8 @@ module Personnel
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.homepage = config_for(:homepage)
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

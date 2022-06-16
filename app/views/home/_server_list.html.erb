@@ -1,0 +1,25 @@
+<% @servers_by_game.each do |game, servers| %>
+  <h2><%= game %></h2>
+  <div class="row row-cols-1 row-cols-md-3">
+    <% servers.each do |server| %>
+      <div class="col mb-4 h-100">
+        <div class="card bg-dark">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= server.name %>
+            </h5>
+            <p class="card-text">
+              <%= server.address %>:<%= server.port %>
+              <% if server.battle_metrics_id.present? %>
+                <iframe class="battle-metrics"
+                        src="https://cdn.battlemetrics.com/b/standardVertical/<%= server.battle_metrics_id %>.html?foreground=%23e8eddf&linkColor=%23f5cb5c&lines=%23333333&background=%232b2c28&chart=players%3A24H&chartColor=%23f5cb5c&showPlayers=&maxPlayersHeight=300"
+                        frameborder=0
+                        name="<%= server.battle_metrics_id %>"></iframe>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<footer class="bg-dark mt-auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm text-center text-sm-left">
+        Copyright &copy; 2005&ndash;<%= Time.current.year %>
+        29th Infantry Division
+      </div>
+      <div class="col-sm text-center text-sm-right">
+      <% homepage_config[:social].each do |site| %>
+        <%= link_to image_tag('social/' + site[:icon], class: 'social-icon', title: site[:name]), site[:url] %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</footer>

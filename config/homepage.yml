@@ -1,0 +1,382 @@
+default: &default
+  splashes:
+    - background1.jpg
+    - background2.jpg
+    - background3.jpg
+    - background4.jpg
+    - background5.jpg
+    - background6.jpg
+    - background7.jpg
+    - background8.jpg
+    - background9.jpg
+    - background10.jpg
+  games:
+    - name: ArmA 3
+      url: https://store.steampowered.com/app/107410/
+      background: arma3.jpg
+      logo: arma3_logo.png
+    - name: "Rising Storm 2: Vietnam"
+      url: https://store.steampowered.com/app/418460/
+      background: rs2.jpg
+      logo: rs2_logo.png
+    - name: Squad
+      url: https://store.steampowered.com/app/393380/
+      background: squad.jpg
+      logo: squad_logo.png
+  playlists:
+    - name: Latest Arma 3 video
+      youtube_id: PLe3Z2wpbiF1rNgRA9QwjfoCrI_N7CNzQj
+    - name: Latest Rising Storm 2 video
+      youtube_id: PLe3Z2wpbiF1oXsW6JTAMk5x1ZHJ1gOx-r
+    - name: Latest Squad video
+      youtube_id: PLe3Z2wpbiF1rJrjHIIcHSOFkXIqRbqM_c
+  social:
+    - name: Steam
+      url: https://steamcommunity.com/groups/29thID
+      icon: steam.svg
+    - name: Facebook
+      url: https://www.facebook.com/29thinfantrydivision
+      icon: facebook.svg
+    - name: Twitter
+      url: https://twitter.com/TwentyNinthID
+      icon: twitter.svg
+    - name: YouTube
+      url: https://www.youtube.com/channel/UC5mY7PbvGEtfBxH08HHP9Bg
+      icon: youtube.svg
+    - name: Twitch
+      url: https://www.twitch.tv/29thinfantrydivision
+      icon: twitch.svg
+  our_history:
+    - title: Creation of the 29th
+      date: 2005
+      description: |
+        Our journey started in 2005 in the game The Trenches
+        and Battle Grouds as a small group setting the very
+        first footprint in our path of history. It was founded
+        by at the time Captain Pak. Later was taken over by Captain
+        Radcliffe.
+    - title: Move to Day of Defeat
+      date: 2006
+      description: |
+        We completely moved to Day of Defeat and closed down the prior two
+        companies. We closed down the company in the prior two games and stuck
+        in one game each time we changed. This is where most of our roots can
+        be traced back too today and here is where major changes took place to
+        put in place the regulations that are still abided by today. These
+        changes were brought on by another Company HQ level change during a
+        transition from Captain Radcliffe to Captain Wilson in late 2006. He
+        would then bring in the one game rule.
+    - title: Move to Darkest Hour and growth to Battalion
+      date: 2008
+      description: |
+        After DOD became dated we moved to the next hottest thing striving and
+        alive as ever. We did another game change to darkest hour. We upgraded
+        to Battalion size right away. We went from four platoons and one
+        company into two platoons for two different comapnies each. So instead
+        of just being a company we created a different company. We mainly
+        utalized for for an eastern company and western company.
+    - title: Split into Arma 3 and RO2/RS
+      date: 2013
+      description: |
+        As new games came out that would be adequate for our needs we started
+        to check out our options. We learned that there was a demand for a a
+        realism unit such as ourself in the games Arma 3 and RO2/RS. After the
+        decission was made to break our one game tradition, we swiftly
+        transitioned into creating two new companies for the game, which is
+        where Charlie and Baker were formed. Baker was no longer associated
+        with Darkest Hour. We stayed in DH and put all the platoons under one
+        company that was called Able. That would leave dog company unattended
+        which left to it being disbanded and ressurected later. We solved the
+        time zone issue by making platoons dedicated to eastern and western
+        personnel.
+    - title: LTC Wheatley's appointment
+      date: 2015
+      description: |
+        There would soon be a huge change in the 29th, Lieutenent Colonel
+        Wilson had to step down due to a lack of time a new battalion commander
+        was appointed. After the previous Lt. Col.'s run of ten years LTC
+        Wheatley had a lot to live up to. He had a good foundation and
+        continued to help the 29th as it's new leader.
+    - title: "RS2: Vietnam and Squad"
+      date: 2017
+      description: |
+        All good things come to an end at some point, as our previous games
+        came to be dated it was time for another switch. New suitable games
+        were found that meet our needs entirely and provided a platform for us
+        to excell in. This is how we found our current homes in RS2: Vietnam
+        and the tactical shooter Squad. It enabled modding and had all the core
+        functionality for us to be able to run our drills. Shortly after this
+        switch after we stabilized we shut down Able and Baker companies
+        leaving Charlie company (Arma 3) and the newly created Dog
+        (RS2:Vietnam) and Easy (Squad) companies.
+  scrims:
+    - date: October 16th 2020
+      title: EP4 vs SquadOPS
+      url: https://forums.29th.org/discussion/41652
+      outcome_type: draw
+      outcome_label: Draw
+      
+    - date: September 27th 2020
+      title: DP3 vs Phoenix Gaming
+      url: https://forums.29th.org/discussion/40917
+      outcome_type: victory
+      outcome_label: Victory
+      
+    - date: June - July 2020
+      title: EBoPs
+      url: https://forums.29th.org/discussion/39703
+      outcome_type: victory
+      outcome_label: EP3 Victory
+      
+    - date: April 25th 2020
+      title: EP3 vs Canadian Forces
+      url: https://forums.29th.org/discussion/37465
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: December 7th 2019
+      title: EP2 vs 7th Cavalry and 3rd Rangers
+      url: http://forums.29th.org/discussion/35268/ep2-vs-7th-cavalry-and-3rd-ranger-battalion-official-scrimmage-write-up-and-awards#latest
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: December 5th 2019
+      title: DBoTs I
+      url: http://forums.29th.org/categories/promotions-and-awards
+      outcome_type: victory
+      outcome_label: DP2S2 Victory
+
+    - date: November 9th 2019
+      title: EP1 vs 508th PIR & 3rd Rangers
+      url: http://forums.29th.org/discussion/35060
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: June to August 2019
+      title: EBoTs II
+      url: http://forums.29th.org/discussion/33664
+      outcome_type: victory
+      outcome_label: EP2S2 Victory
+
+    - date: October to December 2018
+      title: EBoTs I
+      url: http://forums.29th.org/discussion/29655
+      outcome_type: victory
+      outcome_label: EP2S1 Victory
+
+    - date: August 12th 2018
+      title: DP2 vs DMC
+      url: http://forums.29th.org/discussion/28651
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: November 4th and 11th 2017	
+      title: CP2 vs 2MRB
+      url: http://forums.29th.org/discussion/21955
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: April 29th 2017
+      title: AP3 vs 352nd
+      url: http://forums.29th.org/discussion/18259
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: April 23rd 2017
+      title: BP1 vs 1st SS
+      url: http://forums.29th.org/discussion/18144
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: October 15th 2016
+      title: AP4 vs 352nd
+      url: http://forums.29th.org/discussion/15439
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: May-June 2016
+      title: BP3 vs 2.FJ
+      url: http://forums.29th.org/discussion/13018
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: May 28th 2016
+      title: BBotS RS 2016
+      url: http://forums.29th.org/discussion/12007
+      outcome_type: victory
+      outcome_label: AP3S1 Victory
+
+    - date: May 21st 2016
+      title: BBotS A3 2016
+      url: http://forums.29th.org/discussion/12007
+      outcome_type: victory
+      outcome_label: CP2S1 Victory
+
+    - date: May 14th 2016
+      title: BBotS DH 2016
+      url: http://forums.29th.org/discussion/12007
+      outcome_type: victory
+      outcome_label: BP1S1 Victory
+
+    - date: May 8th 2016
+      title: AP1 vs 352nd & HSA
+      url: http://forums.29th.org/discussion/11781
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: April 24th 2016
+      title: BP1 vs 2.FJ
+      url: http://forums.29th.org/discussion/11862
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: March 5th 2016
+      title: BP3 vs 52nd ID
+      url: http://forums.29th.org/discussion/10824
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: October 4th 2015
+      title: BP3 vs 6th DyW
+      url: http://forums.29th.org/discussion/7403
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: May 25th 2015
+      title: AP3 vs 5.SS
+      url: http://forums.29th.org/discussion/3896
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: March 15th 2015
+      title: BP2 vs 2.SS & Gr.559
+      url: http://forums.29th.org/discussion/5191
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: August 18th 2014	
+      title: BP1 vs PanzerLehr.901
+      url: http://www.29th.org/forums/?topic=45363.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: August to October 2013	
+      title: BotS 2013
+      url: http://www.29th.org/forums/index.php?board=232.0
+      outcome_type: victory
+      outcome_label: CP1S3 Victory
+
+    - date: October 7th 2012
+      title: DP1 vs 113th Cav
+      url: http://www.29th.org/forums/?topic=37579.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: June to July 2012	
+      title: BotS 2012
+      url: http://www.29th.org/forums/index.php?board=254.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: May 26th 2012
+      title: CP3 vs 113th Cav
+      url: http://www.29th.org/forums/index.php?topic=35756.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: May 18th 2012
+      title: AP1 vs 2.SS
+      url: http://www.29th.org/forums/?topic=35658.0
+      outcome_type: defeat
+      outcome_label: Defeat
+
+    - date: April 15th 2012
+      title: BP1 vs 2.SS
+      url: http://www.29th.org/forums/index.php?topic=35252.0
+      outcome_type: draw
+      outcome_label: Draw
+
+    - date: February 4th 2012
+      title: CP1 vs 25th PzrGren
+      url: http://www.29th.org/forums/index.php?topic=34666.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: November 12th 2011
+      title: AP2 vs 113th Cav
+      url: http://www.29th.org/forums/?topic=33845.0
+      outcome_type: draw
+      outcome_label: Draw
+
+    - date: March 28th 2010
+      title: BotS2010
+      url: http://www.29th.org/forums/index.php?topic=22416.0
+      outcome_type: victory
+      outcome_label: AP1S2 Victory
+
+    - date: August 31st 2009
+      title: CP2 vs 2.SS
+      url: http://www.29th.org/forums/?topic=18610.0
+      outcome_type: defeat
+      outcome_label: Defeat
+
+    - date: March 21st 2008
+      title: BotS 2008
+      url: http://www.29th.org/forums/?topic=11942.0
+      outcome_type: victory
+      outcome_label: CP3S3 Victory
+
+    - date: Febuary 29th 2008
+      title: CP4 vs 35th ID
+      url: http://www.29th.org/forums/index.php?topic=11585.msg95881#new
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: October 14th 2007
+      title: CP2 vs 2nd RB	
+      url: http://www.29th.org/forums/?topic=9613.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: August 24th 2007
+      title: CP3 vs 26th ID
+      url: http://www.29th.org/forums/?topic=8668.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: May 9th 2007
+      title: CP2 vs 1st Para
+      url: http://www.29th.org/forums/?topic=6821.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: April 7th 2007
+      title: CP3 vs 2nd ID
+      url: http://www.29th.org/forums/?topic=6421.0
+      outcome_type: defeat
+      outcome_label: Defeat
+
+    - date: 26th July 2006
+      title: CP1 vs 502nd PIR
+      url: http://www.29th.org/forums/?topic=1488.0
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: 25th November 2005
+      title: 29th vs 10th MD
+      url: http://www.29th.org/forums/?topic=1184
+      outcome_type: victory
+      outcome_label: Victory
+
+    - date: 5th September 2005
+      title: 29th vs 5.SS
+      url: http://www.29th.org/forums/?topic=1488.0
+      outcome_type: victory
+      outcome_label: Victory
+
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  <<: *default

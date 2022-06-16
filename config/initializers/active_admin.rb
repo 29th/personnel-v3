@@ -1,3 +1,5 @@
+require "active_admin/custom_pundit_adapter"
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
@@ -54,7 +56,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  config.authentication_method = :authenticate_user!
+  config.authentication_method = :authenticate_user_for_active_admin!
 
   # == User Authorization
   #
@@ -62,7 +64,7 @@ ActiveAdmin.setup do |config|
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
-  config.authorization_adapter = ActiveAdmin::PunditAdapter
+  config.authorization_adapter = ActiveAdmin::CustomPunditAdapter
 
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
@@ -290,4 +292,24 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+
+  # == Webpacker
+  #
+  # By default, Active Admin uses Sprocket's asset pipeline.
+  # You can switch to using Webpacker here.
+  #
+  config.use_webpacker = true
 end
+
+module AdminPageLayoutOverride
+  def build_active_admin_head(*args)
+    within head do
+      text_node stylesheet_link_tag "country_flags"
+    end
+
+    super
+  end
+end
+
+ActiveAdmin::Views::Pages::Base.send :prepend, AdminPageLayoutOverride
+Rails.application.config.assets.precompile += %w[country_flags.css]

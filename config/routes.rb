@@ -1,11 +1,31 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  root 'home#index'
+  root "home#landing"
 
-  post '/auth/:provider/callback' => 'sessions#create', :as => :create_user_session
-  get '/signin' => 'sessions#new', :as => :new_user_session
-  get '/signout' => 'sessions#destroy', :as => :destroy_user_session
-  get '/auth/failure' => 'sessions#failure'
+  forums_base_url = ENV.fetch("DISCOURSE_BASE_URL", "")
+  sign_in_url = forums_base_url + "/login"
+  sign_out_url = forums_base_url + "/logout"
+
+  get "/signin" => redirect(sign_in_url), :as => :new_user_session
+  get "/signout" => redirect(sign_out_url), :as => :destroy_user_session
+
+  get "/about" => "home#about"
+  get "/about/awards" => "home#awards"
+  get "/about/realism" => "home#realism"
+  get "/about/ranks" => "home#ranks"
+  get "/about/historical" => "home#historical"
+  get "/about/server" => "home#server_rules"
+  get "/about/faq" => "home#faq"
+  get "/about/record" => "home#record"
+  get "/about/ourhistory" => "home#our_history"
+  get "/contact" => "home#contact"
+  get "/donate" => "home#donate"
+  get "/servers" => "home#servers"
+  get "/enlist" => "home#enlist"
+
+  get "/roster" => "roster#index"
+
+  post "/api/webhooks/discourse" => "discourse_webhooks#receive", :as => :discourse_webhooks
 
   resources :passes
   resources :events

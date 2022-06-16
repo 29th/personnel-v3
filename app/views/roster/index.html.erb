@@ -1,0 +1,10 @@
+<article>
+  <h1>Roster</h1>
+
+  <div class="view-options btn-group btn-group-sm float-md-right" role="group" aria-label="View options">
+    <%= link_to 'Wide', roster_path, class: 'btn btn-outline-primary' + (@slim ? '' : ' active') %>
+    <%= link_to 'Slim', roster_path + '?slim', class: 'btn btn-outline-primary' + (@slim ? ' active' : '') %>
+  </div>
+
+  <%= render partial: @slim ? 'roster/slim_tree' : 'roster/wide_tree', locals: { units: @unit_tree } %>
+</article>

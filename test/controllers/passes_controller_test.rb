@@ -1,15 +1,18 @@
-require 'test_helper'
+require "test_helper"
 
 class PassesControllerTest < ActionDispatch::IntegrationTest
   setup do
     unit = create(:unit)
-    create(:permission, :leader, abbr: 'pass_edit', unit: unit)
+    create(:permission, :leader, abbr: "pass_edit", unit: unit)
 
     @user = create(:user)
     create(:assignment, :leader, user: @user, unit: unit)
 
     @subject = create(:user)
     create(:assignment, user: @subject, unit: unit)
+
+    @subject2 = create(:user)
+    create(:assignment, user: @subject2, unit: unit)
   end
 
   test "should get index" do
@@ -26,10 +29,10 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
   test "should create one pass" do
     sign_in_as @user
     pass = build(:pass)
-    assert_difference('Pass.count') do
+    assert_difference("Pass.count") do
       post passes_url, params: {
         pass: {
-          bulk_member_ids: ['', @subject.id],
+          bulk_member_ids: ["", @subject.id],
           start_date: pass.start_date,
           end_date: pass.end_date,
           type: pass.type,
@@ -44,10 +47,10 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
   test "should create multiple passes" do
     sign_in_as @user
     pass = build(:pass)
-    assert_difference('Pass.count', 2) do
+    assert_difference("Pass.count", 2) do
       post passes_url, params: {
         pass: {
-          bulk_member_ids: ['', @subject.id, @user.id],
+          bulk_member_ids: ["", @subject.id, @subject2.id],
           start_date: pass.start_date,
           end_date: pass.end_date,
           type: pass.type,
@@ -64,10 +67,10 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
     pass = build(:pass)
     non_subordinate_subject = create(:user)
 
-    assert_difference('Pass.count', 0) do
+    assert_difference("Pass.count", 0) do
       post passes_url, params: {
         pass: {
-          bulk_member_ids: ['', @subject.id, non_subordinate_subject.id],
+          bulk_member_ids: ["", @subject.id, non_subordinate_subject.id],
           start_date: pass.start_date,
           end_date: pass.end_date,
           type: pass.type,
@@ -110,7 +113,7 @@ class PassesControllerTest < ActionDispatch::IntegrationTest
   test "should destroy pass" do
     sign_in_as @user
     pass = create(:pass, user: @subject)
-    assert_difference('Pass.count', -1) do
+    assert_difference("Pass.count", -1) do
       delete pass_url(pass)
     end
 

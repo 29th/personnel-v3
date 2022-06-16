@@ -1,7 +1,7 @@
 class ChangeColumnsToNullable < ActiveRecord::Migration[5.2]
   def change
     table_columns = {
-      :units => [
+      units: [
         :old_path,
         :timezone,
         :steam_group_abbr,
@@ -10,30 +10,30 @@ class ChangeColumnsToNullable < ActiveRecord::Migration[5.2]
         :nickname,
         :aar_template
       ],
-      :members => [
+      members: [
         :status,
         :steam_id,
         :email,
         :forum_member_id,
         :middle_name
       ],
-      :assignments => [
+      assignments: [
         :position,
         :access_level
       ],
-      :abilities => [
+      abilities: [
         :name,
         :description
       ],
-      :ranks => [
+      ranks: [
         :filename
       ],
-      :positions => [
+      positions: [
         :description
       ]
     }
     table_columns.each do |table, columns|
-      for column in columns
+      columns.each do |column|
         change_column_null table, column, true
       end
     end

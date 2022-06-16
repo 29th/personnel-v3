@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class UserAwardTest < ActiveSupport::TestCase
   test "valid by default" do
@@ -7,7 +7,7 @@ class UserAwardTest < ActiveSupport::TestCase
   end
 
   test "invalid without required fields" do
-    required_fields = %i(user award date forum_id topic_id)
+    required_fields = %i[user award date]
     required_fields.each do |field|
       user_award = build(:user_award, field => nil)
       refute user_award.valid?
@@ -15,12 +15,12 @@ class UserAwardTest < ActiveSupport::TestCase
   end
 
   test "invalid with non-numeric topic id" do
-    user_award = build(:user_award, topic_id: 'foo')
+    user_award = build(:user_award, topic_id: "foo")
     refute user_award.valid?
   end
 
   test "invalid with bad date" do
-    user_award = build(:user_award, date: 'yesterday')
+    user_award = build(:user_award, date: "yesterday")
     refute user_award.valid?
   end
 end

@@ -1,35 +1,40 @@
-FROM ruby:2.6.5
+FROM ruby:2.7.2
 
-ENV NODE_VERSION 12
+ENV NODE_MAJOR_VERSION 12
 
-# add non-root user named web
-RUN groupadd --gid 1000 web \
-  && useradd --uid 1000 --gid web --shell /bin/bash --create-home web
-
-# install node.js and yarn
-RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
-  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+# install node.js, yarn and imagemagick
+RUN curl --silent --show-error --location --retry 5 --retry-connrefuse --retry-delay 4 https://deb.nodesource.com/setup_${NODE_MAJOR_VERSION}.x | bash - \
+  && curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get update \
   && apt-get install -y --quiet --no-install-recommends \
     mariadb-client \
     nodejs \
     sqlite3 \
+    time \
     yarn \
-  && rm -rf /var/lib/apt/lists/*
+    build-essential \
+    imagemagick \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && truncate --size 0 /var/log/*log
 
 WORKDIR /usr/src/app
 
-# USER web
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN time bundle install --jobs 4
 
 COPY package.json yarn.lock ./
-RUN yarn install
+RUN time yarn install --frozen-lockfile
 
 COPY . ./
-RUN RAILS_ENV=production SECRET_KEY_BASE=temp rails assets:precompile
-COPY docker-entrypoint.sh /usr/local/bin/
+RUN time rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=$(openssl rand -hex 32) PRECOMPILE=true
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN groupadd ruby --gid 3000 \
+  && useradd --create-home --uid 3000 --no-user-group ruby \
+  && usermod --gid ruby ruby \
+  && chmod -R 777 tmp log
+
+USER ruby
+
 CMD ["rails", "server", "-b", "0.0.0.0"]

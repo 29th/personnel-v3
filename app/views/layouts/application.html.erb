@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Personnel</title>
+    <title>29th Infantry Division - A realism unit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed' %>
+    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed|Staatliches' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
+  <body class="d-flex flex-column min-vh-100">
+    <%= render 'shared/navbar', transparent?: current_page?(root_path) %>
+    <%= render 'home/carousel' if current_page?(root_path) %>
     <div class="container">
       <% if notice %>
         <p class="alert alert-info"><%= notice %></p>
@@ -19,8 +21,11 @@
       <% if alert %>
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
-      <%= yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
+    <%= render 'home/games' if current_page?(root_path) %>
+    <%= render 'home/latest_videos' if current_page?(root_path) %>
+    <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>

@@ -7,15 +7,20 @@ class UnitPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    user&.has_permission?("unit_add") ||
+      user&.has_permission?("admin")
+  end
+
   def create?
-    user and user.has_permission?('admin')
+    new?
   end
 
   def update?
-    user and user.has_permission?('admin')
+    new?
   end
 
   def destroy?
-    user and user.has_permission?('admin')
+    user&.has_permission?("admin")
   end
 end

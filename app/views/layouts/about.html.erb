@@ -1,0 +1,36 @@
+<% content_for :content do %>
+  <div class="row">
+    <article class="col-md-9 order-md-2">
+      <% if content_for?(:page_title) %>
+        <h1><%= yield(:page_title) %></h1>
+      <% end %>
+      <%= yield %>
+    </article>
+
+    <div class="col-md-3 order-md-1">
+      <nav class="nav flex-column nav-pills">
+        <% links = {
+          'Introduction': about_path,
+          'What is realism': about_realism_path,
+          'Rank system': about_ranks_path,
+          'Medals and awards': about_awards_path,
+          'Historical 29th': about_historical_path,
+          'Server rules': about_server_path,
+          'Donate': donate_path,
+          'FAQs': about_faq_path,
+          'Scrim record': about_record_path,
+          'Our history': about_ourhistory_path,
+          'Contact us': contact_path,
+        } %>
+        <% links.each do |label, path| %>
+          <% if current_page?(path) %>
+            <%= link_to label, path, class: 'nav-link active' %>
+          <% else %>
+            <%= link_to label, path, class: 'nav-link' %>
+          <% end %>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>
