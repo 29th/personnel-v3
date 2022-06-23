@@ -8,12 +8,10 @@ class EventsController < ApplicationController
 
     @query = Event.ransack(params[:q])
     @events = @query.result(distinct: true)
-                    .by_user(current_user)
-                    .includes(:unit)
-                    .where('date(datetime) >= ? AND date(datetime) <= ?',
-                           start_date, end_date)
-                    .order(:datetime)
-    @units = units_for_select
+      .includes(:unit)
+      .where("date(datetime) >= ? AND date(datetime) <= ?",
+        start_date, end_date)
+      .order(:datetime)
   end
 
   def show
@@ -32,7 +30,7 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.save
-      redirect_to @event, notice: 'Event was succesfully created.'
+      redirect_to @event, notice: "Event was succesfully created."
     else
       @units = units_for_select
       render :new
@@ -50,7 +48,7 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: "Event was successfully updated."
     else
       @units = units_for_select
       render :edit
@@ -62,7 +60,7 @@ class EventsController < ApplicationController
     authorize @event
 
     @event.destroy
-    redirect_to events_path, notice: 'Event was successfully destroyed.'
+    redirect_to events_path, notice: "Event was successfully destroyed."
   end
 
   private

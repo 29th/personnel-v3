@@ -3,12 +3,12 @@ class Event < ApplicationRecord
   belongs_to :unit
   belongs_to :server
 
-  scope :by_user, -> (user) do
+  scope :by_user, ->(user) do
     unit_ids = user.assignments
-                   .active
-                   .includes(:unit)
-                   .flat_map { |assignment| assignment.unit.path_ids }
-                   .uniq
+      .active
+      .includes(:unit)
+      .flat_map { |assignment| assignment.unit.path_ids }
+      .uniq
 
     where(unit: unit_ids)
   end
@@ -18,7 +18,7 @@ class Event < ApplicationRecord
 
   validates :datetime, presence: true
   validates_datetime :datetime
-  validates :mandatory, inclusion: { in: [true, false] }
+  validates :mandatory, inclusion: {in: [true, false]}
   validates :server, presence: true
 
   def title
@@ -39,7 +39,7 @@ class Event < ApplicationRecord
 
   # Allow filtering a datetime field by a date
   ransacker :datetime do
-    Arel.sql('date(datetime)')
+    Arel.sql("date(datetime)")
   end
 
   # Alias for simple_calendar

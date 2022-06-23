@@ -1,10 +1,10 @@
-require 'test_helper'
+require "test_helper"
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @unit = create(:unit)
-    create(:permission, abbr: 'event_view', unit: @unit)
-    create(:permission, :leader, abbr: 'event_add', unit: @unit)
+    create(:permission, abbr: "event_view", unit: @unit)
+    create(:permission, :leader, abbr: "event_add", unit: @unit)
 
     @user = create(:user)
     create(:assignment, :leader, user: @user, unit: @unit)
@@ -24,7 +24,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "should create event" do
     sign_in_as @user
     event = build(:event, unit: @unit)
-    assert_difference('Event.count') do
+    assert_difference("Event.count") do
       post events_url, params: {
         event: {
           datetime: event.datetime,
@@ -69,7 +69,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "should destroy event" do
     sign_in_as @user
     event = create(:event, unit: @unit)
-    assert_difference('Event.count', -1) do
+    assert_difference("Event.count", -1) do
       delete event_url(event)
     end
 
