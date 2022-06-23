@@ -9,7 +9,7 @@
         <% events.each do |event| %>
           <div>
             <%= event.datetime.to_s(:time) %>
-            <%= link_to event.unit.abbr, event %>
+            <%= link_to event.unit.subtree_abbr, event %>
           </div>
         <% end %>
       <% end %>
