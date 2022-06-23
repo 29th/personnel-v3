@@ -1,3 +1,5 @@
+<% content_for(:html_title) { "Pass #{@pass.id}" } %>
+
 <article>
   <h1>Pass <%= @pass.id %></h1>
 
@@ -24,15 +26,13 @@
     <dd><%= @pass.reason %></dd>
   </dl>
 
-  <%= link_to 'Test', passes_path, class: 'btn btn-primary' %>
-
   <% if policy(@pass).edit? %>
     <%= link_to 'Edit', edit_pass_path(@pass), class: 'btn btn-secondary' %>
   <% end %>
 
   <% if policy(@pass).destroy? %>
     <%= link_to 'Destroy', @pass, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'  } %>
-    <% end %>
+  <% end %>
   
   <%= link_to 'Back', passes_path, class: 'btn btn-outline-secondary' %>
 </article>
