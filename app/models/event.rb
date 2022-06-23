@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   self.inheritance_column = nil # don't treat type field as STI
   belongs_to :unit
-  # TODO: add server association
+  belongs_to :server
 
   scope :by_user, -> (user) do
     unit_ids = user.assignments
@@ -19,6 +19,7 @@ class Event < ApplicationRecord
   validates :datetime, presence: true
   validates_datetime :datetime
   validates :mandatory, inclusion: { in: [true, false] }
+  validates :server, presence: true
 
   def title
     "#{unit.abbr} #{type}"

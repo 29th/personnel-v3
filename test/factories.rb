@@ -239,5 +239,6 @@ FactoryBot.define do
     type { 'Squad Drills' }
     mandatory { false }
     datetime { 1.hour.from_now }
+    server
   end
 end
