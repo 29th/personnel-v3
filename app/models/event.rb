@@ -20,6 +20,10 @@ class Event < ApplicationRecord
   validates_datetime :datetime
   validates :mandatory, inclusion: { in: [true, false] }
 
+  def title
+    "#{unit.abbr} #{type}"
+  end
+
   def self.ransackable_attributes(_auth_object)
     %w[datetime]
   end

@@ -1,36 +1,32 @@
-<p id="notice"><%= notice %></p>
+<% content_for(:html_title) { @event.title } %>
 
-<p>
-  <strong>Datetime:</strong>
-  <%= @event.datetime %>
-</p>
+<article>
+  <h1><%= @event.title %></h1>
+  
+  <dl>
+    <dt>Datetime</dt>
+    <dd><%= @event.datetime %></dd>
 
-<p>
-  <strong>Unit:</strong>
-  <%= @event.unit.name %>
-</p>
+    <dt>Unit</dt>
+    <dd><%= @event.unit.name %></dd>
 
-<p>
-  <strong>Type:</strong>
-  <%= @event.type %>
-</p>
+    <dt>Type</dt>
+    <dd><%= @event.type %></dd>
 
-<p>
-  <strong>Mandatory:</strong>
-  <%= @event.mandatory %>
-</p>
+    <dt>Mandatory</dt>
+    <dd><%= @event.mandatory %></dd>
 
-<p>
-  <strong>Report:</strong>
-  <%= @event.report %>
-</p>
+    <dt>Report</dt>
+    <dd><%= @event.report %></dd>
+  </dl>
 
-<% if policy(@event).edit? %>
-  <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-secondary' %>
-<% end %>
+  <% if policy(@event).edit? %>
+    <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-secondary' %>
+  <% end %>
 
-<% if policy(@event).destroy? %>
-  <%= link_to 'Destroy', @event, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+  <% if policy(@event).destroy? %>
+    <%= link_to 'Destroy', @event, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 
-<%= link_to 'Back', events_path, class: 'btn btn-outline-secondary' %>
+  <%= link_to 'Back', events_path, class: 'btn btn-outline-secondary' %>
+</article>

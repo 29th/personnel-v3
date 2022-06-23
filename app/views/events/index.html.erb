@@ -1,29 +1,18 @@
-<h1>Events</h1>
+<article>
+  <h1>Events</h1>
 
-<div class="row">
-  <div class="col-9">
-    <%= month_calendar(events: @events) do |date, events| %>
-      <%= date.day %>
+  <div class="row">
+    <div class="col">
+      <%= week_calendar(events: @events) do |date, events| %>
+        <%= date.day %>
 
-      <% events.each do |event| %>
-        <div><%= event.datetime.to_s(:time) %> <%= link_to event.unit.abbr, event %></div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="col">
-    <% if policy(@events).new? %>
-      <%= link_to 'New Event', new_event_path, class: 'btn btn-primary btn-lg btn-block mb-2' %>
-    <% end %>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Filters</h5>
-        <%= search_form_for @query do |f| %>
-        <%= f.input :unit_id_eq, label: 'Unit', as: :select, collection: @units, required: false, input_html: { class: 'choices' } %>
-        <%= f.button :submit, 'Filter', class: 'btn-secondary' %>
-        <%= link_to 'Clear filters', events_path, class: 'btn btn-outline-secondary' %>
+        <% events.each do |event| %>
+          <div>
+            <%= event.datetime.to_s(:time) %>
+            <%= link_to event.unit.abbr, event %>
+          </div>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
-</div>
+</article>
