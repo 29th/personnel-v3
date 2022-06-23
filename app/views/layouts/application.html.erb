@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>29th Infantry Division - A realism unit</title>
+    <% if content_for?(:html_title) %>
+      <title><%= yield(:html_title) %> | 29th ID</title>
+    <% else %>
+      <title>29th Infantry Division - A realism unit</title>
+    <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
