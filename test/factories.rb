@@ -173,6 +173,8 @@ FactoryBot.define do
     abbr { "Plt" }
     address { "0.0.0.0" }
     game { :rs2 }
+    port { 1234 }
+    active { true }
   end
 
   factory :special_forum_role do
