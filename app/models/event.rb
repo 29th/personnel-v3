@@ -22,7 +22,11 @@ class Event < ApplicationRecord
   validates :server, presence: true
 
   def title
-    "#{unit.subtree_abbr} #{type}"
+    if unit
+      "#{unit.subtree_abbr} #{type}"
+    else
+      type
+    end
   end
 
   def self.ransackable_attributes(_auth_object)
