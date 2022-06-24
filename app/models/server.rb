@@ -8,4 +8,6 @@ class Server < ApplicationRecord
   validates :name, presence: true
   validates :abbr, presence: true
   validates :address, presence: true
+  validates :port, presence: true, numericality: {only_integer: true}
+  validates :active, inclusion: [true, false]
 end
