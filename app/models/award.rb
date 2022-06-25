@@ -13,7 +13,7 @@ class Award < ApplicationRecord
   validates :game, presence: true
   validates :description, presence: true
 
-  # validates :active, inclusion: { in: [true, false] }, if: :present?
+  validates :active, inclusion: [true, false]
   validates :order, numericality: {only_integer: true}, if: :present?
 
   scope :active, -> { where(active: true) }

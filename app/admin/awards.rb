@@ -7,7 +7,7 @@ ActiveAdmin.register Award do
   scope :all
 
   filter :title
-  filter :game, as: :select
+  filter :game, as: :select, collection: -> { Award.games.map(&:reverse) }
 
   config.sort_order = "order_desc"
 
@@ -53,7 +53,7 @@ ActiveAdmin.register Award do
       input :code
       input :title
       input :description
-      input :game
+      input :game, collection: Award.games.map(&:reverse)
       input :active
       input :order
 
