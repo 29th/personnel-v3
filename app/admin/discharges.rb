@@ -32,7 +32,7 @@ ActiveAdmin.register Discharge do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       if f.object.new_record?
         f.input :user, as: :select, collection: User.for_dropdown
@@ -52,7 +52,7 @@ ActiveAdmin.register Discharge do
 
       if f.object.new_record?
         f.input :end_assignments, as: :boolean, label: "End assignments and update permissions",
-                                  input_html: {checked: "checked"}
+          input_html: {checked: "checked"}
       end
     end
     f.actions

@@ -9,11 +9,11 @@ ActiveAdmin.register AITQualification do
   filter :user, as: :select, collection: -> { User.for_dropdown }
   filter :date
   filter :ait_standard_game_eq, label: "Game", as: :select,
-                                collection: -> { AITStandard.games.map(&:reverse) }
+    collection: -> { AITStandard.games.map(&:reverse) }
   filter :ait_standard_weapon_eq, label: "Weapon", as: :select,
-                                  collection: -> { AITStandard.weapons.map(&:reverse) }
+    collection: -> { AITStandard.weapons.map(&:reverse) }
   filter :ait_standard_badge_eq, label: "Badge", as: :select,
-                                 collection: -> { AITStandard.badges.map(&:reverse) }
+    collection: -> { AITStandard.badges.map(&:reverse) }
 
   config.sort_order = "date_desc"
   config.create_another = true
@@ -37,7 +37,7 @@ ActiveAdmin.register AITQualification do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       if params[:user_id]
         li do

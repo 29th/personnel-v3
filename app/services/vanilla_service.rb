@@ -4,7 +4,7 @@ class VanillaService
   def initialize
     url = "#{ENV["VANILLA_BASE_URL"]}/api/v2"
     @conn = Faraday.new(url) do |conn|
-      conn.authorization(:Bearer, ENV["VANILLA_API_KEY"])
+      conn.request :authorization, "Bearer", ENV["VANILLA_API_KEY"]
       conn.request :json
       conn.response :raise_error
       conn.response :json, content_type: /\bjson$/

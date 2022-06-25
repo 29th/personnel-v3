@@ -1,7 +1,7 @@
 require "json_web_token"
 
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
   helper_method :current_user, :authenticate_user!
 
   # enforce policy for every action

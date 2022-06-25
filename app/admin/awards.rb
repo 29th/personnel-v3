@@ -48,7 +48,7 @@ ActiveAdmin.register Award do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       input :code
       input :title

@@ -23,30 +23,30 @@ ActiveAdmin.register SpecialForumRole do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs "data-controller" => "forum-roles" do
       input :special_attribute, as: :select, collection: SpecialForumRole.special_attributes.map(&:reverse)
       input :forum_id, as: :select,
-                       collection: SpecialForumRole.forum_ids.map(&:reverse),
-                       input_html: {
-                         "data-controller" => "select2-shim",
-                         "data-action" => "forum-roles#showForumRoles",
-                         "data-forum-roles-target" => "forum"
-                       }
+        collection: SpecialForumRole.forum_ids.map(&:reverse),
+        input_html: {
+          "data-controller" => "select2-shim",
+          "data-action" => "forum-roles#showForumRoles",
+          "data-forum-roles-target" => "forum"
+        }
       input :role_id, as: :select, label: "Discourse role",
-                      collection: controller.roles[:discourse].map(&:reverse),
-                      input_html: {
-                        "data-forum-roles-target" => "discourseRoles",
-                        :name => "special_forum_role[discourse_role_id]",
-                        :id => "special_forum_role_discourse_role_id"
-                      }
+        collection: controller.roles[:discourse].map(&:reverse),
+        input_html: {
+          "data-forum-roles-target" => "discourseRoles",
+          :name => "special_forum_role[discourse_role_id]",
+          :id => "special_forum_role_discourse_role_id"
+        }
       input :role_id, as: :select, label: "Vanilla role",
-                      collection: controller.roles[:vanilla].map(&:reverse),
-                      input_html: {
-                        "data-forum-roles-target" => "vanillaRoles",
-                        :name => "special_forum_role[vanilla_role_id]",
-                        :id => "special_forum_role_vanilla_role_id"
-                      }
+        collection: controller.roles[:vanilla].map(&:reverse),
+        input_html: {
+          "data-forum-roles-target" => "vanillaRoles",
+          :name => "special_forum_role[vanilla_role_id]",
+          :id => "special_forum_role_vanilla_role_id"
+        }
     end
     f.actions
   end

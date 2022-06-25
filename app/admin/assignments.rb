@@ -44,9 +44,9 @@ ActiveAdmin.register Assignment do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs "data-controller" => "assignment-transfer",
-             "data-assignment-transfer-assignments-url-value" => admin_assignments_path(format: :json) do
+      "data-assignment-transfer-assignments-url-value" => admin_assignments_path(format: :json) do
       if f.object.persisted?
         li do
           label "User"
@@ -62,20 +62,20 @@ ActiveAdmin.register Assignment do
         end
       else
         f.input :user, as: :select,
-                       collection: User.for_dropdown,
-                       input_html: {
-                         "data-controller" => "select2-shim",
-                         "data-action" => "assignment-transfer#loadAssignments",
-                         "data-assignment-transfer-target" => "user"
-                       }
+          collection: User.for_dropdown,
+          input_html: {
+            "data-controller" => "select2-shim",
+            "data-action" => "assignment-transfer#loadAssignments",
+            "data-assignment-transfer-target" => "user"
+          }
         f.input :unit, as: :select, collection: Unit.for_dropdown
         f.input :position, as: :select, collection: Position.for_dropdown
 
         f.input :transfer_from_unit_id, as: :select,
-                                        collection: [],
-                                        input_html: {
-                                          "data-assignment-transfer-target": "assignments"
-                                        }
+          collection: [],
+          input_html: {
+            "data-assignment-transfer-target": "assignments"
+          }
       end
 
       f.input :start_date

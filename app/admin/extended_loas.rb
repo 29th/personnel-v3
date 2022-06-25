@@ -28,7 +28,7 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
   # show
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       input :user, collection: User.for_dropdown
       input :start_date

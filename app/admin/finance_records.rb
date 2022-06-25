@@ -62,7 +62,7 @@ ActiveAdmin.register FinanceRecord do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       f.input :date
       f.input :user, as: :select, collection: User.for_dropdown

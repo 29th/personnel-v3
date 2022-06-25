@@ -22,7 +22,7 @@ ActiveAdmin.register UserAward do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       input :user, collection: User.for_dropdown
       input :award, collection: Award.order(:title)

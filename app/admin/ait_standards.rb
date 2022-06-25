@@ -16,7 +16,7 @@ ActiveAdmin.register AITStandard do
   end
 
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       f.input :weapon, as: :select, collection: AITStandard.weapons.map(&:reverse)
       f.input :game, as: :select, collection: AITStandard.games.map(&:reverse)

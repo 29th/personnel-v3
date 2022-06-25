@@ -2,7 +2,7 @@
   "name": "personnel",
   "private": true,
   "dependencies": {
-    "@activeadmin/activeadmin": "^2.9.0",
+    "@activeadmin/activeadmin": "^2.13.1",
     "@rails/webpacker": "5.4.3",
     "activeadmin_addons": "^1.0.0",
     "axios": "^0.21.1",

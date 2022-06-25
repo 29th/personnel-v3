@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@activeadmin/activeadmin@^2.9.0":
+"@activeadmin/activeadmin@^2.13.1":
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/@activeadmin/activeadmin/-/activeadmin-2.13.1.tgz#2f33210aa0026a6937e0b08994270e8a77a9ac74"
   integrity sha512-o7b+zprz6M2Jp+eEWQOA/dTDxofvsDnQVr99x16z8loTUIKjE2gzC1mQ+5fNDiatZxTQdDipRVcavORJPn/mYg==
