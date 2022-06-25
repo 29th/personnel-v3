@@ -1,0 +1,18 @@
+<article>
+  <h1>Events</h1>
+
+  <div class="row">
+    <div class="col">
+      <%= week_calendar(events: @events) do |date, events| %>
+        <%= date.day %>
+
+        <% events.each do |event| %>
+          <div>
+            <%= event.datetime.to_s(:time) %>
+            <%= link_to event.unit.subtree_abbr, event %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</article>

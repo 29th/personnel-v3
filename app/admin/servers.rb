@@ -5,6 +5,8 @@ ActiveAdmin.register Server do
   scope :all, default: true
   scope :active
 
+  filter :game, as: :select, collection: -> { Server.games.map(&:reverse) }
+
   index do
     selectable_column
     column :game

@@ -1,0 +1,27 @@
+<% content_for(:html_title) { @event.title } %>
+
+<article>
+  <h1><%= @event.title %></h1>
+  
+  <dl>
+    <dt>Datetime</dt>
+    <dd><%= @event.datetime %></dd>
+
+    <dt>Unit</dt>
+    <dd><%= @event.unit.name %></dd>
+
+    <dt>Type</dt>
+    <dd><%= @event.type %></dd>
+    
+    <dt>Server</dt>
+    <dd><%= @event.server.name %></dd>
+
+    <dt>Mandatory</dt>
+    <dd><%= @event.mandatory %></dd>
+
+    <dt>Report</dt>
+    <dd><%= @event.report %></dd>
+  </dl>
+
+  <%= link_to 'Back', events_path, class: 'btn btn-outline-secondary' %>
+</article>

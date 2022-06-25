@@ -35,6 +35,12 @@ class Unit < ApplicationRecord
     active.where(ancestry: nil, classification: :combat).first
   end
 
+  # abbr that applies to the entire subtree
+  # e.g. 'Charlie Co.' instead of 'Charlie Co. HQ"
+  def subtree_abbr
+    abbr.gsub(/ HQ$/, "")
+  end
+
   # NOTE: Applies :active scope to subtree
   # NOTE: You probably want to add .active when using this,
   #       to only get active users

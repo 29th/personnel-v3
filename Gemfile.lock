@@ -332,6 +332,8 @@ GEM
     shrine (3.4.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
+    simple_calendar (2.4.3)
+      rails (>= 3.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -429,6 +431,7 @@ DEPENDENCIES
   scout_apm (~> 4.0, >= 4.0.4)
   selenium-webdriver
   shrine (~> 3.0)
+  simple_calendar (~> 2.0)
   simple_form (~> 5.1)
   spring
   spring-watcher-listen (~> 2.0.0)

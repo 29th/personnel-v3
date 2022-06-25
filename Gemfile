@@ -80,6 +80,7 @@ gem "validates_timeliness", "~> 5.0.0.alpha3"
 gem "activeadmin_addons", "~> 1.7", ">= 1.7.1"
 gem "simple_form", "~> 5.1"
 gem "ransack", "~> 2.4", ">= 2.4.2"
+gem 'simple_calendar', '~> 2.0'
 gem "redcarpet", "~> 3.5", ">= 3.5.1"
 gem "shrine", "~> 3.0"
 gem "aws-sdk-s3", "~> 1.14", require: false
