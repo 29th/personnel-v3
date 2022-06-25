@@ -1,23 +1,21 @@
 FROM ruby:2.7.2
 
-ENV NODE_MAJOR_VERSION 12
+ENV NODE_MAJOR_VERSION 14
 
 # install node.js, yarn and imagemagick
 RUN curl --silent --show-error --location --retry 5 --retry-connrefuse --retry-delay 4 https://deb.nodesource.com/setup_${NODE_MAJOR_VERSION}.x | bash - \
-  && curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get update \
   && apt-get install -y --quiet --no-install-recommends \
-    mariadb-client \
-    nodejs \
-    sqlite3 \
-    time \
-    yarn \
-    build-essential \
-    imagemagick \
+  mariadb-client \
+  nodejs \
+  sqlite3 \
+  time \
+  build-essential \
+  imagemagick \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && truncate --size 0 /var/log/*log
+  && truncate --size 0 /var/log/*log \
+  && npm install --global yarn
 
 WORKDIR /usr/src/app
 
