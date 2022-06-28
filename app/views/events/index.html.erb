@@ -1,9 +1,18 @@
+<% content_for(:html_title) { "Events" } %>
+
 <article>
   <h1>Events</h1>
+  
+  <div class="clearfix">
+    <div class="view-options btn-group btn-group-sm float-md-right" role="group" aria-label="View options">
+      <%= active_link_to 'Week', events_path(view_by: "week"), class: 'btn btn-outline-primary', active: @view_by != "month" %>
+      <%= active_link_to 'Month', events_path(view_by: "month"), class: 'btn btn-outline-primary', active: { view_by: "month" } %>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col">
-      <%= week_calendar(events: @events) do |date, events| %>
+      <%= calendar_wrapper(events: @events, view_by: @view_by) do |date, events| %>
         <%= date.day %>
 
         <% events.each do |event| %>

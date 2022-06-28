@@ -12,6 +12,8 @@ class EventsController < ApplicationController
       .where("date(datetime) >= ? AND date(datetime) <= ?",
         start_date, end_date)
       .order(:datetime)
+
+    @view_by = params.fetch(:view_by, "week")
   end
 
   def show
