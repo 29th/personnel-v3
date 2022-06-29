@@ -9,27 +9,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <% links = {
-            'Home': root_path,
-            'About': about_path,
-            'Roster': 'https://personnel.29th.org',
-            'Forum': 'https://forums.29th.org',
-            'Servers': servers_path,
-            'Enlist': enlist_path,
-          } %>
-          <% links.each do |label, path| %>
-            <% if current_page?(path) %>
-              <li class="nav-item active">
-                <%= link_to path, class: 'nav-link' do %>
-                  <%= label %>
-                  <span class="sr-only">(current)</span>
-                <% end %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to label, path, class: 'nav-link' %>
-            <% end %>
-          <% end %>
+          <%= active_link_to 'Home', root_path, wrap_tag: 'li', wrap_class: 'nav-item',
+            class: 'nav-link', active: :exclusive %>
+          <%= active_link_to 'About', about_path, wrap_tag: 'li', wrap_class: 'nav-item',
+            class: 'nav-link', active: :inclusive %>
+          <%= active_link_to 'Roster', 'https://personnel.29th.org', wrap_tag: 'li', wrap_class: 'nav-item',
+            class: 'nav-link', active: false %>
+          <%= active_link_to 'Forum', 'https://forums.29th.org', wrap_tag: 'li', wrap_class: 'nav-item',
+            class: 'nav-link', active: false %>
+          <%= active_link_to 'Servers', servers_path, wrap_tag: 'li', wrap_class: 'nav-item',
+            class: 'nav-link', active: :inclusive %>
+          <%= active_link_to 'Enlist', enlist_path, wrap_tag: 'li', wrap_class: 'nav-item',
+            class: 'nav-link', active: :inclusive %>
         </ul>
 
         <ul class="navbar-nav" id="user-dropdown">

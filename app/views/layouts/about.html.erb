@@ -23,11 +23,7 @@
           'Contact us': contact_path,
         } %>
         <% links.each do |label, path| %>
-          <% if current_page?(path) %>
-            <%= link_to label, path, class: 'nav-link active' %>
-          <% else %>
-            <%= link_to label, path, class: 'nav-link' %>
-          <% end %>
+          <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>
         <% end %>
       </nav>
     </div>
