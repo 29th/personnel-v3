@@ -35,6 +35,13 @@ FactoryBot.define do
     end
   end
 
+  factory :attendance_record do
+    event
+    user
+    attended { false }
+    excused { false }
+  end
+
   factory :award do
     code { "shiny" }
     title { "Shiny medal" }

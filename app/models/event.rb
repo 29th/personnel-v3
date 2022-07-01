@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :unit
   belongs_to :server
   belongs_to :reporter, foreign_key: "reporter_member_id", class_name: "User", optional: true
+  has_many :attendance_records, -> { includes(user: :rank).order("ranks.order DESC", "members.last_name") }
 
   scope :by_user, ->(user) do
     unit_ids = user.assignments

@@ -21,6 +21,24 @@
         <dt>Mandatory</dt>
         <dd><%= @event.mandatory %></dd>
       </dl>
+      
+      <% if @event.attendance_records.any? %>
+        <h4>Attendance</h4>
+        <ul class="attendance">
+          <% @event.attendance_records.each do |attendance_record| %>
+            <li>
+              <%= link_to attendance_record.user %>
+              <% if !attendance_record.attended %>
+                <% if attendance_record.excused %>
+                  <span class="badge badge-secondary">Excused</span>
+                <% else %>
+                  <span class="badge badge-danger">AWOL</span>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end%>
     </div>
     <div class="col-8 aar">
       <% if @event.report.present? %>
