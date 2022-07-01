@@ -19,5 +19,7 @@ module Personnel
     config.homepage = config_for(:homepage)
 
     config.active_job.queue_adapter = :delayed_job
+
+    config.beginning_of_week = :sunday
   end
 end
