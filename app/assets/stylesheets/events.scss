@@ -5,6 +5,15 @@
 @import "variables";
 
 .simple-calendar {
+  table {
+    table-layout: fixed;
+  }
+
+  // Collapse Friday & Saturday as they never have events
+  th:nth-last-child(-n+2) {
+    width: 5%;
+  }
+
   .today {
     background-color: $olive-drab;
   }
