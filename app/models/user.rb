@@ -81,6 +81,18 @@ class User < ApplicationRecord
       discharges.order("date").last.honorable?
   end
 
+  def assigned_to_subtree?(unit)
+    active_assignment_unit_path_ids.include? unit.id
+  end
+
+  def active_assignment_unit_path_ids
+    @active_assignment_unit_path_ids ||= assignments
+      .active
+      .includes(:unit)
+      .flat_map { |assignment| assignment.unit.path_ids }
+      .uniq
+  end
+
   def update_coat
     PersonnelV2Service.new.update_coat(id)
   end
@@ -138,11 +150,7 @@ class User < ApplicationRecord
   end
 
   def permissions_on_user(subject)
-    subject_path_ids = subject.assignments
-      .active
-      .includes(:unit)
-      .flat_map { |assignment| assignment.unit.path_ids }
-      .uniq
+    subject_path_ids = subject.active_assignment_unit_path_ids
 
     permissions.where(unit: subject_path_ids)
   end

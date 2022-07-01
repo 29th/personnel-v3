@@ -6,12 +6,7 @@ class Event < ApplicationRecord
   has_many :attendance_records, -> { includes(user: :rank).order("ranks.order DESC", "members.last_name") }
 
   scope :by_user, ->(user) do
-    unit_ids = user.assignments
-      .active
-      .includes(:unit)
-      .flat_map { |assignment| assignment.unit.path_ids }
-      .uniq
-
+    unit_ids = user.active_assignment_unit_path_ids
     where(unit: unit_ids)
   end
 

@@ -17,4 +17,14 @@
   .today {
     background-color: $olive-drab;
   }
+
+  .event {
+    padding: 0 5px;
+
+    &.expected {
+      background-color: $jet;
+      border-radius: .25rem;
+      padding: 2.5px 5px;
+    }
+  }
 }
