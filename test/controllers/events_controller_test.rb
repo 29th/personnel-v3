@@ -52,4 +52,31 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".event", {count: 3}, "Expected 3 events"
     assert_select ".expected", {count: 2}, "Expected 2 events to be emphasised"
   end
+
+  test "should indicate user is expected on parent unit event" do
+    sign_in_as @user
+
+    platoon = create(:unit)
+    squad = create(:unit, parent: platoon)
+    create(:permission, abbr: "event_view_any", unit: squad)
+    create(:assignment, user: @user, unit: squad)
+    platoon_event = create(:event, unit: platoon)
+
+    get event_url(platoon_event)
+    assert_response :success
+
+    assert_select ".expectation", text: /You are expected at this event/
+  end
+
+  test "should indicate user is not expected on other unit event" do
+    sign_in_as @user
+
+    other_unit = create(:unit)
+    other_unit_event = create(:event, unit: other_unit)
+
+    get event_url(other_unit_event)
+    assert_response :success
+
+    assert_select ".expectation", text: /You are not expected at this event/
+  end
 end

@@ -18,8 +18,24 @@
         <dt>Server</dt>
         <dd><%= @event.server.name %></dd>
 
-        <dt>Mandatory</dt>
-        <dd><%= @event.mandatory %></dd>
+        <dt>Expectation</dt>
+        <dd class="expectation">
+          <% if current_user.assigned_to_subtree?(@event.unit) %>
+            You <strong>are</strong> expected at this event,
+            <% if @event.mandatory %>
+              and it is <strong>mandatory</strong>.
+            <% else %>
+              but it is not mandatory.
+            <% end %>
+          <% else %>
+            You are not expected at this event,
+            <% if @event.mandatory %>
+              but it is mandatory for those who are.
+            <% else %>
+              and it is not mandatory for those who are.
+            <% end %>
+          <% end %>
+        </dd>
       </dl>
       
       <% if @event.attendance_records.any? %>
