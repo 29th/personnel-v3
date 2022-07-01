@@ -3,14 +3,11 @@ class EventsController < ApplicationController
     authorize Event
 
     date_param = params.fetch(:start_date, Date.today).to_date
-    start_date = date_param.beginning_of_month
-    end_date = date_param.end_of_month
+    start_date = date_param.beginning_of_month.beginning_of_week
+    end_date = date_param.end_of_month.end_of_week
 
-    @query = Event.ransack(params[:q])
-    @events = @query.result(distinct: true)
+    @events = Event.where(datetime: start_date..end_date)
       .includes(:unit)
-      .where("date(datetime) >= ? AND date(datetime) <= ?",
-        start_date, end_date)
       .order(:datetime)
 
     @view_by = params.fetch(:view_by, "week")
