@@ -1,0 +1,21 @@
+<% content_for(:page_title) { "Post AAR" } %>
+
+<article>
+  <h1>Post AAR</h1>
+  <h2 class="text-muted">
+    <%= @event.title %> on <%= @event.datetime.strftime("%F %R") %>
+  </h2>
+  
+  <%= simple_form_for @event, url: aar_event_path(@event), method: :patch do |f| %>
+    <div class="row">
+      <div class="col-4">
+        <%= f.association :users, as: :check_boxes,
+          collection: @event.expected_users %>
+      </div>
+      <div class="col-8">
+        <%= f.input :report, input_html: {rows: 10} %>
+        <%= f.button :submit, class: 'btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</article>

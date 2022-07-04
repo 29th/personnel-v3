@@ -79,4 +79,10 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
     assert_select ".expectation", text: /You are not expected at this event/
   end
+
+  # test "aar should ignore users who aren't expected" do
+  # test "aar should update attendance records that already exist" do
+  # test "aar shouldn't overwrite whether user is excused" do
+  # test "aar only sets posting date the first time" do
+  # test "aar updates reporter and edit date on subsequent edits" do
 end

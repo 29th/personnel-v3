@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   belongs_to :server
   belongs_to :reporter, foreign_key: "reporter_member_id", class_name: "User", optional: true
   has_many :attendance_records, -> { includes(user: :rank).order("ranks.order DESC", "members.last_name") }
+  has_many :users, through: :attendance_records
 
   scope :by_user, ->(user) do
     unit_ids = user.active_assignment_unit_path_ids
@@ -17,6 +18,12 @@ class Event < ApplicationRecord
   validates_datetime :datetime
   validates :mandatory, inclusion: {in: [true, false]}
   validates :server, presence: true
+
+  def expected_users
+    unit.subtree_users.active
+      .includes(:rank)
+      .order("ranks.order DESC", "last_name")
+  end
 
   def title
     if unit
