@@ -3,7 +3,8 @@ require "test_helper"
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @unit = create(:unit)
-    create(:permission, abbr: "event_view", unit: @unit)
+    create(:permission, abbr: "event_view_any", unit: @unit)
+    create(:permission, abbr: "event_aar", unit: @unit)
 
     @user = create(:user)
     create(:assignment, :leader, user: @user, unit: @unit)
@@ -58,7 +59,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
     platoon = create(:unit)
     squad = create(:unit, parent: platoon)
-    create(:permission, abbr: "event_view_any", unit: squad)
     create(:assignment, user: @user, unit: squad)
     platoon_event = create(:event, unit: platoon)
 
@@ -80,9 +80,103 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".expectation", text: /You are not expected at this event/
   end
 
-  # test "aar should ignore users who aren't expected" do
-  # test "aar should update attendance records that already exist" do
-  # test "aar shouldn't overwrite whether user is excused" do
-  # test "aar only sets posting date the first time" do
-  # test "aar updates reporter and edit date on subsequent edits" do
+  test "aar should ignore users who aren't expected in attendance" do
+    sign_in_as @user
+
+    squad = create(:unit, parent: @unit) # use another unit because @unit also expects @user
+    event = create(:event, unit: squad)
+    unexpected_user = create(:user)
+    expected_users = create_list(:user, 3)
+    expected_users.each do |user|
+      create(:assignment, user: user, unit: squad)
+    end
+
+    user_ids = ["", unexpected_user.id] + expected_users.map(&:id)
+    params = {event: {user_ids: user_ids.map(&:to_s)}}
+
+    assert_difference("AttendanceRecord.count", 3) do
+      patch aar_event_url(event), params: params
+    end
+
+    assert_redirected_to event_url(event)
+  end
+
+  test "aar should update attendance records that already exist" do
+    sign_in_as @user
+
+    squad = create(:unit, parent: @unit)
+    event = create(:event, unit: squad)
+    assignments = create_list(:assignment, 5, unit: squad)
+    users = assignments.map(&:user)
+    users.each do |user|
+      create(:attendance_record, user: user, event: event)
+    end
+
+    user_ids = [""] + users.first(3).map(&:id)
+    params = {event: {user_ids: user_ids.map(&:to_s)}}
+
+    assert_difference("AttendanceRecord.count", 0) do
+      patch aar_event_url(event), params: params
+    end
+
+    get event_url(event)
+
+    assert_select ".attendance li", {count: 5}, "Expected 5 attendees to be listed"
+    assert_select ".attendance li span", {text: "AWOL", count: 2}, "Expected 2 AWOL attendees to be listed"
+  end
+
+  test "aar shouldn't overwrite whether user is excused" do
+    sign_in_as @user
+
+    event = create(:event, unit: @unit)
+    create(:attendance_record, user: @user, event: event, excused: true)
+    other_user = create(:user)
+    create(:assignment, user: other_user, unit: @unit)
+
+    user_ids = ["", other_user.id]
+    params = {event: {user_ids: user_ids.map(&:to_s)}}
+
+    patch aar_event_url(event), params: params
+
+    get event_url(event)
+
+    assert_select ".attendance li", {count: 2}, "Expected 2 attendees to be listed"
+    assert_select ".attendance li span", {text: "Excused", count: 1}, "Expected 1 excused attendees to be listed"
+  end
+
+  test "aar only sets posting date the first time" do
+    sign_in_as @user
+
+    event = create(:event, unit: @unit)
+
+    params = {event: {report: "First report", user_ids: []}}
+    patch aar_event_url(event), params: params
+    event.reload
+    initial_posting_date = event.report_posting_date
+
+    travel 1.day
+
+    params = {event: {report: "Second report", user_ids: []}}
+    patch aar_event_url(event), params: params
+    event.reload
+
+    assert_equal initial_posting_date, event.report_posting_date, "Expected posting date not to change"
+  end
+
+  test "aar updates reporter and edit date on subsequent edits" do
+    sign_in_as @user
+
+    other_user = create(:user)
+    event = create(:event, unit: @unit, report: "First report",
+      reporter: other_user, report_posting_date: 1.day.ago)
+
+    params = {event: {report: "Second report", user_ids: []}}
+    freeze_time do
+      patch aar_event_url(event), params: params
+      event.reload
+
+      assert_equal @user, event.reporter, "Expected reporter to be updated"
+      assert_equal Time.current, event.report_edit_date, "Expected edit date to be updated"
+    end
+  end
 end
