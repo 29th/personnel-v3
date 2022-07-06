@@ -27,23 +27,12 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     @event.report = params[:event][:report]
-    @event.report_posting_date ||= Time.current
-    if @event.changed?
-      @event.reporter = current_user
-      @event.report_edit_date = Time.current
-    end
+    @event.reporter = current_user
 
     attended_ids = params[:event][:user_ids].reject(&:empty?).map(&:to_i)
-    expected_ids = @event.expected_users.ids
+    attendance_result = @event.update_attendance(attended_ids)
 
-    attendance_records = expected_ids.collect do |user_id|
-      {member_id: user_id, event_id: @event.id,
-       attended: attended_ids.include?(user_id)}
-    end
-
-    upsert_result = AttendanceRecord.upsert_all(attendance_records)
-
-    if upsert_result && @event.save
+    if attendance_result && @event.save
       redirect_to @event, notice: "AAR was successfully updated."
     else
       render :edit_aar

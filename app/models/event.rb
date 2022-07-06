@@ -19,6 +19,9 @@ class Event < ApplicationRecord
   validates :mandatory, inclusion: {in: [true, false]}
   validates :server, presence: true
 
+  before_save :update_report_dates,
+    if: proc { attendance_records.any? || will_save_change_to_report? }
+
   def expected_users
     unit.subtree_users.active
       .includes(:rank)
@@ -36,5 +39,21 @@ class Event < ApplicationRecord
   # Alias for simple_calendar
   def start_time
     datetime
+  end
+
+  def update_attendance(attended_user_ids)
+    attendance_records = expected_users.ids.collect do |user_id|
+      {event_id: id, member_id: user_id,
+       attended: attended_user_ids.include?(user_id)}
+    end
+
+    AttendanceRecord.upsert_all(attendance_records)
+  end
+
+  private
+
+  def update_report_dates
+    self.report_posting_date ||= Time.current
+    self.report_edit_date = Time.current
   end
 end
