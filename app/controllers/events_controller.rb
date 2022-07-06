@@ -31,6 +31,7 @@ class EventsController < ApplicationController
 
     attended_ids = params[:event][:user_ids].reject(&:empty?).map(&:to_i)
     attendance_result = @event.update_attendance(attended_ids)
+    @event.excuse_users_on_extended_loa
 
     if attendance_result && @event.save
       redirect_to @event, notice: "AAR was successfully updated."

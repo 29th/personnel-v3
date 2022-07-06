@@ -50,6 +50,17 @@ class Event < ApplicationRecord
     AttendanceRecord.upsert_all(attendance_records)
   end
 
+  def excuse_users_on_extended_loa
+    extended_loas = ExtendedLOA.active(datetime)
+      .where(member_id: expected_users.ids)
+
+    attendance_records = extended_loas.collect do |eloa|
+      {event_id: id, member_id: eloa.user.id, excused: true}
+    end
+
+    AttendanceRecord.upsert_all(attendance_records) if extended_loas.any?
+  end
+
   private
 
   def update_report_dates

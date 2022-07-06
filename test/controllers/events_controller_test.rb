@@ -179,4 +179,25 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       assert_equal Time.current, event.report_edit_date, "Expected edit date to be updated"
     end
   end
+
+  test "user on extended loa should be marked as excused" do
+    sign_in_as @user
+
+    squad = create(:unit)
+    event = create(:event, unit: squad)
+    assignments = create_list(:assignment, 2, unit: squad)
+    other_users = assignments.map(&:user)
+    user_on_leave = create(:user)
+    create(:assignment, user: user_on_leave, unit: squad)
+    create(:extended_loa, user: user_on_leave, start_date: 1.day.ago)
+
+    user_ids = [""] + other_users.map(&:id)
+    params = {event: {user_ids: user_ids.map(&:to_s)}}
+    patch aar_event_url(event), params: params
+
+    get event_url(event)
+
+    assert_select ".attendance li", {count: 3}, "Expected 3 attendees to be listed"
+    assert_select ".attendance li span", {text: "Excused", count: 1}, "Expected 1 excused attendees to be listed"
+  end
 end
