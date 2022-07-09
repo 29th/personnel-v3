@@ -62,10 +62,10 @@
       <% end%>
     </div>
     <div class="col-8 aar">
-      <% if @event.report.present? %>
-        <div class="card bg-dark">
-          <div class="card-body">
-            <h5 class="card-title">After Action Report</h5>
+      <div class="card bg-dark">
+        <div class="card-body">
+          <h5 class="card-title">After Action Report</h5>
+          <% if @event.reporter.present? %>
             <h6 class="card-subtitle mb-2 text-muted">
               Reported by <%= @event.reporter.short_name %>
               on <%= @event.report_posting_date.strftime("%F %H:%M") %>
@@ -73,13 +73,17 @@
                 (updated <%= @event.report_edit_date.strftime("%F %H:%M") %>)
               <% end %>
             </h6>
+          <% end %>
+
+          <% if @event.report.present? %>
             <%= safe_bbcode(@event.report).html_safe %>
-          </div>
+          <% end %>
+
+          <% if policy(@event).aar? %>
+            <%= link_to 'Edit AAR', aar_event_path(@event), class: 'btn btn-secondary' %>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </dl>
-
-  <%= link_to 'Back', events_path, class: 'btn btn-outline-secondary' %>
-  <%= link_to 'Edit AAR', aar_event_path(@event), class: 'btn btn-secondary' %>
 </article>
