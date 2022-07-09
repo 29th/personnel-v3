@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   def edit_aar
     @event = Event.find(params[:id])
+    @attended_user_ids = @event.attendance_records.where(attended: true).pluck(:member_id)
     authorize @event, :aar?
   end
 
