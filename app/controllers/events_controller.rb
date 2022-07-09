@@ -28,6 +28,7 @@ class EventsController < ApplicationController
 
   def update_aar
     @event = Event.find(params[:id])
+    authorize @event, :aar?
 
     @event.report = params[:event][:report]
     @event.reporter = current_user
