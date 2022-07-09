@@ -15,6 +15,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @attendance_records = @event.attendance_records
+      .includes(:event, user: :extended_loas)
     authorize @event
   end
 

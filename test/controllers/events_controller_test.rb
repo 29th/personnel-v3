@@ -36,6 +36,27 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".attendance li span", {text: "AWOL", count: 1}, "Expected 1 AWOL attendee to be listed"
   end
 
+  # posting an aar should mark users on extended loa as excused. if it doesn't,
+  # perhaps because the eloa was created after the aar was posted, we shouldn't
+  # hide that from users, as it will be counted against their attendance.
+  test "attendance list should show extended loa status if excused, but not if awol" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+
+    user1 = create(:user)
+    user2 = create(:user)
+    create(:extended_loa, start_date: 1.day.ago, user: user1)
+    create(:extended_loa, start_date: 1.day.ago, user: user2)
+    create(:attendance_record, attended: false, excused: true, user: user1, event: event)
+    create(:attendance_record, attended: false, excused: false, user: user2, event: event)
+    get event_url(event)
+
+    assert_select ".attendance li", {count: 2}, "Expected 2 attendees to be listed"
+    assert_select ".attendance li span", {text: "Excused", count: 0}, "Expected 0 excused attendees to be listed"
+    assert_select ".attendance li span", {text: "Extended LOA", count: 1}, "Expected 1 attendee to be listed as extended loa"
+    assert_select ".attendance li span", {text: "AWOL", count: 1}, "Expected 1 AWOL attendee to be listed"
+  end
+
   test "should emphasise events user is expected at" do
     sign_in_as @user
 
@@ -195,9 +216,8 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     params = {event: {user_ids: user_ids.map(&:to_s)}}
     patch aar_event_url(event), params: params
 
-    get event_url(event)
-
-    assert_select ".attendance li", {count: 3}, "Expected 3 attendees to be listed"
-    assert_select ".attendance li span", {text: "Excused", count: 1}, "Expected 1 excused attendees to be listed"
+    event.reload
+    attendance_record = event.attendance_records.where(user: user_on_leave).first
+    assert attendance_record.excused, "Expected user on leave to be excused"
   end
 end

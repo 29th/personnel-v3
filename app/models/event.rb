@@ -28,6 +28,11 @@ class Event < ApplicationRecord
       .order("ranks.order DESC", "last_name")
   end
 
+  def extended_loas
+    ExtendedLOA.active(datetime)
+      .where(member_id: expected_users.ids)
+  end
+
   def title
     if unit
       "#{unit.subtree_abbr} #{type}"
@@ -51,9 +56,6 @@ class Event < ApplicationRecord
   end
 
   def excuse_users_on_extended_loa
-    extended_loas = ExtendedLOA.active(datetime)
-      .where(member_id: expected_users.ids)
-
     attendance_records = extended_loas.collect do |eloa|
       {event_id: id, member_id: eloa.user.id, excused: true}
     end

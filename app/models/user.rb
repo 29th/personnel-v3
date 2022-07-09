@@ -54,6 +54,10 @@ class User < ApplicationRecord
     end
   end
 
+  def on_extended_loa?(date = Date.current)
+    extended_loas.any? { |eloa| eloa.active?(date) }
+  end
+
   def has_permission?(permission)
     @permissions ||= permissions.pluck("abilities.abbr")
     @permissions.include?(permission)

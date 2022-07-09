@@ -15,6 +15,10 @@ class ExtendedLOA < ApplicationRecord
     where("start_date <= ? AND end_date >= ? AND (return_date IS NULL OR return_date >= ?)", date, date, date)
   }
 
+  def active?(date = Date.current)
+    start_date <= date && end_date >= date && (!return_date || return_date >= date)
+  end
+
   private
 
   def set_posting_date
