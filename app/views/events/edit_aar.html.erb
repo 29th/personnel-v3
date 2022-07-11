@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-4">
         <%= f.association :users, as: :check_boxes,
-          collection: @event.expected_users, checked: @attended_user_ids %>
+          collection: @expected_users, checked: @attended_user_ids %>
       </div>
       <div class="col-8">
         <%= f.input :report, input_html: {rows: 10} %>

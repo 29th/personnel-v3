@@ -23,9 +23,7 @@ class Event < ApplicationRecord
     if: proc { attendance_records.any? || will_save_change_to_report? }
 
   def expected_users
-    unit.subtree_users.active
-      .includes(:rank)
-      .order("ranks.order DESC", "last_name")
+    unit.subtree_users.active.includes(:rank)
   end
 
   def extended_loas

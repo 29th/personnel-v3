@@ -204,7 +204,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "user on extended loa should be marked as excused" do
     sign_in_as @user
 
-    squad = create(:unit)
+    squad = create(:unit, parent: @unit)
     event = create(:event, unit: squad)
     assignments = create_list(:assignment, 2, unit: squad)
     other_users = assignments.map(&:user)
