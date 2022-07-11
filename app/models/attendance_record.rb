@@ -10,4 +10,8 @@ class AttendanceRecord < ApplicationRecord
   def awol?
     !attended && !excused
   end
+
+  def excused_by_extended_loa?
+    user.on_extended_loa?(event.datetime)
+  end
 end

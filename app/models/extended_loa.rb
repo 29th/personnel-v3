@@ -11,7 +11,13 @@ class ExtendedLOA < ApplicationRecord
 
   before_create :set_posting_date
 
-  scope :active, -> { where("start_date <= ? AND end_date >= ? AND (return_date IS NULL OR return_date >= ?)", Date.current, Date.current, Date.current) }
+  scope :active, ->(date = Date.current) {
+    where("start_date <= ? AND end_date >= ? AND (return_date IS NULL OR return_date >= ?)", date, date, date)
+  }
+
+  def active?(date = Date.current)
+    start_date <= date && end_date >= date && (!return_date || return_date >= date)
+  end
 
   private
 

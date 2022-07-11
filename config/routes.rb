@@ -28,5 +28,10 @@ Rails.application.routes.draw do
   post "/api/webhooks/discourse" => "discourse_webhooks#receive", :as => :discourse_webhooks
 
   resources :passes
-  resources :events, only: [:index, :show]
+  resources :events, only: [:index, :show] do
+    member do
+      get "aar", to: "events#edit_aar"
+      patch "aar", to: "events#update_aar"
+    end
+  end
 end

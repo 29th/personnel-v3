@@ -28,4 +28,10 @@ class EventPolicy < ApplicationPolicy
   def destroy?
     create?
   end
+
+  def aar?
+    (record.unit && user&.has_permission_on_unit?("event_aar", record.unit)) ||
+      user&.has_permission?("event_aar_any") ||
+      user&.has_permission?("admin")
+  end
 end
