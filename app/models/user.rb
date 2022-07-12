@@ -18,7 +18,9 @@ class User < ApplicationRecord
   belongs_to :rank
   belongs_to :country, optional: true
 
-  scope :active, -> { joins(:assignments).merge(Assignment.active).distinct }
+  scope :active, ->(date = Date.current) {
+    joins(:assignments).merge(Assignment.active(date)).distinct
+  }
   scope :for_dropdown, -> { active.includes(:rank).order(:last_name) }
 
   nilify_blanks

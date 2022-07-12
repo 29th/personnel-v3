@@ -4,11 +4,9 @@ class Assignment < ApplicationRecord
   belongs_to :user, foreign_key: "member_id"
   belongs_to :position
 
-  scope :active, -> {
-    arel = Assignment.arel_table
-    where(arel[:start_date].lteq(Date.current)
-          .and(arel[:end_date].gt(Date.current)
-               .or(arel[:end_date].eq(nil))))
+  scope :active, ->(date = Date.current) {
+    where("start_date <= ?", date)
+      .merge(where("end_date > ?", date).or(where(end_date: nil)))
   }
 
   nilify_blanks

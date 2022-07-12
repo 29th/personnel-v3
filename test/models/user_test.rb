@@ -3,7 +3,7 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   test "full_name includes middle initial if middle name present" do
     user = create(:user, first_name: "Grace", middle_name: "Brewster",
-                         last_name: "Hopper")
+      last_name: "Hopper")
     assert_equal "Grace B. Hopper", user.full_name
   end
 
@@ -40,6 +40,40 @@ class UserTest < ActiveSupport::TestCase
 
     user.refresh_rank
     assert_equal "Pvt.", user.rank.abbr
+  end
+
+  test "active scope omits users with no active assignments" do
+    create_list(:assignment, 3) # creates a user for each
+    inactive_user = create(:user)
+
+    active_users = User.active.all
+    assert_equal 3, active_users.size
+    refute_includes active_users, inactive_user
+  end
+
+  test "active scope treats users with multiple assignments as one user" do
+    user = create(:user)
+    create_list(:assignment, 3, user: user)
+
+    active_users = User.active.all
+    assert_equal 1, active_users.size
+  end
+
+  test "active scope allows passing a date" do
+    create_list(:assignment, 3, start_date: 1.month.ago)
+    inactive_subjects = [
+      create(:assignment, start_date: 1.month.ago, end_date: 2.weeks.ago),
+      create(:assignment, start_date: 1.month.ago, end_date: 1.week.ago),
+      create(:assignment, start_date: 1.week.ago + 1.day)
+    ]
+    inactive_users = inactive_subjects.map(&:user)
+
+    query_date = 1.week.ago
+    active_users = User.active(query_date).all
+    assert_equal 3, active_users.size
+    inactive_users.each do |user|
+      refute_includes active_users, user
+    end
   end
 
   # has_permission?
@@ -190,7 +224,7 @@ class UserTest < ActiveSupport::TestCase
 
     user = create(:user)
     create(:assignment, user: user, unit: unit,
-                        start_date: 2.weeks.ago, end_date: 1.week.ago)
+      start_date: 2.weeks.ago, end_date: 1.week.ago)
 
     refute user.has_permission_on_unit? "member_ability", unit
   end
@@ -201,7 +235,7 @@ class UserTest < ActiveSupport::TestCase
 
     user = create(:user)
     create(:assignment, user: user, unit: unit,
-                        start_date: 1.week.from_now)
+      start_date: 1.week.from_now)
 
     refute user.has_permission_on_unit? "member_ability", unit
   end
@@ -342,7 +376,7 @@ class UserTest < ActiveSupport::TestCase
     user = create(:user)
     unit = create(:unit, classification: :combat)
     create(:assignment, user: user, unit: unit,
-                        end_date: 2.days.ago)
+      end_date: 2.days.ago)
     refute user.member?
   end
 
