@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     member do
       get "aar", to: "events#edit_aar"
       patch "aar", to: "events#update_aar"
+      put "loa", to: "events#loa"
     end
   end
 end

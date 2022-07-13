@@ -37,6 +37,16 @@
           <% end %>
         </dd>
       </dl>
+
+      <% if policy(@event).loa? %>
+        <% if @event.posted_loa?(current_user) %>
+          <%= link_to 'Cancel LOA', loa_event_path(@event), method: :put,
+            title: 'Cancel Leave of Absence', class: 'loa btn btn-secondary mb-3' %>
+        <% else %>
+          <%= link_to 'Post LOA', loa_event_path(@event), method: :put,
+            title: 'Post Leave of Absence', class: 'loa btn btn-secondary mb-3' %>
+        <% end %>
+      <% end %>
       
       <% if @attendance_records.any? %>
         <h4>Attendance</h4>

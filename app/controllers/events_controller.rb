@@ -46,4 +46,17 @@ class EventsController < ApplicationController
       render :edit_aar
     end
   end
+
+  def loa
+    @event = Event.find(params[:id])
+    authorize @event
+
+    if @event.posted_loa?(current_user)
+      if @event.cancel_loa(current_user)
+        redirect_to @event, notice: "LOA was successfully cancelled."
+      end
+    elsif @event.post_loa(current_user)
+      redirect_to @event, notice: "LOA was successfully posted."
+    end
+  end
 end

@@ -221,4 +221,79 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     attendance_record = event.attendance_records.where(user: user_on_leave).first
     assert attendance_record.excused, "Expected user on leave to be excused"
   end
+
+  test "event page should show post loa button to expected user" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+
+    get event_url(event)
+
+    assert_select ".loa", "Post LOA"
+  end
+
+  test "event page should not show loa button to user who isn't expected" do
+    sign_in_as @user
+    other_unit = create(:unit)
+    event = create(:event, unit: other_unit)
+
+    get event_url(event)
+
+    assert_select ".loa", false
+  end
+
+  test "event page should show cancel loa button to user who has posted loa" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+    create(:attendance_record, user: @user, event: event, excused: true)
+
+    get event_url(event)
+
+    assert_select ".loa", "Cancel LOA"
+  end
+
+  test "event page should not show loa button if event is older than 24 hours" do
+    sign_in_as @user
+    event = create(:event, unit: @unit, datetime: 25.hours.ago)
+
+    get event_url(event)
+
+    assert_select ".loa", false
+  end
+
+  test "expected user can post loa" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+
+    assert_difference("AttendanceRecord.count", 1) do
+      put loa_event_url(event)
+    end
+
+    assert_redirected_to event_url(event)
+
+    attendance_record = AttendanceRecord.find_by(event: event, user: @user)
+    assert true, attendance_record.excused
+  end
+
+  test "cancelling loa after attendance has been posted preserves attendance record" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+    create(:attendance_record, event: event, user: @user, excused: true, attended: false)
+
+    assert_difference("AttendanceRecord.count", 0) do
+      put loa_event_url(event)
+    end
+
+    attendance_record = AttendanceRecord.find_by(event: event, user: @user)
+    refute attendance_record.attended, "Expected attended to be false"
+  end
+
+  test "cancelling loa before attendance record has been posted deletes the record" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+    create(:attendance_record, event: event, user: @user, excused: true)
+
+    assert_difference("AttendanceRecord.count", -1) do
+      put loa_event_url(event)
+    end
+  end
 end

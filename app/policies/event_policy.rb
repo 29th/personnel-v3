@@ -34,4 +34,9 @@ class EventPolicy < ApplicationPolicy
       user&.has_permission?("event_aar_any") ||
       user&.has_permission?("admin")
   end
+
+  def loa?
+    (user && record.expected_users.include?(user) &&
+      record.datetime >= 1.day.ago)
+  end
 end

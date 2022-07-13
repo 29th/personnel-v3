@@ -38,7 +38,6 @@ FactoryBot.define do
   factory :attendance_record do
     event
     user
-    attended { false }
     excused { false }
   end
 
