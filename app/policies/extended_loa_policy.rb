@@ -1,10 +1,10 @@
 class ExtendedLOAPolicy < ApplicationPolicy
   def index?
-    true
+    user&.member?
   end
 
   def show?
-    true
+    index?
   end
 
   def new?

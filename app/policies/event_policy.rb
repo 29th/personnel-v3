@@ -4,9 +4,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
-    (record.unit && user&.has_permission_on_unit?("event_view", record.unit)) ||
-      user&.has_permission?("event_view_any") ||
-      user&.has_permission?("admin")
+    user&.member?
   end
 
   def new?

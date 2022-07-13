@@ -1,10 +1,8 @@
 require "test_helper"
 
 class EventPolicyTest < ActiveSupport::TestCase
-  test "user with event_view_any CAN show an event" do
+  test "user who's a member CAN show an event" do
     unit = create(:unit)
-    create(:permission, abbr: "event_view_any", unit: unit)
-
     user = create(:user)
     create(:assignment, user: user, unit: unit)
 
@@ -13,27 +11,13 @@ class EventPolicyTest < ActiveSupport::TestCase
     assert_permit user, event, :show
   end
 
-  test "user with event_view on unit in scope CAN show its event" do
+  test "user who's not a member CANNOT show an event" do
     unit = create(:unit)
-    create(:permission, abbr: "event_view", unit: unit)
-
     user = create(:user)
-    create(:assignment, user: user, unit: unit)
+    create(:assignment, user: user, unit: unit,
+      start_date: 1.year.ago, end_date: 6.months.ago)
 
-    event = build(:event, unit: unit)
-
-    assert_permit user, event, :show
-  end
-
-  test "user with event_view on unit out of scope CANNOT show its event" do
-    unit = create(:unit)
-    create(:permission, abbr: "event_view", unit: unit)
-
-    user = create(:user)
-    create(:assignment, user: user, unit: unit)
-
-    other_unit = create(:unit)
-    event = build(:event, unit: other_unit)
+    event = build(:event)
 
     refute_permit user, event, :show
   end
