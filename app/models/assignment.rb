@@ -5,8 +5,8 @@ class Assignment < ApplicationRecord
   belongs_to :position
 
   scope :active, ->(date = Date.current) {
-    where("start_date <= ?", date)
-      .merge(where("end_date > ?", date).or(where(end_date: nil)))
+    where("assignments.start_date <= ?", date)
+      .merge(where("assignments.end_date > ?", date).or(where(end_date: nil)))
   }
 
   nilify_blanks
