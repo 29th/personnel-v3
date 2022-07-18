@@ -34,8 +34,15 @@ development: &development
 
 test:
   <<: *development
+  storage:
+    endpoint: ~
+    bucket: ~
+    region: ~
+    access_key_id: ~
+    secret_access_key: ~
 
 production:
+  <<: *default
   discourse:
     base_url:
       internal: https://forums.29th.org
