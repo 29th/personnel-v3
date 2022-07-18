@@ -1,10 +1,11 @@
 class PersonnelV2Service
   def initialize
-    url = ENV["V2_API_BASE_URL"]
+    config = Rails.configuration.endpoints[:personnel_v2_api]
+    url = config[:base_url][:internal]
     puts url
     @conn = Faraday.new(url) do |conn|
       conn.headers = {
-        "X-Admin-Api-Key" => ENV["V2_ADMIN_API_KEY"]
+        "X-Admin-Api-Key" => config[:api_key]
       }
       conn.request :json
       conn.response :json

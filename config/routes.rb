@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root "home#landing"
 
-  forums_base_url = ENV.fetch("DISCOURSE_BASE_URL", "")
+  forums_base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
   sign_in_url = forums_base_url + "/login"
   sign_out_url = forums_base_url + "/logout"
 

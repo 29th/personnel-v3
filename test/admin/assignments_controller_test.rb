@@ -2,8 +2,9 @@ require "test_helper"
 
 class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    stub_request(:any, /#{ENV['VANILLA_BASE_URL']}.*/)
-    stub_request(:any, /#{ENV['DISCOURSE_BASE_URL']}.*/)
+    endpoints = Rails.configuration.endpoints
+    stub_request(:any, /#{endpoints[:vanilla][:base_url][:internal]}.*/)
+    stub_request(:any, /#{endpoints[:discourse][:base_url][:internal]}.*/)
   end
 
   test "should get index" do

@@ -58,13 +58,3 @@ jobs:
 
       - name: Run tests
         run: bundle exec rails test
-        env:
-          DISCOURSE_COOKIE_NAME: discourse_jwt
-          DISCOURSE_SECRET_KEY: test
-          VANILLA_BASE_URL: http://vanilla
-          VANILLA_API_KEY: test
-          DISCOURSE_BASE_URL: http://discourse
-          DISCOURSE_API_KEY: test
-          DISCOURSE_WEBHOOKS_SECRET: test
-          V2_API_BASE_URL: api
-          V2_ADMIN_API_KEY: test

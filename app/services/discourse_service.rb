@@ -2,10 +2,11 @@ class DiscourseService
   class NoLinkedAccountError < StandardError; end
 
   def initialize
-    url = ENV["DISCOURSE_BASE_URL"]
+    config = Rails.configuration.endpoints[:discourse]
+    url = config[:base_url][:internal]
     @conn = Faraday.new(url) do |conn|
       conn.headers = {
-        "Api-Key" => ENV["DISCOURSE_API_KEY"],
+        "Api-Key" => config[:api_key],
         "Api-Username" => "system"
       }
       conn.request :json

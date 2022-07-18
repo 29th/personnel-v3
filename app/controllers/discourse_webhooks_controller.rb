@@ -1,5 +1,5 @@
 class DiscourseWebhooksController < ApplicationController
-  SECRET_KEY = ENV["DISCOURSE_WEBHOOKS_SECRET"]
+  SECRET_KEY = Rails.configuration.endpoints[:discourse][:webhooks_secret]
   before_action :verify_event_type
   before_action :verify_webhook_token
   skip_before_action :verify_authenticity_token

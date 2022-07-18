@@ -16,7 +16,7 @@ class ActiveSupport::TestCase
   def sign_in_as(user)
     payload = {sub: user.forum_member_id}
     token = JsonWebToken.encode(payload)
-    cookie_name = ENV["DISCOURSE_COOKIE_NAME"]
+    cookie_name = Rails.configuration.endpoints[:discourse][:cookie_name]
     cookies[cookie_name] = token
   end
 

@@ -1,7 +1,7 @@
 require "jwt"
 
 class JsonWebToken
-  SECRET_KEY = ENV["DISCOURSE_SECRET_KEY"]
+  SECRET_KEY = Rails.configuration.endpoints[:discourse][:secret_key]
 
   def self.encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i

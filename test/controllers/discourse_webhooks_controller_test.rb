@@ -2,8 +2,6 @@ require "test_helper"
 
 class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
   setup do
-    ENV["DISCOURSE_WEBHOOKS_SECRET"] = "test"
-
     @discourse_user_id = 10
     @body = {
       "user": {
@@ -83,6 +81,7 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
   private
 
   def sign(body)
-    "sha256=#{OpenSSL::HMAC.hexdigest("sha256", ENV["DISCOURSE_WEBHOOKS_SECRET"], body.to_json)}"
+    webhooks_secret = Rails.configuration.endpoints[:discourse][:webhooks_secret]
+    "sha256=#{OpenSSL::HMAC.hexdigest("sha256", webhooks_secret, body.to_json)}"
   end
 end

@@ -2,9 +2,10 @@ class VanillaService
   class NoLinkedAccountError < StandardError; end
 
   def initialize
-    url = "#{ENV["VANILLA_BASE_URL"]}/api/v2"
+    config = Rails.configuration.endpoints[:vanilla]
+    url = "#{config[:base_url][:internal]}/api/v2"
     @conn = Faraday.new(url) do |conn|
-      conn.request :authorization, "Bearer", ENV["VANILLA_API_KEY"]
+      conn.request :authorization, "Bearer", config[:api_key]
       conn.request :json
       conn.response :raise_error
       conn.response :json, content_type: /\bjson$/
