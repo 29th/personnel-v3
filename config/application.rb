@@ -17,7 +17,9 @@ module Personnel
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.homepage = config_for(:homepage)
-    config.endpoints = config_for(:endpoints)
+
+    endpoints_config_path = Rails.root.join("config", "endpoints", "#{Rails.env}.yml")
+    config.endpoints = config_for(endpoints_config_path)
 
     config.active_job.queue_adapter = :delayed_job
 

@@ -1,0 +1,30 @@
+development:
+  discourse:
+    base_url:
+      internal: http://localhost:3000
+      external: https://forums.29th.local
+    api_key: <%= ENV.fetch('DISCOURSE_API_KEY', 'dev') %>
+    webhooks_secret: <%= ENV.fetch('DISCOURSE_WEBHOOKS_SECRET', 'developmentsecret') %>
+    cookie_name: <%= ENV.fetch('DISCOURSE_COOKIE_NAME', 'discourse_jwt') %>
+    secret_key: <%= ENV.fetch('DISCOURSE_SECRET_KEY', 'dev') %>
+  personnel_v2_app:
+    base_url:
+      internal: http://app
+      external: https://personnel.29th.local
+  personnel_v2_api:
+    base_url:
+      internal: http://api
+      external: https://api.29th.local
+    api_key: <%= ENV.fetch('V2_ADMIN_API_KEY', 'dev') %>
+  vanilla:
+    base_url:
+      internal: http://forums
+      external: https://vanilla.29th.local
+    api_key: <%= ENV.fetch('VANILLA_API_KEY', 'dev') %>
+  storage:
+    endpoint: <%= ENV.fetch('STORAGE_ENDPOINT') %>
+    bucket: <%= ENV.fetch('STORAGE_BUCKET') %>
+    region: <%= ENV.fetch('STORAGE_REGION') %>
+    access_key_id: <%= ENV.fetch('STORAGE_ACCESS_KEY_ID') %>
+    secret_access_key: <%= ENV.fetch('STORAGE_SECRET_ACCESS_KEY') %>
+    public_host: <%= ENV.fetch('STORAGE_PUBLIC_HOST', 'https://uploads.29th.org') %>
