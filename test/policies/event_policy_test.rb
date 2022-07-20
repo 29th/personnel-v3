@@ -104,4 +104,34 @@ class EventPolicyTest < ActiveSupport::TestCase
 
     refute_permit user, event, :loa
   end
+
+  test "user CAN edit aar for event that started before today" do
+    unit = create(:unit)
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+    create(:permission, abbr: "event_aar", unit: unit)
+    event = create(:event, datetime: 1.day.ago, unit: unit)
+
+    assert_permit user, event, :aar
+  end
+
+  test "user CAN edit aar for event that starts later today" do
+    unit = create(:unit)
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+    create(:permission, abbr: "event_aar", unit: unit)
+    event = create(:event, datetime: 1.hour.from_now, unit: unit)
+
+    assert_permit user, event, :aar
+  end
+
+  test "user CANNOT edit aar for event that starts after today" do
+    unit = create(:unit)
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+    create(:permission, abbr: "event_aar", unit: unit)
+    event = create(:event, datetime: 1.day.from_now, unit: unit)
+
+    refute_permit user, event, :aar
+  end
 end

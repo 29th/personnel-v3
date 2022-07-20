@@ -28,9 +28,10 @@ class EventPolicy < ApplicationPolicy
   end
 
   def aar?
-    (record.unit && user&.has_permission_on_unit?("event_aar", record.unit)) ||
+    ((record.unit && user&.has_permission_on_unit?("event_aar", record.unit)) ||
       user&.has_permission?("event_aar_any") ||
-      user&.has_permission?("admin")
+      user&.has_permission?("admin")) &&
+      record.datetime.beginning_of_day.before?(Time.current)
   end
 
   def loa?
