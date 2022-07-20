@@ -244,7 +244,7 @@ FactoryBot.define do
 
   factory :event do
     unit
-    type { 'Squad Drills' }
+    type { "Squad Drills" }
     mandatory { false }
     datetime { 1.hour.from_now }
     server

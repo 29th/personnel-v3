@@ -4,11 +4,11 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @discourse_user_id = 10
     @body = {
-      "user": {
-        "id": @discourse_user_id,
-        "username": "soandso",
-        "name": "Pvt. Soandso",
-        "email": "so@so.com"
+      user: {
+        id: @discourse_user_id,
+        username: "soandso",
+        name: "Pvt. Soandso",
+        email: "so@so.com"
       }
     }
 
@@ -28,7 +28,7 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return 401 if missing signature" do
-    headers = @headers.except("X-Discourse-Event-Signature".to_sym)
+    headers = @headers.except(:"X-Discourse-Event-Signature")
     post discourse_webhooks_url, params: @body, headers: headers, as: :json
     assert_response :unauthorized
     assert_nil User.find_by_forum_member_id(@discourse_user_id)
@@ -71,7 +71,7 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return 404 if no user found with that email" do
-    body = @body.deep_merge({"user": {"email": "new@user.com"}})
+    body = @body.deep_merge({user: {email: "new@user.com"}})
     headers = @headers.merge({"X-Discourse-Event-Signature": sign(body)})
     post discourse_webhooks_url, params: body, headers: headers, as: :json
     assert_response :not_found
