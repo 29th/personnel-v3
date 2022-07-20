@@ -1,7 +1,6 @@
 class DemeritPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?("demerit_view_any") ||
-      user&.has_permission?("admin")
+    user&.member?
   end
 
   def show?
