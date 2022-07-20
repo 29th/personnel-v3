@@ -1,6 +1,6 @@
 class EventPolicy < ApplicationPolicy
   def index?
-    true
+    user&.member? || user&.honorably_discharged?
   end
 
   def show?
