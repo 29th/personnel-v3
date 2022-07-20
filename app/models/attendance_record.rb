@@ -1,6 +1,5 @@
 class AttendanceRecord < ApplicationRecord
   self.table_name = "attendance"
-  audited
   belongs_to :user, foreign_key: "member_id"
   belongs_to :event
 
