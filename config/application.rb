@@ -23,6 +23,7 @@ module Personnel
 
     config.active_job.queue_adapter = :delayed_job
 
+    config.time_zone = "Eastern Time (US & Canada)"
     config.beginning_of_week = :sunday
   end
 end
