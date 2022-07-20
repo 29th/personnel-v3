@@ -11,6 +11,8 @@ class ExtendedLOA < ApplicationRecord
 
   before_create :set_posting_date
 
+  self.skip_time_zone_conversion_for_attributes = [:posting_date]
+
   scope :active, ->(date = Date.current) {
     where("start_date <= ? AND end_date >= ? AND (return_date IS NULL OR return_date >= ?)", date, date, date)
   }

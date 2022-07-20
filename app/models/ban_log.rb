@@ -13,4 +13,6 @@ class BanLog < ApplicationRecord
   validates :admin, presence: true
   validates :poster, presence: true
   validates :reason, length: {maximum: 1000}
+
+  self.skip_time_zone_conversion_for_attributes = [:unbanned]
 end

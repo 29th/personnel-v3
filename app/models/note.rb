@@ -22,6 +22,8 @@ class Note < ApplicationRecord
   before_create :set_date_created, :set_date_modified
   before_update :set_date_modified
 
+  self.skip_time_zone_conversion_for_attributes = [:date_add, :date_mod]
+
   scope :by_access, ->(access_levels) {
     where(access: access_levels)
   }

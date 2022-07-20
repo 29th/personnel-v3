@@ -26,6 +26,8 @@ class Event < ApplicationRecord
   before_save :update_report_dates,
     if: proc { attendance_records.any? || will_save_change_to_report? }
 
+  self.skip_time_zone_conversion_for_attributes = [:datetime, :report_posting_date, :report_edit_date]
+
   def expected_users
     unit.subtree_users.active(datetime).includes(:rank)
   end
