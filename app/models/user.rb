@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   self.table_name = "members"
+  self.ignored_columns = %w[status primary_assignment_id im_type im_handle city]
   audited max_audits: 10
 
   has_many :assignments, dependent: :delete_all, foreign_key: "member_id"
