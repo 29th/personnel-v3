@@ -6,8 +6,8 @@
   <div class="row">
     <div class="col-4">
       <dl>
-        <dt>Datetime</dt>
-        <dd><%= @event.datetime.strftime("%F %H:%M") %></dd>
+        <dt>Start time</dt>
+        <dd><%= format_timestamp(@event.datetime) %></dd>
 
         <dt>Unit</dt>
         <dd><%= @event.unit.name %></dd>
@@ -78,9 +78,9 @@
           <% if @event.reporter.present? %>
             <h6 class="card-subtitle mb-2 text-muted">
               Reported by <%= @event.reporter.short_name %>
-              on <%= @event.report_posting_date.strftime("%F %H:%M") %>
+              on <%= format_timestamp(@event.report_posting_date) %>
               <% if @event.report_posting_date != @event.report_edit_date %>
-                (updated <%= @event.report_edit_date.strftime("%F %H:%M") %>)
+                (updated <%= format_timestamp(@event.report_edit_date) %>)
               <% end %>
             </h6>
           <% end %>
