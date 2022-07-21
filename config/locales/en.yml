@@ -9,3 +9,6 @@ en:
         name: "Your name"
         email: "Your email address"
         comment: "What were you trying to do? (required)"
+  simple_calendar:
+    previous: "<"
+    next: ">"

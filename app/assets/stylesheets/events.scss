@@ -27,4 +27,24 @@
       padding: 2.5px 5px;
     }
   }
+
+  .prev-month {
+    background-color: darken($rifle-green, 3%);
+  }
+
+  .next-month {
+    background-color: lighten($rifle-green, 3%);
+  }
+
+  .calendar-heading {
+    nav {
+      display: inline-block;
+    }
+
+    .calendar-title {
+      font-size: 120%;
+      font-weight: bold;
+      padding: 0 1rem;
+    }
+  }
 }
