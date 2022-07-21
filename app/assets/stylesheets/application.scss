@@ -68,3 +68,32 @@ footer {
     height: 20px;
   }
 }
+
+.pagination {
+  .page-item {
+    .page-link {
+      background-color: $secondary;
+      border-color: $black-olive;
+      color: $black-olive;
+    }
+
+    &.active .page-link {
+      background-color: inherit;
+      border-color: $secondary;
+      color: $secondary;
+    }
+  }
+
+  &.outline .page-item {
+    .page-link {
+      background-color: inherit;
+      border-color: $secondary;
+      color: $secondary;
+    }
+
+    &.active .page-link {
+      background-color: $secondary;
+      color: $black-olive;
+    }
+  }
+}
