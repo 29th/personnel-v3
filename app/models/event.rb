@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   self.inheritance_column = nil # don't treat type field as STI
+  audited
   belongs_to :unit
   belongs_to :server
   belongs_to :reporter, foreign_key: "reporter_member_id", class_name: "User", optional: true
