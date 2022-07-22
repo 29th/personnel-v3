@@ -59,6 +59,18 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".attendance li span", {text: "AWOL", count: 1}, "Expected 1 AWOL attendee to be listed"
   end
 
+  # on personnel-v2, cancelling an LOA before attendance had been posted
+  # simply changed excused to false, rather than deleting the record like v3.
+  test "attendance list should omit users who cancelled their loa on personnel-v2 if attendance hasn't been posted" do
+    sign_in_as @user
+    event = create(:event, unit: @unit)
+
+    create(:attendance_record, attended: nil, excused: false, event: event, user: @user)
+    get event_url(event)
+
+    assert_select ".attendance li", {text: /#{@user.short_name}/, count: 0}, "Expected user not to be listed"
+  end
+
   test "should emphasise events user is expected at" do
     sign_in_as @user
 

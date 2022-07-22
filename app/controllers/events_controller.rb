@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @attendance_records = @event.attendance_records
+      .without_cancelled_loas # TODO: remove this after v2 calendar is disabled
       .includes(:event, user: :extended_loas)
     authorize @event
   end
