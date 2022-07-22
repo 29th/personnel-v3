@@ -11,6 +11,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
+    sign_in_as @user
     create(:event)
     get events_url
     assert_response :success
