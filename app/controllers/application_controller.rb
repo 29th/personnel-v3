@@ -44,18 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return @current_user if defined? @current_user
-
-    @current_user = begin
-      cookie_name = Rails.configuration.endpoints[:discourse][:cookie_name]
-      token = cookies[cookie_name]
-      decoded = JsonWebToken.decode(token)
-      forum_member_id = decoded[:sub]
-      User.find_by_forum_member_id(forum_member_id)
-    rescue JWT::ExpiredSignature, JWT::VerificationError,
-      JWT::DecodeError, ActiveRecord::RecordNotFound
-      nil
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   private

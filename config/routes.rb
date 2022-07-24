@@ -2,12 +2,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root "home#landing"
 
-  forums_base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
-  sign_in_url = forums_base_url + "/login"
-  sign_out_url = forums_base_url + "/logout"
-
-  get "/signin" => redirect(sign_in_url), :as => :new_user_session
-  get "/signout" => redirect(sign_out_url), :as => :destroy_user_session
+  get "/signin", to: "sessions#new", as: :new_user_session
+  get "/signout", to: "sessions#destroy", as: :destroy_user_session
+  match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
+  get "/auth/failure", to: "sessions#failure"
 
   get "/about" => "home#about"
   get "/about/awards" => "home#awards"
