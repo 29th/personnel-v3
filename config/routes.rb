@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root "home#landing"
 
-  get "/signin", to: "sessions#new", as: :new_user_session
   get "/signout", to: "sessions#destroy", as: :destroy_user_session
   match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post], as: :create_user_session
   get "/auth/failure", to: "sessions#failure"
