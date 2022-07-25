@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "/signin", to: "sessions#new", as: :new_user_session
   get "/signout", to: "sessions#destroy", as: :destroy_user_session
-  match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
+  match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post], as: :create_user_session
   get "/auth/failure", to: "sessions#failure"
 
   get "/about" => "home#about"
