@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     forums_base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
-    redirect_to root_url, notice: "Signed out!"
+    redirect_back fallback_location: root_url, notice: "Signed out!"
     # redirect_to "#{forums_base_url}/logout"
   end
 
