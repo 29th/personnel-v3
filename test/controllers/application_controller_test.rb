@@ -30,4 +30,16 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     get admin_root_url
     assert_response :success
   end
+
+  test "auth failure should show error to user" do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:discourse] = :invalid_credentials
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:discourse]
+    post create_user_session_url(:discourse)
+    OmniAuth.config.mock_auth[:discourse] = nil
+
+    follow_redirect!
+    assert_redirected_to root_url
+    assert_equal "Authentication error: Invalid credentials", flash[:alert]
+  end
 end
