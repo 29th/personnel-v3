@@ -97,3 +97,12 @@ footer {
     }
   }
 }
+
+.alert-container {
+  position: fixed;
+  top: 8.75vh;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding: 0 5vw;
+}
