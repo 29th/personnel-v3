@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/29th/omniauth-discourse.git
-  revision: 6233e49de014a6f7db5d07c1ad4be13a33ce754f
+  revision: dba8a204cb12cca9efe23ac9c1d3405a299a73da
   specs:
     omniauth-discourse (1.0.0)
-      omniauth (~> 2.0)
+      omniauth (>= 1.0, < 3)
 
 GEM
   remote: https://rubygems.org/
@@ -275,8 +275,8 @@ GEM
     pundit (2.2.0)
       activesupport (>= 3.0.0)
     racc (1.6.0)
-    rack (2.2.3.1)
-    rack-protection (2.2.1)
+    rack (2.2.4)
+    rack-protection (2.2.2)
       rack
     rack-proxy (0.7.2)
       rack
