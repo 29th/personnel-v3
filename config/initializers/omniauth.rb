@@ -5,9 +5,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       uid_field: :forum_member_id
   end
 
+  discourse_base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
   provider :discourse,
-    # sso_url: URI.join(Rails.configuration.endpoints[:discourse], "/session/sso_provider"),
-    sso_url: "https://forums.29th.local/session/sso_provider",
+    sso_url: URI.join(discourse_base_url, "/session/sso_provider"),
     sso_secret: ENV.fetch("DISCOURSE_SSO_SECRET")
 end
 
