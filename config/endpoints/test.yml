@@ -5,8 +5,7 @@ test:
       external: https://forums.29th.local
     api_key: <%= ENV.fetch('DISCOURSE_API_KEY', 'test') %>
     webhooks_secret: <%= ENV.fetch('DISCOURSE_WEBHOOKS_SECRET', 'developmentsecret') %>
-    cookie_name: <%= ENV.fetch('DISCOURSE_COOKIE_NAME', 'discourse_jwt') %>
-    secret_key: <%= ENV.fetch('DISCOURSE_SECRET_KEY', 'test') %>
+    sso_secret: <%= ENV.fetch('DISCOURSE_SSO_SECRET', 'test') %>
   personnel_v2_app:
     base_url:
       internal: http://app

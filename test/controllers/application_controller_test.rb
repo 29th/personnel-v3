@@ -1,5 +1,4 @@
 require "test_helper"
-require "json_web_token"
 
 class ApplicationControllerTest < ActionDispatch::IntegrationTest
   test "nav bar should show sign in link when not logged in" do

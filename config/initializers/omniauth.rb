@@ -6,9 +6,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 
   discourse_base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
+  discourse_sso_secret = Rails.configuration.endpoints[:discourse][:sso_secret]
   provider :discourse,
     sso_url: URI.join(discourse_base_url, "/session/sso_provider"),
-    sso_secret: ENV.fetch("DISCOURSE_SSO_SECRET")
+    sso_secret: discourse_sso_secret
 end
 
 OmniAuth.config.logger = Rails.logger
