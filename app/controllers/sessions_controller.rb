@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
 
     reset_session
     session[:user_id] = user.id
-    redirect_to request.env["omniauth.origin"] || root_url, notice: "Signed in!"
+
+    origin = request.env["omniauth.origin"] if is_known_host(request.env["omniauth.origin"])
+    redirect_to origin || root_url, notice: "Signed in!"
   end
 
   def destroy
@@ -18,5 +20,14 @@ class SessionsController < ApplicationController
 
   def failure
     redirect_to root_url, alert: "Authentication error: #{params[:message].humanize}"
+  end
+
+  private
+
+  def is_known_host(url)
+    return false if !url
+
+    host = URI(url).host
+    host == request.host
   end
 end
