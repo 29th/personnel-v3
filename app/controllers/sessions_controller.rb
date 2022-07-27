@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create if Rails.env.development? # omniauth developer strategy only
   skip_after_action :verify_authorized # none of these methods require authentication
 
-  def new
-  end
-
   def create
     auth = request.env["omniauth.auth"]
     user = User.find_by_forum_member_id!(auth[:uid])
@@ -16,9 +13,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    forums_base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
     redirect_back fallback_location: root_url, notice: "Signed out!"
-    # redirect_to "#{forums_base_url}/logout"
   end
 
   def failure
