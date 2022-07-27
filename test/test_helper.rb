@@ -14,10 +14,11 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
-    payload = {sub: user.forum_member_id}
-    token = JsonWebToken.encode(payload)
-    cookie_name = Rails.configuration.endpoints[:discourse][:cookie_name]
-    cookies[cookie_name] = token
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock(:discourse, {uid: user.forum_member_id})
+    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:discourse]
+    post create_user_session_url(:discourse)
+    OmniAuth.config.mock_auth[:discourse] = nil
   end
 
   # Pundit helpers

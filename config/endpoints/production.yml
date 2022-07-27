@@ -5,8 +5,7 @@ production:
       external: https://forums.29th.org
     api_key: <%= ENV.fetch('DISCOURSE_API_KEY') %>
     webhooks_secret: <%= ENV.fetch('DISCOURSE_WEBHOOKS_SECRET') %>
-    cookie_name: <%= ENV.fetch('DISCOURSE_COOKIE_NAME') %>
-    secret_key: <%= ENV.fetch('DISCOURSE_SECRET_KEY') %>
+    sso_secret: <%= ENV.fetch('DISCOURSE_SSO_SECRET') %>
   personnel_v2_app:
     base_url:
       internal: https://personnel.29th.org

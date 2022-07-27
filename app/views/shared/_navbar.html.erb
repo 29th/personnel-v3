@@ -37,7 +37,7 @@
           </li>
           <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign in', new_user_session_url, :class => 'nav-link' %>
+            <%= link_to 'Sign in', signin_path(:discourse), method: :post, class: 'nav-link' %>
           <% end %>
         </ul>
       </div>

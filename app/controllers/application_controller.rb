@@ -1,5 +1,3 @@
-require "json_web_token"
-
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
   helper_method :current_user, :authenticate_user!
@@ -25,11 +23,17 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to new_user_session_url unless current_user
+    unless current_user
+      redirect_back fallback_location: root_url,
+        alert: "You must be signed in to access that page"
+    end
   end
 
   def authenticate_user_for_active_admin!
-    redirect_to new_user_session_url unless current_user && active_admin_editor?
+    unless current_user && active_admin_editor?
+      redirect_back fallback_location: root_url,
+        alert: "You must be signed in with appropriate access for that page"
+    end
   end
 
   # Checks whether user has :new? permission on any active admin resources
@@ -44,18 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return @current_user if defined? @current_user
-
-    @current_user = begin
-      cookie_name = Rails.configuration.endpoints[:discourse][:cookie_name]
-      token = cookies[cookie_name]
-      decoded = JsonWebToken.decode(token)
-      forum_member_id = decoded[:sub]
-      User.find_by_forum_member_id(forum_member_id)
-    rescue JWT::ExpiredSignature, JWT::VerificationError,
-      JWT::DecodeError, ActiveRecord::RecordNotFound
-      nil
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   private
