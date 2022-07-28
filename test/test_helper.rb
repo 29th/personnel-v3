@@ -9,9 +9,6 @@ WebMock.disable_net_connect!(allow_localhost: true)
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
 
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
-
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
     OmniAuth.config.test_mode = true
@@ -38,10 +35,4 @@ class ActiveSupport::TestCase
     klass = self.class.name[0, index + 6]
     klass.constantize.new(user, record).public_send("#{action}?")
   end
-end
-
-class ActiveRecord::FixtureSet
-  # Fixtures was generating IDs that were larger than the DB columns could support
-  remove_const(:MAX_ID) if const_defined?(:MAX_ID)
-  const_set(:MAX_ID, 2**15 - 1)
 end
