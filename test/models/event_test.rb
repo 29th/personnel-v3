@@ -49,4 +49,15 @@ class EventTest < ActiveSupport::TestCase
     assert_equal 3, expected_users.size
     refute_includes expected_users, new_user
   end
+
+  # e.g. training platoons
+  test "expected_users works even if unit is inactive" do
+    unit = create(:unit, active: false)
+    event = create(:event, datetime: 2.weeks.ago, unit: unit)
+    create_list(:assignment, 3, start_date: 3.weeks.ago, end_date: 1.week.ago, unit: unit)
+
+    expected_users = event.expected_users
+
+    assert_equal 3, expected_users.size
+  end
 end

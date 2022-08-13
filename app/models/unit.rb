@@ -41,12 +41,11 @@ class Unit < ApplicationRecord
     abbr.gsub(/ HQ$/, "")
   end
 
-  # NOTE: Applies :active scope to subtree
   # NOTE: You probably want to add .active when using this,
   #       to only get active users
   def subtree_users
     User.joins(:assignments)
-      .where(assignments: {unit_id: subtree.active.ids})
+      .where(assignments: {unit_id: subtree.ids})
   end
 
   def end_assignments
