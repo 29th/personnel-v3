@@ -92,7 +92,6 @@ class EventPolicyTest < ActiveSupport::TestCase
     other_unit = create(:unit)
     event = create(:event, unit: other_unit)
 
-    puts event.expected_users
     refute_permit user, event, :loa
   end
 

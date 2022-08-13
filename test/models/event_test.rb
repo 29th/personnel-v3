@@ -50,6 +50,19 @@ class EventTest < ActiveSupport::TestCase
     refute_includes expected_users, new_user
   end
 
+  test "expected_users includes users whose assignment has since ended" do
+    unit = create(:unit)
+    event = create(:event, datetime: 2.weeks.ago, unit: unit)
+    create_list(:assignment, 3, start_date: 4.weeks.ago, unit: unit)
+    subject_user = create(:user)
+    create(:assignment, start_date: 4.week.ago, end_date: 1.week.ago, user: subject_user, unit: unit)
+
+    expected_users = event.expected_users
+
+    assert_equal 4, expected_users.size
+    assert_includes expected_users, subject_user
+  end
+
   # e.g. training platoons
   test "expected_users works even if unit is inactive" do
     unit = create(:unit, active: false)
