@@ -13,9 +13,9 @@
             class: 'nav-link', active: :exclusive %>
           <%= active_link_to 'About', about_path, wrap_tag: 'li', wrap_class: 'nav-item',
             class: 'nav-link', active: :inclusive %>
-          <%= active_link_to 'Roster', 'https://personnel.29th.org', wrap_tag: 'li', wrap_class: 'nav-item',
+          <%= active_link_to 'Roster', personnel_v2_app_url, wrap_tag: 'li', wrap_class: 'nav-item',
             class: 'nav-link', active: false %>
-          <%= active_link_to 'Forum', 'https://forums.29th.org', wrap_tag: 'li', wrap_class: 'nav-item',
+          <%= active_link_to 'Forum', discourse_url, wrap_tag: 'li', wrap_class: 'nav-item',
             class: 'nav-link', active: false %>
           <%= active_link_to 'Servers', servers_path, wrap_tag: 'li', wrap_class: 'nav-item',
             class: 'nav-link', active: :inclusive %>
