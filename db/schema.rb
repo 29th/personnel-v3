@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_25_104501) do
+ActiveRecord::Schema.define(version: 2022_07_28_062947) do
 
-  create_table "__att1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Log of attendance", force: :cascade do |t|
+  create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
     t.boolean "attended", comment: "Has member attended"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "User ID"
   end
 
-  create_table "__eve1", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "__eve1", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.datetime "datetime", null: false
     t.integer "unit_id", limit: 3, unsigned: true
     t.string "title", limit: 64, null: false
@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "abilities", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "List of abilities", force: :cascade do |t|
+  create_table "abilities", id: { type: :integer, limit: 3, comment: "Ability's ID", unsigned: true }, charset: "utf8mb3", comment: "List of abilities", force: :cascade do |t|
     t.string "name", limit: 40, comment: "Ability's Name"
     t.string "abbr", limit: 24, null: false, comment: "Ability's Abbreviation"
     t.text "description", comment: "Detailed description of Ability"
   end
 
-  create_table "assignments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "assignments", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "User ID", unsigned: true
     t.integer "unit_id", limit: 3, null: false, unsigned: true
     t.string "position", limit: 64
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "attendance", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Log of attendance", force: :cascade do |t|
+  create_table "attendance", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
     t.boolean "attended", comment: "Has member attended"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "User ID"
   end
 
-  create_table "audits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "audits", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "auditable_id"
     t.string "auditable_type"
     t.integer "associated_id"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
-  create_table "awardings", id: :integer, limit: 3, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "awardings", id: { type: :integer, limit: 3 }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.date "date", null: false
     t.integer "award_id", limit: 3, null: false, unsigned: true
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "User ID"
   end
 
-  create_table "awards", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "awards", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.string "code", limit: 16, default: "", null: false
     t.string "title", default: "", null: false
     t.text "description", null: false
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.text "ribbon_image_data"
   end
 
-  create_table "banlog", id: :integer, limit: 3, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "banlog", id: { type: :integer, limit: 3 }, charset: "utf8mb3", force: :cascade do |t|
     t.string "roid", limit: 24, null: false
     t.string "uid", limit: 24, null: false
     t.string "guid", limit: 40, null: false, comment: "GUID"
@@ -133,23 +133,23 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["id_poster"], name: "id_poster"
   end
 
-  create_table "class_permissions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "class_permissions", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.column "class", "enum('Combat','Staff','Training')", comment: "Units table class"
     t.integer "ability_id", limit: 3, null: false, unsigned: true
     t.index ["ability_id"], name: "ability_id"
   end
 
-  create_table "class_roles", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "class_roles", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.column "class", "enum('Combat','Staff','Training')"
     t.integer "role_id", limit: 3, null: false, unsigned: true
   end
 
-  create_table "countries", id: :integer, limit: 2, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "countries", id: { type: :integer, limit: 2, comment: "Country ID" }, charset: "utf8mb3", force: :cascade do |t|
     t.string "abbr", limit: 2, null: false
     t.string "name", limit: 80, null: false
   end
 
-  create_table "delayed_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "delayed_jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "demerits", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "demerits", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.integer "author_member_id", limit: 3, unsigned: true
     t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "User ID"
   end
 
-  create_table "discharges", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "List of members' discharges", force: :cascade do |t|
+  create_table "discharges", id: { type: :integer, limit: 3, comment: "Discharge's ID", unsigned: true }, charset: "utf8mb3", comment: "List of members' discharges", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "ID of discharged member ", unsigned: true
     t.date "date", null: false, comment: "Date of discharge"
     t.column "type", "enum('Honorable','General','Dishonorable')", default: "General", null: false, comment: "Type of discharge"
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "eloas", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Extended Leaves of Absence", force: :cascade do |t|
+  create_table "eloas", id: { type: :integer, limit: 3, comment: "LOA's ID", unsigned: true }, charset: "utf8mb3", comment: "Extended Leaves of Absence", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Member's ID", unsigned: true
     t.datetime "posting_date", null: false, comment: "Date of posting"
     t.date "start_date", null: false, comment: "Planned start date"
@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "enlistments", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Enlistments into 29th ID", force: :cascade do |t|
+  create_table "enlistments", id: { type: :integer, limit: 3, comment: "Enlistment ID", unsigned: true }, charset: "utf8mb3", comment: "Enlistments into 29th ID", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Enlistee's ID", unsigned: true
     t.date "date", null: false, comment: "Enlistment Date"
     t.integer "liaison_member_id", limit: 3, comment: "Member ID of Enlistment Liaison", unsigned: true
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "events", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "events", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.datetime "datetime", null: false
     t.integer "unit_id", limit: 3, unsigned: true
     t.string "title", limit: 64
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "finances", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Finances Ledger", force: :cascade do |t|
+  create_table "finances", id: { type: :integer, limit: 3, comment: "Finance ID", unsigned: true }, charset: "utf8mb3", comment: "Finances Ledger", force: :cascade do |t|
     t.date "date", null: false, comment: "Date of entry"
     t.integer "member_id", limit: 3, comment: "Member ID", unsigned: true
     t.column "vendor", "enum('N/A','Game Servers','Branzone','Dreamhost','Nuclear Fallout','Other','Digital Ocean, Inc','Google')", null: false, comment: "Vendor of services"
@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "log", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Log of actions", force: :cascade do |t|
+  create_table "log", id: { type: :integer, comment: "Log record ID", unsigned: true }, charset: "utf8mb3", comment: "Log of actions", force: :cascade do |t|
     t.string "table", limit: 20, null: false, comment: "Name of table"
     t.integer "table_record_id", limit: 3, null: false, comment: "ID of table's record", unsigned: true
     t.column "action", "enum('Add','Edit','Delete')", default: "Add", null: false, comment: "Action taken"
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.integer "member_id", limit: 3, null: false, unsigned: true
   end
 
-  create_table "maps", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "maps", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.string "name", limit: 40, null: false
     t.column "game", "enum('Arma 3','DH','RS','RS2','Squad')"
     t.text "descriptions", null: false
@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.text "notes", null: false
   end
 
-  create_table "members", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "members", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.column "status", "enum('N/A','Cadet','Active Duty','Reservist','Retired','Discharged')"
     t.string "last_name", limit: 32, default: "", null: false
     t.string "first_name", limit: 32, default: "", null: false
@@ -295,13 +295,14 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.string "im_handle", limit: 100, comment: "Instant Messenger Handle"
     t.integer "vanilla_forum_member_id", limit: 3, unsigned: true
     t.integer "forum_member_id", limit: 3, unsigned: true
+    t.string "time_zone", default: "UTC"
     t.index ["country_id"], name: "CountryID"
     t.index ["forum_member_id"], name: "index_members_on_forum_member_id", unique: true
     t.index ["primary_assignment_id"], name: "Assignment"
     t.index ["rank_id"], name: "Rank"
   end
 
-  create_table "notes", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Notes", force: :cascade do |t|
+  create_table "notes", id: { type: :integer, limit: 3, comment: "Note's ID", unsigned: true }, charset: "utf8mb3", comment: "Notes", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Member ID of note's subject", unsigned: true
     t.integer "author_member_id", limit: 3, null: false, comment: "Member ID of note's author", unsigned: true
     t.datetime "date_add", null: false, comment: "Date & Time of adding"
@@ -313,7 +314,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["member_id"], name: "Member ID"
   end
 
-  create_table "passes", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "passes", id: { type: :integer, comment: "Pass ID", unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Receiver's Member ID", unsigned: true
     t.integer "author_id", limit: 3, null: false, comment: "Author's Member ID", unsigned: true
     t.integer "recruit_id", limit: 3, comment: "Recruit's Member ID (pass for recruiting)", unsigned: true
@@ -327,7 +328,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["recruit_id"], name: "RecruitID"
   end
 
-  create_table "positions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "positions", id: { type: :integer, limit: 3, comment: "ID", unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.string "name", limit: 250, null: false, comment: "Name of position"
     t.boolean "active", default: true, null: false, comment: "Is position active"
     t.integer "order", limit: 1, default: 0, null: false, unsigned: true
@@ -336,7 +337,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.column "AIT", "enum('Leadership','Rifle','Submachine Gun','Automatic Rifle','Combat Engineer','Machine Gun','Armor','Mortar','Pilot','Sniper','N/A','Grenadier')", default: "N/A", null: false, comment: "AIT associated with position"
   end
 
-  create_table "promotions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "V: Users <-> Rank", force: :cascade do |t|
+  create_table "promotions", id: { type: :integer, limit: 3, comment: "Promotion ID", unsigned: true }, charset: "utf8mb3", comment: "V: Users <-> Rank", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "ID of promoted member", unsigned: true
     t.date "date", null: false, comment: "Date of promotion"
     t.integer "old_rank_id", limit: 3, unsigned: true
@@ -348,7 +349,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["old_rank_id"], name: "Old Rank"
   end
 
-  create_table "qualifications", id: :integer, limit: 3, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "V: Users <-> Standards", force: :cascade do |t|
+  create_table "qualifications", id: { type: :integer, limit: 3 }, charset: "utf8mb3", comment: "V: Users <-> Standards", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.integer "standard_id", limit: 3, null: false, unsigned: true
     t.date "date"
@@ -359,7 +360,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["standard_id"], name: "AIT Standard ID"
   end
 
-  create_table "ranks", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "ranks", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.string "name", limit: 32, default: "", null: false
     t.string "abbr", limit: 8, default: "", null: false
     t.string "grade", limit: 4
@@ -369,13 +370,13 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.text "image_data"
   end
 
-  create_table "restricted_names", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "restricted_names", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "name", limit: 40, null: false
     t.integer "member_id", limit: 3, null: false, unsigned: true
     t.index ["member_id"], name: "Member", unique: true
   end
 
-  create_table "schedules", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Schedule of regular events", force: :cascade do |t|
+  create_table "schedules", id: { type: :integer, limit: 3, comment: "Schedule ID", unsigned: true }, charset: "utf8mb3", comment: "Schedule of regular events", force: :cascade do |t|
     t.integer "unit_id", limit: 3, null: false, comment: "Unit ID", unsigned: true
     t.string "type", limit: 40, null: false, comment: "Type of event"
     t.integer "server_id", limit: 3, null: false, comment: "Server ID", unsigned: true
@@ -386,7 +387,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "servers", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "List of 29th servers", force: :cascade do |t|
+  create_table "servers", id: { type: :integer, limit: 3, comment: "Server ID", unsigned: true }, charset: "utf8mb3", comment: "List of 29th servers", force: :cascade do |t|
     t.string "name", limit: 40, null: false, comment: "Server Name"
     t.string "abbr", limit: 4, null: false, comment: "Abbreviation of Server Name"
     t.string "address", limit: 15, null: false, comment: "IP address of server"
@@ -396,13 +397,13 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.string "battle_metrics_id", limit: 16
   end
 
-  create_table "special_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "special_roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "special_attribute", null: false
     t.integer "role_id", null: false
     t.column "forum_id", "enum('Vanilla','Discourse')", null: false
   end
 
-  create_table "standards", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", comment: "Standards required to achieve a badge for AIT", force: :cascade do |t|
+  create_table "standards", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", comment: "Standards required to achieve a badge for AIT", force: :cascade do |t|
     t.column "weapon", "enum('EIB','Rifle','Automatic Rifle','Machine Gun','Armor','Sniper','Mortar','SLT','Combat Engineer','Submachine Gun','Pilot','Grenadier')", default: "Rifle", null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", null: false
     t.column "badge", "enum('N/A','Marksman','Sharpshooter','Expert')", default: "Sharpshooter", null: false
@@ -410,7 +411,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.text "details"
   end
 
-  create_table "unit_permissions", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "unit_permissions", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "unit_id", limit: 3, null: false, unsigned: true
     t.integer "access_level", limit: 2, default: 1, null: false
     t.integer "ability_id", limit: 3, null: false, comment: "ID of ability", unsigned: true
@@ -419,7 +420,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id"], name: "Unit ID"
   end
 
-  create_table "unit_roles", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "unit_roles", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.integer "unit_id", limit: 3, unsigned: true
     t.integer "access_level", limit: 2, default: 0, null: false
     t.integer "role_id", limit: 3, null: false, unsigned: true
@@ -427,7 +428,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["unit_id", "role_id", "forum_id"], name: "index_unit_roles_on_unit_id_and_role_id_and_forum_id", unique: true
   end
 
-  create_table "units", id: :integer, limit: 3, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "units", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
     t.string "name", limit: 64, null: false
     t.string "abbr", limit: 32, null: false
     t.string "old_path", limit: 32
@@ -448,7 +449,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_104501) do
     t.index ["ancestry"], name: "index_units_on_ancestry"
   end
 
-  create_table "usertracking", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "usertracking", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "session_id", limit: 100, null: false
     t.string "user_identifier", null: false
     t.text "request_uri", null: false

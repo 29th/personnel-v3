@@ -27,6 +27,7 @@ class User < ApplicationRecord
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
   validates :forum_member_id, uniqueness: true, allow_nil: true
+  validate :known_time_zone
 
   def full_name
     middle_initial = "#{middle_name.first}." if middle_name.present?
@@ -180,5 +181,11 @@ class User < ApplicationRecord
       .where("units.active", true)
       .select("unit_roles.id", "unit_roles.role_id",
         "unit_roles.access_level", "unit_roles.unit_id")
+  end
+
+  def known_time_zone
+    if time_zone? && !ActiveSupport::TimeZone[time_zone].present?
+      errors.add(:time_zone, "is not known")
+    end
   end
 end
