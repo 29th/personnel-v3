@@ -22,7 +22,22 @@ Rails.application.routes.draw do
 
   get "/roster" => "roster#index"
 
-  post "/api/webhooks/discourse" => "discourse_webhooks#receive", :as => :discourse_webhooks
+  scope "/api/webhooks" do
+    post "/discourse",
+      to: "discourse_webhooks#user_activated",
+      as: :discourse_webhook_user_activated,
+      constraints: ->(request) { request.headers["X-Discourse-Event"] == "user_activated" }
+
+    post "/discourse",
+      to: "discourse_webhooks#user_updated",
+      as: :discourse_webhook_user_updated,
+      constraints: ->(request) { request.headers["X-Discourse-Event"] == "user_updated" }
+
+    # return 204 for all other events
+    post "/discourse",
+      to: ->(env) { [204, {}, [""]] },
+      as: :discourse_webhooks_unrecognised
+  end
 
   resources :passes
   resources :events, only: [:index, :show] do
