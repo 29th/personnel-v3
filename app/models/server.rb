@@ -2,6 +2,7 @@ class Server < ApplicationRecord
   has_many :events
 
   scope :active, -> { where(active: true) }
+  scope :for_dropdown, -> { active.order(:game, :name) }
 
   enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
 
