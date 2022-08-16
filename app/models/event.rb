@@ -16,8 +16,9 @@ class Event < ApplicationRecord
     where(unit: unit_ids)
   end
 
-  # TODO: Clean up data and convert field to enum
-  validates :type, presence: true
+  TYPES = ["Squad Drills", "Platoon Drills", "Company Drills", "Battalion Drills", "Basic Combat Training",
+    "Public Scrimmage", "Special Event"]
+  validates :type, presence: true, inclusion: {in: TYPES}
 
   validates :datetime, presence: true
   validates_datetime :datetime
