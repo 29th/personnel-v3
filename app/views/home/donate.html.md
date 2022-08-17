@@ -4,8 +4,8 @@
 
 ### After you donate:
 
-Please send a PM to [T/4 Burg](http://forums.29th.org/messages/add/T4%20Burg),
-Assistant Chief Finance Officer, with the email address you used to donate, so
+Please send a PM to [2Lt. Griffin](http://forums.29th.org/messages/add/2lt%20Griffin),
+Chief Finance Officer, with the email address you used to donate, so
 that your donation can be identified as coming from you.
 
 ### Why should you donate?
