@@ -16,12 +16,16 @@ class Event < ApplicationRecord
     where(unit: unit_ids)
   end
 
+  attr_accessor :bulk_dates
+  attr_writer :time
+
   TYPES = ["Squad Drills", "Platoon Drills", "Company Drills", "Battalion Drills", "Basic Combat Training",
     "Public Scrimmage", "Special Event"]
   validates :type, presence: true, inclusion: {in: TYPES}
 
   validates :datetime, presence: true
   validates_datetime :datetime
+  validates_time :time
   validates :mandatory, inclusion: {in: [true, false]}
   validates :server, presence: true
 
@@ -85,6 +89,20 @@ class Event < ApplicationRecord
     else
       attendance_record.update(excused: false)
     end
+  end
+
+  def date=(date)
+    parsed_date = begin
+      Date.parse(date)
+    rescue
+      return
+    end
+
+    self.datetime = Time.parse(time, parsed_date) if time
+  end
+
+  def time
+    @time || datetime&.strftime("%T")
   end
 
   private

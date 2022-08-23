@@ -12,3 +12,8 @@ en:
   simple_calendar:
     previous: "<"
     next: ">"
+  active_admin:
+    batch_actions:
+      successfully_created:
+        one: "Successfully created 1 %{model}"
+        other: "Successfully created %{count} %{plural_model}"

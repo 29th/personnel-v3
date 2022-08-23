@@ -8,7 +8,9 @@
     "axios": "^0.21.1",
     "bootstrap.native": "^2.0.23",
     "choices.js": "~9.0.1",
-    "stimulus": "^2.0.0"
+    "flatpickr": "^4.6.13",
+    "stimulus": "^2.0.0",
+    "stimulus-flatpickr": "^1.4.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.2"
