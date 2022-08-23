@@ -31,7 +31,7 @@ ActiveAdmin.register Event do
   show do
     # TODO: Support multiple dates, like passes
     attributes_table do
-      row "Start time", :datetime
+      row("Start time") { |row| row.datetime }
       row :unit
       row :type
       row :server
