@@ -83,10 +83,10 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
           server_id: @event.server.id,
           mandatory: @event.mandatory
         }
-      }
+      }, headers: {HTTP_REFERER: new_admin_event_url}
     end
 
-    assert_redirected_to admin_root_url
+    assert_redirected_to new_admin_event_url
   end
 
   test "should create 20 events maximum" do

@@ -41,4 +41,12 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     assert_equal "Authentication error: Invalid credentials", flash[:alert]
   end
+
+  test "accessing a private resource when not signed in redirects back unless it's another host" do
+    get events_url, headers: {HTTP_REFERER: about_url}
+    assert_redirected_to about_url
+
+    get events_url, headers: {HTTP_REFERER: "https://google.com"}
+    assert_redirected_to root_url
+  end
 end

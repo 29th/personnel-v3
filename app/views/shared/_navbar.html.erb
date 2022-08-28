@@ -37,7 +37,9 @@
           </li>
           <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign in', signin_path(:discourse), method: :post, class: 'nav-link' %>
+            <%= link_to 'Sign in', sign_in_path(:discourse, flash[:sign_in_origin]),
+                  method: :post, class: 'nav-link' %>
+          </li>
           <% end %>
         </ul>
       </div>
