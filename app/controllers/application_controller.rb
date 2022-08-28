@@ -26,15 +26,19 @@ class ApplicationController < ActionController::Base
     unless current_user
       redirect_back fallback_location: root_url, allow_other_host: false,
         alert: "You must be signed in to access that page",
-        flash: {sign_in_origin: request.url}
+        flash: {sign_in_origin: request.url} and return
     end
   end
 
   def authenticate_user_for_active_admin!
-    authenticate_user!
+    unless current_user
+      redirect_back fallback_location: root_url, allow_other_host: false,
+        alert: "You must be signed in to access that page",
+        flash: {sign_in_origin: request.url} and return
+    end
     unless current_user.active_admin_editor?
       redirect_back fallback_location: root_url, allow_other_host: false,
-        alert: "You are not authorized to access this page"
+        alert: "You are not authorized to access this page" and return
     end
   end
 
@@ -44,6 +48,6 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized(_exception)
     redirect_back fallback_location: root_url, allow_other_host: false,
-      alert: "You are not authorized to perform this action."
+      alert: "You are not authorized to perform this action." and return
   end
 end
