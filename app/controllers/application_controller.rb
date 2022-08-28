@@ -24,26 +24,17 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      redirect_back fallback_location: root_url,
-        alert: "You must be signed in to access that page"
+      redirect_back fallback_location: root_url, allow_other_host: false,
+        alert: "You must be signed in to access that page",
+        flash: {sign_in_origin: request.url}
     end
   end
 
   def authenticate_user_for_active_admin!
-    unless current_user && active_admin_editor?
-      redirect_back fallback_location: root_url,
-        alert: "You must be signed in with appropriate access for that page"
-    end
-  end
-
-  # Checks whether user has :new? permission on any active admin resources
-  def active_admin_editor?
-    namespace = ActiveAdmin.application.default_namespace
-    resources = ActiveAdmin.application.namespaces[namespace].resources
-    resource_classes = resources.grep(ActiveAdmin::Resource).map(&:resource_class)
-    resource_classes -= [Enlistment]
-    resource_classes.any? do |resource_class|
-      Pundit.policy(current_user, resource_class)&.new?
+    authenticate_user!
+    unless current_user.active_admin_editor?
+      redirect_back fallback_location: root_url, allow_other_host: false,
+        alert: "You are not authorized to access this page"
     end
   end
 
@@ -51,10 +42,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  private
-
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
+  def user_not_authorized(_exception)
+    redirect_back fallback_location: root_url, allow_other_host: false,
+      alert: "You are not authorized to perform this action."
   end
 end

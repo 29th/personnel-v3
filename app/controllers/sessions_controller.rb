@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_back fallback_location: root_url, notice: "Signed out!"
+    redirect_back fallback_location: root_url, allow_other_host: false,
+      notice: "Signed out!"
   end
 
   def failure

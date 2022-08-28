@@ -51,7 +51,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
       post admin_assignments_url, params: {assignment: assignment_attributes(assignment)}
     end
 
-    assert_equal "You are not authorized to perform this action.", flash[:error]
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
   end
 
   test "should end old assignment if transfer_from_unit is in scope" do
