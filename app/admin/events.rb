@@ -2,7 +2,8 @@ ActiveAdmin.register Event do
   includes :unit
   includes :server
 
-  permit_params :bulk_dates, :time, :unit_id, :type, :mandatory, :server_id
+  permit_params :datetime, :bulk_dates, :time, :unit_id, :type, :mandatory,
+    :server_id
 
   filter :datetime
   filter :unit, collection: -> { Unit.for_dropdown }
