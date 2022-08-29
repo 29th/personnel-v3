@@ -1,6 +1,9 @@
 {
   "name": "personnel",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@activeadmin/activeadmin": "^2.13.1",
     "@rails/webpacker": "5.4.3",

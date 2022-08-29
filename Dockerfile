@@ -1,6 +1,6 @@
 FROM ruby:2.7.6
 
-ENV NODE_MAJOR_VERSION 14
+ENV NODE_MAJOR_VERSION 16
 
 # install node.js, yarn and imagemagick
 RUN curl --silent --show-error --location --retry 5 --retry-connrefuse --retry-delay 4 https://deb.nodesource.com/setup_${NODE_MAJOR_VERSION}.x | bash - \
