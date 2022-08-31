@@ -98,7 +98,11 @@ class Event < ApplicationRecord
       return
     end
 
-    self.datetime = Time.parse(time, parsed_date) if time
+    if time
+      # Pretend it's UTC already so Rails doesn't convert it to it
+      self.datetime = Time.find_zone("UTC")
+        .parse(time, parsed_date)
+    end
   end
 
   def time
