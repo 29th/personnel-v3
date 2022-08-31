@@ -5,6 +5,10 @@ ActiveAdmin.register Event do
   permit_params :datetime, :bulk_dates, :time, :unit_id, :type, :mandatory,
     :server_id
 
+  batch_create by_param: :bulk_dates, max: 20, separator: ", " do |date|
+    @event.date = date
+  end
+
   filter :datetime
   filter :unit, collection: -> { Unit.for_dropdown }
   filter :type, as: :select, collection: -> { Event::TYPES }
@@ -59,45 +63,4 @@ ActiveAdmin.register Event do
 
   config.sort_order = "datetime_desc"
   config.create_another = true
-
-  # Allow creating multiple events at once
-  # See: https://github.com/activeadmin/inherited_resources#overwriting-actions
-  controller do
-    def create
-      bulk_dates = permitted_params[:event][:bulk_dates].split(", ").first(20) # Restrict over-loading
-      base_event = build_resource # ActiveAdmin method. Applies authorization etc.
-
-      resource_class.transaction do
-        bulk_dates.each do |date|
-          @event = base_event.dup
-          @event.date = date
-          create_resource!(@event)
-        end
-      end
-
-      count = bulk_dates.count
-      location = count === 1 ? smart_resource_url : smart_collection_url
-      redirect_to location, notice: batch_created_notice(count)
-    rescue ActiveRecord::RecordInvalid, ActiveRecord::Rollback
-      render :new
-    end
-
-    # copied from active_admin and inherited_resources, with ! added to save
-    def create_resource!(object)
-      run_create_callbacks object do
-        run_save_callbacks object do
-          object.save!
-        end
-      end
-    end
-
-    def batch_created_notice(count)
-      I18n.t(
-        "active_admin.batch_actions.successfully_created",
-        count: count,
-        model: active_admin_config.resource_label.downcase,
-        plural_model: active_admin_config.plural_resource_label(count: count).downcase
-      )
-    end
-  end
 end
