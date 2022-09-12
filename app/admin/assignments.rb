@@ -64,8 +64,8 @@ ActiveAdmin.register Assignment do
         f.input :user, as: :select,
           collection: User.for_dropdown,
           input_html: {
-            "data-controller" => "select2-shim",
-            "data-action" => "assignment-transfer#loadAssignments",
+            "data-controller" => "jquery-shim",
+            "data-action" => "$change->assignment-transfer#loadAssignments",
             "data-assignment-transfer-target" => "user"
           }
         f.input :unit, as: :select, collection: Unit.for_dropdown

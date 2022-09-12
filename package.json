@@ -12,6 +12,7 @@
     "bootstrap.native": "^2.0.23",
     "choices.js": "~9.0.1",
     "flatpickr": "^4.6.13",
+    "jquery-events-to-dom-events": "^1.1.0",
     "stimulus": "^2.0.0",
     "stimulus-flatpickr": "^1.4.0"
   },
