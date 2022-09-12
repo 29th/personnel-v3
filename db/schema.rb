@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_28_062947) do
+ActiveRecord::Schema.define(version: 2022_09_02_100620) do
 
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
@@ -241,6 +241,8 @@ ActiveRecord::Schema.define(version: 2022_07_28_062947) do
     t.integer "reporter_member_id", limit: 3, unsigned: true
     t.datetime "report_posting_date", comment: "Date of AAR posting"
     t.datetime "report_edit_date", comment: "Date of last AAR editing"
+    t.datetime "starts_at", comment: "Start date/time in UTC"
+    t.string "time_zone", default: "America/New_York", comment: "Priority time zone for this event, usually based on host unit"
     t.index ["reporter_member_id"], name: "Reporter's ID"
     t.index ["server_id"], name: "Server ID"
     t.index ["unit_id"], name: "Unit ID"
