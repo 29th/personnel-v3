@@ -266,7 +266,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "event page should not show loa button if event is older than 24 hours" do
     sign_in_as @user
-    event = create(:event, unit: @unit, datetime: 25.hours.ago)
+    event = create(:event, unit: @unit, starts_at: 25.hours.ago)
 
     get event_url(event)
 

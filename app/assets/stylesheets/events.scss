@@ -9,8 +9,8 @@
     table-layout: fixed;
   }
 
-  // Collapse Friday & Saturday as they never have events
-  th:nth-last-child(-n+2) {
+  // Collapse Saturday as it never has events
+  th:last-child {
     width: 5%;
   }
 
@@ -47,4 +47,10 @@
       padding: 0 1rem;
     }
   }
+}
+
+time[title],
+time[data-original-title] {
+  text-decoration: underline dotted;
+  cursor: help;
 }

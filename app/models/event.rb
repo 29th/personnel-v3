@@ -53,7 +53,7 @@ class Event < ApplicationRecord
 
   # Alias for simple_calendar
   def start_time
-    datetime
+    starts_at
   end
 
   def update_attendance(attended_user_ids)

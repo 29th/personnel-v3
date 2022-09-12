@@ -99,7 +99,7 @@ class EventPolicyTest < ActiveSupport::TestCase
     unit = create(:unit)
     user = create(:user)
     create(:assignment, user: user, unit: unit)
-    event = create(:event, datetime: 2.days.ago, unit: unit)
+    event = create(:event, starts_at: 2.days.ago, unit: unit)
 
     refute_permit user, event, :loa
   end
@@ -109,7 +109,7 @@ class EventPolicyTest < ActiveSupport::TestCase
     user = create(:user)
     create(:assignment, user: user, unit: unit)
     create(:permission, abbr: "event_aar", unit: unit)
-    event = create(:event, datetime: 1.day.ago, unit: unit)
+    event = create(:event, starts_at: 1.day.ago, unit: unit)
 
     assert_permit user, event, :aar
   end
@@ -119,7 +119,7 @@ class EventPolicyTest < ActiveSupport::TestCase
     user = create(:user)
     create(:assignment, user: user, unit: unit)
     create(:permission, abbr: "event_aar", unit: unit)
-    event = create(:event, datetime: 1.hour.from_now, unit: unit)
+    event = create(:event, starts_at: 1.hour.from_now, unit: unit)
 
     assert_permit user, event, :aar
   end
@@ -129,7 +129,7 @@ class EventPolicyTest < ActiveSupport::TestCase
     user = create(:user)
     create(:assignment, user: user, unit: unit)
     create(:permission, abbr: "event_aar", unit: unit)
-    event = create(:event, datetime: 1.day.from_now, unit: unit)
+    event = create(:event, starts_at: 1.day.from_now, unit: unit)
 
     refute_permit user, event, :aar
   end

@@ -17,11 +17,12 @@
 
         <% events.each do |event| %>
           <%= tag.div class: {event: true, expected: current_user&.assigned_to_subtree?(event.unit)} do %>
-            <%= event.datetime.to_s(:time) %>
+            <%= timestamp_tag(event.starts_at, "%R") %>
             <%= link_to event.unit.subtree_abbr, event %>
           <% end %>
         <% end %>
       <% end %>
+      Timezone: <%= Time.zone.name %>
     </div>
   </div>
 </article>
