@@ -1,4 +1,5 @@
 require "active_admin/custom_pundit_adapter"
+require "events_helper"
 
 ActiveAdmin.setup do |config|
   # == Site Title
@@ -313,3 +314,7 @@ end
 
 ActiveAdmin::Views::Pages::Base.send :prepend, AdminPageLayoutOverride
 Rails.application.config.assets.precompile += %w[country_flags.css]
+
+ActiveAdmin::BaseController.class_eval do
+  helper EventsHelper
+end

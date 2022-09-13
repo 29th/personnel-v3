@@ -42,6 +42,25 @@ module EventsHelper
       .join(tag(:br))
   end
 
+  def timezone_dropdown_options
+    Event::TIMEZONES
+  end
+
+  def build_time(time_zone:, date_time: nil, date: nil, time: nil)
+    tz = Time.find_zone(time_zone)
+
+    if date_time.present?
+      tz.parse(date_time)
+    elsif date.present? && time.present?
+      begin
+        parsed_date = Date.parse(date)
+        tz.parse(time, parsed_date)
+      rescue Date::Error
+        nil
+      end
+    end
+  end
+
   private
 
   def bolden(str)

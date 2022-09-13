@@ -18,6 +18,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
         event: {
           bulk_dates: 1.day.from_now.strftime("%F"),
           time: "18:00",
+          time_zone: @event.time_zone,
           unit_id: @event.unit_id,
           type: @event.type,
           server_id: @event.server.id,
@@ -42,6 +43,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
         event: {
           bulk_dates: bulk_dates,
           time: "18:00",
+          time_zone: @event.time_zone,
           unit_id: @event.unit_id,
           type: @event.type,
           server_id: @event.server.id,
@@ -53,12 +55,91 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_events_url
   end
 
+  test "should convert time to utc based on time zone attribute" do
+    assert_difference("Event.count", 1) do
+      post admin_events_url, params: {
+        event: {
+          bulk_dates: "2022-09-03",
+          time: "18:00",
+          time_zone: "Eastern Time (US & Canada)",
+          unit_id: @event.unit_id,
+          type: @event.type,
+          server_id: @event.server.id,
+          mandatory: @event.mandatory
+        }
+      }
+    end
+
+    new_event = Event.last
+    assert_equal Time.parse("2022-09-03 22:00 UTC"), new_event.starts_at.utc
+  end
+
+  test "should set datetime to the value of starts_at in eastern time" do
+    assert_difference("Event.count", 1) do
+      post admin_events_url, params: {
+        event: {
+          bulk_dates: "2022-09-03",
+          time: "18:00",
+          time_zone: "London",
+          unit_id: @event.unit_id,
+          type: @event.type,
+          server_id: @event.server.id,
+          mandatory: @event.mandatory
+        }
+      }
+    end
+
+    new_event = Event.last
+    # Note that rails always treats timestamps in databases as if they're
+    # stored in UTC. `datetime` is actually stored in Eastern Time. There's
+    # no way to tell rails that, so we pretend it's stored in UTC.
+    assert_equal Time.parse("2022-09-03 13:00 UTC"), new_event.datetime
+  end
+
+  test "edit form should show starts_at in specified time zone" do
+    event = create(:event, unit_id: @event.unit.id,
+      starts_at: "2022-09-06 00:00 UTC",
+      time_zone: "Eastern Time (US & Canada)")
+
+    get edit_admin_event_url(event)
+
+    assert_response :success
+    assert_select "#event_starts_at_local" do |matches|
+      value = matches.first.attribute("value").value
+      assert_equal "2022-09-05 20:00", value
+    end
+  end
+
+  test "updating time zone should update starts_at and datetime" do
+    event = create(:event, unit_id: @event.unit.id,
+      starts_at: "2022-09-06 20:00 EDT",
+      time_zone: "Eastern Time (US & Canada)")
+
+    assert_equal Time.parse("2022-09-07 00:00 UTC"), event.starts_at
+    assert_equal Time.parse("2022-09-06 20:00 EDT"), event.starts_at_local
+
+    patch admin_event_url(event), params: {
+      event: {
+        starts_at_local: "2022-09-06 20:00",
+        time_zone: "London"
+      }
+    }
+
+    event.reload
+
+    assert_equal Time.parse("2022-09-06 20:00 BST"), event.starts_at, "starts_at doesn't match expectation"
+
+    # Rails thinks the legacy datetime column is in UTC
+    assert_equal Time.parse("2022-09-06 15:00 UTC"), event.datetime, "legacy datetime column doesn't match expectation"
+  end
+
   test "should fail and show errors if invalid" do
     assert_difference("Event.count", 0) do
       post admin_events_url, params: {
         event: {
           bulk_dates: 1.day.from_now.strftime("%F"),
           time: "18:00",
+          time_zone: @event.time_zone,
           unit_id: @event.unit_id,
           type: @event.type,
           server_id: "", # fail validation
@@ -78,6 +159,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
         event: {
           bulk_dates: 1.day.from_now.strftime("%F"),
           time: "18:00",
+          time_zone: @event.time_zone,
           unit_id: other_unit.id,
           type: @event.type,
           server_id: @event.server.id,
@@ -99,6 +181,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
         event: {
           bulk_dates: bulk_dates,
           time: "18:00",
+          time_zone: @event.time_zone,
           unit_id: @event.unit_id,
           type: @event.type,
           server_id: @event.server.id,
@@ -115,6 +198,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
         event: {
           bulk_dates: bulk_dates,
           time: "18:00",
+          time_zone: @event.time_zone,
           unit_id: @event.unit_id,
           type: @event.type,
           server_id: @event.server.id,
@@ -131,6 +215,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
         event: {
           bulk_dates: "",
           time: "",
+          time_zone: "",
           unit_id: "",
           type: "",
           server_id: "",
