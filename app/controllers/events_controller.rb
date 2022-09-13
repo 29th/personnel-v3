@@ -8,9 +8,9 @@ class EventsController < ApplicationController
     start_date = date_param.beginning_of_month.beginning_of_week
     end_date = date_param.end_of_month.end_of_week
 
-    @events = Event.where(datetime: start_date..end_date)
+    @events = Event.where(starts_at: start_date..end_date)
       .includes(:unit)
-      .order(:datetime)
+      .order(:starts_at)
 
     @view_by = params.fetch(:view_by, "week")
   end

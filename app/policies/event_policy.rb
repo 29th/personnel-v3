@@ -31,11 +31,11 @@ class EventPolicy < ApplicationPolicy
     ((record.unit && user&.has_permission_on_unit?("event_aar", record.unit)) ||
       user&.has_permission?("event_aar_any") ||
       user&.has_permission?("admin")) &&
-      record.datetime.beginning_of_day.before?(Time.current)
+      record.starts_at.beginning_of_day.before?(Time.current)
   end
 
   def loa?
     (user && record.expected_users.include?(user) &&
-      record.datetime >= 1.day.ago)
+      record.starts_at >= 1.day.ago)
   end
 end

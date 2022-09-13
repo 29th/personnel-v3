@@ -34,7 +34,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: '16'
 
       - name: Find yarn cache location
         id: yarn-cache-dir

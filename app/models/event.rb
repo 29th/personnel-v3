@@ -17,29 +17,38 @@ class Event < ApplicationRecord
   end
 
   attr_accessor :bulk_dates
-  attr_writer :time
+  attr_accessor :time
+  attr_writer :starts_at_local
 
   TYPES = ["Squad Drills", "Platoon Drills", "Company Drills", "Battalion Drills", "Basic Combat Training",
     "Public Scrimmage", "Special Event"]
   validates :type, presence: true, inclusion: {in: TYPES}
 
-  validates :datetime, presence: true
-  validates_datetime :datetime
-  validates_time :time
+  TIMEZONES = [
+    "Pacific Time (US & Canada)",
+    "Eastern Time (US & Canada)",
+    "UTC",
+    "London"
+  ]
+  validates :time_zone, inclusion: {in: TIMEZONES}
+
+  validates :starts_at, presence: true
+  validates_datetime :starts_at
   validates :mandatory, inclusion: {in: [true, false]}
   validates :server, presence: true
 
   before_save :update_report_dates,
     if: proc { attendance_records.any? || will_save_change_to_report? }
+  before_save :update_legacy_datetime
 
   self.skip_time_zone_conversion_for_attributes = [:datetime, :report_posting_date, :report_edit_date]
 
   def expected_users
-    unit.subtree_users.active(datetime).includes(:rank)
+    unit.subtree_users.active(starts_at).includes(:rank)
   end
 
   def extended_loas
-    ExtendedLOA.active(datetime)
+    ExtendedLOA.active(starts_at)
       .where(member_id: expected_users.ids)
   end
 
@@ -53,7 +62,7 @@ class Event < ApplicationRecord
 
   # Alias for simple_calendar
   def start_time
-    datetime
+    starts_at
   end
 
   def update_attendance(attended_user_ids)
@@ -91,22 +100,8 @@ class Event < ApplicationRecord
     end
   end
 
-  def date=(date)
-    parsed_date = begin
-      Date.parse(date)
-    rescue
-      return
-    end
-
-    if time
-      # Pretend it's UTC already so Rails doesn't convert it to it
-      self.datetime = Time.find_zone("UTC")
-        .parse(time, parsed_date)
-    end
-  end
-
-  def time
-    @time || datetime&.strftime("%T")
+  def starts_at_local
+    @starts_at_local ||= starts_at&.in_time_zone(time_zone)
   end
 
   private
@@ -114,5 +109,12 @@ class Event < ApplicationRecord
   def update_report_dates
     self.report_posting_date ||= Time.current
     self.report_edit_date = Time.current
+  end
+
+  # Personnel v2 uses the `datetime` column, which is stored in Eastern Time
+  def update_legacy_datetime
+    # Remove time zone so rails doesn't try to convert it
+    self.datetime = starts_at.in_time_zone("Eastern Time (US & Canada)")
+      .strftime("%F %R")
   end
 end

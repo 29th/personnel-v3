@@ -7,7 +7,9 @@
     <div class="col-4">
       <dl>
         <dt>Start time</dt>
-        <dd><%= format_timestamp(@event.datetime) %></dd>
+        <dd>
+          <%= timestamp_tag @event.starts_at %>
+        </dd>
 
         <dt>Unit</dt>
         <dd><%= @event.unit.name %></dd>

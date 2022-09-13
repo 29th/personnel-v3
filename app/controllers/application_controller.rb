@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
   helper_method :current_user, :authenticate_user!
 
+  around_action :set_time_zone, if: :current_user
   # enforce policy for every action
   after_action :verify_authorized, unless: -> { :active_admin_controller? }
 
@@ -49,5 +50,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized(_exception)
     redirect_back fallback_location: root_url, allow_other_host: false,
       alert: "You are not authorized to perform this action." and return
+  end
+
+  def set_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
   end
 end

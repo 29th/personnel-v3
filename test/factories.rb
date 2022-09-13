@@ -246,7 +246,9 @@ FactoryBot.define do
     unit
     type { "Squad Drills" }
     mandatory { false }
-    datetime { 1.hour.from_now }
+    starts_at { 1.hour.from_now }
+    datetime { 1.hour.from_now.in_time_zone("Eastern Time (US & Canada)") }
+    time_zone { "Eastern Time (US & Canada)" }
     server
   end
 end

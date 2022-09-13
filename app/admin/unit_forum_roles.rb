@@ -35,8 +35,8 @@ ActiveAdmin.register UnitForumRole do
       input :forum_id, as: :select,
         collection: UnitForumRole.forum_ids.map(&:reverse),
         input_html: {
-          "data-controller" => "select2-shim",
-          "data-action" => "forum-roles#showForumRoles",
+          "data-controller" => "jquery-shim",
+          "data-action" => "$change->forum-roles#showForumRoles",
           "data-forum-roles-target" => "forum"
         }
       input :role_id, as: :select, label: "Discourse role",

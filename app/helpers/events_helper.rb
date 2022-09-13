@@ -1,4 +1,6 @@
 module EventsHelper
+  DATETIME_FORMAT = "%F %R %Z".freeze
+
   def safe_bbcode(input)
     sanitizer = Rails::Html::SafeListSanitizer.new
     html = input.bbcode_to_html({}, false)
@@ -13,16 +15,55 @@ module EventsHelper
     end
   end
 
-  # Event timestamps are stored in ET in the database.
-  # Rails assumes they're in UTC, and we've told rails
-  # *not* to convert them to ET (because they already
-  # are in ET). So we have to convert it to a string
-  # and *then* tack on the time zone, and then format
-  # the time zone as an abbreviation instead of offset.
-  # see: https://github.com/29th/personnel/issues/593
-  def format_timestamp(datetime)
-    datetime.strftime("%F %R") # removes time zone
-      .in_time_zone(Time.zone) # adds correct time zone
-      .strftime("%F %R %Z") # formats time zone as abbr
+  def timestamp_tag(starts_at, format = DATETIME_FORMAT)
+    comparison = compare_timezones(starts_at)
+    content = starts_at.strftime(format)
+    tag.time(content, :datetime => starts_at.utc.iso8601, :title => comparison,
+      "data-toggle" => "tooltip", "data-controller" => "tooltip")
+  end
+
+  def format_timestamp(starts_at)
+    starts_at.strftime(DATETIME_FORMAT)
+  end
+
+  def compare_timezones(starts_at)
+    current_user_time_zone = starts_at.time_zone
+
+    Event::TIMEZONES
+      .map { |tz| ActiveSupport::TimeZone[tz] }
+      .append(current_user_time_zone)
+      .uniq
+      .map { |tz| starts_at.in_time_zone(tz) }
+      .sort
+      .map do |time|
+        str = time.strftime(DATETIME_FORMAT)
+        time.time_zone == current_user_time_zone ? bolden(str) : str
+      end
+      .join(tag(:br))
+  end
+
+  def timezone_dropdown_options
+    Event::TIMEZONES
+  end
+
+  def build_time(time_zone:, date_time: nil, date: nil, time: nil)
+    tz = Time.find_zone(time_zone)
+
+    if date_time.present?
+      tz.parse(date_time)
+    elsif date.present? && time.present?
+      begin
+        parsed_date = Date.parse(date)
+        tz.parse(time, parsed_date)
+      rescue Date::Error
+        nil
+      end
+    end
+  end
+
+  private
+
+  def bolden(str)
+    content_tag(:b, str)
   end
 end

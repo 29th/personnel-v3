@@ -17,9 +17,27 @@
 //
 //   .status_tag { background: #6090DB; }
 .status_tag {
+
   // &.pending { background: }
-  &.accepted { background: #6da34d; }
-  &.denied { background: #cd4631; }
-  &.withdrawn { background: #ffbf00; }
-  &.awol { background: #e57a44; }
+  &.accepted {
+    background: #6da34d;
+  }
+
+  &.denied {
+    background: #cd4631;
+  }
+
+  &.withdrawn {
+    background: #ffbf00;
+  }
+
+  &.awol {
+    background: #e57a44;
+  }
+}
+
+time[title],
+time[data-original-title] {
+  text-decoration: underline dotted;
+  cursor: help;
 }
