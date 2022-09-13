@@ -127,7 +127,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
 
     event.reload
 
-    assert_equal Time.parse("2022-09-06 20:00 BST"), event.starts_at, "starts_at doesn't match expectation"
+    assert_equal Time.parse("2022-09-06 20:00 BST"), event.starts_at.utc, "starts_at doesn't match expectation"
 
     # Rails thinks the legacy datetime column is in UTC
     assert_equal Time.parse("2022-09-06 15:00 UTC"), event.datetime, "legacy datetime column doesn't match expectation"
