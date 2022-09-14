@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.datetime "report_posting_date", comment: "Date of AAR posting"
     t.datetime "report_edit_date", comment: "Date of last AAR editing"
     t.datetime "starts_at", comment: "Start date/time in UTC"
-    t.string "time_zone", default: "America/New_York", comment: "Priority time zone for this event, usually based on host unit"
+    t.string "time_zone", default: "Eastern Time (US & Canada)", comment: "Priority time zone for this event, usually based on host unit"
     t.index ["reporter_member_id"], name: "Reporter's ID"
     t.index ["server_id"], name: "Server ID"
     t.index ["unit_id"], name: "Unit ID"
