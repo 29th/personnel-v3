@@ -87,7 +87,7 @@ gem "aws-sdk-s3", "~> 1.14", require: false
 gem "image_processing", "~> 1.0"
 gem "fastimage", "~> 2.2", ">= 2.2.2"
 gem "flag-icons-rails", "~> 3.4", ">= 3.4.6.1"
-gem "audited", "~> 4.10"
+gem "audited", "~> 5.0"
 gem "delayed_job_active_record", "~> 4.1", ">= 4.1.5"
 gem "honeybadger", "~> 4.0"
 gem "scout_apm", "~> 4.0", ">= 4.0.4"
