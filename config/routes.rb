@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       as: :discourse_webhooks_unrecognised
   end
 
-  resources :passes
+  resources :passes, only: [:index, :show]
   resources :events, only: [:index, :show] do
     member do
       get "aar", to: "events#edit_aar"

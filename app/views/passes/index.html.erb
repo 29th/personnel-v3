@@ -34,14 +34,14 @@
     </div>
     <div class="col">
       <% if policy(@passes).new? %>
-        <%= link_to 'New Pass', new_pass_path, class: 'btn btn-primary btn-lg btn-block mb-2' %>
+        <%= link_to 'New Pass', new_admin_pass_path, class: 'btn btn-primary btn-lg btn-block mb-2' %>
       <% end %>
 
       <div class="card bg-dark">
         <div class="card-body">
           <h5 class="card-title">Filters</h5>
           <%= search_form_for @query do |f| %>
-          <%= f.input :user_id_eq, label: 'User', as: :select, collection: @users, required: false, input_html: { class: 'choices' } %>
+          <%= f.input :user_id_eq, label: 'User', as: :select, collection: @users, required: false %>
           <%= f.input :start_date_eq, label: 'Start date', as: :date, html5: true, required: false %>
           <%= f.input :active, as: :boolean %>
           <%= f.button :submit, 'Filter', class: 'btn-secondary' %>
