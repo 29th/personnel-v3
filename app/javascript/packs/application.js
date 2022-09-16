@@ -16,8 +16,3 @@
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap.native/dist/bootstrap-native-v4'
-import Choices from 'choices.js'
-
-const choicesConfig = { removeItemButton: true, maxItemCount: 5 }
-const choicesEls = Array.from(document.querySelectorAll('.choices'))
-choicesEls.map((el) => new Choices(el, choicesConfig))

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/29th/omniauth-discourse.git
-  revision: 9e452cacf8642b835cae85d141b0e2212b61d8ce
+  revision: 92ec18cd94399a48ce3f7a3897503b58c6a4e724
   specs:
     omniauth-discourse (1.0.0)
       omniauth (>= 1.0, < 3)

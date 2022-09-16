@@ -27,11 +27,7 @@
   </dl>
 
   <% if policy(@pass).edit? %>
-    <%= link_to 'Edit', edit_pass_path(@pass), class: 'btn btn-secondary' %>
-  <% end %>
-
-  <% if policy(@pass).destroy? %>
-    <%= link_to 'Destroy', @pass, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'  } %>
+    <%= link_to 'Manage', admin_pass_path(@pass), class: 'btn btn-secondary' %>
   <% end %>
   
   <%= link_to 'Back', passes_path, class: 'btn btn-outline-secondary' %>
