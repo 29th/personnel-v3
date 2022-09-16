@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_02_100620) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_09_02_100620) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -23,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
   end
 
   create_table "__eve1", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "datetime", null: false
+    t.datetime "datetime", precision: nil, null: false
     t.integer "unit_id", limit: 3, unsigned: true
     t.string "title", limit: 64, null: false
     t.string "type", limit: 32, null: false
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.integer "server_id", limit: 3, unsigned: true
     t.text "report", null: false
     t.integer "reporter_member_id", limit: 3, unsigned: true
-    t.datetime "report_posting_date", comment: "Date of AAR posting"
-    t.datetime "report_edit_date", comment: "Date of last AAR editing"
+    t.datetime "report_posting_date", precision: nil, comment: "Date of AAR posting"
+    t.datetime "report_edit_date", precision: nil, comment: "Date of last AAR editing"
     t.index ["reporter_member_id"], name: "Reporter's ID"
     t.index ["server_id"], name: "Server ID"
     t.index ["unit_id"], name: "Unit ID"
@@ -83,7 +82,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.string "comment"
     t.string "remote_address"
     t.string "request_uuid"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["associated_type", "associated_id"], name: "associated_index"
     t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
     t.index ["created_at"], name: "index_audits_on_created_at"
@@ -128,7 +127,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.integer "id_poster", limit: 3, null: false, unsigned: true
     t.text "reason"
     t.text "comments"
-    t.datetime "unbanned"
+    t.datetime "unbanned", precision: nil
     t.index ["id_admin"], name: "id_admin"
     t.index ["id_poster"], name: "id_poster"
   end
@@ -154,13 +153,13 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "run_at", precision: nil
+    t.datetime "locked_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -188,7 +187,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
 
   create_table "eloas", id: { type: :integer, limit: 3, comment: "LOA's ID", unsigned: true }, charset: "utf8mb3", comment: "Extended Leaves of Absence", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Member's ID", unsigned: true
-    t.datetime "posting_date", null: false, comment: "Date of posting"
+    t.datetime "posting_date", precision: nil, null: false, comment: "Date of posting"
     t.date "start_date", null: false, comment: "Planned start date"
     t.date "end_date", null: false, comment: "Planned end date"
     t.date "return_date", comment: "Actual date of the return"
@@ -230,7 +229,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
   end
 
   create_table "events", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "datetime", null: false
+    t.datetime "datetime", precision: nil, null: false
     t.integer "unit_id", limit: 3, unsigned: true
     t.string "title", limit: 64
     t.string "type", limit: 32, null: false
@@ -239,10 +238,10 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.integer "server_id", limit: 3, unsigned: true
     t.text "report"
     t.integer "reporter_member_id", limit: 3, unsigned: true
-    t.datetime "report_posting_date", comment: "Date of AAR posting"
-    t.datetime "report_edit_date", comment: "Date of last AAR editing"
-    t.datetime "starts_at", comment: "Start date/time in UTC"
-    t.string "time_zone", default: "Eastern Time (US & Canada)", comment: "Priority time zone for this event, usually based on host unit"
+    t.datetime "report_posting_date", precision: nil, comment: "Date of AAR posting"
+    t.datetime "report_edit_date", precision: nil, comment: "Date of last AAR editing"
+    t.datetime "starts_at", precision: nil, comment: "Start date/time in UTC"
+    t.string "time_zone", default: "America/New_York", comment: "Priority time zone for this event, usually based on host unit"
     t.index ["reporter_member_id"], name: "Reporter's ID"
     t.index ["server_id"], name: "Server ID"
     t.index ["unit_id"], name: "Unit ID"
@@ -307,8 +306,8 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
   create_table "notes", id: { type: :integer, limit: 3, comment: "Note's ID", unsigned: true }, charset: "utf8mb3", comment: "Notes", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "Member ID of note's subject", unsigned: true
     t.integer "author_member_id", limit: 3, null: false, comment: "Member ID of note's author", unsigned: true
-    t.datetime "date_add", null: false, comment: "Date & Time of adding"
-    t.datetime "date_mod", comment: "Date & Time of last modification"
+    t.datetime "date_add", precision: nil, null: false, comment: "Date & Time of adding"
+    t.datetime "date_mod", precision: nil, comment: "Date & Time of last modification"
     t.column "access", "enum('Public','Members Only','Personal','Squad Level','Platoon Level','Company Level','Battalion HQ','Officers Only','Military Police','Lighthouse')", null: false, comment: "Access level"
     t.string "subject", limit: 120, null: false, comment: "Note's subject"
     t.text "content", null: false, comment: "Note's text"
@@ -456,7 +455,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_100620) do
     t.string "user_identifier", null: false
     t.text "request_uri", null: false
     t.string "request_method", limit: 16, null: false
-    t.datetime "datetime", null: false
+    t.datetime "datetime", precision: nil, null: false
     t.string "client_ip", limit: 50, null: false
     t.text "client_user_agent", null: false
     t.text "referer_page", null: false
