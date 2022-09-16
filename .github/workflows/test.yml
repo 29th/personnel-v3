@@ -29,7 +29,7 @@ jobs:
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
+          bundler-cache: false
 
       - name: Setup node
         uses: actions/setup-node@v2-beta

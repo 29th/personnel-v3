@@ -100,3 +100,4 @@ gem "active_link_to", "~> 1.0", ">= 1.0.5"
 gem "omniauth", "~> 2.1"
 gem "omniauth-rails_csrf_protection", "~> 1.0", ">= 1.0.1"
 gem "omniauth-discourse", github: "29th/omniauth-discourse"
+gem "net-http" # See: https://github.com/ruby/net-imap/issues/16#issuecomment-803086765
