@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.6"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.6"
+gem "rails", "~> 7.0.4"
 # Use mysql as the database for Active Record
 gem "mysql2", ">= 0.4.4", "< 0.6.0"
 # Use Puma as the app server
@@ -76,7 +76,7 @@ gem "activeadmin", "~> 2.9"
 gem "nilify_blanks", "~> 1.4"
 gem "ancestry", "~> 3.2", ">= 3.2.1"
 gem "jwt", "~> 2.2", ">= 2.2.2"
-gem "validates_timeliness", "~> 6.0.0.beta2"
+gem "validates_timeliness", github: "mitsuru/validates_timeliness", branch: "rails7" # until upstream merges PR#213
 gem "activeadmin_addons", "~> 1.7", ">= 1.7.1"
 gem "simple_form", "~> 5.1"
 gem "ransack", "~> 2.4", ">= 2.4.2"
