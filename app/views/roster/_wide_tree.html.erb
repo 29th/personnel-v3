@@ -19,7 +19,7 @@
                                 alt: assignment.user.rank.abbr,
                                 class: "is60x60" unless assignment.user.rank.image.nil? %>
                   <div class="media-body">
-                    <h5><%= link_to assignment.user.full_name, "https://personnel.29th.org/#members/#{assignment.user.id}" %></h5>
+                    <h5><%= link_to assignment.user.full_name, assignment.user %></h5>
                     <p><%= assignment.user.rank.name %></p>
                     <p><%= assignment.position.name %></p>
                   </div>

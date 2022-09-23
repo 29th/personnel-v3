@@ -1,36 +1,22 @@
-<h1>
-  <%= @user.full_name %>
-</h1>
+<% content_for(:page_title) { @user.short_name } %>
 
-<ul>
-  <% @user.assignments.active.each do |assignment| %>
-    <li>
-      <%= assignment.position.name %>,
-      <%= assignment.unit.name %>
-    </li>
+<dl>
+  <dt>Forum profile</dt>
+  <dd><%= link_to "View profile", discourse_url(user: @user) %></dd>
+  
+  <dt>Steam ID</dt>
+  <dd><%= link_to @user.steam_id, build_steam_link(@user.steam_id) if @user.steam_id.present? %></dd>
+  
+  <% if @user.country.present? %>
+    <dt>Country</dt>
+    <dd>
+      <%= flag_icon(@user.country.sym, title: @user.country.name) %>
+      <%= @user.country.name %>
+    </dd>
   <% end %>
-</ul>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Rank:</strong>
-  <%= @user.rank.name %>
-</p>
-
-<p>
-  <strong>Steam ID:</strong>
-  <%= @user.steam_id %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', users_path %>
+  
+  <% if @donated %>
+    <dt>Donated</dt>
+    <dd><%= format_donation_balance @donated %></dd>
+  <% end %>
+</dl>

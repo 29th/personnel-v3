@@ -22,11 +22,16 @@ class FinanceRecord < ApplicationRecord
 
   scope :income, -> { where("amount_received > 0") }
   scope :expenses, -> { where("amount_paid > 0") }
+  scope :by_user, ->(user) { where(user: user) }
 
   def self.balance
     FinanceRecord.select("SUM(amount_received) - SUM(amount_paid) - SUM(fee) AS balance")
       .first
       .balance
+  end
+
+  def self.user_donated(user)
+    income.by_user(user).sum(:amount_received)
   end
 
   private

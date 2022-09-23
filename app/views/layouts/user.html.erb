@@ -1,0 +1,48 @@
+<% content_for :content do %>
+  <div class="row">
+    <article class="col-md-9 order-md-2">
+      <div class="media user-profile-header">
+        <%= image_tag @user.rank.image_url,
+                      alt: @user.rank.abbr,
+                      class: "is60x60 mr-3" unless @user.rank.image.nil? %>
+        <div class="media-body">
+          <h1 class="user-profile__title">
+            <%= @user.full_name %>
+          </h1>
+
+          <ul class="user-profile__assignments">
+            <% @user.assignments.active.each do |assignment| %>
+              <li>
+                <%= assignment.position.name %>,
+                <%= link_to assignment.unit.name, personnel_v2_app_url(unit: assignment.unit) %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <%= yield %>
+
+    </article>
+
+    <div class="col-md-3 order-md-1">
+      <nav class="nav flex-column nav-pills">
+        <% links = {}
+        links['Profile'] = user_path(@user)
+        links['Service record'] = personnel_v2_app_url(user: @user, suffix: "servicerecord")
+        links['Attendance'] = personnel_v2_app_url(user: @user, suffix: "attendance") if policy(Event).index?
+        links['Qualifications'] = personnel_v2_app_url(user: @user, suffix: "qualifications") if policy(AITQualification).index?
+        links['Recruits'] = personnel_v2_app_url(user: @user, suffix: "recruits")
+        links['Demerits'] = personnel_v2_app_url(user: @user, suffix: "reprimands") if policy(Demerit).index?
+        links['Extended LOAs'] = personnel_v2_app_url(user: @user, suffix: "eloas") if policy(ExtendedLOA).index?
+        links['Notes'] = personnel_v2_app_url(user: @user, suffix: "notes") if policy(Note).index?
+        links['Passes'] = personnel_v2_app_url(user: @user, suffix: "passes") if policy(Pass).index?
+        %>
+        <% links.each do |label, path| %>
+          <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>
