@@ -14,7 +14,7 @@ class NotePolicy < ApplicationPolicy
   end
 
   def index?
-    user.member?
+    user&.member?
   end
 
   def show?
