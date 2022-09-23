@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       as: :discourse_webhooks_unrecognised
   end
 
+  resources :users, only: [:show]
+
   resources :passes, only: [:index, :show]
   resources :events, only: [:index, :show] do
     member do
