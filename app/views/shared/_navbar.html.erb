@@ -14,7 +14,7 @@
           <%= active_link_to 'About', about_path, wrap_tag: 'li', wrap_class: 'nav-item',
             class: 'nav-link', active: :inclusive %>
           <%= active_link_to 'Roster', roster_path, wrap_tag: 'li', wrap_class: 'nav-item',
-            class: 'nav-link', active: false %>
+            class: 'nav-link', active: /roster|users/ %>
           <%= active_link_to 'Forum', discourse_url, wrap_tag: 'li', wrap_class: 'nav-item',
             class: 'nav-link', active: false %>
           <%= active_link_to 'Servers', servers_path, wrap_tag: 'li', wrap_class: 'nav-item',
@@ -30,9 +30,22 @@
               <%= current_user.short_name %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Admin', admin_root_path, :class => 'dropdown-item' %>
+              <%= link_to 'Calendar', events_path, class: 'dropdown-item' if policy(Event).index? %>
+              <%= link_to 'Ban logs', personnel_v2_app_url(suffix: "banlogs"), class: 'dropdown-item' if policy(BanLog).index? %>
+              <%= link_to 'Enlistments', personnel_v2_app_url(suffix: "enlistments"), class: 'dropdown-item' if policy(Enlistment).index? %>
+              <%= link_to 'Training platoons', personnel_v2_app_url(suffix: "tps"), class: 'dropdown-item' %>
+              <%= link_to 'Extended LOAs', personnel_v2_app_url(suffix: "eloas"), class: 'dropdown-item' if policy(ExtendedLOA).index? %>
+              <%= link_to 'Finances', personnel_v2_app_url(suffix: "finances"), class: 'dropdown-item' if policy(FinanceRecord).index? %>
+              <%= link_to 'Weapon passes', passes_path, class: 'dropdown-item' if policy(Pass).index? %>
+              <%= link_to 'Recruits', personnel_v2_app_url(suffix: "recruits"), class: 'dropdown-item' %>
+              <%= link_to 'Notes', personnel_v2_app_url(suffix: "notes"), class: 'dropdown-item' if policy(Note).index? %>
+              <%= link_to 'Member search', personnel_v2_app_url(suffix: "membersearch"), class: 'dropdown-item' %>
+              <% if current_user.active_admin_editor? %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'Admin', admin_root_path, class: 'dropdown-item' %>
+              <% end %>
               <div class="dropdown-divider"></div>
-              <%= link_to 'Sign out', destroy_user_session_path, :class => 'dropdown-item' %>
+              <%= link_to 'Sign out', destroy_user_session_path, class: 'dropdown-item' %>
             </div>
           </li>
           <% else %>

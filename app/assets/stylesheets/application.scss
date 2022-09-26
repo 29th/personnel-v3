@@ -39,6 +39,21 @@ header nav {
     border: 1px black solid;
   }
 
+  .nav-item.dropdown .dropdown-menu.show {
+    background-color: $rifle-green;
+    border: 1px black solid;
+
+    .dropdown-item {
+      color: $white;
+      text-transform: none;
+
+      &:hover {
+        background-color: $gold;
+        color: $black-olive;
+      }
+    }
+  }
+
   .nav-item {
     text-transform: uppercase;
 
