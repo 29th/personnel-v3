@@ -21,6 +21,6 @@ class FinanceRecordPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user&.has_permission?("admin")
+    new?
   end
 end
