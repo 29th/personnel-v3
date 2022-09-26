@@ -71,7 +71,7 @@ class Event < ApplicationRecord
        attended: attended_user_ids.include?(user_id)}
     end
 
-    AttendanceRecord.upsert_all(attendance)
+    AttendanceRecord.upsert_all(attendance) if expected_users.any?
   end
 
   def excuse_users_on_extended_loa

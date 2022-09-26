@@ -38,10 +38,10 @@ class EventsController < ApplicationController
     @event.reporter = current_user
 
     attended_ids = params[:event][:user_ids].reject(&:empty?).map(&:to_i)
-    attendance_result = @event.update_attendance(attended_ids)
+    @event.update_attendance(attended_ids)
     @event.excuse_users_on_extended_loa
 
-    if attendance_result && @event.save
+    if @event.save
       redirect_to @event, notice: "AAR was successfully updated."
     else
       @attended_user_ids = @event.attendance_records.where(attended: true).pluck(:member_id)
