@@ -198,7 +198,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal initial_posting_date, event.report_posting_date, "Expected posting date not to change"
   end
 
-  test "aar updates reporter and edit date on subsequent edits" do
+  test "aar updates edit date but not reporter on subsequent edits" do
     sign_in_as @user
 
     other_user = create(:user)
@@ -210,7 +210,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       patch aar_event_url(event), params: params
       event.reload
 
-      assert_equal @user, event.reporter, "Expected reporter to be updated"
+      assert_equal other_user, event.reporter, "Expected reporter not to be updated"
       assert_equal Time.current, event.report_edit_date, "Expected edit date to be updated"
     end
   end

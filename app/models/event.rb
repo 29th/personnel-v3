@@ -104,6 +104,10 @@ class Event < ApplicationRecord
     @starts_at_local ||= starts_at&.in_time_zone(time_zone)
   end
 
+  def aar_posted?
+    report_posting_date.present?
+  end
+
   private
 
   def update_report_dates

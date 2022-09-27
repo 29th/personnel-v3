@@ -35,7 +35,7 @@ class EventsController < ApplicationController
     authorize @event, :aar?
 
     @event.report = params[:event][:report]
-    @event.reporter = current_user
+    @event.reporter = current_user unless @event.aar_posted?
 
     attended_ids = params[:event][:user_ids].reject(&:empty?).map(&:to_i)
     @event.update_attendance(attended_ids)
