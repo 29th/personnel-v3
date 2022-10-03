@@ -40,7 +40,8 @@ class User < ApplicationRecord
   end
 
   def short_name
-    [rank.abbr, name_prefix, last_name]
+    prefix = name_prefix.present? ? name_prefix + "." : nil
+    [rank.abbr, prefix, last_name]
       .reject(&:nil?)
       .join(" ")
   end

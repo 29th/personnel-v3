@@ -13,7 +13,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "short_name includes name prefix if present" do
-    user = create(:user, name_prefix: "B.", last_name: "Hopper")
+    user = create(:user, name_prefix: "B", last_name: "Hopper")
     assert_equal "Pvt. B. Hopper", user.short_name
   end
 
