@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  include FriendlyId
   self.table_name = "members"
   self.ignored_columns = %w[status primary_assignment_id im_type im_handle city]
   audited max_audits: 10
+  friendly_id :slug_candidates
 
   has_many :assignments, dependent: :delete_all, foreign_key: "member_id"
   has_many :awards, through: :user_awards
@@ -155,6 +157,14 @@ class User < ApplicationRecord
   end
 
   private
+
+  def slug_candidates
+    [
+      [:name_prefix, :last_name],
+      :full_name,
+      [:last_name, :id]
+    ]
+  end
 
   def permissions
     # TODO: Use Ability instead of assignments? Doesn't matter much...

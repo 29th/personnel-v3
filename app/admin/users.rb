@@ -8,6 +8,12 @@ ActiveAdmin.register User do
   permit_params :rank_id, :last_name, :first_name, :middle_name,
     :name_prefix, :steam_id, :forum_member_id, :country_id
 
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
+
   form do |f|
     f.semantic_errors
     f.inputs do
