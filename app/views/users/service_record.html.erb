@@ -8,18 +8,9 @@
       <div class="timeline-arrow"></div>
       <h2 class="h5 mb-0"><%= year %></h2>
       <ul class="user-service-record__item-list">
-      <% items.each do |item| %>
-        <% case item %>
-        <% when UserAward %>
-          <%= render partial: "user_award", object: item %>
-        <% when Promotion %>
-          <%= render partial: "promotion", object: item %>
-        <% when Assignment %>
-          <%= render partial: "assignment", object: item %>
-        <% else %>
-          <%= render item %>
+        <% items.each do |item| %>
+          <%= render_service_record_partial(item) %>
         <% end %>
-      <% end %>
       </ul>
     </li>
   <% end %>

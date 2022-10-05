@@ -15,8 +15,14 @@ class UsersController < ApplicationController
     promotions = @user.promotions.order(date: :desc)
     assignments = @user.assignments.select("*, start_date AS date").order(start_date: :desc)
     demerits = @user.demerits.order(date: :desc)
+    discharges = @user.discharges.order(date: :desc)
 
-    @items_by_year = (user_awards + promotions + assignments + demerits)
+    @items_by_year = (
+      user_awards +
+      promotions +
+      assignments +
+      demerits +
+      discharges)
       .sort_by(&:date)
       .reverse
       .group_by { |item| item.date.year }

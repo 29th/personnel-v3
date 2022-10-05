@@ -17,6 +17,10 @@ module UsersHelper
     number_to_currency(balance, precision: 0, unit: "$")
   end
 
+  def render_service_record_partial(item)
+    render partial: item.class.name.underscore, object: item
+  end
+
   def link_to_forum_topic(label, object)
     topic_id = object.topic_id
     case object.forum_id
@@ -28,10 +32,18 @@ module UsersHelper
       url = smf_url(topic: topic_id)
     end
 
-    if url
+    if url && valid_topic_id(topic_id)
       link_to label, url
     else
       label
     end
+  end
+
+  private
+
+  # If no announcement was made, topic_id is often set to 0
+  # or "0" in cases where the column is a string.
+  def valid_topic_id(topic_id)
+    topic_id.present? && topic_id.to_s != "0"
   end
 end

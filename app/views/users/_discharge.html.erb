@@ -1,0 +1,10 @@
+<li class="user-service-record__item">
+  <time><%= discharge.date %></time>
+  <% if discharge.honorable? %>
+    <%= link_to_forum_topic "Honorably discharged", discharge %>
+  <% elsif discharge.general? %>
+    <%= link_to_forum_topic "Generally discharged", discharge %>
+  <% elsif discharge.dishonorable? %>
+    <%= link_to_forum_topic "Dishonorably discharged", discharge %>
+  <% end %>
+</li>
