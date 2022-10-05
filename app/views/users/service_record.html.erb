@@ -1,0 +1,25 @@
+<% content_for(:page_title) { "#{@user.short_name} - Service record" } %>
+
+<h2>Service record</h2>
+
+<ul class="user-service-record timeline">
+  <% @items_by_year.each do |year, items| %>
+    <li class="timeline-item rounded ml-3 p-4 shadow bg-dark">
+      <div class="timeline-arrow"></div>
+      <h2 class="h5 mb-0"><%= year %></h2>
+      <ul class="user-service-record__item-list">
+      <% items.each do |item| %>
+        <% case item %>
+        <% when UserAward %>
+          <%= render partial: "user_award", object: item %>
+        <% when Promotion %>
+          <%= render partial: "promotion", object: item %>
+        <% else %>
+          <%= render item %>
+        <% end %>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+

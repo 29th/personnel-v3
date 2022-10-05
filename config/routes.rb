@@ -39,7 +39,9 @@ Rails.application.routes.draw do
       as: :discourse_webhooks_unrecognised
   end
 
-  resources :members, controller: :users, as: :users, only: [:show]
+  resources :members, controller: :users, as: :users, only: [:show] do
+    get "service-record", to: "users#service_record"
+  end
 
   resources :passes, only: [:index, :show]
   resources :events, only: [:index, :show] do

@@ -9,4 +9,8 @@ class Promotion < ApplicationRecord
   validates :new_rank, presence: true
   validates :date, presence: true
   validates_date :date
+
+  def demotion?
+    old_rank.present? && old_rank.order > new_rank.order
+  end
 end

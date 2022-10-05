@@ -1,0 +1,13 @@
+<li class="user-service-record__item">
+  <%= promotion.date %>
+  <% if promotion.demotion? %>
+    <%= link_to_forum_topic "Rank changed to", promotion %>
+  <% else %>
+    <%= link_to_forum_topic "Promoted to", promotion %>
+  <% end %>
+  <%= promotion.new_rank.name %>
+
+  <% if promotion.new_rank.image.present? %>
+    <%= image_tag promotion.new_rank.image_url %>
+  <% end %>
+</li>

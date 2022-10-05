@@ -20,6 +20,10 @@ development:
       internal: http://forums
       external: https://vanilla.29th.local
     api_key: <%= ENV.fetch('VANILLA_API_KEY', 'dev') %>
+  smf:
+    base_url:
+      internal: https://smf
+      external: https://smf.29th.local
   storage:
     endpoint: <%= ENV.fetch('STORAGE_ENDPOINT') %>
     bucket: <%= ENV.fetch('STORAGE_BUCKET') %>

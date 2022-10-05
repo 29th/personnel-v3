@@ -7,6 +7,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def service_record?
+    show?
+  end
+
   def create?
     user&.has_permission?("admin")
   end

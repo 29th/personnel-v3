@@ -8,3 +8,15 @@
     padding-left: 0;
   }
 }
+
+.user-service-record {
+  .user-service-record__item-list {
+    padding-left: 20px;
+  }
+
+  .user-service-record__item img {
+    max-width: 50px;
+    max-height: 20px;
+    float: right;
+  }
+}

@@ -1,0 +1,9 @@
+<li class="user-service-record__item">
+  <time><%= user_award.date %></time>
+  <%= link_to_forum_topic "Awarded", user_award %>
+  <%= user_award.award.title %>
+
+  <% if user_award.award.ribbon_image.present? %>
+    <%= image_tag user_award.award.ribbon_image_url %>
+  <% end %>
+</li>

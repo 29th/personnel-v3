@@ -16,4 +16,22 @@ module UsersHelper
   def format_donation_balance(balance)
     number_to_currency(balance, precision: 0, unit: "$")
   end
+
+  def link_to_forum_topic(label, object)
+    topic_id = object.topic_id
+    case object.forum_id
+    when "discourse"
+      url = discourse_url(topic: topic_id)
+    when "vanilla"
+      url = vanilla_url(topic: topic_id)
+    when "smf"
+      url = smf_url(topic: topic_id)
+    end
+
+    if url
+      link_to label, url
+    else
+      label
+    end
+  end
 end
