@@ -1,5 +1,5 @@
 <li class="user-service-record__item">
-  <%= promotion.date %>
+  <time><%= promotion.date %></time>
   <% if promotion.demotion? %>
     <%= link_to_forum_topic "Rank changed to", promotion %>
   <% else %>
