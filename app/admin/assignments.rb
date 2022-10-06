@@ -1,5 +1,5 @@
 ActiveAdmin.register Assignment do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
 
   includes :unit, :position, user: :rank
 

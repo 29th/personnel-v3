@@ -1,5 +1,5 @@
 ActiveAdmin.register AITQualification do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
   actions :index, :show, :new, :create, :destroy
   includes user: :rank, author: :rank
   includes :ait_standard

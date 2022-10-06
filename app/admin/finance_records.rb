@@ -1,5 +1,5 @@
 ActiveAdmin.register FinanceRecord do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
   includes user: :rank
 
   permit_params :date, :member_id, :forum_id, :topic_id, :notes,

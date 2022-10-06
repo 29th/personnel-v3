@@ -1,5 +1,5 @@
 ActiveAdmin.register Note do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
   actions :index, :show, :edit, :update, :new, :create
   includes user: :rank, author: :rank
   permit_params :user, :access, :subject, :content, :member_id

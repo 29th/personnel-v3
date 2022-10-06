@@ -1,5 +1,5 @@
 ActiveAdmin.register Demerit do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
   includes user: :rank
   includes author: :rank
 

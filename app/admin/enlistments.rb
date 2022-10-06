@@ -1,5 +1,5 @@
 ActiveAdmin.register Enlistment do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
   includes user: :rank, liaison: :rank
   includes :unit
   actions :index, :show

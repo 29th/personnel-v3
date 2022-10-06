@@ -1,5 +1,5 @@
 ActiveAdmin.register Promotion do
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, finder: :find_by_slug
 
   includes :new_rank, user: :rank
 
