@@ -1,0 +1,10 @@
+<li class="user-service-record__item">
+  <time><%= enlistment.date %></time>
+  <%= link_to_forum_topic "Enlisted", enlistment %>
+  <% if enlistment.unit.present? %>
+    in the <%= enlistment.unit.name %>
+  <% end %>
+  <% unless enlistment.accepted? %>
+    (<%= enlistment.status.humanize %>)
+  <% end %>
+</li>
