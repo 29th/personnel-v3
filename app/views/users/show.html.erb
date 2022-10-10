@@ -1,22 +1,30 @@
 <% content_for(:page_title) { @user.short_name } %>
 
-<dl>
-  <dt>Forum profile</dt>
-  <dd><%= link_to "View profile", discourse_url(user: @user) %></dd>
-  
-  <dt>Steam ID</dt>
-  <dd><%= link_to @user.steam_id, build_steam_link(@user.steam_id) if @user.steam_id.present? %></dd>
-  
-  <% if @user.country.present? %>
-    <dt>Country</dt>
-    <dd>
-      <%= flag_icon(@user.country.sym, title: @user.country.name) %>
-      <%= @user.country.name %>
-    </dd>
-  <% end %>
-  
-  <% if @donated %>
-    <dt>Donated</dt>
-    <dd><%= format_donation_balance @donated %></dd>
-  <% end %>
-</dl>
+<div class="row">
+  <div class="col-md-6">
+    <dl>
+      <dt>Forum profile</dt>
+      <dd><%= link_to "View profile", discourse_url(user: @user) %></dd>
+      
+      <dt>Steam ID</dt>
+      <dd><%= link_to @user.steam_id, build_steam_link(@user.steam_id) if @user.steam_id.present? %></dd>
+      
+      <% if @user.country.present? %>
+        <dt>Country</dt>
+        <dd>
+          <%= flag_icon(@user.country.sym, title: @user.country.name) %>
+          <%= @user.country.name %>
+        </dd>
+      <% end %>
+      
+      <% if @donated %>
+        <dt>Donated</dt>
+        <dd><%= format_donation_balance @donated %></dd>
+      <% end %>
+    </dl>
+  </div>
+  <div class="col-md-6">
+    <%= link_to image_tag(coat_url(@user), alt: "Service coat", class: "user-profile-coat"),
+      coat_url(@user) %>
+  </div>
+</div>

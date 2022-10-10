@@ -13,6 +13,13 @@ module UsersHelper
     "#{base_url}/#members/#{user.id}"
   end
 
+  def coat_url(user)
+    if (user.member? || user.honorably_discharged?) && user.steam_id.present?
+      base_url = Rails.configuration.endpoints[:personnel_v2_api][:base_url][:external]
+      "#{base_url}/coats/#{user.steam_id}.png"
+    end
+  end
+
   def format_donation_balance(balance)
     number_to_currency(balance, precision: 0, unit: "$")
   end
