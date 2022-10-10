@@ -4,13 +4,14 @@
       <div class="media user-profile-header">
         <%= image_tag @user.rank.image_url,
                       alt: @user.rank.abbr,
+                      title: @user.rank.name,
                       class: "is60x60 mr-3" unless @user.rank.image.nil? %>
         <div class="media-body">
-          <h1 class="user-profile__title">
-            <%= @user.full_name %>
+          <h1 class="user-profile-header__title">
+            <%= @user.rank.name %> <%= @user.full_name %>
           </h1>
 
-          <ul class="user-profile__assignments">
+          <ul class="user-profile-header__assignments">
             <% @user.assignments.active.each do |assignment| %>
               <li>
                 <%= assignment.position.name %>,
