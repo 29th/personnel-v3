@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.6"
+ruby "3.1.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 7.0.4"
@@ -90,7 +90,7 @@ gem "flag-icons-rails", "~> 3.4", ">= 3.4.6.1"
 gem "audited", "~> 5.0"
 gem "delayed_job_active_record", "~> 4.1", ">= 4.1.5"
 gem "honeybadger", "~> 4.0"
-gem "scout_apm", "~> 4.0", ">= 4.0.4"
+gem "scout_apm", "~> 5.3", ">= 5.3.1"
 gem "retryable", "~> 3.0", ">= 3.0.5"
 gem "sassc", "~> 2.4"
 gem "faraday", "~> 2.5", ">= 2.5.2"
