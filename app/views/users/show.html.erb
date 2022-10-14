@@ -25,6 +25,6 @@
   </div>
   <div class="col-md-6">
     <%= link_to image_tag(coat_url(@user), alt: "Service coat", class: "user-profile-coat"),
-      coat_url(@user) %>
+      coat_url(@user) if coat_url(@user) %>
   </div>
 </div>
