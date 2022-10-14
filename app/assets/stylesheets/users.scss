@@ -1,4 +1,6 @@
 .user-profile-header {
+  margin-bottom: 16px;
+
   .user-profile-header__title {
     margin-bottom: 5px;
     font-size: clamp(20px, 40px, 2.6vw);
@@ -7,6 +9,7 @@
   .user-profile-header__assignments {
     list-style: none;
     padding-left: 0;
+    margin-bottom: 0;
   }
 }
 
