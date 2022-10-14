@@ -46,6 +46,16 @@ module UsersHelper
     end
   end
 
+  def format_service_duration(duration)
+    relevant_units = [:years, :months, :weeks, :days].freeze
+
+    duration.parts
+      .slice(*relevant_units)
+      .sort_by { |unit, _| relevant_units.index(unit) }
+      .map { |unit, val| pluralize(val, unit.to_s.singularize) }
+      .to_sentence
+  end
+
   private
 
   # If no announcement was made, topic_id is often set to 0

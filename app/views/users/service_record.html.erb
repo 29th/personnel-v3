@@ -2,6 +2,8 @@
 
 <h2>Service record</h2>
 
+<h3><%= format_service_duration(@user.service_duration) %> of service</h3>
+
 <ul class="user-service-record timeline">
   <% @items_by_year.each do |year, items| %>
     <li class="timeline-item rounded ml-3 p-4 shadow bg-dark">

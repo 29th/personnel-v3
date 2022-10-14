@@ -1,5 +1,6 @@
 class Discharge < ApplicationRecord
   self.inheritance_column = nil
+  self.implicit_order_column = :date
   include HasForumTopic
   audited
 

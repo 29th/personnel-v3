@@ -9,6 +9,10 @@ class Assignment < ApplicationRecord
       .merge(where("assignments.end_date > ?", date).or(where(end_date: nil)))
   }
 
+  scope :not_training, -> {
+    joins(:unit).merge(Unit.not_training)
+  }
+
   nilify_blanks
   validates :user, presence: true
   validates :unit, presence: true
@@ -19,7 +23,15 @@ class Assignment < ApplicationRecord
 
   attr_accessor :transfer_from_unit_id
 
+  def period
+    start_date..(end_date || Date.current)
+  end
+
   def end(end_date = Date.current)
     update(end_date: end_date)
+  end
+
+  def self.since(date)
+    where("start_date >= ?", date)
   end
 end

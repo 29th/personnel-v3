@@ -410,4 +410,57 @@ class UserTest < ActiveSupport::TestCase
 
     refute user.honorably_discharged?
   end
+
+  # service_duration
+  test "service_duration sums duration from all assignments" do
+    user = create(:user)
+    create(:assignment, start_date: 1.year.ago, end_date: 9.months.ago, user: user)
+    create(:assignment, start_date: 9.months.ago, end_date: 1.month.ago, user: user)
+
+    assert_equal 11, user.service_duration.in_months.round
+  end
+
+  test "service_duration extends duration of active assignments to today" do
+    user = create(:user)
+    create(:assignment, start_date: 1.year.ago, end_date: 9.months.ago, user: user)
+    create(:assignment, start_date: 9.months.ago, user: user)
+
+    assert_equal 12, user.service_duration.in_months.round
+  end
+
+  test "service_duration doesn't double-count overlapping assignments" do
+    user = create(:user)
+    create(:assignment, start_date: 1.year.ago, end_date: 3.months.ago, user: user)
+    create(:assignment, start_date: 6.months.ago, end_date: 1.month.ago, user: user)
+
+    assert_equal 11, user.service_duration.in_months.round
+  end
+
+  test "service_duration omits assignments before a general discharge" do
+    user = create(:user)
+    create(:assignment, start_date: 1.year.ago, end_date: 9.months.ago, user: user)
+    create(:discharge, type: :general, date: 9.months.ago, user: user)
+    create(:assignment, start_date: 1.month.ago, user: user)
+
+    assert_equal 1, user.service_duration.in_months.round
+  end
+
+  test "service_duration ignores honorable discharges" do
+    user = create(:user)
+    create(:assignment, start_date: 1.year.ago, end_date: 9.months.ago, user: user)
+    create(:discharge, type: :honorable, date: 9.months.ago, user: user)
+    create(:assignment, start_date: 1.month.ago, user: user)
+
+    assert_equal 4, user.service_duration.in_months.round
+  end
+
+  test "service_duration omits training assignments" do
+    user = create(:user)
+    tp = create(:unit, classification: :training)
+    create(:assignment, start_date: 13.months.ago, end_date: 1.year.ago, unit: tp, user: user)
+    create(:assignment, start_date: 1.year.ago, end_date: 9.months.ago, user: user)
+    create(:assignment, start_date: 9.months.ago, end_date: 1.month.ago, user: user)
+
+    assert_equal 11, user.service_duration.in_months.round
+  end
 end

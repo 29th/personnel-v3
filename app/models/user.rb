@@ -116,6 +116,24 @@ class User < ApplicationRecord
       .uniq
   end
 
+  def service_duration
+    relevant_assignments = assignments.not_training
+
+    last_non_honorable_discharge = discharges.not_honorable.last
+    if last_non_honorable_discharge.present?
+      relevant_assignments = relevant_assignments.since(last_non_honorable_discharge.date)
+    end
+
+    days_of_service = relevant_assignments
+      .map { |assignment| assignment.period.to_a } # get all dates in period
+      .flatten
+      .uniq
+      .count
+
+    seconds_of_service = days_of_service * 24 * 60 * 60
+    ActiveSupport::Duration.build(seconds_of_service)
+  end
+
   def update_coat
     PersonnelV2Service.new.update_coat(id)
   end
