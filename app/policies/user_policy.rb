@@ -11,6 +11,10 @@ class UserPolicy < ApplicationPolicy
     show?
   end
 
+  def attendance?
+    user&.member?
+  end
+
   def create?
     user&.has_permission?("admin")
   end

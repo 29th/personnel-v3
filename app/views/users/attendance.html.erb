@@ -1,0 +1,46 @@
+<% content_for(:page_title) { "#{@user.short_name} - Attendance" } %>
+
+<h2>Attendance</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Unit</th>
+      <th scope="col">Type</th>
+      <th scope="col">Mandatory</th>
+      <th scope="col">Attendance</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @attendance_records.each do |attendance_record| %>
+    <% event = attendance_record.event %>
+    <tr>
+      <td><%= timestamp_tag event.starts_at %></td>
+      <td><%= event.unit.abbr %></td>
+      <td><%= event.type %></td>
+        <td><%= event.mandatory %></td>
+      <td>
+        <% if !attendance_record.attended %>
+          <% if attendance_record.excused %>
+            <% if policy(ExtendedLOA).index? &&
+              attendance_record.excused_by_extended_loa? %>
+              <span class="badge badge-secondary">Extended LOA</span>
+            <% else %>
+              <span class="badge badge-secondary">Excused</span>
+            <% end %>
+          <% else %>
+            <% if event.mandatory %>
+              <span class="badge badge-danger">AWOL</span>
+            <% else %>
+              <span class="badge badge-secondary">AWOL</span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <span class="badge badge-success">Attended</span>
+        <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @attendance_records %>

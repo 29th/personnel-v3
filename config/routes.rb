@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :members, controller: :users, as: :users, only: [:show] do
     get "service-record", to: "users#service_record"
+    get "attendance", to: "users#attendance"
   end
 
   resources :passes, only: [:index, :show]

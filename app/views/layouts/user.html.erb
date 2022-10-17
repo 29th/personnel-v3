@@ -31,7 +31,7 @@
         <% links = {}
         links['Profile'] = user_path(@user)
         links['Service record'] = user_service_record_path(@user) if policy(@user).service_record?
-        links['Attendance'] = personnel_v2_app_url(user: @user, suffix: "attendance") if policy(Event).index?
+        links['Attendance'] = user_attendance_path(@user) if policy(@user).attendance?
         links['Qualifications'] = personnel_v2_app_url(user: @user, suffix: "qualifications") if policy(AITQualification).index?
         links['Recruits'] = personnel_v2_app_url(user: @user, suffix: "recruits")
         links['Demerits'] = personnel_v2_app_url(user: @user, suffix: "reprimands") if policy(Demerit).index?
