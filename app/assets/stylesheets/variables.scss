@@ -21,3 +21,13 @@ $body-bg: $olive-drab;
 $body-color: $beige;
 $navbar-dark-color: rgba($white, .95);
 $component-active-color: $black-olive;
+
+$table-border-color: rgba($beige, .33);
+$table-accent-bg: darken($rifle-green, 5%);
+
+$pagination-bg: $rifle-green;
+$pagination-border-color: $table-border-color;
+$pagination-hover-bg: $gold;
+$pagination-hover-color: $black-olive;
+$pagination-disabled-bg: $table-accent-bg;
+$pagination-disabled-border-color: $pagination-border-color;
