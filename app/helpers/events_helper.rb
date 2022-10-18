@@ -22,8 +22,8 @@ module EventsHelper
       "data-toggle" => "tooltip", "data-controller" => "tooltip")
   end
 
-  def format_timestamp(starts_at)
-    starts_at.strftime(DATETIME_FORMAT)
+  def format_timestamp(timestamp)
+    timestamp&.strftime(DATETIME_FORMAT)
   end
 
   def compare_timezones(starts_at)
