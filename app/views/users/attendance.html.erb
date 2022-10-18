@@ -6,8 +6,7 @@
   <thead>
     <tr>
       <th scope="col">Date</th>
-      <th scope="col">Unit</th>
-      <th scope="col">Type</th>
+      <th scope="col">Event</th>
       <th scope="col">Mandatory</th>
       <th scope="col">Attendance</th>
     </tr>
@@ -17,9 +16,8 @@
     <% event = attendance_record.event %>
     <tr>
       <td><%= timestamp_tag event.starts_at %></td>
-      <td><%= event.unit.abbr %></td>
-      <td><%= event.type %></td>
-        <td><%= event.mandatory %></td>
+      <td><%= link_to event.title, event %></td>
+      <td><%= event.mandatory %></td>
       <td>
         <% if !attendance_record.attended %>
           <% if attendance_record.excused %>
