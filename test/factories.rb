@@ -36,9 +36,22 @@ FactoryBot.define do
   end
 
   factory :attendance_record do
-    event
     user
     excused { false }
+
+    transient do
+      event_starts_at { 1.hour.from_now }
+    end
+
+    event { association :event, starts_at: event_starts_at }
+
+    trait :attended do
+      attended { true }
+    end
+
+    trait :mandatory do
+      event { association :event, mandatory: true, starts_at: event_starts_at }
+    end
   end
 
   factory :award do

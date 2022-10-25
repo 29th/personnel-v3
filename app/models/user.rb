@@ -135,6 +135,10 @@ class User < ApplicationRecord
     ActiveSupport::Duration.build(seconds_of_service)
   end
 
+  def attendance_stats
+    @attendance_stats ||= AttendanceStats.for_user(self)
+  end
+
   def update_coat
     PersonnelV2Service.new.update_coat(id)
   end

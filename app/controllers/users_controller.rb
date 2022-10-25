@@ -31,6 +31,8 @@ class UsersController < ApplicationController
       .includes(event: :unit)
       .order("event.starts_at DESC")
       .page(params[:page])
+
+    @attendance_stats = @user.attendance_stats
   end
 
   private
