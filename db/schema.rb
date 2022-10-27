@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_27_061416) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -244,6 +244,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_061416) do
     t.string "time_zone", default: "America/New_York", comment: "Priority time zone for this event, usually based on host unit"
     t.index ["reporter_member_id"], name: "Reporter's ID"
     t.index ["server_id"], name: "Server ID"
+    t.index ["starts_at"], name: "index_events_on_starts_at"
     t.index ["unit_id"], name: "Unit ID"
   end
 
