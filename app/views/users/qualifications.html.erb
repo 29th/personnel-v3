@@ -1,0 +1,56 @@
+<% content_for(:page_title) { "#{@user.short_name} - Qualifications" } %>
+
+<h2>Qualifications</h2>
+
+<div class="user-qualifications">
+  <ul>
+    <% @ait_standards.each_value do |game| %>
+      <li>
+        <details>
+          <summary>
+            <strong><%= AITStandard.games[game.name] || "General" %></strong>
+            <small class="text-muted">(<%= game.count %>)</small>
+          </summary>
+          <ul>
+            <% game.weapons.each_value do |weapon| %>
+              <li>
+                <details open>
+                  <summary>
+                    <strong><%= AITStandard.weapons[weapon.name] %></strong>
+                    <small class="text-muted">(<%= weapon.count %>)</small>
+                  </summary>
+                  <ul>
+                    <% weapon.badges.each_value do |badge| %>
+                      <li>
+                        <details open>
+                          <summary>
+                            <strong><%= AITStandard.badges[badge.name] %></strong>
+                            <small class="text-muted">(<%= badge.count %>)</small>
+                          </summary>
+                          <ul>
+                            <% badge.standards.each do |standard| %>
+                              <li>
+                                <%= standard.description %>
+                                <% if @ait_qualifications.key?(standard.id) %>
+                                  <small class="text-muted">
+                                    <% qualification = @ait_qualifications[standard.id] %>
+                                    <%= qualification.date %>
+                                    by <%= link_to qualification.author.short_name, qualification.author %>
+                                  </small>
+                                <% end %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </details>
+                      </li>
+                    <% end %>
+                  </ul>
+                </details>
+              </li>
+            <% end %>
+          </ul>
+        </details>
+      </li>
+    <% end %>
+  </ul>
+</div>

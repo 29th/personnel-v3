@@ -1,3 +1,5 @@
+@import "variables";
+
 .user-profile-header {
   margin-bottom: 16px;
 
@@ -39,5 +41,33 @@
   dd:not(:last-child):after {
     content: "|";
     margin: 0 10px;
+  }
+}
+
+.user-qualifications {
+  ul {
+    margin: 1rem 0;
+    padding-left: 1rem;
+    border-left: 1px black inset;
+
+    li {
+      list-style-type: none;
+
+      summary {
+        strong {
+          text-decoration: underline $primary;
+        }
+      }
+    }
+  }
+
+  small>a {
+    color: inherit;
+  }
+
+  // Top-level uls
+  article>&>ul {
+    padding-left: 0;
+    border-left: none;
   }
 }

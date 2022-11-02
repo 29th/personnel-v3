@@ -35,6 +35,21 @@ class UsersController < ApplicationController
     @attendance_stats = @user.attendance_stats
   end
 
+  def qualifications
+    @ait_qualifications = @user.ait_qualifications
+      .includes(author: :rank)
+      .each_with_object({}) do |item, accum|
+        accum[item.standard_id] = item
+      end
+
+    @ait_standards = AITStandard
+      .all
+      .each_with_object({}) do |item, accum|
+        accum[item.game] ||= KeyedAITStandard.new(item.game)
+        accum[item.game].append(item, @ait_qualifications.key?(item.id))
+      end
+  end
+
   private
 
   def find_and_authorize_user
