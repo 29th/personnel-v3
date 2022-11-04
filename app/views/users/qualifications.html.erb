@@ -35,7 +35,9 @@
                                   <small class="text-muted">
                                     <% qualification = @ait_qualifications[standard.id] %>
                                     <%= qualification.date %>
-                                    by <%= link_to qualification.author.short_name, qualification.author %>
+                                    <% if qualification.author %>
+                                      by <%= link_to qualification.author.short_name, qualification.author %>
+                                    <% end %>
                                   </small>
                                 <% end %>
                               </li>
