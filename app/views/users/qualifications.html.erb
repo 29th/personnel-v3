@@ -30,15 +30,29 @@
                           <ul>
                             <% badge.standards.each do |standard| %>
                               <li>
-                                <%= standard.description %>
-                                <% if @ait_qualifications.key?(standard.id) %>
+                                <% qualification = @ait_qualifications[standard.id] %>
+
+                                <% if qualification.present? %>
+                                  <%= link_to_if @can_destroy_qualifications,
+                                    icon("fa-solid", "square-check"),
+                                    admin_user_ait_qualification_path(@user, qualification) %>
+
+                                  <%= standard.description %>
+
                                   <small class="text-muted">
-                                    <% qualification = @ait_qualifications[standard.id] %>
                                     <%= qualification.date %>
                                     <% if qualification.author %>
                                       by <%= link_to qualification.author.short_name, qualification.author %>
                                     <% end %>
                                   </small>
+                                <% else %>
+                                  <%= link_to_if @can_create_qualifications,
+                                    icon("fa-solid", "square"),
+                                    new_admin_user_ait_qualification_path(@user, {
+                                      ait_qualification: {standard_id: standard.id}
+                                    }) %>
+
+                                  <%= standard.description %>
                                 <% end %>
                               </li>
                             <% end %>
