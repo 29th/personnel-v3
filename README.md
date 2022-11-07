@@ -1,7 +1,5 @@
 # Personnel
 
-Status: Work in Progress
-
 A rewrite of the [personnel management system](https://github.com/29th/personnel) for the [29th Infantry Division](http://29th.org) in [Ruby on Rails](https://rubyonrails.org).
 
 ## Local development
@@ -20,25 +18,21 @@ mysqldump -u <username> -p <database> > dump.sql
 
 Put the `dump.sql` file in the `db/dump/` directory.
 
-### Steam web api key
-Users sign in to the application via Steam. To enable this functionality, you'll need to pass it
-a Steam Web API Key. You can get one by [filling out this form](http://steamcommunity.com/dev/apikey).
-Once you have it, copy `.env.sample` to `.env` and add your key to it.
-
 ### Running the application
+Use [29th/personnel](https://github.com/29th/personnel) to run this application,
+as that includes the reverse proxy that sits in front of it. You can run it
+without the other applications using:
 
 ```
-docker-compose up
+docker compose up v3 reverse-proxy db-personnel
 ```
 
-To view your app, go to `http://localhost:3000`.
-
-Exit using CTRL+C and stop the containers using `docker-compose down`.
-
-To issue rails commands, ssh into the app container using:
+Alternatively, if you want to run v3 standalone (without the reverse proxy), and
+without docker, you can run it locally if you have Ruby installed:
 
 ```
-docker-compose exec app bash
+rails server
 ```
 
-To open phpMyAdmin, browse to `http://localhost:8081`. Username is `root` and password is `pwd`.
+### Notes
+* Application performance monitoring sponsored by [AppSignal](https://www.appsignal.com/)
