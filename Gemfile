@@ -44,7 +44,7 @@ group :development, :test do
   gem "faker"
   gem "dotenv-rails", groups: [:development, :test]
   gem "standard", "~> 1.0", ">= 1.0.4"
-  gem "bullet"
+  gem "prosopite"
 end
 
 group :development do

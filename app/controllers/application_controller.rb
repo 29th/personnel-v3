@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   around_action :set_time_zone, if: :current_user
   # enforce policy for every action
   after_action :verify_authorized, unless: -> { :active_admin_controller? }
+  around_action :n_plus_one_detection, unless: Rails.env.production?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -54,5 +55,12 @@ class ApplicationController < ActionController::Base
 
   def set_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
+  end
+
+  def n_plus_one_detection
+    Prosopite.scan
+    yield
+  ensure
+    Prosopite.finish
   end
 end
