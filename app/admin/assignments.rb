@@ -24,13 +24,14 @@ ActiveAdmin.register Assignment do
   config.create_another = true
 
   index do
-    selectable_column
     column :user
     column :unit
     column :position
     column :start_date
     column :end_date
-    actions
+    actions defaults: false do |assignment|
+      item "View", admin_assignment_path(assignment)
+    end
   end
 
   show do

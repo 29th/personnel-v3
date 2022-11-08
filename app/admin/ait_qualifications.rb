@@ -19,7 +19,6 @@ ActiveAdmin.register AITQualification do
   config.create_another = true
 
   index do
-    selectable_column
     column :date
     column :user
     column :game, sortable: "standards.game" do |ait_qualification|
@@ -33,7 +32,9 @@ ActiveAdmin.register AITQualification do
     end
     column :ait_standard, sortable: "standards.description"
     column :author
-    actions
+    actions defaults: false do |ait_qualification|
+      item "View", admin_ait_qualification_path(ait_qualification)
+    end
   end
 
   form do |f|

@@ -14,14 +14,15 @@ ActiveAdmin.register Unit do
   scope :all, default: true
 
   index do
-    selectable_column
     column :abbr
     column :name
     column :ancestors
     column :game
     column :classification
     column :active
-    actions
+    actions defaults: false do |unit|
+      item "View", admin_unit_path(unit)
+    end
   end
 
   sidebar "Related records", only: [:show, :edit] do

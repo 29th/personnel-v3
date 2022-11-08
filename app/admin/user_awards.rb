@@ -13,12 +13,13 @@ ActiveAdmin.register UserAward do
   config.create_another = true
 
   index do
-    selectable_column
+    column :date
     column :user
     column :award
-    column :date
     # column :forum_topic_url # TODO
-    actions
+    actions defaults: false do |user_award|
+      item "View", admin_user_award_path(user_award)
+    end
   end
 
   form do |f|

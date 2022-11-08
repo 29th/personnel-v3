@@ -11,7 +11,6 @@ ActiveAdmin.register Note do
   filter :access, as: :select
 
   index do
-    selectable_column
     column :date_add
     column :date_mod
     column :user

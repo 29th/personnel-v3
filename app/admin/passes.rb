@@ -19,12 +19,15 @@ ActiveAdmin.register Pass do
   filter :type, as: :select
 
   index do
-    selectable_column
     column :user
     column :start_date
     column :end_date
-    column :type
-    actions
+    column :type do |pass|
+      Pass.types[pass.type]
+    end
+    actions defaults: false do |pass|
+      item "View", admin_pass_path(pass)
+    end
   end
 
   form do |f|

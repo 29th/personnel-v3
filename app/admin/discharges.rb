@@ -12,11 +12,12 @@ ActiveAdmin.register Discharge do
   filter :date
 
   index do
-    selectable_column
-    column :user
     column :date
+    column :user
     column :type
-    actions
+    actions defaults: false do |discharge|
+      item "View", admin_discharge_path(discharge)
+    end
   end
 
   show do

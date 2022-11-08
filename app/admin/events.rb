@@ -20,7 +20,6 @@ ActiveAdmin.register Event do
   filter :type, as: :select, collection: -> { Event::TYPES }
 
   index do
-    selectable_column
     column "Starts at" do |event|
       timestamp_tag event.starts_at_local
     end
@@ -28,7 +27,9 @@ ActiveAdmin.register Event do
       link_to event.unit.subtree_abbr, admin_unit_path(event.unit)
     end
     column :type
-    actions
+    actions defaults: false do |event|
+      item "View", admin_event_path(event)
+    end
   end
 
   form do |f|

@@ -11,11 +11,12 @@ ActiveAdmin.register Promotion do
   filter :date
 
   index do
-    selectable_column
+    column :date
     column :user
     column :new_rank
-    column :date
-    actions
+    actions defaults: false do |unit|
+      item "View", admin_unit_path(unit)
+    end
   end
 
   form do |f|

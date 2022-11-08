@@ -49,7 +49,9 @@ ActiveAdmin.register User do
     end
     column "Steam ID", :steam_id
     column "Forum ID", :forum_member_id
-    actions
+    actions defaults: false do |user|
+      item "View", admin_user_path(user)
+    end
   end
 
   show do
@@ -95,7 +97,7 @@ ActiveAdmin.register User do
   end
 
   action_item :update_forum_roles, only: :show,
-                                   if: proc { authorized?(:update_forum_roles, resource) } do
+    if: proc { authorized?(:update_forum_roles, resource) } do
     link_to "Update forum roles", update_forum_roles_admin_user_path(resource), method: :post
   end
 

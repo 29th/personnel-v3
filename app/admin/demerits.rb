@@ -12,14 +12,15 @@ ActiveAdmin.register Demerit do
   config.sort_order = "date_desc"
 
   index do
-    selectable_column
     column :date
     column :user
     column :author
     column :reason do |demerit|
       demerit.reason.truncate 75, omission: "…"
     end
-    actions
+    actions defaults: false do |demerit|
+      item "View", admin_demerit_path(demerit)
+    end
   end
 
   show do

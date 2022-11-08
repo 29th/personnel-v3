@@ -15,14 +15,15 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
   filter :reason
 
   index do
-    selectable_column
     column :user
     column :start_date
     column :end_date
     column :reason do |extended_loa|
       extended_loa.reason.truncate 75, omission: "…"
     end
-    actions
+    actions defaults: false do |extended_loa|
+      item "View", admin_extended_loa_path(extended_loa)
+    end
   end
 
   # show
