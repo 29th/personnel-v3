@@ -3,70 +3,80 @@
 <h2>Qualifications</h2>
 
 <div class="user-qualifications">
-  <ul>
-    <% @ait_standards.each_value do |game| %>
-      <li>
-        <details>
-          <summary>
-            <strong><%= AITStandard.games[game.name] || "General" %></strong>
-            <small class="text-muted">(<%= game.count %>)</small>
-          </summary>
-          <ul>
-            <% game.weapons.each_value do |weapon| %>
-              <li>
-                <details open>
-                  <summary>
-                    <strong><%= AITStandard.weapons[weapon.name] %></strong>
-                    <small class="text-muted">(<%= weapon.count %>)</small>
-                  </summary>
-                  <ul>
-                    <% weapon.badges.each_value do |badge| %>
-                      <li>
-                        <details open>
+  <ul class="nav nav-tabs" role="tablist">
+    <% @ait_standards.each_with_index do |(key, game), index| %>
+      <li class="nav-item" role="presentation">
+        <a class="<%= class_names("nav-link", active: index.zero?) %>"
+          href="#<%= game.name || "general" %>-tab"
+          role="tab" data-bs-toggle="tab" data-toggle="tab">
+          <%= AITStandard.games[game.name] || "General" %>
+          <small class="text-muted">(<%= game.count %>)</small>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  
+  <div class="tab-content">
+    <% @ait_standards.each_with_index do |(key, game), index| %>
+      <div class="<%= class_names("tab-pane", active: index.zero?) %>"
+        id="<%= game.name || "general" %>-tab" role="tabpanel">
+        <ul>
+          <% game.weapons.each_value do |weapon| %>
+            <li>
+              <details open>
+                <summary>
+                  <strong><%= AITStandard.weapons[weapon.name] %></strong>
+                  <small class="text-muted">(<%= weapon.count %>)</small>
+                </summary>
+                <ul>
+                  <% weapon.badges.each_value do |badge| %>
+                    <li>
+                      <details <% if badge.count > 0 %>open<% end %>>
+                        <% unless badge.name == "notapplicable" %>
                           <summary>
                             <strong><%= AITStandard.badges[badge.name] %></strong>
                             <small class="text-muted">(<%= badge.count %>)</small>
                           </summary>
-                          <ul>
-                            <% badge.standards.each do |standard| %>
-                              <li>
-                                <% qualification = @ait_qualifications[standard.id] %>
+                        <% end %>
+                        <ul>
+                          <% badge.standards.each do |standard| %>
+                            <li>
+                              <% qualification = @ait_qualifications[standard.id] %>
 
-                                <% if qualification.present? %>
-                                  <%= link_to_if @can_destroy_qualifications,
-                                    icon("fa-solid", "square-check"),
-                                    admin_user_ait_qualification_path(@user, qualification) %>
+                              <% if qualification.present? %>
+                                <%= link_to_if @can_destroy_qualifications,
+                                  icon("fa-solid", "square-check"),
+                                  admin_user_ait_qualification_path(@user, qualification) %>
 
-                                  <%= standard.description %>
+                                <%= standard.description %>
 
-                                  <small class="text-muted">
-                                    <%= qualification.date %>
-                                    <% if qualification.author %>
-                                      by <%= link_to qualification.author.short_name, qualification.author %>
-                                    <% end %>
-                                  </small>
-                                <% else %>
-                                  <%= link_to_if @can_create_qualifications,
-                                    icon("fa-solid", "square"),
-                                    new_admin_user_ait_qualification_path(@user, {
-                                      ait_qualification: {standard_id: standard.id}
-                                    }) %>
+                                <small class="text-muted">
+                                  <%= qualification.date %>
+                                  <% if qualification.author %>
+                                    by <%= link_to qualification.author.short_name, qualification.author %>
+                                  <% end %>
+                                </small>
+                              <% else %>
+                                <%= link_to_if @can_create_qualifications,
+                                  icon("fa-solid", "square"),
+                                  new_admin_user_ait_qualification_path(@user, {
+                                    ait_qualification: {standard_id: standard.id}
+                                  }) %>
 
-                                  <%= standard.description %>
-                                <% end %>
-                              </li>
-                            <% end %>
-                          </ul>
-                        </details>
-                      </li>
-                    <% end %>
-                  </ul>
-                </details>
-              </li>
-            <% end %>
-          </ul>
-        </details>
-      </li>
+                                <%= standard.description %>
+                              <% end %>
+                            </li>
+                          <% end %>
+                        </ul>
+                      </details>
+                    </li>
+                  <% end %>
+                </ul>
+              </details>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>
