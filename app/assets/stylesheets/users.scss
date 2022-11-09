@@ -44,7 +44,7 @@
   }
 }
 
-.user-qualifications {
+.user-qualifications .tab-content {
   ul {
     margin: 1rem 0;
     padding-left: 1rem;
@@ -66,7 +66,7 @@
   }
 
   // Top-level uls
-  article>&>ul {
+  .tab-pane>ul {
     padding-left: 0;
     border-left: none;
   }
