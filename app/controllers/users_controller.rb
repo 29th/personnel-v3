@@ -56,6 +56,14 @@ class UsersController < ApplicationController
     @can_destroy_qualifications = policy(qualification).destroy? if qualification
   end
 
+  def recruits
+    @recruited_enlistments = @user.recruited_enlistments
+      .accepted
+      .includes(:unit, user: :rank)
+      .order(date: :desc)
+      .page(params[:page])
+  end
+
   private
 
   def find_and_authorize_user

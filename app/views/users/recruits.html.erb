@@ -1,0 +1,16 @@
+<% content_for(:page_title) { "#{@user.short_name} - Recruits" } %>
+
+<h2>Recruits</h2>
+
+Total: <%= @recruited_enlistments.total_count %>
+
+<ul>
+  <% @recruited_enlistments.each do |enlistment| %>
+    <li>
+      <%= link_to enlistment.user %>
+      <small class="text-muted"><%= enlistment.date %></small>
+  </li>
+  <% end %>
+</ul>
+
+<%= paginate @recruited_enlistments %>

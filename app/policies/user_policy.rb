@@ -19,6 +19,10 @@ class UserPolicy < ApplicationPolicy
     user&.member?
   end
 
+  def recruits?
+    show?
+  end
+
   def create?
     user&.has_permission?("admin")
   end

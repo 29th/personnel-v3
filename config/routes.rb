@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     get "service-record", to: "users#service_record"
     get "attendance", to: "users#attendance"
     get "qualifications", to: "users#qualifications"
+    get "recruits", to: "users#recruits"
   end
 
   resources :passes, only: [:index, :show]
