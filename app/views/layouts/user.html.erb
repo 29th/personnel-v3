@@ -37,7 +37,7 @@
         links['Reprimands'] = user_reprimands_path(@user) if policy(@user).reprimands?
         links['Extended LOAs'] = personnel_v2_app_url(user: @user, suffix: "eloas") if policy(ExtendedLOA).index?
         links['Notes'] = personnel_v2_app_url(user: @user, suffix: "notes") if policy(Note).index?
-        links['Passes'] = personnel_v2_app_url(user: @user, suffix: "passes") if policy(Pass).index?
+        links['Weapon Passes'] = passes_path(q: {user_id_eq: @user.id}) if policy(Pass).index?
         %>
         <% links.each do |label, path| %>
           <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>
