@@ -4,6 +4,11 @@ class AttendanceRecord < ApplicationRecord
   belongs_to :event
 
   scope :without_cancelled_loas, -> { where.not(attended: nil).or(where(excused: true)) }
+  scope :awol, -> {
+    includes(:event)
+      .where(attended: false, excused: false,
+        event: {mandatory: true, starts_at: ..24.hours.ago})
+  }
 
   validates :attended, inclusion: {in: [true, false]}, allow_nil: true
   validates :excused, inclusion: {in: [true, false]}

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     get "attendance", to: "users#attendance"
     get "qualifications", to: "users#qualifications"
     get "recruits", to: "users#recruits"
+    get "reprimands", to: "users#reprimands"
   end
 
   resources :passes, only: [:index, :show]

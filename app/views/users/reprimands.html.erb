@@ -1,0 +1,43 @@
+<% content_for(:page_title) { "#{@user.short_name} - Reprimands" } %>
+
+<h2>Reprimands</h2>
+
+<div class="awols">
+  <h4>AWOLs</h4>
+  <% if @awols.any? %>
+    <ul>
+      <% @awols.each do |awol| %>
+        <li>
+          <%= awol.event.starts_at.strftime("%F") %>
+          -
+          <%= link_to awol.event.title, awol.event %>
+          <% if awol.event.starts_at.before?(30.days.ago) %>
+            <small class="text-muted">(expired)</small>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    None
+  <% end %>
+</div>
+<div class="demerits">
+  <h4>Demerits</h4>
+  <% if @demerits.any? %>
+    <ul>
+      <% @demerits.each do |demerit| %>
+        <li>
+          <%= demerit.date %>
+          -
+          <%= demerit.reason %>
+          by <%= link_to demerit.author %>
+          <% if demerit.date.before?(30.days.ago) %>
+            <small class="text-muted">(expired)</small>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    None
+  <% end %>
+</div>

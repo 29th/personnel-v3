@@ -33,8 +33,8 @@
         links['Service record'] = user_service_record_path(@user) if policy(@user).service_record?
         links['Attendance'] = user_attendance_path(@user) if policy(@user).attendance?
         links['Qualifications'] = user_qualifications_path(@user) if policy(@user).qualifications?
-        links['Demerits'] = personnel_v2_app_url(user: @user, suffix: "reprimands") if policy(Demerit).index?
         links['Recruits'] = user_recruits_path(@user) if policy(@user).recruits?
+        links['Reprimands'] = user_reprimands_path(@user) if policy(@user).reprimands?
         links['Extended LOAs'] = personnel_v2_app_url(user: @user, suffix: "eloas") if policy(ExtendedLOA).index?
         links['Notes'] = personnel_v2_app_url(user: @user, suffix: "notes") if policy(Note).index?
         links['Passes'] = personnel_v2_app_url(user: @user, suffix: "passes") if policy(Pass).index?
