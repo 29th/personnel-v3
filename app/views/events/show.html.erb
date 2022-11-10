@@ -65,7 +65,11 @@
                     <span class="badge badge-secondary">Excused</span>
                   <% end %>
                 <% else %>
-                  <span class="badge badge-danger">AWOL</span>
+                  <% if @event.mandatory %>
+                    <span class="badge badge-danger">AWOL</span>
+                  <% else %>
+                    <span class="badge badge-warning">Absent</span>
+                  <% end %>
                 <% end %>
               <% end %>
             </li>

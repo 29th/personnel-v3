@@ -35,7 +35,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
     assert_select ".attendance li", {count: 3}, "Expected 3 attendees to be listed"
     assert_select ".attendance li span", {text: "Excused", count: 1}, "Expected 1 excused attendee to be listed"
-    assert_select ".attendance li span", {text: "AWOL", count: 1}, "Expected 1 AWOL attendee to be listed"
+    assert_select ".attendance li span", {text: "Absent", count: 1}, "Expected 1 absent attendee to be listed"
   end
 
   # posting an aar should mark users on extended loa as excused. if it doesn't,
@@ -43,7 +43,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   # hide that from users, as it will be counted against their attendance.
   test "attendance list should show extended loa status if excused, but not if awol" do
     sign_in_as @user
-    event = create(:event, unit: @unit)
+    event = create(:event, unit: @unit, mandatory: true)
 
     user1 = create(:user)
     user2 = create(:user)
@@ -157,7 +157,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     get event_url(event)
 
     assert_select ".attendance li", {count: 5}, "Expected 5 attendees to be listed"
-    assert_select ".attendance li span", {text: "AWOL", count: 2}, "Expected 2 AWOL attendees to be listed"
+    assert_select ".attendance li span", {text: "Absent", count: 2}, "Expected 2 absent attendees to be listed"
   end
 
   test "aar shouldn't overwrite whether user is excused" do
