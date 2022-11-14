@@ -29,4 +29,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_qualifications_url(@subject)
     assert_response :success
   end
+
+  test "should get extended loas" do
+    sign_in_as @user
+    get user_extended_loas_url(@subject)
+    assert_response :success
+  end
 end

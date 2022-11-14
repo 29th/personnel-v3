@@ -1,0 +1,30 @@
+<% content_for(:page_title) { "#{@user.short_name} - Extended LOAs" } %>
+
+<h2>Extended LOAs</h2>
+
+<% @extended_loas.each do |eloa| %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= eloa.reason %>
+        (<%= eloa.duration.in_days.round %> days)
+        <% if eloa.active? %>
+          <span class="badge badge-primary">Active</span>
+        <% end %>
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        Posted <%= eloa.posting_date.strftime("%F") %>
+      </h6>
+      <dl class="card-text">
+        <dt>Period</dt>
+        <dd>
+          From <%= eloa.start_date %>
+          to <%= eloa.end_date %>
+        </dd>
+
+        <dt>Availability</dt>
+        <dd><%= eloa.availability %></dd>
+      </dl>
+    </div>
+  </div>
+<% end %>

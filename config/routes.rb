@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     get "qualifications", to: "users#qualifications"
     get "recruits", to: "users#recruits"
     get "reprimands", to: "users#reprimands"
+    get "extended-loas", to: "users#extended_loas"
   end
 
   resources :passes, only: [:index, :show]

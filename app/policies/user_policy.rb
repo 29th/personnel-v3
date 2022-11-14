@@ -27,6 +27,10 @@ class UserPolicy < ApplicationPolicy
     user&.member?
   end
 
+  def extended_loas?
+    user&.member?
+  end
+
   def create?
     user&.has_permission?("admin")
   end

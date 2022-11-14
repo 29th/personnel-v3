@@ -35,7 +35,7 @@
         links['Qualifications'] = user_qualifications_path(@user) if policy(@user).qualifications?
         links['Recruits'] = user_recruits_path(@user) if policy(@user).recruits?
         links['Reprimands'] = user_reprimands_path(@user) if policy(@user).reprimands?
-        links['Extended LOAs'] = personnel_v2_app_url(user: @user, suffix: "eloas") if policy(ExtendedLOA).index?
+        links['Extended LOAs'] = user_extended_loas_path(@user) if policy(@user).extended_loas?
         links['Notes'] = personnel_v2_app_url(user: @user, suffix: "notes") if policy(Note).index?
         links['Weapon Passes'] = passes_path(q: {user_id_eq: @user.id}) if policy(Pass).index?
         %>

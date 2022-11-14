@@ -21,6 +21,12 @@ class ExtendedLOA < ApplicationRecord
     start_date <= date && end_date >= date && (!return_date || return_date >= date)
   end
 
+  def duration
+    days = end_date - start_date
+    seconds = days * 24 * 60 * 60
+    ActiveSupport::Duration.build(seconds)
+  end
+
   private
 
   def set_posting_date

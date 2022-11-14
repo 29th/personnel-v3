@@ -72,6 +72,10 @@ class UsersController < ApplicationController
       .order("event.starts_at DESC")
   end
 
+  def extended_loas
+    @extended_loas = @user.extended_loas.order(start_date: :desc)
+  end
+
   private
 
   def find_and_authorize_user
