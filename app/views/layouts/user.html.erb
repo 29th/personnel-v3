@@ -11,6 +11,12 @@
             <%= @user.rank.name %> <%= @user.full_name %>
           </h1>
 
+          <% if @user.status == :retired %>
+            <span class="badge badge-warning">Retired</span>
+          <% elsif @user.status == :discharged %>
+            <span class="badge badge-danger">Discharged</span>
+          <% end %>
+
           <ul class="user-profile-header__assignments">
             <% @active_assignments.each do |assignment| %>
               <li>

@@ -3,6 +3,9 @@
 <div class="row">
   <div class="col-md-6">
     <dl>
+      <dt>Status</dt>
+      <dd><%= @user.status.to_s.humanize %></dd>
+
       <dt>Forum profile</dt>
       <dd><%= link_to "View profile", discourse_url(user: @user) %></dd>
       

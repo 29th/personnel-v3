@@ -94,6 +94,20 @@ class User < ApplicationRecord
     end
   end
 
+  def status
+    if member?
+      :member
+    elsif cadet?
+      :cadet
+    elsif honorably_discharged?
+      :retired
+    elsif discharged?
+      :discharged
+    else
+      :none
+    end
+  end
+
   def member?
     @member ||= assignments.active
       .joins(:unit)
@@ -101,10 +115,17 @@ class User < ApplicationRecord
       .any?
   end
 
-  def honorably_discharged?
+  def discharged?
     assignments.active.size.zero? &&
-      discharges.size >= 1 &&
-      discharges.order("date").last.honorable?
+      discharges.size >= 1
+  end
+
+  def honorably_discharged?
+    discharged? && discharges.order("date").last.honorable?
+  end
+
+  def cadet?
+    false
   end
 
   def assigned_to_subtree?(unit)
