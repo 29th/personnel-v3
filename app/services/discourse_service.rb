@@ -24,6 +24,11 @@ class DiscourseService
     end
   end
 
+  def get_username(forum_member_id)
+    discourse_user = get_discourse_user(forum_member_id)
+    discourse_user["username"]
+  end
+
   def get_roles
     groups = {}
     current_page = 0
@@ -65,6 +70,15 @@ class DiscourseService
     roles_to_add.each { |role_id| add_role(forum_member_id, role_id) }
   end
 
+  def get_linked_users(forum_member_id)
+    ips_with_users = get_user_ips(forum_member_id)
+      .map do |ip|
+        linked_users = get_users_by_ip(ip)
+        {ip: ip, users: linked_users}
+      end
+    key_ips_by_user(ips_with_users)
+  end
+
   private
 
   def get_discourse_user(forum_member_id)
@@ -87,5 +101,29 @@ class DiscourseService
     path = "/admin/users/#{forum_member_id}/groups"
     body = {group_id: role_id}
     @conn.post(path, body)
+  end
+
+  def get_user_ips(forum_member_id)
+    get_discourse_user(forum_member_id)
+      .values_at("ip_address", "registration_ip_address")
+      .compact_blank
+      .uniq
+  end
+
+  def get_users_by_ip(ip)
+    path = "/admin/users/list.json"
+    response = @conn.get(path, {ip: ip})
+    response.body.map { |user| user.slice("id", "username") }
+  end
+
+  def key_ips_by_user(ips)
+    users = ips.each_with_object({}) do |row, memo|
+      row[:users].each do |user|
+        id, username = user.values_at("id", "username")
+        memo[id] ||= {id: id, username: username, ips: [], forum: :discourse}
+        memo[id][:ips] << row[:ip]
+      end
+    end
+    users.values
   end
 end
