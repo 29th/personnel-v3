@@ -9,19 +9,33 @@ module ApplicationHelper
       case user
       when User
         user_id = user.forum_member_id
+        url += "/user-by-id/#{user_id}/summary"
+      when Numeric
+        user_id = user.to_s
+        url += "/user-by-id/#{user_id}/summary"
       when String
-        user_id = user
+        username = user
+        url += "/u/#{username}/summary"
       end
-      url += "/user-by-id/#{user_id}/summary"
     elsif topic.present?
       url += "/t/#{topic}"
     end
     url
   end
 
-  def vanilla_url(topic: nil)
+  def vanilla_url(user: nil, topic: nil)
     url = Rails.configuration.endpoints[:vanilla][:base_url][:external]
-    if topic.present?
+    if user.present?
+      case user
+      when User
+        user_id = user.vanilla_forum_member_id
+        name = user.last_name
+      when Numeric
+        user_id = user
+        name = "profile" # vanilla just needs any string as a suffix
+      end
+      url += "/profile/#{user_id}/#{name}"
+    elsif topic.present?
       url += "/discussion/#{topic}"
     end
     url

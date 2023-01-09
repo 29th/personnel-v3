@@ -13,6 +13,12 @@ class VanillaService
     end
   end
 
+  def get_username(forum_member_id)
+    path = "users/#{forum_member_id}"
+    response = @conn.get(path)
+    response.body["name"]
+  end
+
   def get_roles
     response = @conn.get("/roles")
 
@@ -40,8 +46,7 @@ class VanillaService
     return unless response.body["ips"].present?
 
     rows = response.body["ips"].map { |row| row.deep_transform_keys(&:underscore) }
-    rows = key_ips_by_user(rows)
-    rows.map(&method(:add_user_profile_url))
+    key_ips_by_user(rows)
   end
 
   private
@@ -52,16 +57,11 @@ class VanillaService
       row["other_users"].each do |other_user|
         name = other_user["name"]
         user_id = other_user["user_id"]
-        memo[name] ||= {name: name, user_id: user_id, ips: []}
+        memo[name] ||= {username: name, user_id: user_id, ips: [],
+                        forum: :vanilla}
         memo[name][:ips] << row["ip"]
       end
     end
     users.values
-  end
-
-  def add_user_profile_url(row)
-    base_url = Rails.configuration.siblings.vanilla
-    row[:profile_url] = "#{base_url}/profile/#{row[:user_id]}/#{row[:name]}"
-    row
   end
 end
