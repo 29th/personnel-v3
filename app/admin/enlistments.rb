@@ -118,6 +118,16 @@ ActiveAdmin.register Enlistment do
             end
           end
         end
+
+        panel "Linked Ban Logs" do
+          table_for(enlistment.linked_ban_logs) do
+            column "Date" do |row|
+              link_to row.date, admin_ban_log_path(row)
+            end
+            column :handle
+            column :roid
+          end
+        end
       end
     end
   end

@@ -49,6 +49,28 @@ class Enlistment < ApplicationRecord
     end
   end
 
+  def linked_ban_logs
+    # Merge ransack searches
+    # See: https://activerecord-hackery.github.io/ransack/going-further/merging-searches/
+    shared_context = Ransack::Context.for(BanLog)
+
+    roid = user.steam_id || steam_id # prefer user attribute over enlistment attribute
+    ips = linked_users.pluck(:ips).flatten
+
+    searches = [
+      BanLog.ransack(roid_eq: roid, context: shared_context),
+      BanLog.ransack(handle_i_cont: ingame_name, context: shared_context)
+    ]
+    searches << BanLog.ransack(ip_in: ips, context: shared_context) unless ips.empty?
+
+    shared_conditions = searches.map do |search|
+      Ransack::Visitor.new.accept(search.base)
+    end
+
+    BanLog.joins(shared_context.join_sources)
+      .where(shared_conditions.reduce(&:or))
+  end
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
