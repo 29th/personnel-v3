@@ -51,12 +51,12 @@ class VanillaServiceTest < ActiveSupport::TestCase
 
     assert_equal 2, linked_users.size
 
-    abe = linked_users.find { |user| user[:name] == "abe_lincoln" }
+    abe = linked_users.find { |user| user[:username] == "abe_lincoln" }
     assert abe
     assert_equal 3, abe[:user_id]
     assert_equal ["5.6.7.8", "9.10.11.12"], abe[:ips]
 
-    eleanor = linked_users.find { |user| user[:name] == "eleanor_roosevelt" }
+    eleanor = linked_users.find { |user| user[:username] == "eleanor_roosevelt" }
     assert eleanor
     assert_equal 1, eleanor[:ips].size
   end
