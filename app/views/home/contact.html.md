@@ -9,33 +9,33 @@ correspond to your game.
 
 ### Arma 3
 
-[Arma 3 Forum](https://forums.29th.org/categories/%5Bpublic-relations%5D-arma-3)
+[Arma 3 Forum](https://forums.29th.org/c/public-discussion/public-relations-arma-3/188/none)
 
-- [Cpt. Hill](https://forums.29th.org/profile/19/Cpt.%20Hill)
-  ([steam](https://steamcommunity.com/id/rellikplug/))
-- [FSgt. Balzer](https://forums.29th.org/profile/22/FSgt.%20Balzer)
-  ([steam](https://steamcommunity.com/profiles/76561197973258018))
-- [WO1 Stray](https://forums.29th.org/profile/4345/WO1%20Stray)
-  ([steam](https://steamcommunity.com/id/lordretro/))
+- [1Lt. Nelson](https://forums.29th.org/u/Nelson-CHQ/summary)
+  ([steam](https://steamcommunity.com/id/Entry-Level-Luxury/))
+- [2Lt. Ericksen](https://forums.29th.org/u/Ericksen/summary)
+  ([steam](https://steamcommunity.com/profiles/76561198082702822))
+- [Cpl. Bates](https://forums.29th.org/u/Jon2Brazy/summary)
+  ([steam](https://steamcommunity.com/id/Tenstein/))
+- [Cpl. Norris](https://forums.29th.org/u/Norris/summary)
+  ([steam](https://steamcommunity.com/id/spynes/))
 
 ### RS2
 
-[RS2 Forum](https://forums.29th.org/categories/%5Bpublic-relations%5D-rising-storm-2%3A-vietnam)
+[RS2 Forum](https://forums.29th.org/c/public-discussion/public-relations-rising-storm-2-vietnam/189/none)
 
-- [FSgt. Cyr](https://forums.29th.org/profile/14/FSgt.%20Cyr)
+- [Sgt. Maj. Cyr](https://forums.29th.org/u/Cyr/summary)
   ([steam](https://steamcommunity.com/id/yopuii/))
-- [WO1 Bruneau](https://forums.29th.org/profile/4064/WO1%20Bruneau)
+- [MSgt. Bruneau](https://forums.29th.org/u/Bruneau/summary)
   ([steam](https://steamcommunity.com/id/Bruneau/))
 
 ### Squad
 
-[Squad Forum](https://forums.29th.org/categories/%5Bpublic-relations%5D-squad)
+[Squad Forum](https://forums.29th.org/c/public-discussion/public-relations-squad/190/none)
 
-- [1Lt. Fritz](https://forums.29th.org/profile/53/1Lt.%20Fritz)
+- [Maj. Fritz](https://forums.29th.org/u/Fritz/summary)
   ([steam](https://steamcommunity.com/id/1740AlteFritz1786/))
-- [TSgt. Dethfield](https://forums.29th.org/profile/3585/TSgt.%20Dethfield)
+- [Sgt. Maj. Dethfield](https://forums.29th.org/u/Dethfield/summary)
   ([steam](https://steamcommunity.com/profiles/76561197978369091))
-- [Sgt. Furie](https://forums.29th.org/profile/13826/Sgt.%20Furie)
-  ([steam](https://steamcommunity.com/id/Rushonfire/))
-- [Cpl. Newton](https://forums.29th.org/profile/16303/Cpl.%20Newton)
-  ([steam](https://steamcommunity.com/profiles/76561198033420997))
+- [Sgt. McArdle](https://forums.29th.org/u/McArdle/summary)
+  ([steam](https://steamcommunity.com/id/XToTheDDDD/))
