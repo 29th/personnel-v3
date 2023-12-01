@@ -59,12 +59,6 @@ class User < ApplicationRecord
     short_name
   end
 
-  def self.create_with_auth(auth)
-    create! do |user|
-      user.steam_id = auth["uid"]
-    end
-  end
-
   def on_extended_loa?(date = Date.current)
     extended_loas.any? { |eloa| eloa.active?(date) }
   end
