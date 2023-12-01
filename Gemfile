@@ -73,7 +73,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "pundit", "~> 2.1"
 gem "bootstrap", "~> 4.6"
 gem "kaminari", "~> 1.2", ">= 1.2.1"
-gem "activeadmin", "~> 2.9"
+gem "activeadmin", "~> 2.14.0"
 gem "nilify_blanks", "~> 1.4"
 gem "ancestry", "~> 3.2", ">= 3.2.1"
 gem "jwt", "~> 2.2", ">= 2.2.2"

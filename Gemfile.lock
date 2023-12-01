@@ -487,7 +487,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to (~> 1.0, >= 1.0.5)
-  activeadmin (~> 2.9)
+  activeadmin (~> 2.14.0)
   activeadmin_addons (~> 1.7, >= 1.7.1)
   ancestry (~> 3.2, >= 3.2.1)
   appsignal (~> 3.1, >= 3.1.5)
