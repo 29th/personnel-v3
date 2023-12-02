@@ -8,14 +8,17 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
-@import "~activeadmin_addons/src/stylesheets/all";
-@import "~@activeadmin/activeadmin/src/scss/mixins";
-@import "~@activeadmin/activeadmin/src/scss/base";
+@import "activeadmin_addons/all";
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "flatpickr/dist/themes/light.css";
+@import "tippy.js/dist/tippy.css";
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
 .status_tag {
 
   // &.pending { background: }
