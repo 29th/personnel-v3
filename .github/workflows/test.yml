@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -33,21 +33,10 @@ jobs:
           cache-version: 1
 
       - name: Setup node
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
-
-      - name: Find yarn cache location
-        id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache yarn modules
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**.yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          cache: 'yarn'
 
       - name: Install node modules
         run: yarn install --pure-lockfile
