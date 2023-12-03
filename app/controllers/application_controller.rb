@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # enforce policy for every action
   after_action :verify_authorized, unless: -> { :active_admin_controller? }
 
-  unless Rails.env.production?
+  if Rails.env.development?
     around_action :n_plus_one_detection
   end
 
