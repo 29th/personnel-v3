@@ -62,6 +62,9 @@ header nav {
     &.active {
       border-bottom: 2px solid $primary;
     }
+    .nav-link {
+      text-transform: uppercase;
+    }
   }
 }
 
