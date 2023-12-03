@@ -21,7 +21,7 @@ class Assignment < ApplicationRecord
   validates_date :start_date
   validates_date :end_date, allow_blank: true
 
-  attr_accessor :transfer_from_unit_id
+  attr_accessor :transfer_from_assignment_id
 
   def period
     start_date..(end_date || Date.current)

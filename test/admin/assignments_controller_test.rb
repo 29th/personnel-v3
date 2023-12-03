@@ -54,7 +54,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "You are not authorized to perform this action.", flash[:alert]
   end
 
-  test "should end old assignment if transfer_from_unit is in scope" do
+  test "should end old assignment if transfer_from_assignment is in scope" do
     user_unit = create(:unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
@@ -71,7 +71,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     post admin_assignments_url, params: {
       assignment: {
         **assignment_attributes(assignment),
-        transfer_from_unit_id: old_unit.id
+        transfer_from_assignment_id: old_assignment.id
       }
     }
 
@@ -79,7 +79,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     assert_equal assignment.start_date, old_assignment.end_date
   end
 
-  test "should fail to create assignment or end old assignment if transfer_from_unit is not in scope" do
+  test "should fail to create assignment or end old assignment if transfer_from_assignment is not in scope" do
     user_unit = create(:unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
@@ -97,7 +97,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
       post admin_assignments_url, params: {
         assignment: {
           **assignment_attributes(assignment),
-          transfer_from_unit_id: old_unit.id
+          transfer_from_assignment_id: old_assignment.id
         }
       }
     end

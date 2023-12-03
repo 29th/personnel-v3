@@ -7,7 +7,7 @@ ActiveAdmin.register Assignment do
     permitted = [:start_date, :end_date]
     if params[:action] == "create"
       permitted += [:member_id, :unit_id, :position_id,
-        :transfer_from_unit_id]
+        :transfer_from_assignment_id]
     end
     permitted
   end
@@ -72,7 +72,7 @@ ActiveAdmin.register Assignment do
         f.input :unit, as: :select, collection: Unit.for_dropdown
         f.input :position, as: :select, collection: Position.for_dropdown
 
-        f.input :transfer_from_unit_id, as: :select,
+        f.input :transfer_from_assignment_id, as: :select,
           collection: [],
           input_html: {
             "data-assignment-transfer-target": "assignments"
@@ -86,10 +86,10 @@ ActiveAdmin.register Assignment do
   end
 
   before_create do |assignment|
-    if assignment.transfer_from_unit_id.present?
-      transfer_from_unit = Assignment.find_by_unit_id!(assignment.transfer_from_unit_id)
-      authorize transfer_from_unit, :update?
-      transfer_from_unit.end(assignment.start_date)
+    if assignment.transfer_from_assignment_id.present?
+      transfer_from_assignment = Assignment.find(assignment.transfer_from_assignment_id)
+      authorize transfer_from_assignment, :update?
+      transfer_from_assignment.end(assignment.start_date)
     end
   end
 
