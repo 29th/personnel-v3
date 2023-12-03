@@ -15,4 +15,14 @@ class BanLog < ApplicationRecord
   validates :reason, length: {maximum: 1000}
 
   self.skip_time_zone_conversion_for_attributes = [:unbanned]
+
+  private
+  
+  def self.ransackable_attributes(_auth_object)
+    %w(id roid uid guid handle reason comments ip)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(admin)
+  end
 end

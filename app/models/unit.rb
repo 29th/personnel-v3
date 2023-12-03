@@ -63,6 +63,14 @@ class Unit < ApplicationRecord
 
   private
 
+  def self.ransackable_attributes(_auth_object)
+    %w(id name abbr game timezone active ancestry classification)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(ancestors)
+  end
+
   def update_path_from_ancestry
     # path is still used by v2, and is identical to ancestry, plus surrounding slashes
     self.path = "/#{ancestry}/" if ancestry_changed?

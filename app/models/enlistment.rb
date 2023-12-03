@@ -36,6 +36,14 @@ class Enlistment < ApplicationRecord
 
   private
 
+  def self.ransackable_attributes(_auth_object)
+    %w(id date game timezone status game timezone)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(user liaison recruiter_user unit)
+  end
+
   def set_date
     self.date = Date.current
   end

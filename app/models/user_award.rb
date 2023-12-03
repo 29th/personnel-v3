@@ -7,4 +7,14 @@ class UserAward < ApplicationRecord
 
   validates :date, presence: true
   validates_date :date
+  
+  private
+
+  def self.ransackable_attributes(_auth_object)
+    %w(id date)
+  end
+
+  def self.ransackable_associations(_auth_object)
+    %w(user award)
+  end
 end

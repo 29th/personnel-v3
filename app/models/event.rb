@@ -110,6 +110,14 @@ class Event < ApplicationRecord
 
   private
 
+  def self.ransackable_attributes(_auth_object)
+    %w(id datetime type title mandatory)
+  end
+
+  def self.ransackable_associations(_auth_object)
+    %w(unit server reporter)
+  end
+
   def update_report_dates
     self.report_posting_date ||= Time.current
     self.report_edit_date = Time.current

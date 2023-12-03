@@ -200,6 +200,14 @@ class User < ApplicationRecord
 
   private
 
+  def self.ransackable_attributes(_auth_object)
+    %w(id last_name first_name steam_id forum_member_id)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(rank country)
+  end
+
   def slug_candidates
     [
       [:name_prefix, :last_name],

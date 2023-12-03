@@ -19,4 +19,10 @@ class Rank < ApplicationRecord
   def officer?
     grade&.starts_with? "O-"
   end
+  
+  private
+
+  def self.ransackable_attributes(_auth_object)
+    %w(id name abbr grade)
+  end
 end

@@ -36,6 +36,14 @@ class FinanceRecord < ApplicationRecord
 
   private
 
+  def self.ransackable_attributes(_auth_object)
+    %w(id date vendor amount_received amount_paid fee)
+  end
+
+  def self.ransackable_associations(_auth_object)
+    %w(user)
+  end
+
   def received_or_paid
     unless amount_received.blank? ^ amount_paid.blank?
       errors.add(:base, "Specify an amount received or paid, not both")
