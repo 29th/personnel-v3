@@ -12,6 +12,7 @@
     "date-fns": "^2.29.2",
     "date-fns-tz": "^1.3.7",
     "flatpickr": "^4.6.13",
+    "jquery": "^3.4.1",
     "jquery-events-to-dom-events": "^1.1.0",
     "rails-timezone": "^1.1.0",
     "stimulus": "^2.0.0",

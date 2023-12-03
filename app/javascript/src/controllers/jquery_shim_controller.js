@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus'
 import { delegate, abnegate } from 'jquery-events-to-dom-events'
 import $ from 'jquery'
-window.$ = $
 
 /**
  * jQuery widgets like select2 and datetimepicker fire

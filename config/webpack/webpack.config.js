@@ -9,7 +9,7 @@ module.exports = {
   },
   entry: {
     application: "./app/javascript/application.js",
-    active_admin: "./app/javascript/active_admin.js"
+    active_admin_custom: "./app/javascript/active_admin_custom.js"
   },
   output: {
     filename: "[name].js",
@@ -19,11 +19,6 @@ module.exports = {
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
-    }),
-    new webpack.ProvidePlugin({
-      "$":"jquery",
-      "jQuery":"jquery",
-      "window.jQuery":"jquery"
     })
   ]
 }
