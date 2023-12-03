@@ -33,7 +33,7 @@ ActiveAdmin.register User do
   filter :first_name
   filter :country
   filter :steam_id
-  filter :forum_member_id
+  filter :forum_member_id_eq
 
   scope :active, default: true
   scope :all

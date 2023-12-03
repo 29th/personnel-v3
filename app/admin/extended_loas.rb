@@ -12,7 +12,7 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
   filter :user, collection: -> { User.for_dropdown }
   filter :start_date
   filter :end_date
-  filter :reason
+  filter :reason_cont
 
   index do
     column :user

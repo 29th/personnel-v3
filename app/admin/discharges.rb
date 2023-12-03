@@ -8,7 +8,7 @@ ActiveAdmin.register Discharge do
 
   # filter :user, collection: -> { User.for_dropdown }
   filter :user_last_name_cont, label: "User last name"
-  filter :type
+  filter :type, as: :select, collection: -> { Discharge.types.map(&:reverse) }
   filter :date
 
   index do
