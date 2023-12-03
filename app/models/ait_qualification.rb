@@ -11,4 +11,14 @@ class AITQualification < ApplicationRecord
                            uniqueness: {scope: :user, message: "User already has this AIT Standard"}
   validates :author, presence: true
   validates :date, presence: true, timeliness: {date: true}
+
+  private
+
+  def self.ransackable_attributes(_auth_object)
+    %w(id date)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(user ait_standard author)
+  end
 end

@@ -70,14 +70,14 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "pundit", "~> 2.1"
 gem "bootstrap", "~> 4.6"
 gem "kaminari", "~> 1.2", ">= 1.2.1"
-gem "activeadmin", "~> 2.14.0"
+gem "activeadmin", "~> 3.1.0"
 gem "nilify_blanks", "~> 1.4"
 gem "ancestry", "~> 3.2", ">= 3.2.1"
 gem "jwt", "~> 2.2", ">= 2.2.2"
 gem "validates_timeliness", github: "mitsuru/validates_timeliness", branch: "rails7" # until upstream merges PR#213
-gem "activeadmin_addons", "~> 1.7", ">= 1.7.1"
+gem "activeadmin_addons", "~> 1.10", ">= 1.10.1"
 gem "simple_form", "~> 5.1"
-gem "ransack", "~> 2.4", ">= 2.4.2"
+gem "ransack", "~> 4.1", ">= 4.1.1"
 gem 'simple_calendar', '~> 2.0'
 gem "redcarpet", "~> 3.5", ">= 3.5.1"
 gem "shrine", "~> 3.0"

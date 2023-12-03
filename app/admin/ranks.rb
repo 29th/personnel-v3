@@ -1,6 +1,9 @@
 ActiveAdmin.register Rank do
   actions :index, :show, :edit, :update, :new, :create
   permit_params :order, :abbr, :name, :grade, :image, :description, :remove_image
+  
+  filter :name_cont
+  filter :abbr_cont
 
   index do
     selectable_column

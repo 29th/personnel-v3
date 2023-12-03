@@ -8,4 +8,10 @@ class Country < ApplicationRecord
   def sym
     abbr.downcase.to_sym
   end
+  
+  private
+
+  def self.ransackable_attributes(_auth_object)
+    %w(id abbr name)
+  end
 end

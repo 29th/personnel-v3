@@ -13,4 +13,14 @@ class Promotion < ApplicationRecord
   def demotion?
     old_rank.present? && old_rank.order > new_rank.order
   end
+  
+  private
+  
+  def self.ransackable_attributes(_auth_object)
+    %w(id date)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(user old_rank new_rank)
+  end
 end

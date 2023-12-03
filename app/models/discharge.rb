@@ -17,4 +17,14 @@ class Discharge < ApplicationRecord
   validates_date :date
   validates :type, presence: true
   validates :reason, presence: true
+  
+  private
+
+  def self.ransackable_attributes(_auth_object)
+    %w(id date type)
+  end
+
+  def self.ransackable_associations(_auth_object)
+    %w(user)
+  end
 end

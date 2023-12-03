@@ -30,6 +30,14 @@ class Note < ApplicationRecord
 
   private
 
+  def self.ransackable_attributes(_auth_object)
+    %w(id date_add access subject)
+  end
+  
+  def self.ransackable_associations(_auth_object)
+    %w(user)
+  end
+
   def set_date_created
     self.date_add = Date.current
   end
