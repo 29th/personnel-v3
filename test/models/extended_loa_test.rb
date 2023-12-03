@@ -29,7 +29,9 @@ class ExtendedLOATest < ActiveSupport::TestCase
   end
 
   test "posting date is set automatically" do
-    eloa = create(:extended_loa)
-    assert_equal Time.zone.now.to_i, eloa.posting_date.to_i
+    freeze_time do
+      eloa = create(:extended_loa)
+      assert_equal Time.zone.now.to_i, eloa.posting_date.to_i
+    end
   end
 end
