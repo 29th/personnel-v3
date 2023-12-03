@@ -10,9 +10,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed|Staatliches' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed|Staatliches' %>
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -35,6 +34,6 @@
     <%= render 'home/games' if current_page?(root_path) %>
     <%= render 'home/latest_videos' if current_page?(root_path) %>
     <%= render 'shared/footer' %>
-    <%= javascript_pack_tag 'application' %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </body>
 </html>

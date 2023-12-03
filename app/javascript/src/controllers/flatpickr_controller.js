@@ -1,5 +1,4 @@
 import StimulusFlatpickr from 'stimulus-flatpickr'
-import 'flatpickr/dist/themes/light.css'
 
 export default class extends StimulusFlatpickr {
   /**

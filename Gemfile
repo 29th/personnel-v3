@@ -34,9 +34,6 @@ gem "jbuilder", "~> 2.5"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
 
-# Use webpacker for JS compilation
-gem 'webpacker', '5.4.3'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", ">= 1.0.0"
@@ -105,3 +102,4 @@ gem "friendly_id", "~> 5.4", ">= 5.4.2"
 gem "data_migrate", "~> 8.1", ">= 8.1.1"
 gem "appsignal", "~> 3.1", ">= 3.1.5"
 gem "font-awesome-sass", "~> 6.2.0"
+gem "jsbundling-rails", "~> 1.2", ">= 1.2.1"
