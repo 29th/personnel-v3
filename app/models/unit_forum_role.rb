@@ -14,14 +14,14 @@ class UnitForumRole < ApplicationRecord
   validates :role_id, numericality: {only_integer: true}
 
   attr_accessor :discourse_role_id, :vanilla_role_id
-  
-  private
+
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id access_level forum_id role_id)
+    %w[id access_level forum_id role_id]
   end
 
   def self.ransackable_associations(_auth_object)
-    %w(unit)
+    %w[unit]
   end
 end

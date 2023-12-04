@@ -108,15 +108,17 @@ class Event < ApplicationRecord
     report_posting_date.present?
   end
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id datetime type title mandatory)
+    %w[id datetime type title mandatory]
   end
 
   def self.ransackable_associations(_auth_object)
-    %w(unit server reporter)
+    %w[unit server reporter]
   end
+
+  private
 
   def update_report_dates
     self.report_posting_date ||= Time.current

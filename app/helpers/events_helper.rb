@@ -37,7 +37,7 @@ module EventsHelper
       .sort
       .map do |time|
         str = time.strftime(DATETIME_FORMAT)
-        time.time_zone == current_user_time_zone ? bolden(str) : str
+        (time.time_zone == current_user_time_zone) ? bolden(str) : str
       end
       .join(tag(:br))
   end

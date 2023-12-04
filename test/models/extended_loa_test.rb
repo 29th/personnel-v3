@@ -13,13 +13,13 @@ class ExtendedLOATest < ActiveSupport::TestCase
 
   test "active does not include eloas with return date in the past" do
     eloa = create(:extended_loa, start_date: 1.week.ago, end_date: 1.week.from_now,
-                                 return_date: 1.day.ago)
+      return_date: 1.day.ago)
     refute_includes ExtendedLOA.active, eloa
   end
 
   test "active includes eloas with end date and return date in the future" do
     eloa = create(:extended_loa, start_date: 1.week.ago, end_date: 1.week.from_now,
-                                 return_date: 1.day.from_now)
+      return_date: 1.day.from_now)
     assert_includes ExtendedLOA.active, eloa
   end
 

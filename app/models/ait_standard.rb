@@ -24,11 +24,13 @@ class AITStandard < ApplicationRecord
     "[#{prefix}] #{description}"
   end
 
-  private
+  private_class_method :ransackable_attributes
 
   def self.ransackable_attributes(_auth_object)
-    %w(id weapon game badge)
+    %w[id weapon game badge]
   end
+
+  private
 
   def nil_or_na(value)
     value.nil? || value == "notapplicable"

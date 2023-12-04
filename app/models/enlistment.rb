@@ -3,9 +3,9 @@ class Enlistment < ApplicationRecord
   audited
   belongs_to :user, foreign_key: "member_id"
   belongs_to :liaison, class_name: "User", foreign_key: "liaison_member_id",
-                       optional: true
+    optional: true
   belongs_to :recruiter_user, class_name: "User", foreign_key: "recruiter_member_id",
-                              optional: true # There's already a column called recruiter
+    optional: true # There's already a column called recruiter
   belongs_to :country
   belongs_to :unit, optional: true
 
@@ -34,15 +34,17 @@ class Enlistment < ApplicationRecord
   before_create :set_date
   before_validation :shorten_middle_name
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id date game timezone status game timezone)
+    %w[id date game timezone status game timezone]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(user liaison recruiter_user unit)
+    %w[user liaison recruiter_user unit]
   end
+
+  private
 
   def set_date
     self.date = Date.current

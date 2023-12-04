@@ -7,7 +7,7 @@ class NotePolicyTest < ActiveSupport::TestCase
 
   test "scope for user who is not a member includes no notes" do
     user = create(:user)
-    note = create(:note)
+    create(:note)
     assert scope(user).length, 0
   end
 

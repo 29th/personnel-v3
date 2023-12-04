@@ -61,15 +61,17 @@ class Unit < ApplicationRecord
     end
   end
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id name abbr game timezone active ancestry classification)
+    %w[id name abbr game timezone active ancestry classification]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(ancestors)
+    %w[ancestors]
   end
+
+  private
 
   def update_path_from_ancestry
     # path is still used by v2, and is identical to ancestry, plus surrounding slashes

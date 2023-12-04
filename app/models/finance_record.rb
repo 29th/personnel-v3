@@ -34,15 +34,17 @@ class FinanceRecord < ApplicationRecord
     income.by_user(user).sum(:amount_received)
   end
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id date vendor amount_received amount_paid fee)
+    %w[id date vendor amount_received amount_paid fee]
   end
 
   def self.ransackable_associations(_auth_object)
-    %w(user)
+    %w[user]
   end
+
+  private
 
   def received_or_paid
     unless amount_received.blank? ^ amount_paid.blank?

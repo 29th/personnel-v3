@@ -16,13 +16,13 @@ class BanLog < ApplicationRecord
 
   self.skip_time_zone_conversion_for_attributes = [:unbanned]
 
-  private
-  
+  private_class_method :ransackable_attributes, :ransackable_associations
+
   def self.ransackable_attributes(_auth_object)
-    %w(id roid uid guid handle reason comments ip)
+    %w[id roid uid guid handle reason comments ip]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(admin)
+    %w[admin]
   end
 end

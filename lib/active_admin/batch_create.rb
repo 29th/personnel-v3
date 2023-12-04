@@ -52,7 +52,7 @@ module ActiveAdmin
             end
 
             count = batch_values.count
-            location = count === 1 ? smart_resource_url : smart_collection_url
+            location = (count === 1) ? smart_resource_url : smart_collection_url
             redirect_to location, notice: batch_created_notice(count)
           rescue ActiveRecord::RecordInvalid,
             ActiveRecord::Rollback

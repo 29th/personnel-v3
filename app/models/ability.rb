@@ -7,14 +7,14 @@ class Ability < ApplicationRecord
   def display_name
     abbr
   end
-  
-  private
+
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id name abbr)
+    %w[id name abbr]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(permissions)
+    %w[permissions]
   end
 end

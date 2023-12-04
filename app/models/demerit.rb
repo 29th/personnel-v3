@@ -9,14 +9,14 @@ class Demerit < ApplicationRecord
   validates :user, presence: true
   validates :author, presence: true
   validates :reason, presence: true
-  
-  private
-  
+
+  private_class_method :ransackable_attributes, :ransackable_associations
+
   def self.ransackable_attributes(_auth_object)
-    %w(id date reason)
+    %w[id date reason]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(user)
+    %w[user]
   end
 end

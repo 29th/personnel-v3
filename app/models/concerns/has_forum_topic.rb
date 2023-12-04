@@ -9,6 +9,6 @@ module HasForumTopic
 
     validates :forum_id, presence: true, if: -> { topic_id.present? }
     validates :topic_id, numericality: {only_integer: true}, allow_nil: true,
-                         allow_blank: true
+      allow_blank: true
   end
 end

@@ -198,15 +198,17 @@ class User < ApplicationRecord
       .sort
   end
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id last_name first_name steam_id forum_member_id)
+    %w[id last_name first_name steam_id forum_member_id]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(rank country)
+    %w[rank country]
   end
+
+  private
 
   def slug_candidates
     [

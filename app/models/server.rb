@@ -11,10 +11,10 @@ class Server < ApplicationRecord
   validates :address, presence: true
   validates :port, presence: true, numericality: {only_integer: true}
   validates :active, inclusion: [true, false]
-  
-  private
+
+  private_class_method :ransackable_attributes
 
   def self.ransackable_attributes(_auth_object)
-    %w(id name abbr game)
+    %w[id name abbr game]
   end
 end

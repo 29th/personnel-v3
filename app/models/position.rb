@@ -19,10 +19,10 @@ class Position < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :for_dropdown, -> { active.order(:name) }
-  
-  private
+
+  private_class_method :ransackable_attributes
 
   def self.ransackable_attributes(_auth_object)
-    %w(id name active access_level AIT)
+    %w[id name active access_level AIT]
   end
 end

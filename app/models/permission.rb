@@ -8,14 +8,14 @@ class Permission < ApplicationRecord
 
   validates_presence_of :unit, :ability, :access_level
   validates :ability, uniqueness: {scope: [:unit, :access_level], message: "Permission combination already exists"}
-  
-  private
+
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id access_level)
+    %w[id access_level]
   end
 
   def self.ransackable_associations(_auth_object)
-    %w(unit ability)
+    %w[unit ability]
   end
 end

@@ -17,10 +17,10 @@ class Award < ApplicationRecord
   validates :order, numericality: {only_integer: true}, if: :present?
 
   scope :active, -> { where(active: true) }
-  
-  private
+
+  private_class_method :ransackable_attributes
 
   def self.ransackable_attributes(_auth_object)
-    %w(id code title game active)
+    %w[id code title game active]
   end
 end

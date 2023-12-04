@@ -27,15 +27,17 @@ class ExtendedLOA < ApplicationRecord
     ActiveSupport::Duration.build(seconds)
   end
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id start end reason)
+    %w[id start end reason]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(user)
+    %w[user]
   end
+
+  private
 
   def set_posting_date
     self.posting_date = Time.zone.now

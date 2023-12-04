@@ -23,21 +23,26 @@ class Pass < ApplicationRecord
 
   scope :active, -> { where("start_date <= ? AND end_date >= ?", Date.current, Date.current) }
 
+  private_class_method :ransackable_attributes, :ransackable_associations,
+    :ransortable_attributes, :ransackable_scopes
+
   def self.ransackable_attributes(_auth_object)
-    %w(id type start_date end_date)
+    %w[id type start_date end_date]
   end
 
   def self.ransortable_attributes(_auth_object)
-    %w(start_date end_date type)
+    %w[start_date end_date type]
   end
 
   def self.ransackable_associations(_auth_object)
-    %w(user)
+    %w[user]
   end
 
   def self.ransackable_scopes(_auth_object)
-    %i(active)
+    %i[active]
   end
+
+  private
 
   def set_add_date
     self.add_date = Date.current

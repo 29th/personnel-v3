@@ -28,15 +28,17 @@ class Note < ApplicationRecord
     where(access: access_levels)
   }
 
-  private
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id date_add access subject)
+    %w[id date_add access subject]
   end
-  
+
   def self.ransackable_associations(_auth_object)
-    %w(user)
+    %w[user]
   end
+
+  private
 
   def set_date_created
     self.date_add = Date.current

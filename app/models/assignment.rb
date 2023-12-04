@@ -34,14 +34,14 @@ class Assignment < ApplicationRecord
   def self.since(date)
     where("start_date >= ?", date)
   end
-  
-  private
+
+  private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
-    %w(id access_level start_date end_date)
+    %w[id access_level start_date end_date]
   end
 
   def self.ransackable_associations(_auth_object)
-    %w(user unit position)
+    %w[user unit position]
   end
 end
