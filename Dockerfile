@@ -1,4 +1,4 @@
-FROM ruby:3.1.2
+FROM ruby:3.2.2
 
 ENV NODE_MAJOR_VERSION 16
 
