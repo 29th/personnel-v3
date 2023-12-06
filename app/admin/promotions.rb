@@ -15,7 +15,7 @@ ActiveAdmin.register Promotion do
     column :user
     column :new_rank
     actions defaults: false do |unit|
-      item "View", admin_unit_path(unit)
+      item "View", admin_promotion_path(unit)
     end
   end
 
