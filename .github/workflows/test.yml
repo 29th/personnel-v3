@@ -45,11 +45,6 @@ jobs:
         run: bundle exec rails db:setup
         env:
           RAILS_ENV: test
-
-      - name: Prepare tests
-        run: bundle exec rails test:prepare
-        env:
-          RAILS_ENV: test
           
       - name: Run tests
         run: bundle exec rails test
