@@ -15,14 +15,14 @@ class PreviousUnit
     super(options).except("validation_context", "errors")
   end
 
-  class ArraySerializer < ::ActiveRecord::Coders::JSON
+  class ArraySerializer
     def self.load(value)
-      json = super(value)
+      json = ActiveRecord::Coders::JSON.load(value)
       json&.map { |hash| PreviousUnit.new(hash) } || []
     end
 
     def self.dump(models)
-      super(models) unless models.empty?
+      ActiveRecord::Coders::JSON.dump(models) unless models.empty?
     end
   end
 end

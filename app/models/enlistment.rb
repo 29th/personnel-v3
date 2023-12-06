@@ -28,7 +28,7 @@ class Enlistment < ApplicationRecord
   validates :experience, presence: true
   validates :recruiter, length: {maximum: 128}
 
-  serialize :previous_units, PreviousUnit::ArraySerializer
+  serialize :previous_units, coder: PreviousUnit::ArraySerializer
   validates_associated :previous_units
 
   before_create :set_date
