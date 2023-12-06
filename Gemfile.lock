@@ -536,7 +536,7 @@ DEPENDENCIES
   pundit (~> 2.1)
   rails (~> 7.1.2)
   ransack (~> 4.1, >= 4.1.1)
-  redcarpet (~> 3.5, >= 3.5.1)
+  redcarpet (~> 3.6, >= 3.6.0)
   retryable (~> 3.0, >= 3.0.5)
   sass-rails (~> 5.0)
   sassc (~> 2.4)
