@@ -17,6 +17,7 @@
     "rails-timezone": "^1.1.0",
     "stimulus": "^2.0.0",
     "stimulus-flatpickr": "^1.4.0",
+    "timeago.js": "^4.0.2",
     "tippy.js": "^6.3.7",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
