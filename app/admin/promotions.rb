@@ -22,7 +22,7 @@ ActiveAdmin.register Promotion do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
-      input :user, collection: User.for_dropdown
+      input :user, collection: User.for_dropdown(f.object&.user)
       input :old_rank
       input :new_rank
       input :date

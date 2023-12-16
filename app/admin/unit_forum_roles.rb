@@ -30,7 +30,7 @@ ActiveAdmin.register UnitForumRole do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs "data-controller" => "forum-roles" do
-      input :unit, collection: Unit.for_dropdown
+      input :unit, collection: Unit.for_dropdown(f.object&.unit)
       input :access_level, as: :select, collection: UnitForumRole.access_levels.keys
       input :forum_id, as: :select,
         collection: UnitForumRole.forum_ids.map(&:reverse),

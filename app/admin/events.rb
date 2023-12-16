@@ -60,7 +60,7 @@ ActiveAdmin.register Event do
         "data-action": "$change->time-zone-comparison#update"
       }
       li "", "data-time-zone-comparison-target" => "comparisons"
-      input :unit, collection: Unit.for_dropdown
+      input :unit, collection: Unit.for_dropdown(f.object&.unit)
       input :type, as: :select, collection: Event::TYPES
       input :server, collection: Server.for_dropdown.map { |server| ["#{Server.games[server.game]} - #{server.name}", server.id] }
       input :mandatory

@@ -34,7 +34,7 @@ ActiveAdmin.register Pass do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       if f.object.persisted?
-        input :user, collection: User.for_dropdown
+        input :user, collection: User.for_dropdown(f.object&.user)
       else
         input :bulk_member_ids, collection: User.for_dropdown, label: "User(s)",
           input_html: {multiple: true}

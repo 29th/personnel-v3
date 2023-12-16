@@ -31,7 +31,7 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
-      input :user, collection: User.for_dropdown
+      input :user, collection: User.for_dropdown(f.object&.user)
       input :start_date
       input :end_date, label: "Planned end date"
       input :return_date, label: "Actual return date"

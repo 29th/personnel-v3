@@ -46,7 +46,7 @@ ActiveAdmin.register AITQualification do
           span f.object.user
         end
       else
-        input :user, collection: User.for_dropdown
+        input :user, collection: User.for_dropdown(f.object&.user)
       end
       input :ait_standard, member_label: :with_prefix
       input :date, as: :datepicker

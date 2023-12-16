@@ -13,7 +13,10 @@ class Unit < ApplicationRecord
   enum classification: {combat: "Combat", staff: "Staff", training: "Training"}
 
   scope :active, -> { where(active: true) }
-  scope :for_dropdown, -> { active.order(:ancestry, :name) }
+  scope :for_dropdown, ->(current_value = nil) {
+    collection = active.order(:ancestry, :name)
+    current_value.present? ? collection.including(current_value).uniq : collection
+  }
 
   nilify_blanks
   validates :name, presence: true

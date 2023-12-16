@@ -38,7 +38,7 @@ ActiveAdmin.register Demerit do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       f.input :date
-      f.input :user, as: :select, collection: User.for_dropdown
+      f.input :user, as: :select, collection: User.for_dropdown(f.object&.user)
       f.input :reason
       f.input :forum_id, as: :select, collection: Demerit.forum_ids.map(&:reverse)
       f.input :topic_id, label: "Topic ID"
