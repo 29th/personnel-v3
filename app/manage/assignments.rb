@@ -30,7 +30,7 @@ ActiveAdmin.register Assignment do
     column :start_date
     column :end_date
     actions defaults: false do |assignment|
-      item "View", admin_assignment_path(assignment)
+      item "View", manage_assignment_path(assignment)
     end
   end
 
@@ -47,7 +47,7 @@ ActiveAdmin.register Assignment do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs "data-controller" => "assignment-transfer",
-      "data-assignment-transfer-assignments-url-value" => admin_assignments_path(format: :json) do
+      "data-assignment-transfer-assignments-url-value" => manage_assignments_path(format: :json) do
       if f.object.persisted?
         li do
           label "User"

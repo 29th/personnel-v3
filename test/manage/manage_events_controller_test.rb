@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
+class Manage::EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
     user = create(:user)
     unit = create(:unit)
@@ -14,7 +14,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create one event" do
     assert_difference("Event.count", 1) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: 1.day.from_now.strftime("%F"),
           time: "18:00",
@@ -27,7 +27,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to admin_event_url(Event.last)
+    assert_redirected_to manage_event_url(Event.last)
   end
 
   test "should create multiple events" do
@@ -39,7 +39,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
     bulk_dates = dates.map { |date| date.strftime("%F") }.join(", ")
 
     assert_difference("Event.count", dates.size) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: bulk_dates,
           time: "18:00",
@@ -52,12 +52,12 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to admin_events_url
+    assert_redirected_to manage_events_url
   end
 
   test "should convert time to utc based on time zone attribute" do
     assert_difference("Event.count", 1) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: "2022-09-03",
           time: "18:00",
@@ -76,7 +76,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should set datetime to the value of starts_at in eastern time" do
     assert_difference("Event.count", 1) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: "2022-09-03",
           time: "18:00",
@@ -101,7 +101,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
       starts_at: "2022-09-06 00:00 UTC",
       time_zone: "Eastern Time (US & Canada)")
 
-    get edit_admin_event_url(event)
+    get edit_manage_event_url(event)
 
     assert_response :success
     assert_select "#event_starts_at_local" do |matches|
@@ -118,7 +118,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal Time.parse("2022-09-07 00:00 UTC"), event.starts_at
     assert_equal Time.parse("2022-09-06 20:00 EDT"), event.starts_at_local
 
-    patch admin_event_url(event), params: {
+    patch manage_event_url(event), params: {
       event: {
         starts_at_local: "2022-09-06 20:00",
         time_zone: "London"
@@ -135,7 +135,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should fail and show errors if invalid" do
     assert_difference("Event.count", 0) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: 1.day.from_now.strftime("%F"),
           time: "18:00",
@@ -155,7 +155,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
   test "should fail if not authorized" do
     other_unit = create(:unit)
     assert_difference("Event.count", 0) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: 1.day.from_now.strftime("%F"),
           time: "18:00",
@@ -165,10 +165,10 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
           server_id: @event.server.id,
           mandatory: @event.mandatory
         }
-      }, headers: {HTTP_REFERER: new_admin_event_url}
+      }, headers: {HTTP_REFERER: new_manage_event_url}
     end
 
-    assert_redirected_to new_admin_event_url
+    assert_redirected_to new_manage_event_url
   end
 
   test "should create 20 events maximum" do
@@ -177,7 +177,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
       .join(", ")
 
     assert_difference("Event.count", 20) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: bulk_dates,
           time: "18:00",
@@ -194,7 +194,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
   test "should fail on invalid bulk date format" do
     bulk_dates = "foo, bar"
     assert_difference("Event.count", 0) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: bulk_dates,
           time: "18:00",
@@ -211,7 +211,7 @@ class Admin::EventsControllerTest < ActionDispatch::IntegrationTest
   test "should fail and show errors if form is empty" do
     skip
     assert_difference("Event.count", 0) do
-      post admin_events_url, params: {
+      post manage_events_url, params: {
         event: {
           bulk_dates: "",
           time: "",

@@ -64,7 +64,7 @@ ActiveAdmin.register User do
     column "Steam ID", :steam_id
     column "Forum ID", :forum_member_id
     actions defaults: false do |user|
-      item "View", admin_user_path(user)
+      item "View", manage_user_path(user)
     end
   end
 
@@ -91,16 +91,16 @@ ActiveAdmin.register User do
 
   sidebar "Related records", only: [:show, :edit] do
     ul do
-      li link_to "AIT Qualifications", admin_user_ait_qualifications_path(resource) if authorized?(:index, AITQualification)
-      li link_to "Assignments", admin_user_assignments_path(resource) if authorized?(:index, Assignment)
-      li link_to "Demerits", admin_user_demerits_path(resource) if authorized?(:index, Demerit)
-      li link_to "Discharges", admin_user_discharges_path(resource) if authorized?(:index, Discharge)
-      li link_to "Extended LOAs", admin_user_extended_loas_path(resource) if authorized?(:index, ExtendedLOA)
-      li link_to "Finance Records", admin_user_finance_records_path(resource) if authorized?(:index, FinanceRecord)
-      li link_to "Notes", admin_user_notes_path(resource) if authorized?(:index, Note)
-      li link_to "Passes", admin_user_passes_path(resource) if authorized?(:index, Pass)
-      li link_to "Promotions", admin_user_promotions_path(resource) if authorized?(:index, Promotion)
-      li link_to "User Awards", admin_user_user_awards_path(resource) if authorized?(:index, UserAward)
+      li link_to "AIT Qualifications", manage_user_ait_qualifications_path(resource) if authorized?(:index, AITQualification)
+      li link_to "Assignments", manage_user_assignments_path(resource) if authorized?(:index, Assignment)
+      li link_to "Demerits", manage_user_demerits_path(resource) if authorized?(:index, Demerit)
+      li link_to "Discharges", manage_user_discharges_path(resource) if authorized?(:index, Discharge)
+      li link_to "Extended LOAs", manage_user_extended_loas_path(resource) if authorized?(:index, ExtendedLOA)
+      li link_to "Finance Records", manage_user_finance_records_path(resource) if authorized?(:index, FinanceRecord)
+      li link_to "Notes", manage_user_notes_path(resource) if authorized?(:index, Note)
+      li link_to "Passes", manage_user_passes_path(resource) if authorized?(:index, Pass)
+      li link_to "Promotions", manage_user_promotions_path(resource) if authorized?(:index, Promotion)
+      li link_to "User Awards", manage_user_user_awards_path(resource) if authorized?(:index, UserAward)
     end
   end
 
@@ -112,7 +112,7 @@ ActiveAdmin.register User do
 
   action_item :update_forum_roles, only: :show,
     if: proc { authorized?(:update_forum_roles, resource) } do
-    link_to "Update forum roles", update_forum_roles_admin_user_path(resource), method: :post
+    link_to "Update forum roles", update_forum_roles_manage_user_path(resource), method: :post
   end
 
   batch_action :update_forum_roles, if: proc { authorized?(:update_forum_roles, User) } do |ids|

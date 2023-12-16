@@ -15,7 +15,7 @@ ActiveAdmin.register Discharge do
     column :user
     column :type
     actions defaults: false do |discharge|
-      item "View", admin_discharge_path(discharge)
+      item "View", manage_discharge_path(discharge)
     end
   end
 

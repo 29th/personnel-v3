@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
+class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     endpoints = Rails.configuration.endpoints
     stub_request(:any, /#{endpoints[:vanilla][:base_url][:internal]}.*/)
@@ -14,7 +14,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     create(:assignment, :leader, user: user, unit: user_unit)
 
     sign_in_as user
-    get admin_assignments_url
+    get manage_assignments_url
     assert_response :success
   end
 
@@ -30,10 +30,10 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
     sign_in_as user
     assert_difference("Assignment.count", 1) do
-      post admin_assignments_url, params: {assignment: assignment_attributes(assignment)}
+      post manage_assignments_url, params: {assignment: assignment_attributes(assignment)}
     end
 
-    assert_redirected_to admin_assignment_url(Assignment.last)
+    assert_redirected_to manage_assignment_url(Assignment.last)
   end
 
   test "should fail to create assignment if unit is not in scope" do
@@ -48,7 +48,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
     sign_in_as user
     assert_difference("Assignment.count", 0) do
-      post admin_assignments_url, params: {assignment: assignment_attributes(assignment)}
+      post manage_assignments_url, params: {assignment: assignment_attributes(assignment)}
     end
 
     assert_equal "You are not authorized to perform this action.", flash[:alert]
@@ -68,7 +68,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     old_assignment = create(:assignment, user: subject, unit: old_unit)
 
     sign_in_as user
-    post admin_assignments_url, params: {
+    post manage_assignments_url, params: {
       assignment: {
         **assignment_attributes(assignment),
         transfer_from_assignment_id: old_assignment.id
@@ -94,7 +94,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
     sign_in_as user
     assert_difference("Assignment.count", 0) do
-      post admin_assignments_url, params: {
+      post manage_assignments_url, params: {
         assignment: {
           **assignment_attributes(assignment),
           transfer_from_assignment_id: old_assignment.id

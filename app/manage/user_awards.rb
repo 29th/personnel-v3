@@ -18,7 +18,7 @@ ActiveAdmin.register UserAward do
     column :award
     # column :forum_topic_url # TODO
     actions defaults: false do |user_award|
-      item "View", admin_user_award_path(user_award)
+      item "View", manage_user_award_path(user_award)
     end
   end
 

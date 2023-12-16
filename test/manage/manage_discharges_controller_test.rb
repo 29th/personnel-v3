@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Admin::DischargesControllerTest < ActionDispatch::IntegrationTest
+class Manage::DischargesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_unit = create(:unit)
     create(:permission, :leader, abbr: "discharge_add", unit: @user_unit)
@@ -19,7 +19,7 @@ class Admin::DischargesControllerTest < ActionDispatch::IntegrationTest
 
     methods_called = []
     User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
-      post admin_discharges_url, params: {
+      post manage_discharges_url, params: {
         discharge: {
           **discharge_attributes(discharge),
           end_assignments: true
@@ -41,7 +41,7 @@ class Admin::DischargesControllerTest < ActionDispatch::IntegrationTest
 
     methods_called = []
     User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
-      post admin_discharges_url, params: {promotion: discharge_attributes(discharge)}
+      post manage_discharges_url, params: {promotion: discharge_attributes(discharge)}
     end
 
     assert @subject.member?, "user is no longer a member"

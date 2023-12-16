@@ -36,6 +36,7 @@ ActiveAdmin.setup do |config|
   #     File.join(Rails.root, 'app', 'admin'),
   #     File.join(Rails.root, 'app', 'cashier')
   #   ]
+  config.load_paths = [File.join(Rails.root, "app", "manage")]
 
   # == Default Namespace
   #
@@ -64,6 +65,7 @@ ActiveAdmin.setup do |config|
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
+  config.default_namespace = :manage
 
   # == User Authentication
   #

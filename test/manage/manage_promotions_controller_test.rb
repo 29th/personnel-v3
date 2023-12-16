@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
+class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_unit = create(:unit)
     create(:permission, :leader, abbr: "promotion_add", unit: @user_unit)
@@ -21,7 +21,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     methods_called = []
     User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
       User.stub_any_instance(:update_coat, -> { methods_called << :update_coat }) do
-        post admin_promotions_url, params: {promotion: promotion_attributes(promotion)}
+        post manage_promotions_url, params: {promotion: promotion_attributes(promotion)}
       end
     end
 
@@ -42,7 +42,7 @@ class Admin::AssignmentsControllerTest < ActionDispatch::IntegrationTest
     methods_called = []
     User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
       User.stub_any_instance(:update_coat, -> { methods_called << :update_coat }) do
-        delete admin_promotion_url(promotion)
+        delete manage_promotion_url(promotion)
       end
     end
 
