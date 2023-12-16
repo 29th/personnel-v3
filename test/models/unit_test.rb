@@ -9,8 +9,8 @@ class UnitTest < ActiveSupport::TestCase
     end
   end
 
-  test "abbr cannot be longer than 12 chars" do
-    unit = build(:unit, abbr: Faker::String.random(length: 13))
+  test "abbr cannot be longer than 24 chars" do
+    unit = build(:unit, abbr: Faker::String.random(length: 25))
     refute unit.valid?
   end
 
