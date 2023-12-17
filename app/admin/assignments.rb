@@ -23,7 +23,7 @@ ActiveAdmin.register Assignment do
 
   config.create_another = true
 
-  index do
+  index download_links: [:json] do
     column :user
     column :unit
     column :position
