@@ -16,4 +16,13 @@ class RosterController < ApplicationController
     @slim = params.key?(:slim)
     @show_discourse_status = params.key?(:discourse)
   end
+
+  def search
+    authorize User
+    @users = User
+      .ransack(params[:q])
+      .result(dinstinct: true)
+      .includes(:rank, :discharges, active_assignments: :unit)
+      .order(last_name: :desc)
+  end
 end

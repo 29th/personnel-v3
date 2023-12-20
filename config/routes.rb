@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "/enlist" => "home#enlist"
 
   get "/roster" => "roster#index"
+  get "/roster/search" => "roster#search"
 
   scope "/api/webhooks" do
     post "/discourse",

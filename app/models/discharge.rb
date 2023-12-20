@@ -18,6 +18,12 @@ class Discharge < ApplicationRecord
   validates :type, presence: true
   validates :reason, presence: true
 
+  def type_abbr
+    {"honorable" => "HD",
+     "general" => "GD",
+     "dishonorable" => "DD"}[type]
+  end
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object)
