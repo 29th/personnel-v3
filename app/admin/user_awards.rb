@@ -5,7 +5,7 @@ ActiveAdmin.register UserAward do
 
   permit_params :member_id, :award_id, :date, :forum_id, :topic_id
 
-  filter :user, collection: -> { User.for_dropdown }
+  filter :user, as: :searchable_select, ajax: true
   filter :award
   filter :date
 

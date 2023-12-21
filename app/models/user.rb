@@ -33,10 +33,6 @@ class User < ApplicationRecord
   scope :active, ->(date = Date.current) {
     joins(:assignments).merge(Assignment.active(date)).distinct
   }
-  scope :for_dropdown, ->(current_value = nil) {
-    collection = active.includes(:rank).order(:last_name)
-    current_value.present? ? collection.including(current_value).uniq : collection
-  }
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank

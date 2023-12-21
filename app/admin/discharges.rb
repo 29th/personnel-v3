@@ -6,8 +6,7 @@ ActiveAdmin.register Discharge do
   permit_params :member_id, :type, :date, :reason, :forum_id,
     :topic_id, :end_assignments, :was_reversed
 
-  # filter :user, collection: -> { User.for_dropdown }
-  filter :user_last_name_cont, label: "User last name"
+  filter :user, as: :searchable_select, ajax: true
   filter :type, as: :select, collection: -> { Discharge.types.map(&:reverse) }
   filter :date
 
@@ -36,7 +35,7 @@ ActiveAdmin.register Discharge do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       if f.object.new_record?
-        f.input :user, as: :select, collection: User.for_dropdown
+        f.input :user, as: :searchable_select, ajax: true
       else
         li do
           label "User"

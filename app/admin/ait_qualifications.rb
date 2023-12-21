@@ -6,7 +6,7 @@ ActiveAdmin.register AITQualification do
   permit_params :member_id, :standard_id, :author_member_id, :date
   menu parent: "AIT"
 
-  filter :user, as: :select, collection: -> { User.for_dropdown }
+  filter :user, as: :searchable_select, ajax: true
   filter :date
   filter :ait_standard_game_eq, label: "Game", as: :select,
     collection: -> { AITStandard.games.map(&:reverse) }
@@ -46,7 +46,7 @@ ActiveAdmin.register AITQualification do
           span f.object.user
         end
       else
-        input :user, collection: User.for_dropdown(f.object&.user)
+        input :user, as: :searchable_select, ajax: true
       end
       input :ait_standard, member_label: :with_prefix
       input :date, as: :datepicker
