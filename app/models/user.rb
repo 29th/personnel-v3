@@ -118,23 +118,18 @@ class User < ApplicationRecord
     end
   end
 
-  def dropdown_label
-    status_label =
-      if active_assignments.any?
-        active_assignments
-          .map { |assignment| assignment.unit.abbr }
-          .uniq
-          .join(", ")
-      elsif discharges.any?
-        last_discharge = discharges.max_by(&:date)
-        "#{last_discharge.type_abbr} #{last_discharge.date}"
-      else
-        ""
-      end
-
-    dropdown_label = "#{rank.abbr} #{full_name_last_first}"
-    dropdown_label += " (#{status_label})" unless status_label.empty?
-    dropdown_label
+  def status_detail
+    if active_assignments.any?
+      active_assignments
+        .map { |assignment| assignment.unit.abbr }
+        .uniq
+        .join(", ")
+    elsif discharges.any?
+      last_discharge = discharges.max_by(&:date)
+      "#{last_discharge.type_abbr} #{last_discharge.date}"
+    else
+      ""
+    end
   end
 
   def member?

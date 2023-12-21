@@ -14,6 +14,17 @@ ActiveAdmin.register User do
     end
   end
 
+  searchable_select_options(
+    scope: User.includes(:rank, :discharges, active_assignments: :unit).order(:last_name),
+    text_attribute: :last_name,
+    additional_payload: ->(record) { {status_detail: record.status_detail} },
+    display_text: ->(record) {
+      label = "#{record.rank.abbr} #{record.full_name_last_first}"
+      label += " (#{record.status_detail})" unless record.status_detail.empty?
+      label
+    }
+  )
+
   form do |f|
     f.semantic_errors
     f.inputs do

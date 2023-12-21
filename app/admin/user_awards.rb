@@ -25,13 +25,7 @@ ActiveAdmin.register UserAward do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
-      # This needs to be `input :member_id` for existing values to be selected
-      input :member_id, label: "User", as: :search_select,
-        url: roster_search_path,
-        fields: [:last_name],
-        display_name: "dropdown_label",
-        minimum_input_length: 2,
-        order_by: "last_name_asc"
+      input :user, as: :searchable_select, ajax: true
       input :award, collection: Award.order(:title)
       input :date, as: :datepicker
       input :forum_id, as: :select, collection: UserAward.forum_ids.map(&:reverse)
