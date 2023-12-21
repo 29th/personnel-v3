@@ -6,6 +6,11 @@ class User < ApplicationRecord
   friendly_id :slug_candidates
 
   has_many :assignments, dependent: :delete_all, foreign_key: "member_id"
+  has_many :active_assignments, -> {
+    where("assignments.start_date <= ?", Date.today)
+      .merge(where("assignments.end_date > ?", Date.today).or(where(end_date: nil)))
+  }, class_name: "Assignment", foreign_key: "member_id"
+
   has_many :awards, through: :user_awards
   has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
@@ -28,10 +33,6 @@ class User < ApplicationRecord
   scope :active, ->(date = Date.current) {
     joins(:assignments).merge(Assignment.active(date)).distinct
   }
-  scope :for_dropdown, ->(current_value = nil) {
-    collection = active.includes(:rank).order(:last_name)
-    current_value.present? ? collection.including(current_value).uniq : collection
-  }
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
@@ -42,6 +43,14 @@ class User < ApplicationRecord
     middle_initial = "#{middle_name.first}." if middle_name.present?
 
     [first_name, middle_initial, last_name]
+      .reject(&:nil?)
+      .join(" ")
+  end
+
+  def full_name_last_first
+    middle_initial = "#{middle_name.first}." if middle_name.present?
+
+    ["#{last_name},", first_name, middle_initial]
       .reject(&:nil?)
       .join(" ")
   end
@@ -102,6 +111,20 @@ class User < ApplicationRecord
       :discharged
     else
       :none
+    end
+  end
+
+  def status_detail
+    if active_assignments.any?
+      active_assignments
+        .map { |assignment| assignment.unit.abbr }
+        .uniq
+        .join(", ")
+    elsif discharges.any?
+      last_discharge = discharges.max_by(&:date)
+      "#{last_discharge.type_abbr} #{last_discharge.date}"
+    else
+      ""
     end
   end
 

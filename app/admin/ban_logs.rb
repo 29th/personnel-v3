@@ -5,7 +5,7 @@ ActiveAdmin.register BanLog do
   permit_params :date, :handle, :roid, :uid, :guid, :ip, :id_admin,
     :reason, :comments
 
-  filter :admin, collection: -> { User.for_dropdown }
+  filter :admin, as: :searchable_select, ajax: true
   filter :date
   filter :roid_or_uid_or_guid_or_handle_or_reason_or_comments_or_ip_cont, as: :string, label: "Contains"
 
@@ -44,7 +44,7 @@ ActiveAdmin.register BanLog do
       f.input :uid, label: "Unique ID"
       f.input :guid, label: "GUID"
       f.input :ip, label: "IP Address"
-      f.input :admin, as: :select, collection: User.for_dropdown(f.object&.admin)
+      f.input :admin, as: :searchable_select, ajax: true
       f.input :reason
       f.input :comments
     end

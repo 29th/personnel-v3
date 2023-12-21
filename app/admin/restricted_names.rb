@@ -16,7 +16,7 @@ ActiveAdmin.register RestrictedName do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       input :name
-      input :user, collection: User.includes(:rank).order(:last_name)
+      input :user, as: :searchable_select, ajax: true
     end
     f.actions
   end

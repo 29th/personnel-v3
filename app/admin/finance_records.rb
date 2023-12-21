@@ -9,7 +9,7 @@ ActiveAdmin.register FinanceRecord do
   scope :income
   scope :expenses
 
-  filter :user, collection: -> { User.for_dropdown }
+  filter :user, as: :searchable_select, ajax: true
   filter :vendor, as: :select, collection: FinanceRecord.vendors.map(&:reverse)
   filter :date
   filter :amount_received
@@ -65,7 +65,7 @@ ActiveAdmin.register FinanceRecord do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       f.input :date
-      f.input :user, as: :select, collection: User.for_dropdown(f.object&.user)
+      f.input :user, as: :searchable_select, ajax: true
       f.input :vendor, as: :select, collection: FinanceRecord.vendors.map(&:reverse)
       f.input :amount_received
       f.input :amount_paid

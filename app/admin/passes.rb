@@ -13,7 +13,7 @@ ActiveAdmin.register Pass do
   scope :active, default: true
   scope :all
 
-  filter :user, collection: -> { User.for_dropdown }
+  filter :user, as: :searchable_select, ajax: true
   filter :start_date
   filter :end_date
   filter :type, as: :select
@@ -34,9 +34,12 @@ ActiveAdmin.register Pass do
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
       if f.object.persisted?
-        input :user, collection: User.for_dropdown(f.object&.user)
+        input :user, as: :searchable_select, ajax: true
       else
-        input :bulk_member_ids, collection: User.for_dropdown, label: "User(s)",
+        input :bulk_member_ids,
+          as: :searchable_select,
+          ajax: {resource: User},
+          label: "User(s)",
           input_html: {multiple: true}
       end
       input :start_date, as: :datepicker

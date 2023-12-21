@@ -13,7 +13,7 @@ ActiveAdmin.register Assignment do
   end
 
   filter :unit, collection: -> { Unit.for_dropdown }
-  filter :user, collection: -> { User.for_dropdown }
+  filter :user, as: :searchable_select, ajax: true
   filter :position, collection: -> { Position.for_dropdown }
   filter :start_date
   filter :end_date
@@ -62,8 +62,9 @@ ActiveAdmin.register Assignment do
           span f.object.position.name
         end
       else
-        f.input :user, as: :select,
-          collection: User.for_dropdown,
+        f.input :user,
+          as: :searchable_select,
+          ajax: true,
           input_html: {
             "data-controller" => "jquery-shim",
             "data-action" => "$change->assignment-transfer#loadAssignments",

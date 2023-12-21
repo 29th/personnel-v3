@@ -6,7 +6,7 @@ ActiveAdmin.register Promotion do
   permit_params :member_id, :date, :old_rank_id, :new_rank_id, :forum_id,
     :topic_id
 
-  filter :user, collection: -> { User.for_dropdown }
+  filter :user, as: :searchable_select, ajax: true
   filter :new_rank
   filter :date
 
@@ -22,7 +22,7 @@ ActiveAdmin.register Promotion do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
-      input :user, collection: User.for_dropdown(f.object&.user)
+      input :user, as: :searchable_select, ajax: true
       input :old_rank
       input :new_rank
       input :date

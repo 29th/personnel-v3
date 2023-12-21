@@ -7,6 +7,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def search?
+    user&.member?
+  end
+
   def service_record?
     show?
   end

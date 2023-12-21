@@ -13,6 +13,7 @@
 @import "active_admin/base";
 @import "flatpickr/dist/themes/light.css";
 @import "tippy.js/dist/tippy.css";
+@import "active_admin/searchable_select";
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
