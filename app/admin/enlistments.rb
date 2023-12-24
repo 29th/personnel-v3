@@ -2,7 +2,7 @@ ActiveAdmin.register Enlistment do
   belongs_to :user, optional: true, finder: :find_by_slug
   includes user: :rank, liaison: :rank
   includes :unit
-  actions :index, :show
+  actions :index, :show, :edit, :update
   permit_params :member_id, :liaison_member_id, :recruiter_member_id,
     :country_id, :unit_id, :status, :timezone, :game, :ingame_name, :steam_id,
     :first_name, :middle_name, :last_name, :age, :experience, :recruiter,
@@ -79,5 +79,40 @@ ActiveAdmin.register Enlistment do
       end
       row :comments
     end
+  end
+
+  form do |f|
+    f.semantic_errors(*f.object.errors.attribute_names)
+    f.inputs do
+      li do
+        label "User"
+        span link_to f.object.user, admin_user_path(f.object.user) # admin path
+      end
+
+      f.input :first_name
+      f.input :middle_name
+      f.input :last_name
+      f.input :age
+      f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
+      f.input :timezone, as: :select, collection: Enlistment.timezones.map(&:reverse)
+      f.input :country
+      f.input :steam_id, label: "Steam ID", as: :string
+      f.input :ingame_name
+      f.input :recruiter
+      # f.input :previous_units
+      f.input :experience
+      f.input :comments
+    end
+    f.inputs do
+      f.has_many :previous_units, heading: "Previous Units",
+        new_record: true, allow_destroy: true do |pu|
+        pu.input :unit
+        pu.input :game
+        pu.input :name
+        pu.input :rank
+        pu.input :reason
+      end
+    end
+    f.actions
   end
 end
