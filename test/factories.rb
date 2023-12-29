@@ -159,6 +159,15 @@ FactoryBot.define do
     access_level { :member }
   end
 
+  factory :previous_unit do
+    enlistment { nil }
+    unit { "101st AB" }
+    game { "Day of Defeat" }
+    name { "Lincoln" }
+    rank { "Sgt" }
+    reason { "Unit disbanded" }
+  end
+
   factory :promotion do
     user
     date { 1.day.ago }

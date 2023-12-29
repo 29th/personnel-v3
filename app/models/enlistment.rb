@@ -9,6 +9,9 @@ class Enlistment < ApplicationRecord
   belongs_to :country
   belongs_to :unit, optional: true
 
+  # There's also a legacy column called previous_units. Access it via attributes["previous_units"]
+  has_many :previous_units, dependent: :destroy
+
   enum status: {pending: "Pending", accepted: "Accepted", denied: "Denied",
                 withdrawn: "Withdrawn", awol: "AWOL"}
   enum timezone: {est: "EST", gmt: "GMT", pst: "PST", any_timezone: "Any", no_timezone: "None"}
@@ -28,7 +31,6 @@ class Enlistment < ApplicationRecord
   validates :experience, presence: true
   validates :recruiter, length: {maximum: 128}
 
-  serialize :previous_units, coder: PreviousUnit::ArraySerializer
   validates_associated :previous_units
 
   before_create :set_date

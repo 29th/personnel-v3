@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_24_180001) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -146,6 +146,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
   create_table "countries", id: { type: :integer, limit: 2, comment: "Country ID" }, charset: "utf8mb3", force: :cascade do |t|
     t.string "abbr", limit: 2, null: false
     t.string "name", limit: 80, null: false
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
   end
 
   create_table "delayed_jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -341,6 +344,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
     t.column "AIT", "enum('Leadership','Rifle','Submachine Gun','Automatic Rifle','Combat Engineer','Machine Gun','Armor','Mortar','Pilot','Sniper','N/A','Grenadier')", default: "N/A", null: false, comment: "AIT associated with position"
   end
 
+  create_table "previous_units", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "enlistment_id", limit: 3, null: false, unsigned: true
+    t.string "unit", limit: 64
+    t.string "game", limit: 64
+    t.string "name", limit: 64
+    t.string "rank", limit: 64
+    t.string "reason", limit: 256
+    t.index ["enlistment_id"], name: "index_previous_units_on_enlistment_id"
+  end
+
   create_table "promotions", id: { type: :integer, limit: 3, comment: "Promotion ID", unsigned: true }, charset: "utf8mb3", comment: "V: Users <-> Rank", force: :cascade do |t|
     t.integer "member_id", limit: 3, null: false, comment: "ID of promoted member", unsigned: true
     t.date "date", null: false, comment: "Date of promotion"
@@ -491,6 +504,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
   add_foreign_key "notes", "members", name: "notes_ibfk_1", on_update: :cascade
   add_foreign_key "passes", "members", column: "author_id", name: "passes_ibfk_2", on_update: :cascade
   add_foreign_key "passes", "members", name: "passes_ibfk_1", on_update: :cascade
+  add_foreign_key "previous_units", "enlistments"
   add_foreign_key "promotions", "members", name: "promotions_ibfk_5", on_update: :cascade
   add_foreign_key "promotions", "ranks", column: "new_rank_id", name: "promotions_ibfk_7", on_update: :cascade
   add_foreign_key "promotions", "ranks", column: "old_rank_id", name: "promotions_ibfk_6", on_update: :cascade
