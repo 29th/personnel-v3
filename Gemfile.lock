@@ -165,9 +165,9 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    data_migrate (8.5.0)
-      activerecord (>= 5.0)
-      railties (>= 5.0)
+    data_migrate (9.2.0)
+      activerecord (>= 6.1)
+      railties (>= 6.1)
     date (3.3.4)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -512,7 +512,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.6)
   capybara (>= 2.15, < 4.0)
-  data_migrate (~> 8.1, >= 8.1.1)
+  data_migrate (~> 9.2)
   debug (>= 1.0.0)
   delayed_job_active_record (~> 4.1, >= 4.1.5)
   dotenv-rails
