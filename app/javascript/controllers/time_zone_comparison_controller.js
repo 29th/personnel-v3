@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 import { formatInTimeZone, toDate } from 'date-fns-tz'
 const railsTimezone = require('rails-timezone')
 
