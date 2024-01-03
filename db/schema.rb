@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_02_161608) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -220,7 +220,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_055250) do
     t.integer "recruiter_member_id", limit: 3, comment: "Recruiter's MemberID", unsigned: true
     t.text "comments", null: false, comment: "Comments from Recruit"
     t.text "body", comment: "The enlistment papers"
-    t.text "previous_units"
+    t.json "previous_units", default: -> { "(_utf8mb3\\'[]\\')" }, null: false
     t.index ["country_id"], name: "Country"
     t.index ["liaison_member_id"], name: "Liaison ID"
     t.index ["member_id"], name: "Member ID"
