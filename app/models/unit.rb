@@ -70,11 +70,11 @@ class Unit < ApplicationRecord
 
   private_class_method :ransackable_attributes, :ransackable_associations
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id name abbr game timezone active ancestry classification]
   end
 
-  def self.ransackable_associations(_auth_object)
+  def self.ransackable_associations(_auth_object = nil)
     %w[ancestors]
   end
 

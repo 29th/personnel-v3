@@ -22,7 +22,7 @@ class Position < ApplicationRecord
 
   private_class_method :ransackable_attributes
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id name active access_level AIT]
   end
 end

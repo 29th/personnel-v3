@@ -61,7 +61,7 @@ GEM
       actionpack
       addressable
     active_material (1.5.2)
-    activeadmin (3.1.0)
+    activeadmin (3.2.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1)
       formtastic_i18n (>= 0.4)
@@ -508,7 +508,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to (~> 1.0, >= 1.0.5)
-  activeadmin (~> 3.1.0)
+  activeadmin (~> 3.2.0)
   activeadmin-searchable_select (~> 1.8)
   activeadmin_addons (~> 1.10, >= 1.10.1)
   ancestry (~> 3.2, >= 3.2.1)

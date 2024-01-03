@@ -10,11 +10,11 @@ class Ability < ApplicationRecord
 
   private_class_method :ransackable_attributes, :ransackable_associations
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id name abbr]
   end
 
-  def self.ransackable_associations(_auth_object)
+  def self.ransackable_associations(_auth_object = nil)
     %w[permissions]
   end
 end

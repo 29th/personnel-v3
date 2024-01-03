@@ -26,19 +26,19 @@ class Pass < ApplicationRecord
   private_class_method :ransackable_attributes, :ransackable_associations,
     :ransortable_attributes, :ransackable_scopes
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id type start_date end_date]
   end
 
-  def self.ransortable_attributes(_auth_object)
+  def self.ransortable_attributes(_auth_object = nil)
     %w[start_date end_date type]
   end
 
-  def self.ransackable_associations(_auth_object)
+  def self.ransackable_associations(_auth_object = nil)
     %w[user]
   end
 
-  def self.ransackable_scopes(_auth_object)
+  def self.ransackable_scopes(_auth_object = nil)
     %i[active]
   end
 

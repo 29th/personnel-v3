@@ -37,11 +37,11 @@ class Assignment < ApplicationRecord
 
   private_class_method :ransackable_attributes, :ransackable_associations
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id access_level start_date end_date]
   end
 
-  def self.ransackable_associations(_auth_object)
+  def self.ransackable_associations(_auth_object = nil)
     %w[user unit position]
   end
 end

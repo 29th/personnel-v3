@@ -17,11 +17,11 @@ class UnitForumRole < ApplicationRecord
 
   private_class_method :ransackable_attributes, :ransackable_associations
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id access_level forum_id role_id]
   end
 
-  def self.ransackable_associations(_auth_object)
+  def self.ransackable_associations(_auth_object = nil)
     %w[unit]
   end
 end

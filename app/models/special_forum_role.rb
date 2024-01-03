@@ -21,7 +21,7 @@ class SpecialForumRole < ApplicationRecord
 
   private_class_method :ransackable_attributes
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id special_attribute forum_id role_id]
   end
 end

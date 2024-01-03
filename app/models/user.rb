@@ -226,11 +226,11 @@ class User < ApplicationRecord
 
   private_class_method :ransackable_attributes, :ransackable_associations
 
-  def self.ransackable_attributes(_auth_object)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id last_name first_name steam_id forum_member_id]
   end
 
-  def self.ransackable_associations(_auth_object)
+  def self.ransackable_associations(_auth_object = nil)
     %w[rank country]
   end
 
