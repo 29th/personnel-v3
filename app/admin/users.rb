@@ -17,7 +17,7 @@ ActiveAdmin.register User do
   searchable_select_options(
     scope: -> {
              User.includes(:rank, :discharges, active_assignments: :unit)
-               .order(:last_name)
+               .order(:last_name, :first_name, :id)
            },
     text_attribute: :last_name,
     additional_payload: ->(record) { {status_detail: record.status_detail} },
