@@ -1,8 +1,12 @@
 # for Enlistments
 class PreviousUnit
-  include ActiveModel::Model
+  include StoreModel::Model
 
-  attr_accessor :unit, :game, :name, :rank, :reason
+  attribute :unit, :string
+  attribute :game, :string
+  attribute :name, :string
+  attribute :rank, :string
+  attribute :reason, :string
 
   validates :unit, presence: true, length: {maximum: 60}
   validates :game, length: {maximum: 60}
@@ -10,19 +14,7 @@ class PreviousUnit
   validates :rank, length: {maximum: 60}
   validates :reason, presence: true, length: {maximum: 128}
 
-  def as_json(options = {})
-    # Don't store validation properties in database
-    super(options).except("validation_context", "errors")
-  end
-
-  class ArraySerializer
-    def self.load(value)
-      json = ActiveRecord::Coders::JSON.load(value)
-      json&.map { |hash| PreviousUnit.new(hash) } || []
-    end
-
-    def self.dump(models)
-      ActiveRecord::Coders::JSON.dump(models) unless models.empty?
-    end
+  def new_record?
+    attributes.all? { |key, val| val.nil? }
   end
 end

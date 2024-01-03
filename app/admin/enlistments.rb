@@ -6,7 +6,7 @@ ActiveAdmin.register Enlistment do
   permit_params :member_id, :liaison_member_id, :recruiter_member_id,
     :country_id, :unit_id, :status, :timezone, :game, :ingame_name, :steam_id,
     :first_name, :middle_name, :last_name, :age, :experience, :recruiter,
-    :previous_units, :comments
+    :comments, previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]
 
   config.sort_order = "date_desc"
 
@@ -99,20 +99,19 @@ ActiveAdmin.register Enlistment do
       f.input :steam_id, label: "Steam ID", as: :string
       f.input :ingame_name
       f.input :recruiter
-      # f.input :previous_units
       f.input :experience
       f.input :comments
     end
-    f.inputs do
-      f.has_many :previous_units, heading: "Previous Units",
-        new_record: true, allow_destroy: true do |pu|
-        pu.input :unit
-        pu.input :game
-        pu.input :name
-        pu.input :rank
-        pu.input :reason
-      end
+
+    f.has_many :previous_units, heading:  "Previous units",
+      allow_destroy: true, class_name: "PreviousUnit" do |pu|
+      pu.input :unit
+      pu.input :game
+      pu.input :name
+      pu.input :rank
+      pu.input :reason
     end
+
     f.actions
   end
 end

@@ -220,7 +220,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_161608) do
     t.integer "recruiter_member_id", limit: 3, comment: "Recruiter's MemberID", unsigned: true
     t.text "comments", null: false, comment: "Comments from Recruit"
     t.text "body", comment: "The enlistment papers"
-    t.json "previous_units", default: -> { "(_utf8mb3\\'[]\\')" }, null: false
+    t.json "previous_units", default: -> { "(json_array())" }, null: false
     t.index ["country_id"], name: "Country"
     t.index ["liaison_member_id"], name: "Liaison ID"
     t.index ["member_id"], name: "Member ID"

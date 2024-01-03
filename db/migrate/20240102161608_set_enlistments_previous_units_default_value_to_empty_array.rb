@@ -11,7 +11,7 @@ class SetEnlistmentsPreviousUnitsDefaultValueToEmptyArray < ActiveRecord::Migrat
     # migration methods don't seem to do, so we're using raw SQL here.
     execute <<~SQL
       ALTER TABLE enlistments
-        MODIFY COLUMN previous_units JSON NOT NULL DEFAULT ('[]')
+        MODIFY COLUMN previous_units JSON NOT NULL DEFAULT (JSON_ARRAY())
     SQL
   end
 

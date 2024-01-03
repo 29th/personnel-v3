@@ -1,5 +1,6 @@
 class Enlistment < ApplicationRecord
   include HasForumTopic
+  include StoreModel::NestedAttributes
   audited
   belongs_to :user, foreign_key: "member_id"
   belongs_to :liaison, class_name: "User", foreign_key: "liaison_member_id",
@@ -28,8 +29,9 @@ class Enlistment < ApplicationRecord
   validates :experience, presence: true
   validates :recruiter, length: {maximum: 128}
 
-  serialize :previous_units, coder: PreviousUnit::ArraySerializer
-  validates_associated :previous_units
+  attribute :previous_units, PreviousUnit.to_array_type, default: -> { [] }
+  accepts_nested_attributes_for :previous_units, allow_destroy: true, reject_if: :all_blank
+  validates_associated :previous_units, store_model: {merge_array_errors: true}
 
   before_create :set_date
   before_validation :shorten_middle_name
