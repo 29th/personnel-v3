@@ -2,7 +2,10 @@ require "test_helper"
 
 class EnlistmentTest < ActiveSupport::TestCase
   test "serializes previous_units as JSON" do
-    previous_units = [{unit: "1st RB", reason: "AWOL"}, {unit: "2nd AD", reason: "AWOL"}]
+    previous_units = [
+      {unit: "1st RB", game: "DoD", name: "Jo", rank: "Pvt", reason: "AWOL"},
+      {unit: "2nd AD", game: "RS", name: "jo", rank: "N/A", reason: "AWOL"}
+    ]
     enlistment = create(:enlistment, previous_units: previous_units)
     assert_equal JSON.dump(previous_units), enlistment.previous_units_before_type_cast
   end
@@ -18,11 +21,11 @@ class EnlistmentTest < ActiveSupport::TestCase
     refute enlistment.valid?
   end
 
-  test "raises if previous_units contains unknown attribute" do
+  test "discards unknown attribute" do
     previous_units = [{unit: "1st RB", reason: "AWOL", foo: "bar"}]
-    assert_raises ActiveModel::UnknownAttributeError do
-      build_stubbed(:enlistment, previous_units: previous_units)
-    end
+    enlistment = build_stubbed(:enlistment, previous_units: previous_units)
+    assert enlistment.previous_units.any? { |pu| pu.attributes.has_key?("name") }, "does not have expected name attribute"
+    refute enlistment.previous_units.any? { |pu| pu.attributes.has_key?("foo") }, "has foo attribute"
   end
 
   test "last_name is invalid if present in restricted names" do
