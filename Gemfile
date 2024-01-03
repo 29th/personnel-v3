@@ -105,4 +105,8 @@ gem "font-awesome-sass", "~> 6.2.0"
 gem "jsbundling-rails", "~> 1.2", ">= 1.2.1"
 gem "activeadmin-searchable_select", "~> 1.8"
 gem "stimulus-rails", "~> 1.3"
-gem "store_model", "~> 2.1", ">= 2.1.2"
+
+# TODO: Replace github source with specific version once 2.1.3 is released
+# check https://rubygems.org/gems/store_model
+# gem "store_model", "~> 2.1", ">= 2.1.3"
+gem "store_model", github: "DmitryTsepelev/store_model"
