@@ -80,4 +80,8 @@ ActiveAdmin.register FinanceRecord do
   after_save do |finance_record|
     finance_record.user.update_coat if finance_record.user.present?
   end
+
+  after_destroy do |finance_record|
+    finance_record.user.update_coat if finance_record.user.present?
+  end
 end
