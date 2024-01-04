@@ -3,10 +3,9 @@ ActiveAdmin.register Enlistment do
   includes user: :rank, liaison: :rank
   includes :unit
   actions :index, :show, :edit, :update
-  permit_params :member_id, :liaison_member_id, :recruiter_member_id,
-    :country_id, :unit_id, :status, :timezone, :game, :ingame_name, :steam_id,
-    :first_name, :middle_name, :last_name, :age, :experience, :recruiter,
-    :comments, previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]
+  permit_params :first_name, :middle_name, :last_name, :age, :game, :timezone,
+    :country_id, :steam_id, :ingame_name, :recruiter, :experience, :comments,
+    previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]
 
   config.sort_order = "date_desc"
 
@@ -28,24 +27,32 @@ ActiveAdmin.register Enlistment do
     tag_column :status
     column :unit
     column :user
-    column :game
-    column :timezone
+    column :game do |enlistment|
+      Enlistment.games[enlistment.game]
+    end
+    column "Preferred time" do |enlistment|
+      Enlistment.timezones[enlistment.timezone]
+    end
     column :liaison
     actions
   end
 
-  show do
+  show title: ->(enlistment) { "Enlistment - #{enlistment.user.short_name}" } do
     attributes_table do
       row :date
       tag_row :status
       row :unit
       row :user
       row :first_name
-      row :middle_name
+      row "Middle initial", :middle_name
       row :last_name
       row :age
-      row :game
-      row :timezone
+      row :game do |enlistment|
+        Enlistment.games[enlistment.game]
+      end
+      row "Preferred time" do |enlistment|
+        Enlistment.timezones[enlistment.timezone]
+      end
       row :liaison
 
       row :country do |enlistment|
@@ -90,11 +97,12 @@ ActiveAdmin.register Enlistment do
       end
 
       f.input :first_name
-      f.input :middle_name
+      f.input :middle_name, label: "Middle initial"
       f.input :last_name
-      f.input :age
+      f.input :age, as: :select, collection: Enlistment::VALID_AGES
       f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
-      f.input :timezone, as: :select, collection: Enlistment.timezones.map(&:reverse)
+      f.input :timezone, label: "Preferred time", as: :select,
+        collection: Enlistment.timezones.map(&:reverse)
       f.input :country
       f.input :steam_id, label: "Steam ID", as: :string
       f.input :ingame_name

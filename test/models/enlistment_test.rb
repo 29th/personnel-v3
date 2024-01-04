@@ -11,7 +11,7 @@ class EnlistmentTest < ActiveSupport::TestCase
   end
 
   test "treats previous_units as an empty array when nil" do
-    enlistment = create(:enlistment)
+    enlistment = build_stubbed(:enlistment)
     assert_equal [], enlistment.previous_units
   end
 
@@ -21,7 +21,7 @@ class EnlistmentTest < ActiveSupport::TestCase
     refute enlistment.valid?
   end
 
-  test "discards unknown attribute" do
+  test "previous_units discards unknown attribute" do
     previous_units = [{unit: "1st RB", reason: "AWOL", foo: "bar"}]
     enlistment = build_stubbed(:enlistment, previous_units: previous_units)
     assert enlistment.previous_units.any? { |pu| pu.attributes.has_key?("name") }, "does not have expected name attribute"
@@ -32,5 +32,18 @@ class EnlistmentTest < ActiveSupport::TestCase
     restricted_name = create(:restricted_name)
     enlistment = build_stubbed(:enlistment, last_name: restricted_name.name)
     refute enlistment.valid?
+  end
+
+  test "age is invalid if not in known list" do
+    enlistment = build_stubbed(:enlistment, age: "12")
+    refute enlistment.valid?
+
+    enlistment = build_stubbed(:enlistment, age: "100")
+    refute enlistment.valid?
+  end
+
+  test "middle_name only saves first character" do
+    enlistment = build_stubbed(:enlistment, middle_name: "Anthony")
+    assert enlistment.middle_name == "A"
   end
 end

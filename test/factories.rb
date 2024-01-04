@@ -98,7 +98,7 @@ FactoryBot.define do
     user
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    age { rand(13..85) }
+    age { rand(13..85).to_s }
     date { Date.current }
     country
     timezone { :est }
