@@ -28,7 +28,7 @@ class Enlistment < ApplicationRecord
   validates :timezone, presence: true
   validates :game, presence: true
   validates :ingame_name, length: {maximum: 60}
-  validates :steam_id, numericality: {only_integer: true}, length: {maximum: 17}
+  validates :steam_id, presence: true, numericality: {only_integer: true}, length: {maximum: 17}
   validates :experience, presence: true, length: {maximum: 1500}
   validates :recruiter, length: {maximum: 128}
   validates :comments, length: {maximum: 1500}

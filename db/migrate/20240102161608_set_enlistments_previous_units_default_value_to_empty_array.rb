@@ -2,7 +2,7 @@ class SetEnlistmentsPreviousUnitsDefaultValueToEmptyArray < ActiveRecord::Migrat
   def up
     execute <<~SQL
       UPDATE enlistments
-        SET previous_units = '[]'
+        SET previous_units = (JSON_ARRAY())
       WHERE previous_units IS NULL
          OR previous_units = ''
     SQL
@@ -21,7 +21,7 @@ class SetEnlistmentsPreviousUnitsDefaultValueToEmptyArray < ActiveRecord::Migrat
     execute <<~SQL
       UPDATE enlistments
         SET previous_units = NULL
-      WHERE previous_units = '[]'
+      WHERE previous_units = (JSON_ARRAY())
     SQL
   end
 end
