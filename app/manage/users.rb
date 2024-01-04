@@ -115,6 +115,10 @@ ActiveAdmin.register User do
     link_to "Update forum roles", update_forum_roles_manage_user_path(resource), method: :post
   end
 
+  action_item :view_on_site, only: :show do
+    link_to "View on site", user_path(user)
+  end
+
   batch_action :update_forum_roles, if: proc { authorized?(:update_forum_roles, User) } do |ids|
     batch_action_collection.find(ids).each do |user|
       authorize! :update_forum_roles, user
