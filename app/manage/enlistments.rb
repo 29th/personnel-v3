@@ -93,7 +93,7 @@ ActiveAdmin.register Enlistment do
     f.inputs do
       li do
         label "User"
-        span link_to f.object.user, admin_user_path(f.object.user) # admin path
+        span link_to f.object.user, manage_user_path(f.object.user) # management path
       end
 
       f.input :first_name
