@@ -2,11 +2,10 @@ ActiveAdmin.register Enlistment do
   belongs_to :user, optional: true, finder: :find_by_slug
   includes user: :rank, liaison: :rank
   includes :unit
-  actions :index, :show
-  permit_params :member_id, :liaison_member_id, :recruiter_member_id,
-    :country_id, :unit_id, :status, :timezone, :game, :ingame_name, :steam_id,
-    :first_name, :middle_name, :last_name, :age, :experience, :recruiter,
-    :previous_units, :comments
+  actions :index, :show, :edit, :update
+  permit_params :first_name, :middle_name, :last_name, :age, :game, :timezone,
+    :country_id, :steam_id, :ingame_name, :recruiter, :experience, :comments,
+    previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]
 
   config.sort_order = "date_desc"
 
@@ -28,24 +27,32 @@ ActiveAdmin.register Enlistment do
     tag_column :status
     column :unit
     column :user
-    column :game
-    column :timezone
+    column :game do |enlistment|
+      Enlistment.games[enlistment.game]
+    end
+    column "Preferred time" do |enlistment|
+      Enlistment.timezones[enlistment.timezone]
+    end
     column :liaison
     actions
   end
 
-  show do
+  show title: ->(enlistment) { "Enlistment - #{enlistment.user.short_name}" } do
     attributes_table do
       row :date
       tag_row :status
       row :unit
       row :user
       row :first_name
-      row :middle_name
+      row "Middle initial", :middle_name
       row :last_name
       row :age
-      row :game
-      row :timezone
+      row :game do |enlistment|
+        Enlistment.games[enlistment.game]
+      end
+      row "Preferred time" do |enlistment|
+        Enlistment.timezones[enlistment.timezone]
+      end
       row :liaison
 
       row :country do |enlistment|
@@ -79,5 +86,40 @@ ActiveAdmin.register Enlistment do
       end
       row :comments
     end
+  end
+
+  form do |f|
+    f.semantic_errors(*f.object.errors.attribute_names)
+    f.inputs do
+      li do
+        label "User"
+        span link_to f.object.user, admin_user_path(f.object.user) # admin path
+      end
+
+      f.input :first_name
+      f.input :middle_name, label: "Middle initial"
+      f.input :last_name
+      f.input :age, as: :select, collection: Enlistment::VALID_AGES
+      f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
+      f.input :timezone, label: "Preferred time", as: :select,
+        collection: Enlistment.timezones.map(&:reverse)
+      f.input :country
+      f.input :steam_id, label: "Steam ID", as: :string
+      f.input :ingame_name
+      f.input :recruiter
+      f.input :experience
+      f.input :comments
+    end
+
+    f.has_many :previous_units, heading:  "Previous units",
+      allow_destroy: true, class_name: "PreviousUnit" do |pu|
+      pu.input :unit
+      pu.input :game
+      pu.input :name
+      pu.input :rank
+      pu.input :reason
+    end
+
+    f.actions
   end
 end

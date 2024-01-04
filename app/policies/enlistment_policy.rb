@@ -8,14 +8,11 @@ class EnlistmentPolicy < ApplicationPolicy
   end
 
   def new?
-    user.present?
+    false
   end
 
   def create?
-    user.present?
-    (record.user && user&.has_permission_on_user?("eloa_add", record.user)) ||
-      user&.has_permission?("eloa_add_any") ||
-      user&.has_permission?("admin")
+    false
   end
 
   def update?

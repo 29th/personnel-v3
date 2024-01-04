@@ -367,3 +367,13 @@ end
 
 ActiveAdmin::Views::Pages::Base.send :prepend, AdminPageLayoutOverride
 Rails.application.config.assets.precompile += %w[country_flags.css]
+
+# Enables f.has_many to work with 'fake' associations like Enlistment.previous_units
+module AllowSpecifyingClassName
+  def initialize(has_many_form, assoc, options)
+    @assoc_klass = options[:class_name].safe_constantize if options.key?(:class_name)
+    super(has_many_form, assoc, options)
+  end
+end
+
+ActiveAdmin::HasManyBuilder.prepend(AllowSpecifyingClassName)
