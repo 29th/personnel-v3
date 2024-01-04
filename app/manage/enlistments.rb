@@ -88,6 +88,10 @@ ActiveAdmin.register Enlistment do
     end
   end
 
+  action_item :edit_user, only: :show, if: -> { authorized?(:edit, enlistment.user) } do
+    link_to "Edit User", edit_manage_user_path(enlistment.user)
+  end
+
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
