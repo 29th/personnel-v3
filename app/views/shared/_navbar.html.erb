@@ -42,7 +42,7 @@
               <%= link_to 'Member search', personnel_v2_app_url(suffix: "membersearch"), class: 'dropdown-item' %>
               <% if current_user.active_admin_editor? %>
                 <div class="dropdown-divider"></div>
-                <%= link_to 'Admin', admin_root_path, class: 'dropdown-item' %>
+                <%= link_to 'Manage', manage_root_path, class: 'dropdown-item' %>
               <% end %>
               <div class="dropdown-divider"></div>
               <%= link_to 'Sign out', destroy_user_session_path, class: 'dropdown-item' %>

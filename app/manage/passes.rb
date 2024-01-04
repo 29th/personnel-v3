@@ -26,7 +26,7 @@ ActiveAdmin.register Pass do
       Pass.types[pass.type]
     end
     actions defaults: false do |pass|
-      item "View", admin_pass_path(pass)
+      item "View", manage_pass_path(pass)
     end
   end
 

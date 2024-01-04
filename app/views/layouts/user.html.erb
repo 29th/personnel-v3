@@ -42,7 +42,7 @@
         links['Recruits'] = user_recruits_path(@user) if policy(@user).recruits?
         links['Reprimands'] = user_reprimands_path(@user) if policy(@user).reprimands?
         links['Extended LOAs'] = user_extended_loas_path(@user) if policy(@user).extended_loas?
-        links['Notes'] = admin_user_notes_path(@user) if policy(Note).index? && current_user.active_admin_editor?
+        links['Notes'] = manage_user_notes_path(@user) if policy(Note).index? && current_user.active_admin_editor?
         links['Weapon Passes'] = passes_path(q: {user_id_eq: @user.id}) if policy(Pass).index?
         %>
         <% links.each do |label, path| %>

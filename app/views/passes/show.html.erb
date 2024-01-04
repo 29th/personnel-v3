@@ -27,7 +27,7 @@
   </dl>
 
   <% if policy(@pass).edit? %>
-    <%= link_to 'Manage', admin_pass_path(@pass), class: 'btn btn-secondary' %>
+    <%= link_to 'Manage', manage_pass_path(@pass), class: 'btn btn-secondary' %>
   <% end %>
   
   <%= link_to 'Back', passes_path, class: 'btn btn-outline-secondary' %>

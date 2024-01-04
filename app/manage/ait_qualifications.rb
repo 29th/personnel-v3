@@ -33,7 +33,7 @@ ActiveAdmin.register AITQualification do
     column :ait_standard, sortable: "standards.description"
     column :author
     actions defaults: false do |ait_qualification|
-      item "View", admin_ait_qualification_path(ait_qualification)
+      item "View", manage_ait_qualification_path(ait_qualification)
     end
   end
 

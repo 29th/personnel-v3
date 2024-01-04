@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
   root "home#landing"
+
+  ActiveAdmin.routes(self)
+  get "/admin/*path", to: redirect("/manage/%{path}") # Support old /admin links
 
   get "/signout", to: "sessions#destroy", as: :destroy_user_session
   match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post], as: :create_user_session

@@ -24,11 +24,11 @@ ActiveAdmin.register Event do
       timestamp_tag event.starts_at_local
     end
     column :unit do |event|
-      link_to event.unit.subtree_abbr, admin_unit_path(event.unit)
+      link_to event.unit.subtree_abbr, manage_unit_path(event.unit)
     end
     column :type
     actions defaults: false do |event|
-      item "View", admin_event_path(event)
+      item "View", manage_event_path(event)
     end
   end
 
@@ -77,7 +77,7 @@ ActiveAdmin.register Event do
         ActiveSupport::TimeZone[event.time_zone].name
       end
       row :unit do |event|
-        link_to event.unit.name, admin_unit_path(event.unit)
+        link_to event.unit.name, manage_unit_path(event.unit)
       end
       row :type
       row :server

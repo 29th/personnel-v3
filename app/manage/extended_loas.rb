@@ -22,7 +22,7 @@ ActiveAdmin.register ExtendedLOA, as: "Extended LOA" do
       extended_loa.reason.truncate 75, omission: "…"
     end
     actions defaults: false do |extended_loa|
-      item "View", admin_extended_loa_path(extended_loa)
+      item "View", manage_extended_loa_path(extended_loa)
     end
   end
 

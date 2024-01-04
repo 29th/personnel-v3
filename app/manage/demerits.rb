@@ -19,7 +19,7 @@ ActiveAdmin.register Demerit do
       demerit.reason.truncate 75, omission: "…"
     end
     actions defaults: false do |demerit|
-      item "View", admin_demerit_path(demerit)
+      item "View", manage_demerit_path(demerit)
     end
   end
 
