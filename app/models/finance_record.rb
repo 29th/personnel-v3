@@ -15,6 +15,7 @@ class FinanceRecord < ApplicationRecord
 
   validates :date, presence: true
   validates_date :date
+  validates :vendor, presence: true
   validates :amount_received, numericality: true, allow_nil: true
   validates :amount_paid, numericality: true, allow_nil: true
   validates :fee, numericality: true, allow_nil: true
