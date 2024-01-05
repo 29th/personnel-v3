@@ -56,21 +56,12 @@
           <% @attendance_records.each do |attendance_record| %>
             <li>
               <%= link_to attendance_record.user, v2_user_url(attendance_record.user) %>
-              <% if !attendance_record.attended %>
-                <% if attendance_record.excused %>
-                  <% if policy(ExtendedLOA).index? &&
-                    attendance_record.excused_by_extended_loa? %>
-                    <span class="badge badge-secondary">Extended LOA</span>
-                  <% else %>
-                    <span class="badge badge-secondary">Excused</span>
-                  <% end %>
-                <% else %>
-                  <% if @event.mandatory %>
-                    <span class="badge badge-danger">AWOL</span>
-                  <% else %>
-                    <span class="badge badge-warning">Absent</span>
-                  <% end %>
-                <% end %>
+              <% case attendance_record.status
+                when :attended %>
+              <% when :extended_loa %><span class="badge badge-secondary">Extended LOA</span>
+              <% when :excused %><span class="badge badge-secondary">Excused</span>
+              <% when :awol %><span class="badge badge-danger">AWOL</span>
+              <% when :absent %><span class="badge badge-warning">Absent</span>
               <% end %>
             </li>
           <% end %>

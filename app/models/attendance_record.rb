@@ -13,6 +13,23 @@ class AttendanceRecord < ApplicationRecord
   validates :attended, inclusion: {in: [true, false]}, allow_nil: true
   validates :excused, inclusion: {in: [true, false]}
 
+  # :attended | (:extended_loa | :excused) | (:awol | :absent)
+  def status
+    if attended
+      :attended
+    elsif excused
+      if excused_by_extended_loa?
+        :extended_loa
+      else
+        :excused
+      end
+    elsif event.mandatory
+      :awol
+    else
+      :absent
+    end
+  end
+
   def awol?
     !attended && !excused
   end
