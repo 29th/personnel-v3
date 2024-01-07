@@ -90,58 +90,60 @@ ActiveAdmin.register Enlistment do
         end
       end
 
-      column do
-        panel "User Details" do
-          attributes_table_for enlistment.user do
-            row "Personnel User" do |user|
-              user
-            end
-            if enlistment.user.forum_member_id
-              row "Discourse User" do |user|
-                link_to user.forum_member_username, discourse_url(user: user)
-              rescue Faraday::Error => err
-                error_tag(err)
+      if authorized?(:analyze, enlistment)
+        column do
+          panel "User Details" do
+            attributes_table_for enlistment.user do
+              row "Personnel User" do |user|
+                user
+              end
+              if enlistment.user.forum_member_id
+                row "Discourse User" do |user|
+                  link_to user.forum_member_username, discourse_url(user: user)
+                rescue Faraday::Error => err
+                  error_tag(err)
+                end
+              end
+              if enlistment.user.vanilla_forum_member_id
+                row "Vanilla User" do |user|
+                  link_to user.vanilla_forum_member_username, vanilla_url(user: user)
+                rescue Faraday::Error => err
+                  error_tag(err)
+                end
               end
             end
-            if enlistment.user.vanilla_forum_member_id
-              row "Vanilla User" do |user|
-                link_to user.vanilla_forum_member_username, vanilla_url(user: user)
-              rescue Faraday::Error => err
-                error_tag(err)
+          end
+
+          panel "Linked Forum Users" do
+            table_for(enlistment.linked_users) do
+              column "Forum" do |row|
+                row[:forum].to_s.humanize
+              end
+              column "User" do |row|
+                url = (row[:forum] == :vanilla) ?
+                  vanilla_url(user: row[:user_id]) :
+                  discourse_url(user: row[:username])
+                link_to row[:username], url
+              end
+              column "IP" do |row|
+                row[:ips].join(", ")
               end
             end
+          rescue Faraday::Error => err
+            error_tag(err)
           end
-        end
 
-        panel "Linked Forum Users" do
-          table_for(enlistment.linked_users) do
-            column "Forum" do |row|
-              row[:forum].to_s.humanize
+          panel "Linked Ban Logs" do
+            table_for(enlistment.linked_ban_logs) do
+              column "Date" do |row|
+                link_to row.date, manage_ban_log_path(row)
+              end
+              column :handle
+              column :roid
             end
-            column "User" do |row|
-              url = (row[:forum] == :vanilla) ?
-                vanilla_url(user: row[:user_id]) :
-                discourse_url(user: row[:username])
-              link_to row[:username], url
-            end
-            column "IP" do |row|
-              row[:ips].join(", ")
-            end
+          rescue Faraday::Error => err
+            error_tag(err)
           end
-        rescue Faraday::Error => err
-          error_tag(err)
-        end
-
-        panel "Linked Ban Logs" do
-          table_for(enlistment.linked_ban_logs) do
-            column "Date" do |row|
-              link_to row.date, manage_ban_log_path(row)
-            end
-            column :handle
-            column :roid
-          end
-        rescue Faraday::Error => err
-          error_tag(err)
         end
       end
     end
