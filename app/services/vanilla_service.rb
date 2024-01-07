@@ -13,6 +13,12 @@ class VanillaService
     end
   end
 
+  def get_username(forum_member_id)
+    path = "users/#{forum_member_id}"
+    response = @conn.get(path)
+    response.body["name"]
+  end
+
   def get_roles
     response = @conn.get("/roles")
 
@@ -32,5 +38,30 @@ class VanillaService
     path = "users/#{forum_member_id}"
     body = {roleID: expected_roles}
     @conn.patch(path, body)
+  end
+
+  def get_linked_users(forum_member_id)
+    path = "users/#{forum_member_id}"
+    response = @conn.get(path)
+    raise Faraday::Error.new("response missing IP addresses") unless response.body.key?("ips")
+
+    rows = response.body["ips"].map { |row| row.deep_transform_keys(&:underscore) }
+    key_ips_by_user(rows)
+  end
+
+  private
+
+  # Invert structure to be keyed by user
+  def key_ips_by_user(rows)
+    users = rows.each_with_object({}) do |row, memo|
+      row["other_users"].each do |other_user|
+        name = other_user["name"]
+        user_id = other_user["user_id"]
+        memo[name] ||= {username: name, user_id: user_id, ips: [],
+                        forum: :vanilla}
+        memo[name][:ips] << row["ip"]
+      end
+    end
+    users.values
   end
 end

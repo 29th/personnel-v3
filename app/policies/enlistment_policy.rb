@@ -7,6 +7,11 @@ class EnlistmentPolicy < ApplicationPolicy
     user&.member? || (user && record.user == user)
   end
 
+  # Show linked users, IPs, ban logs, etc.
+  def analyze?
+    update?
+  end
+
   def new?
     false
   end

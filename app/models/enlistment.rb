@@ -40,6 +40,33 @@ class Enlistment < ApplicationRecord
   before_create :set_date
   before_validation :shorten_middle_name
 
+  def linked_users
+    @linked_users ||= begin
+      linked_users = []
+      if user&.forum_member_id
+        discourse_users = DiscourseService.new.get_linked_users(user.forum_member_id)
+        linked_users.concat(discourse_users)
+      end
+      if user&.vanilla_forum_member_id
+        vanilla_users = VanillaService.new.get_linked_users(user.vanilla_forum_member_id)
+        linked_users.concat(vanilla_users)
+      end
+      linked_users
+    end
+  end
+
+  def linked_ban_logs
+    roid = user.steam_id || steam_id # prefer user attribute over enlistment attribute
+    ips = linked_users.pluck(:ips).flatten.uniq
+
+    query = {m: "or"} # use OR instead of default AND
+    query[:roid_eq] = roid
+    query[:handle_i_cont] = ingame_name
+    query[:ip_in] = ips unless ips.empty?
+
+    BanLog.ransack(query).result(distinct: true)
+  end
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object = nil)

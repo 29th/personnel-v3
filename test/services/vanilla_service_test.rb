@@ -30,4 +30,34 @@ class VanillaServiceTest < ActiveSupport::TestCase
 
     assert_requested(stub)
   end
+
+  test "get_linked_users groups ips by user" do
+    vanilla_user_id = 1
+
+    response_body = {ips: [
+      {ip: "1.2.3.4", otherUsers: []},
+      {ip: "5.6.7.8", otherUsers: [
+        {userID: 3, name: "abe_lincoln"},
+        {userID: 4, name: "eleanor_roosevelt"}
+      ]},
+      {ip: "9.10.11.12", otherUsers: [
+        {userID: 3, name: "abe_lincoln"}
+      ]}
+    ]}
+    stub_request(:get, %r{/users/#{vanilla_user_id}})
+      .to_return(body: response_body.to_json, headers: {"Content-Type" => "application/json"})
+
+    linked_users = VanillaService.new.get_linked_users(vanilla_user_id)
+
+    assert_equal 2, linked_users.size
+
+    abe = linked_users.find { |user| user[:username] == "abe_lincoln" }
+    assert abe
+    assert_equal 3, abe[:user_id]
+    assert_equal ["5.6.7.8", "9.10.11.12"], abe[:ips]
+
+    eleanor = linked_users.find { |user| user[:username] == "eleanor_roosevelt" }
+    assert eleanor
+    assert_equal 1, eleanor[:ips].size
+  end
 end

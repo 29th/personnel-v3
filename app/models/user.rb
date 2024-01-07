@@ -186,6 +186,14 @@ class User < ApplicationRecord
     PersonnelV2Service.new.update_coat(id)
   end
 
+  def forum_member_username
+    @forum_member_username ||= DiscourseService.new.get_username(forum_member_id) if forum_member_id.present?
+  end
+
+  def vanilla_forum_member_username
+    @vanilla_forum_member_username ||= VanillaService.new.get_username(vanilla_forum_member_id) if vanilla_forum_member_id.present?
+  end
+
   def update_forum_display_name
     DiscourseService.new.update_user_display_name(forum_member_id, short_name) if forum_member_id.present?
     VanillaService.new.update_user_display_name(vanilla_forum_member_id, short_name) if vanilla_forum_member_id.present?
