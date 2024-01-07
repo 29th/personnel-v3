@@ -45,3 +45,14 @@ time[data-original-title] {
   text-decoration: underline dotted;
   cursor: help;
 }
+
+span.inline-error {
+  text-decoration: underline dotted;
+  cursor: help;
+  background-color: #cd4631;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 3px 5px 2px 5px;
+  font-size: 0.8em;
+}

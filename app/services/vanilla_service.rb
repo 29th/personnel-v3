@@ -43,7 +43,7 @@ class VanillaService
   def get_linked_users(forum_member_id)
     path = "users/#{forum_member_id}"
     response = @conn.get(path)
-    return unless response.body["ips"].present?
+    raise Faraday::Error.new("response missing IP addresses") unless response.body.key?("ips")
 
     rows = response.body["ips"].map { |row| row.deep_transform_keys(&:underscore) }
     key_ips_by_user(rows)

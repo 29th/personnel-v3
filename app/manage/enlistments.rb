@@ -99,11 +99,15 @@ ActiveAdmin.register Enlistment do
             if enlistment.user.forum_member_id
               row "Discourse User" do |user|
                 link_to user.forum_member_username, discourse_url(user: user)
+              rescue Faraday::Error => err
+                error_tag(err)
               end
             end
             if enlistment.user.vanilla_forum_member_id
               row "Vanilla User" do |user|
                 link_to user.vanilla_forum_member_username, vanilla_url(user: user)
+              rescue Faraday::Error => err
+                error_tag(err)
               end
             end
           end
@@ -124,6 +128,8 @@ ActiveAdmin.register Enlistment do
               row[:ips].join(", ")
             end
           end
+        rescue Faraday::Error => err
+          error_tag(err)
         end
 
         panel "Linked Ban Logs" do
@@ -134,6 +140,8 @@ ActiveAdmin.register Enlistment do
             column :handle
             column :roid
           end
+        rescue Faraday::Error => err
+          error_tag(err)
         end
       end
     end
