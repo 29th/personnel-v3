@@ -147,6 +147,16 @@ ActiveAdmin.register Enlistment do
         end
       end
     end
+
+    panel "Forum Replies" do
+      if enlistment.discourse?
+        render "discourse_embed", {topic_id: enlistment.topic_id}
+      elsif enlistment.vanilla? || enlistment.forum_id.nil?
+        # topic_id was not saved on enlistment records prior to discourse.
+        # instead, vanilla looks it up by the enlistment's unique identifier.
+        render "vanilla_embed", {id: enlistment.id}
+      end
+    end
   end
 
   action_item :edit_user, only: :show, if: -> { authorized?(:edit, enlistment.user) } do
