@@ -17,7 +17,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     stub_update = stub_request(:put, %r{/u/#{username}})
       .with(body: request_body.to_json)
 
-    DiscourseService.new.update_user_display_name(forum_member_id, user.short_name)
+    DiscourseService.new(forum_member_id).user.update_display_name(user.short_name)
 
     assert_requested(stub_update)
   end
@@ -31,7 +31,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     stub_request(:put, %r{/u/#{username}}).to_return(status: [500, "Internal Server Error"])
 
     assert_raises Faraday::ServerError do
-      DiscourseService.new.update_user_display_name(forum_member_id, user.short_name)
+      DiscourseService.new(forum_member_id).user.update_display_name(user.short_name)
     end
   end
 

@@ -1,7 +1,7 @@
 class DiscourseService
-  class NoLinkedAccountError < StandardError; end
+  attr_reader :user
 
-  def initialize
+  def initialize(forum_member_id = nil)
     config = Rails.configuration.endpoints[:discourse]
     url = config[:base_url][:internal]
     @conn = Faraday.new(url) do |conn|
@@ -22,14 +22,11 @@ class DiscourseService
       conn.response :json, content_type: /\bjson$/
       conn.response :logger, nil, {headers: false, bodies: true} unless Rails.env.test?
     end
+
+    @user = DiscourseUser.new(@conn, forum_member_id) if forum_member_id
   end
 
-  def get_username(forum_member_id)
-    discourse_user = get_discourse_user(forum_member_id)
-    discourse_user["username"]
-  end
-
-  def get_roles
+  def roles
     groups = {}
     current_page = 0
     total_group_count = nil
@@ -50,90 +47,102 @@ class DiscourseService
     groups
   end
 
-  def update_user_display_name(forum_member_id, display_name)
-    discourse_user = get_discourse_user(forum_member_id)
-    username = discourse_user["username"]
+  class DiscourseUser
+    def initialize(conn, forum_member_id)
+      @conn = conn
+      @forum_member_id = forum_member_id
+    end
 
-    path = "/u/#{username}"
-    body = {name: display_name}
-    @conn.put(path, body)
-  end
+    def username
+      user_data["username"]
+    end
 
-  def update_user_roles(forum_member_id, expected_roles)
-    discourse_user = get_discourse_user(forum_member_id)
-    current_roles = select_assigned_role_ids(discourse_user["groups"] || [])
+    def update_display_name(display_name)
+      path = "/u/#{username}"
+      body = {name: display_name}
+      @conn.put(path, body)
+    end
 
-    roles_to_delete = current_roles.difference(expected_roles)
-    roles_to_delete.each { |role_id| delete_role(forum_member_id, role_id) }
+    def update_roles(expected_roles)
+      current_roles = select_assigned_role_ids(user_data["groups"] || [])
 
-    roles_to_add = expected_roles.difference(current_roles)
-    roles_to_add.each { |role_id| add_role(forum_member_id, role_id) }
-  end
+      roles_to_delete = current_roles.difference(expected_roles)
+      roles_to_delete.each { |role_id| delete_role(role_id) }
 
-  def get_linked_users(forum_member_id)
-    ips_with_users = get_user_ips(forum_member_id)
-      .map do |ip|
-        linked_users = get_users_by_ip(ip)
-        {ip: ip, users: linked_users}
-      end
-    key_ips_by_user(ips_with_users)
-  end
+      roles_to_add = expected_roles.difference(current_roles)
+      roles_to_add.each { |role_id| add_role(role_id) }
+    end
 
-  def get_email(forum_member_id)
-    discourse_user = get_discourse_user(forum_member_id)
-    username = discourse_user["username"]
+    def linked_users
+      ips_with_users = get_user_ips
+        .map do |ip|
+          linked_users = get_users_by_ip(ip)
+          {ip: ip, users: linked_users}
+        end
+      key_ips_by_user(ips_with_users)
+    end
 
-    path = "/u/#{username}/emails.json"
-    response = @conn.get(path)
+    def email
+      @email ||= begin
+        path = "/u/#{username}/emails.json"
+        response = @conn.get(path)
 
-    response.body["email"]
-  end
-
-  private
-
-  def get_discourse_user(forum_member_id)
-    path = "/admin/users/#{forum_member_id}.json"
-    response = @conn.get(path)
-    response.body
-  end
-
-  def select_assigned_role_ids(groups)
-    groups.reject { |group| group["automatic"] } # exclude trust groups
-      .collect { |group| group["id"] }
-  end
-
-  def delete_role(forum_member_id, role_id)
-    path = "/admin/users/#{forum_member_id}/groups/#{role_id}"
-    @conn.delete(path)
-  end
-
-  def add_role(forum_member_id, role_id)
-    path = "/admin/users/#{forum_member_id}/groups"
-    body = {group_id: role_id}
-    @conn.post(path, body)
-  end
-
-  def get_user_ips(forum_member_id)
-    get_discourse_user(forum_member_id)
-      .values_at("ip_address", "registration_ip_address")
-      .compact_blank
-      .uniq
-  end
-
-  def get_users_by_ip(ip)
-    path = "/admin/users/list.json"
-    response = @conn.get(path, {ip: ip})
-    response.body.map { |user| user.slice("id", "username") }
-  end
-
-  def key_ips_by_user(ips)
-    users = ips.each_with_object({}) do |row, memo|
-      row[:users].each do |user|
-        id, username = user.values_at("id", "username")
-        memo[id] ||= {id: id, username: username, ips: [], forum: :discourse}
-        memo[id][:ips] << row[:ip]
+        response.body["email"]
       end
     end
-    users.values
+
+    private
+
+    def user_data
+      @user_data ||= begin
+        raise ArgumentError.new("Missing forum_member_id in initialization") unless @forum_member_id
+        path = "/admin/users/#{@forum_member_id}.json"
+        response = @conn.get(path)
+        response.body
+      end
+    end
+
+    def select_assigned_role_ids(groups)
+      # exclude trust groups
+      groups.reject { |group| group["automatic"] }
+        .collect { |group| group["id"] }
+    end
+
+    def delete_role(role_id)
+      raise ArgumentError.new("Missing forum_member_id in initialization") unless @forum_member_id
+      path = "/admin/users/#{@forum_member_id}/groups/#{role_id}"
+      @conn.delete(path)
+    end
+
+    def add_role(role_id)
+      raise ArgumentError.new("Missing forum_member_id in initialization") unless @forum_member_id
+      path = "/admin/users/#{@forum_member_id}/groups"
+      body = {group_id: role_id}
+      @conn.post(path, body)
+    end
+
+    def get_user_ips
+      user_data
+        .values_at("ip_address", "registration_ip_address")
+        .compact_blank
+        .uniq
+    end
+
+    def get_users_by_ip(ip)
+      path = "/admin/users/list.json"
+      response = @conn.get(path, {ip: ip})
+      response.body.map { |user| user.slice("id", "username") }
+    end
+
+    def key_ips_by_user(ips)
+      users = ips.each_with_object({}) do |row, memo|
+        row[:users].each do |user|
+          id, username = user.values_at("id", "username")
+          memo[id] ||= {id: id, username: username, ips: [], forum: :discourse}
+          memo[id][:ips] << row[:ip]
+        end
+      end
+      users.values
+    end
   end
 end

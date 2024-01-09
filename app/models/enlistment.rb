@@ -39,20 +39,7 @@ class Enlistment < ApplicationRecord
 
   before_create :set_date
 
-  def linked_forum_users
-    @linked_forum_users ||= begin
-      linked_forum_users = []
-      if user&.forum_member_id
-        discourse_users = DiscourseService.new.get_linked_users(user.forum_member_id)
-        linked_forum_users.concat(discourse_users)
-      end
-      if user&.vanilla_forum_member_id
-        vanilla_users = VanillaService.new.get_linked_users(user.vanilla_forum_member_id)
-        linked_forum_users.concat(vanilla_users)
-      end
-      linked_forum_users
-    end
-  end
+  delegate :linked_forum_users, to: :user
 
   def linked_ban_logs
     steam_ids = [steam_id, user.steam_id].uniq # enlistment steam id may differ

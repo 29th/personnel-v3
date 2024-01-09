@@ -69,7 +69,7 @@ ActiveAdmin.register UnitForumRole do
     def roles
       @roles ||= begin
         discourse = begin
-          DiscourseService.new.get_roles
+          DiscourseService.new.roles
         rescue
           {}
         end
