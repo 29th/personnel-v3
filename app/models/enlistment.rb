@@ -56,11 +56,11 @@ class Enlistment < ApplicationRecord
   end
 
   def linked_ban_logs
-    roid = user.steam_id || steam_id # prefer user attribute over enlistment attribute
     ips = linked_users.pluck(:ips).flatten.uniq
+    steam_ids = [steam_id, user.steam_id].uniq # enlistment steam id may differ
 
     query = {m: "or"} # use OR instead of default AND
-    query[:roid_eq] = roid
+    query[:roid_in] = steam_ids
     query[:handle_i_cont] = ingame_name
     query[:ip_in] = ips unless ips.empty?
 
