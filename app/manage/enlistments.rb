@@ -10,6 +10,8 @@ ActiveAdmin.register Enlistment do
 
     params += [:member_id] if authorized?(:transfer, resource)
 
+    params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
+    # TODO: :liaison_member_id ?
     params
   end
 
@@ -213,5 +215,20 @@ ActiveAdmin.register Enlistment do
     end
 
     f.actions
+  end
+
+  member_action :process_enlistment do
+    # renders app/views/manage/process_enlistment.html.arb
+  end
+
+  action_item :process_enlistment, only: :show,
+    if: proc { authorized?(:process_enlistment, enlistment) } do
+    link_to "Process Enlistment", process_enlistment_manage_enlistment_path(enlistment)
+  end
+
+  before_save do |enlistment|
+    if enlistment.unit_id_changed?
+      # TODO
+    end
   end
 end

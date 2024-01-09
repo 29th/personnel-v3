@@ -25,6 +25,11 @@ class EnlistmentPolicy < ApplicationPolicy
       user&.has_permission?("admin")
   end
 
+  def process_enlistment?
+    user&.has_permission?("enlistment_process_any") ||
+      user&.has_permission?("admin")
+  end
+
   def destroy?
     false
   end
