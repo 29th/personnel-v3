@@ -190,6 +190,10 @@ class User < ApplicationRecord
     @forum_member_username ||= DiscourseService.new.get_username(forum_member_id) if forum_member_id.present?
   end
 
+  def forum_member_email
+    @forum_member_email ||= DiscourseService.new.get_email(forum_member_id) if forum_member_id.present?
+  end
+
   def vanilla_forum_member_username
     @vanilla_forum_member_username ||= VanillaService.new.get_username(vanilla_forum_member_id) if vanilla_forum_member_id.present?
   end

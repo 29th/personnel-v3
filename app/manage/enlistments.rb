@@ -104,6 +104,13 @@ ActiveAdmin.register Enlistment do
                   error_tag(err)
                 end
               end
+              if enlistment.user.forum_member_id
+                row "Discourse Email" do |user|
+                  user.forum_member_email
+                rescue Faraday::Error => err
+                  error_tag(err)
+                end
+              end
               if enlistment.user.vanilla_forum_member_id
                 row "Vanilla User" do |user|
                   link_to user.vanilla_forum_member_username, vanilla_url(user: user)

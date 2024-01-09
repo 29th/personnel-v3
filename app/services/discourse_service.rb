@@ -79,6 +79,16 @@ class DiscourseService
     key_ips_by_user(ips_with_users)
   end
 
+  def get_email(forum_member_id)
+    discourse_user = get_discourse_user(forum_member_id)
+    username = discourse_user["username"]
+
+    path = "/u/#{username}/emails.json"
+    response = @conn.get(path)
+
+    response.body["email"]
+  end
+
   private
 
   def get_discourse_user(forum_member_id)
