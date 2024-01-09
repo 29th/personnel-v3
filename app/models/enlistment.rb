@@ -38,7 +38,6 @@ class Enlistment < ApplicationRecord
   validates_associated :previous_units, store_model: {merge_array_errors: true}
 
   before_create :set_date
-  before_validation :shorten_middle_name
 
   def linked_forum_users
     @linked_forum_users ||= begin
@@ -81,10 +80,6 @@ class Enlistment < ApplicationRecord
 
   def set_date
     self.date = Date.current
-  end
-
-  def shorten_middle_name
-    self.middle_name = middle_name ? middle_name[0] : ""
   end
 
   def last_name_not_restricted
