@@ -40,24 +40,24 @@ class Enlistment < ApplicationRecord
   before_create :set_date
   before_validation :shorten_middle_name
 
-  def linked_users
-    @linked_users ||= begin
-      linked_users = []
+  def linked_forum_users
+    @linked_forum_users ||= begin
+      linked_forum_users = []
       if user&.forum_member_id
         discourse_users = DiscourseService.new.get_linked_users(user.forum_member_id)
-        linked_users.concat(discourse_users)
+        linked_forum_users.concat(discourse_users)
       end
       if user&.vanilla_forum_member_id
         vanilla_users = VanillaService.new.get_linked_users(user.vanilla_forum_member_id)
-        linked_users.concat(vanilla_users)
+        linked_forum_users.concat(vanilla_users)
       end
-      linked_users
+      linked_forum_users
     end
   end
 
   def linked_ban_logs
-    ips = linked_users.pluck(:ips).flatten.uniq
     steam_ids = [steam_id, user.steam_id].uniq # enlistment steam id may differ
+    ips = linked_forum_users.pluck(:ips).flatten.uniq
 
     query = {m: "or"} # use OR instead of default AND
     query[:roid_in] = steam_ids

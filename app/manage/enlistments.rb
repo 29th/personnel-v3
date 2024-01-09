@@ -122,7 +122,7 @@ ActiveAdmin.register Enlistment do
           end
 
           panel "Linked Forum Users" do
-            table_for(enlistment.linked_users) do
+            table_for(enlistment.linked_forum_users) do
               column "Forum" do |row|
                 row[:forum].to_s.humanize
               end
