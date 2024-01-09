@@ -2,7 +2,7 @@
 <script type="text/javascript">
   window.DiscourseEmbed = {
     discourseUrl: '<%= discourse_url %>/',
-    topicId: <%= topic_id %>
+    topicId: <%= topic_id || "null" %>
   };
 
   (function() {
