@@ -69,13 +69,15 @@ ActiveAdmin.register UnitForumRole do
     def roles
       @roles ||= begin
         discourse = begin
-          DiscourseService.new.get_roles
-        rescue
+          DiscourseService.new.roles
+        rescue Faraday::Error => err
+          Appsignal.set_error(err)
           {}
         end
         vanilla = begin
-          VanillaService.new.get_roles
-        rescue
+          VanillaService.new.roles
+        rescue Faraday::Error => err
+          Appsignal.set_error(err)
           {}
         end
         {discourse: discourse, vanilla: vanilla}

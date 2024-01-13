@@ -187,31 +187,46 @@ class User < ApplicationRecord
   end
 
   def forum_member_username
-    @forum_member_username ||= DiscourseService.new.get_username(forum_member_id) if forum_member_id.present?
+    @forum_member_username ||= discourse_service.user.username if forum_member_id.present?
   end
 
   def forum_member_email
-    @forum_member_email ||= DiscourseService.new.get_email(forum_member_id) if forum_member_id.present?
+    @forum_member_email ||= discourse_service.user.email if forum_member_id.present?
   end
 
   def vanilla_forum_member_username
-    @vanilla_forum_member_username ||= VanillaService.new.get_username(vanilla_forum_member_id) if vanilla_forum_member_id.present?
+    @vanilla_forum_member_username ||= vanilla_service.user.username if vanilla_forum_member_id.present?
   end
 
   def update_forum_display_name
-    DiscourseService.new.update_user_display_name(forum_member_id, short_name) if forum_member_id.present?
-    VanillaService.new.update_user_display_name(vanilla_forum_member_id, short_name) if vanilla_forum_member_id.present?
+    discourse_service.user.update_display_name(short_name) if forum_member_id.present?
+    vanilla_service.user.update_display_name(short_name) if vanilla_forum_member_id.present?
   end
 
   def update_forum_roles
     if forum_member_id.present?
       expected_roles = forum_role_ids(:discourse)
-      DiscourseService.new.update_user_roles(forum_member_id, expected_roles)
+      discourse_service.user.update_roles(expected_roles)
     end
 
     if vanilla_forum_member_id.present?
       expected_roles = forum_role_ids(:vanilla)
-      VanillaService.new.update_user_roles(vanilla_forum_member_id, expected_roles)
+      vanilla_service.user.update_roles(expected_roles)
+    end
+  end
+
+  def linked_forum_users
+    @linked_forum_users ||= begin
+      linked_forum_users = []
+      if forum_member_id
+        discourse_users = discourse_service.user.linked_users
+        linked_forum_users.concat(discourse_users)
+      end
+      if vanilla_forum_member_id
+        vanilla_users = vanilla_service.user.linked_users
+        linked_forum_users.concat(vanilla_users)
+      end
+      linked_forum_users
     end
   end
 
@@ -247,6 +262,14 @@ class User < ApplicationRecord
   end
 
   private
+
+  def discourse_service
+    @discourse_service ||= DiscourseService.new(forum_member_id)
+  end
+
+  def vanilla_service
+    @vanilla_service ||= VanillaService.new(vanilla_forum_member_id)
+  end
 
   def slug_candidates
     [
