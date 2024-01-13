@@ -16,9 +16,9 @@ class VanillaService
   end
 
   def roles
-    response = @conn.get("/roles")
+    response = @conn.get("roles")
 
-    response.each_with_object({}) do |role, accum|
+    response.body.each_with_object({}) do |role, accum|
       accum[role["roleID"]] = role["name"]
     end
   end

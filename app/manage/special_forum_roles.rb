@@ -64,12 +64,14 @@ ActiveAdmin.register SpecialForumRole do
       @roles ||= begin
         discourse = begin
           DiscourseService.new.roles
-        rescue
+        rescue Faraday::Error => err
+          Appsignal.set_error(err)
           {}
         end
         vanilla = begin
           VanillaService.new.roles
-        rescue
+        rescue Faraday::Error => err
+          Appsignal.set_error(err)
           {}
         end
         {discourse: discourse, vanilla: vanilla}
