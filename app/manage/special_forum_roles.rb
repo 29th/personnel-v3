@@ -68,7 +68,7 @@ ActiveAdmin.register SpecialForumRole do
           {}
         end
         vanilla = begin
-          VanillaService.new.get_roles
+          VanillaService.new.roles
         rescue
           {}
         end

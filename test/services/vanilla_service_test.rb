@@ -9,12 +9,12 @@ class VanillaServiceTest < ActiveSupport::TestCase
     stub_update = stub_request(:patch, %r{/users/#{vanilla_forum_member_id}})
       .with(body: request_body.to_json)
 
-    VanillaService.new.update_user_display_name(vanilla_forum_member_id, user.short_name)
+    VanillaService.new(vanilla_forum_member_id).user.update_display_name(user.short_name)
 
     assert_requested(stub_update)
   end
 
-  test "update_user_roles sends expected roles" do
+  test "update_roles sends expected roles" do
     vanilla_forum_member_id = 1
     user = create(:user, vanilla_forum_member_id: vanilla_forum_member_id, forum_member_id: nil)
     unit = create(:unit)
@@ -31,7 +31,7 @@ class VanillaServiceTest < ActiveSupport::TestCase
     assert_requested(stub)
   end
 
-  test "get_linked_users groups ips by user" do
+  test "linked_users groups ips by user" do
     vanilla_user_id = 1
 
     response_body = {ips: [
@@ -47,7 +47,7 @@ class VanillaServiceTest < ActiveSupport::TestCase
     stub_request(:get, %r{/users/#{vanilla_user_id}})
       .to_return(body: response_body.to_json, headers: {"Content-Type" => "application/json"})
 
-    linked_users = VanillaService.new.get_linked_users(vanilla_user_id)
+    linked_users = VanillaService.new(vanilla_user_id).user.linked_users
 
     assert_equal 2, linked_users.size
 
