@@ -3,9 +3,15 @@ ActiveAdmin.register Enlistment do
   includes user: :rank, liaison: :rank
   includes :unit
   actions :index, :show, :edit, :update
-  permit_params :first_name, :middle_name, :last_name, :age, :game, :timezone,
-    :country_id, :steam_id, :ingame_name, :recruiter, :experience, :comments,
-    previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]
+  permit_params do
+    params = [:first_name, :middle_name, :last_name, :age, :game, :timezone,
+      :country_id, :steam_id, :ingame_name, :recruiter, :experience, :comments,
+      previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]]
+
+    params += [:member_id] if authorized?(:transfer, resource)
+
+    params
+  end
 
   config.sort_order = "date_desc"
 
@@ -173,9 +179,13 @@ ActiveAdmin.register Enlistment do
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
-      li do
-        label "User"
-        span link_to f.object.user, manage_user_path(f.object.user) # management path
+      if authorized?(:transfer, resource)
+        f.input :user, as: :searchable_select, ajax: true
+      else
+        li do
+          label "User"
+          span link_to f.object.user, manage_user_path(f.object.user) # management path
+        end
       end
 
       f.input :first_name

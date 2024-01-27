@@ -3,10 +3,16 @@ ActiveAdmin.register User do
 
   includes :rank, :country
 
-  actions :index, :show, :edit, :update
+  actions :index, :show, :edit, :update, :destroy
 
-  permit_params :rank_id, :last_name, :first_name, :middle_name,
-    :name_prefix, :steam_id, :forum_member_id, :country_id
+  permit_params do
+    params = [:rank_id, :last_name, :first_name, :middle_name,
+      :name_prefix, :steam_id, :forum_member_id, :country_id]
+
+    params += [:forum_member_id] if authorized?(:destroy, resource)
+
+    params
+  end
 
   controller do
     def find_resource
@@ -38,6 +44,10 @@ ActiveAdmin.register User do
       f.input :name_prefix
       f.input :country
       f.input :steam_id, as: :string
+
+      if authorized?(:destroy, resource)
+        f.input :forum_member_id, as: :string
+      end
     end
     f.actions
   end
@@ -127,8 +137,9 @@ ActiveAdmin.register User do
     redirect_to collection_path, notice: "Forum roles updated"
   end
 
-  before_save do |user|
-    if user.last_name_changed? || user.name_prefix_changed? || user.rank_id_changed?
+  after_save do |user|
+    triggering_attributes = [:last_name, :name_prefix, :rank_id, :forum_member_id]
+    if triggering_attributes.any? { |attr| user.saved_change_to_attribute(attr) }
       user.update_forum_display_name
       user.update_coat
     end
