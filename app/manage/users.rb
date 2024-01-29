@@ -46,7 +46,8 @@ ActiveAdmin.register User do
       f.input :steam_id, as: :string
 
       if authorized?(:destroy, resource)
-        f.input :forum_member_id, as: :string
+        # Rendering integer field as string imposes incorrect length from schema
+        f.input :forum_member_id, as: :string, input_html: {maxlength: nil}
       end
     end
     f.actions
