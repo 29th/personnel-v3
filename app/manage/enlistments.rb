@@ -9,6 +9,8 @@ ActiveAdmin.register Enlistment do
       previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]]
 
     params += [:member_id] if authorized?(:transfer, resource)
+    params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
+    params += [:liaison_member_id] if authorized?(:assign_liaison, resource)
 
     params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
     # TODO: :liaison_member_id ?
@@ -226,9 +228,25 @@ ActiveAdmin.register Enlistment do
     link_to "Process Enlistment", process_enlistment_manage_enlistment_path(enlistment)
   end
 
-  before_save do |enlistment|
-    if enlistment.unit_id_changed?
-      # TODO
+  after_save do |enlistment|
+    if enlistment.saved_change_to_status? || enlistment.saved_change_to_unit_id?
+      active_training_assignments = enlistment.user.assignments.active.training
+
+      if enlistment.status == "accepted"
+        active_training_assignments.destroy_all unless active_training_assignments.empty?
+
+        recruit = Position.recruit
+        Assignment.create!(user: enlistment.user, unit: enlistment.unit,
+          start_date: Date.current, position: recruit)
+
+        enlistment.user.update_forum_display_name
+      elsif active_training_assignments.any?
+        if enlistment.status == "awol"
+          active_training_assignments.each { |assignment| assignment.end }
+        else
+          active_training_assignments.destroy_all
+        end
+      end
     end
   end
 end
