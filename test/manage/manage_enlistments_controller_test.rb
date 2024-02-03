@@ -1,6 +1,27 @@
 require "test_helper"
 
 class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
+  test "user cannot process enlistment without permission" do
+    endpoints = Rails.configuration.endpoints
+    stub_request(:any, /#{endpoints[:vanilla][:base_url][:internal]}.*/)
+    stub_request(:any, /#{endpoints[:discourse][:base_url][:internal]}.*/)
+
+    unit = create(:unit)
+    create(:permission, abbr: "pass_edit", unit: unit)
+    user = create(:user)
+    create(:assignment, user: user, unit: unit)
+    sign_in_as user
+    enlistment = create(:enlistment)
+
+    get process_enlistment_manage_enlistment_url(enlistment)
+    assert_redirected_to root_url
+    assert_match(/not authorized/, flash[:alert])
+
+    patch process_enlistment_manage_enlistment_url(enlistment)
+    assert_redirected_to root_url
+    assert_match(/not authorized/, flash[:alert])
+  end
+
   class ProcessEnlistmentTest < Manage::EnlistmentsControllerTest
     setup do
       endpoints = Rails.configuration.endpoints
@@ -8,7 +29,6 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       stub_request(:any, /#{endpoints[:discourse][:base_url][:internal]}.*/)
 
       unit = create(:unit)
-      create(:permission, abbr: "enlistment_edit_any", unit: unit)
       create(:permission, abbr: "enlistment_process_any", unit: unit)
       create(:position, name: "Recruit")
 
@@ -25,7 +45,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       tp = create(:unit, classification: :training)
 
       assert_difference("Assignment.count", 1) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "accepted"
@@ -45,7 +65,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       enlistment = create(:enlistment, unit: tp)
 
       assert_difference("Assignment.count", 1) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "accepted"
@@ -65,7 +85,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       tp = create(:unit, classification: :training)
 
       assert_difference("Assignment.count", 0) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "pending"
@@ -82,7 +102,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       new_tp = create(:unit, classification: :training)
 
       assert_difference("Assignment.count", 0) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: new_tp.id,
             status: "accepted"
@@ -102,7 +122,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
         create(:assignment, user: enlistment.user, unit: tp)
 
         assert_difference("Assignment.count", -1) do
-          patch manage_enlistment_url(enlistment), params: {
+          patch process_enlistment_manage_enlistment_url(enlistment), params: {
             enlistment: {
               unit_id: tp.id,
               status: status
@@ -120,7 +140,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       create(:assignment, user: enlistment.user, unit: tp)
 
       assert_difference("Assignment.count", 0) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "awol"
@@ -139,7 +159,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       create(:assignment, user: enlistment.user, unit: tp)
 
       assert_difference("Assignment.count", 0) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "denied"
@@ -164,7 +184,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
         start_date: 1.month.ago, end_date: nil)
 
       assert_difference("Assignment.count", -1) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "denied"
@@ -182,7 +202,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
 
       methods_called = []
       User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "accepted"
@@ -194,13 +214,11 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "validation errors redirect back to process enlistment form" do
-      skip "not implemented yet"
-
       enlistment = create(:enlistment)
       tp = create(:unit, classification: :training)
 
       assert_difference("Assignment.count", 0) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: ""
@@ -216,7 +234,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       tp = create(:unit, classification: :training)
       recruiter = create(:user)
 
-      patch manage_enlistment_url(enlistment), params: {
+      patch process_enlistment_manage_enlistment_url(enlistment), params: {
         enlistment: {
           unit_id: tp.id,
           status: "pending",
@@ -232,7 +250,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       enlistment = create(:enlistment)
       tp = create(:unit, classification: :training)
 
-      patch manage_enlistment_url(enlistment), params: {
+      patch process_enlistment_manage_enlistment_url(enlistment), params: {
         enlistment: {
           unit_id: tp.id,
           status: "accepted"
@@ -248,7 +266,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       combat_unit = create(:unit, classification: :combat)
 
       assert_difference("Assignment.count", 0) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: combat_unit.id,
             status: "accepted"
@@ -270,7 +288,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       create(:assignment, user: enlistment.user, unit: other_tp)
 
       assert_difference("Assignment.count", -2) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: tp.id,
             status: "denied"
@@ -292,7 +310,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       new_tp = create(:unit, classification: :training)
 
       assert_difference("Assignment.count", -1) do
-        patch manage_enlistment_url(enlistment), params: {
+        patch process_enlistment_manage_enlistment_url(enlistment), params: {
           enlistment: {
             unit_id: new_tp.id,
             status: "accepted"

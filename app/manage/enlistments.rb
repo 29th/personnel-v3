@@ -219,13 +219,21 @@ ActiveAdmin.register Enlistment do
     f.actions
   end
 
-  member_action :process_enlistment do
-    # renders app/views/manage/process_enlistment.html.arb
-  end
-
   action_item :process_enlistment, only: :show,
     if: proc { authorized?(:process_enlistment, enlistment) } do
     link_to "Process Enlistment", process_enlistment_manage_enlistment_path(enlistment)
+  end
+
+  member_action :process_enlistment, method: [:get, :patch] do
+    if request.patch?
+      update! do |success, failure|
+        success.html { redirect_to resource_path, notice: "Enlistment processed" }
+        failure.html { render :process_enlistment }
+      end
+    else
+      # app/views/manage/process_enlistment.html.arb
+      render :process_enlistment
+    end
   end
 
   after_save do |enlistment|
