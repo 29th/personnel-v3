@@ -9,6 +9,10 @@ class Assignment < ApplicationRecord
       .merge(where("assignments.end_date > ?", date).or(where(end_date: nil)))
   }
 
+  scope :training, -> {
+    joins(:unit).merge(Unit.training)
+  }
+
   scope :not_training, -> {
     joins(:unit).merge(Unit.not_training)
   }

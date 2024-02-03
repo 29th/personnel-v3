@@ -7,6 +7,7 @@ class Unit < ApplicationRecord
   has_many :users, through: :assignments
   has_many :permissions
   has_many :unit_forum_roles
+  has_many :events, inverse_of: "unit"
 
   enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
   enum timezone: {est: "EST", gmt: "GMT", pst: "PST"}
@@ -16,6 +17,14 @@ class Unit < ApplicationRecord
   scope :for_dropdown, ->(current_value = nil) {
     collection = active.order(:ancestry, :name)
     current_value.present? ? collection.including(current_value).uniq : collection
+  }
+  scope :training_platoons, -> {
+    # Don't include the stub parent unit that houses all the TPs
+    training.where.not(name: "Training Platoons")
+  }
+  scope :with_event_range, -> {
+    # Used by Process Enlistment action to show date range of training platoons
+    select("units.*, (SELECT CONCAT( DATE_FORMAT(MIN(datetime),'%d %b %Y'),' - ', DATE_FORMAT(MAX(datetime),'%d %b %Y')) FROM events WHERE events.unit_id = `units`.id) AS event_range")
   }
 
   nilify_blanks

@@ -20,6 +20,10 @@ class Position < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :for_dropdown, -> { active.order(:name) }
 
+  def self.recruit
+    find_by!(name: "Recruit", access_level: :member)
+  end
+
   private_class_method :ransackable_attributes
 
   def self.ransackable_attributes(_auth_object = nil)

@@ -21,7 +21,12 @@ class EnlistmentPolicy < ApplicationPolicy
   end
 
   def update?
-    user&.has_permission?("enlistment_edit_any") ||
+    (record.date > 3.months.ago && user&.has_permission?("enlistment_edit_any")) ||
+      user&.has_permission?("admin")
+  end
+
+  def process_enlistment?
+    (record.date > 3.months.ago && user&.has_permission?("enlistment_process_any")) ||
       user&.has_permission?("admin")
   end
 
@@ -31,5 +36,10 @@ class EnlistmentPolicy < ApplicationPolicy
 
   def transfer?
     user&.has_permission?("admin")
+  end
+
+  def assign_liaison?
+    user&.has_permission?("enlistment_assign_any") ||
+      user&.has_permission?("admin")
   end
 end

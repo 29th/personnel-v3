@@ -9,6 +9,8 @@ ActiveAdmin.register Enlistment do
       previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]]
 
     params += [:member_id] if authorized?(:transfer, resource)
+    params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
+    params += [:liaison_member_id] if authorized?(:assign_liaison, resource)
 
     params
   end
@@ -213,5 +215,35 @@ ActiveAdmin.register Enlistment do
     end
 
     f.actions
+  end
+
+  action_item :process_enlistment, only: :show,
+    if: proc { authorized?(:process_enlistment, enlistment) } do
+    link_to "Process Enlistment", process_enlistment_manage_enlistment_path(enlistment)
+  end
+
+  member_action :process_enlistment, method: [:get, :patch] do
+    if request.patch?
+      update! do |success, failure|
+        success.html { redirect_to resource_path, notice: "Enlistment processed" }
+        failure.html { render :process_enlistment }
+      end
+    else
+      render :process_enlistment
+    end
+  end
+
+  after_save do |enlistment|
+    if enlistment.saved_change_to_status? || enlistment.saved_change_to_unit_id?
+      if enlistment.status == "accepted"
+        enlistment.destroy_assignments
+        enlistment.create_assignment!
+        enlistment.user.update_forum_display_name
+      elsif enlistment.status == "awol"
+        enlistment.end_assignments
+      else
+        enlistment.destroy_assignments
+      end
+    end
   end
 end

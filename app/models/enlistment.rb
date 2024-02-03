@@ -20,10 +20,11 @@ class Enlistment < ApplicationRecord
 
   validates :user, presence: true
   validates :date, timeliness: {date: true}
+  validates :status, presence: true
   validates :first_name, presence: true, length: {in: 1..30}
   validates :middle_name, length: {maximum: 1}
   validates :last_name, presence: true, length: {in: 2..40}
-  validate :last_name, :last_name_not_restricted
+  validate :last_name_not_restricted
   validates :age, presence: true, inclusion: {in: VALID_AGES, message: "not recognized"}
   validates :timezone, presence: true
   validates :game, presence: true
@@ -32,12 +33,11 @@ class Enlistment < ApplicationRecord
   validates :experience, presence: true, length: {maximum: 1500}
   validates :recruiter, length: {maximum: 128}
   validates :comments, length: {maximum: 1500}
+  validate :unit_classification_is_training
 
   attribute :previous_units, PreviousUnit.to_array_type, default: -> { [] }
   accepts_nested_attributes_for :previous_units, allow_destroy: true, reject_if: :all_blank
   validates_associated :previous_units, store_model: {merge_array_errors: true}
-
-  before_create :set_date
 
   delegate :linked_forum_users, to: :user
 
@@ -53,6 +53,20 @@ class Enlistment < ApplicationRecord
     BanLog.ransack(query).result(distinct: true)
   end
 
+  def create_assignment!
+    recruit = Position.recruit
+    Assignment.create!(user: user, unit: unit, start_date: Date.current,
+      position: recruit)
+  end
+
+  def end_assignments
+    active_training_assignments.each(&:end)
+  end
+
+  def destroy_assignments
+    active_training_assignments.destroy_all
+  end
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -65,13 +79,19 @@ class Enlistment < ApplicationRecord
 
   private
 
-  def set_date
-    self.date = Date.current
+  def active_training_assignments
+    user.assignments.active.training
   end
 
   def last_name_not_restricted
     if RestrictedName.where(name: last_name).where.not(user: user).exists?
       errors.add(:last_name, "is already taken")
+    end
+  end
+
+  def unit_classification_is_training
+    if unit.present? && !unit.training?
+      errors.add(:unit_id, "must be a training unit")
     end
   end
 end

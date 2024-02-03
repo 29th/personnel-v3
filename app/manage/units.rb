@@ -13,6 +13,22 @@ ActiveAdmin.register Unit do
   scope :active, default: true
   scope :all, default: true
 
+  searchable_select_options(
+    name: :active_training_platoons,
+    scope: -> {
+      Unit.training_platoons
+        .active
+        .with_event_range
+        .order(:ancestry, :order, :name)
+    },
+    text_attribute: :abbr,
+    display_text: ->(record) {
+      game = Unit.games[record.game]
+      timezone = Unit.timezones[record.timezone]
+      "#{record.abbr} (#{game}) (#{timezone}) - #{record.event_range}"
+    }
+  )
+
   index do
     column :abbr
     column :name
