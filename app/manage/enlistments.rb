@@ -12,8 +12,6 @@ ActiveAdmin.register Enlistment do
     params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
     params += [:liaison_member_id] if authorized?(:assign_liaison, resource)
 
-    params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
-    # TODO: :liaison_member_id ?
     params
   end
 
@@ -231,29 +229,20 @@ ActiveAdmin.register Enlistment do
         failure.html { render :process_enlistment }
       end
     else
-      # app/views/manage/process_enlistment.html.arb
       render :process_enlistment
     end
   end
 
   after_save do |enlistment|
     if enlistment.saved_change_to_status? || enlistment.saved_change_to_unit_id?
-      active_training_assignments = enlistment.user.assignments.active.training
-
       if enlistment.status == "accepted"
-        active_training_assignments.destroy_all unless active_training_assignments.empty?
-
-        recruit = Position.recruit
-        Assignment.create!(user: enlistment.user, unit: enlistment.unit,
-          start_date: Date.current, position: recruit)
-
+        enlistment.destroy_assignments
+        enlistment.create_assignment!
         enlistment.user.update_forum_display_name
-      elsif active_training_assignments.any?
-        if enlistment.status == "awol"
-          active_training_assignments.each { |assignment| assignment.end }
-        else
-          active_training_assignments.destroy_all
-        end
+      elsif enlistment.status == "awol"
+        enlistment.end_assignments
+      else
+        enlistment.destroy_assignments
       end
     end
   end

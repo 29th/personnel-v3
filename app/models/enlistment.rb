@@ -53,6 +53,20 @@ class Enlistment < ApplicationRecord
     BanLog.ransack(query).result(distinct: true)
   end
 
+  def create_assignment!
+    recruit = Position.recruit
+    Assignment.create!(user: user, unit: unit, start_date: Date.current,
+      position: recruit)
+  end
+
+  def end_assignments
+    active_training_assignments.each(&:end)
+  end
+
+  def destroy_assignments
+    active_training_assignments.destroy_all
+  end
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -64,6 +78,10 @@ class Enlistment < ApplicationRecord
   end
 
   private
+
+  def active_training_assignments
+    user.assignments.active.training
+  end
 
   def last_name_not_restricted
     if RestrictedName.where(name: last_name).where.not(user: user).exists?
