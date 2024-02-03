@@ -129,7 +129,20 @@ ActiveAdmin.register Enlistment do
             end
           end
 
-          panel "Linked Forum Users" do
+          if enlistment.linked_users_by_steam_id.any?
+            panel "Linked Users by Steam ID", id: "linked-users-by-steam-id" do
+              table_for(enlistment.linked_users_by_steam_id) do
+                column "User" do |user|
+                  link_to user
+                end
+                column "Steam ID", :steam_id do |user|
+                  link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
+                end
+              end
+            end
+          end
+
+          panel "Linked Forum Users", id: "linked-forum-users" do
             table_for(enlistment.linked_forum_users) do
               column "Forum" do |row|
                 row[:forum].to_s.humanize
@@ -148,7 +161,7 @@ ActiveAdmin.register Enlistment do
             error_tag(err)
           end
 
-          panel "Linked Ban Logs" do
+          panel "Linked Ban Logs", id: "linked-ban-logs" do
             table_for(enlistment.linked_ban_logs) do
               column "Date" do |row|
                 link_to row.date, manage_ban_log_path(row)

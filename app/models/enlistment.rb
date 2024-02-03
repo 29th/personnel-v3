@@ -42,7 +42,6 @@ class Enlistment < ApplicationRecord
   delegate :linked_forum_users, to: :user
 
   def linked_ban_logs
-    steam_ids = [steam_id, user.steam_id].uniq # enlistment steam id may differ
     ips = linked_forum_users.pluck(:ips).flatten.uniq
 
     query = {m: "or"} # use OR instead of default AND
@@ -51,6 +50,13 @@ class Enlistment < ApplicationRecord
     query[:ip_in] = ips unless ips.empty?
 
     BanLog.ransack(query).result(distinct: true)
+  end
+
+  def linked_users_by_steam_id
+    User
+      .includes(:rank)
+      .ransack(steam_id_in: steam_ids, id_not_eq: user.id)
+      .result(distinct: true)
   end
 
   def create_assignment!
@@ -78,6 +84,10 @@ class Enlistment < ApplicationRecord
   end
 
   private
+
+  def steam_ids
+    [steam_id, user.steam_id].uniq # enlistment steam id may differ
+  end
 
   def active_training_assignments
     user.assignments.active.training

@@ -107,6 +107,7 @@ FactoryBot.define do
     comments { "" }
     recruiter { "" }
     ingame_name { "" }
+    forum_id { "Discourse" }
   end
 
   factory :extended_loa do

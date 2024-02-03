@@ -22,6 +22,48 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     assert_match(/not authorized/, flash[:alert])
   end
 
+  class AnalyzeEnlistmentTest < Manage::EnlistmentsControllerTest
+    setup do
+      @unit = create(:unit)
+      @user = create(:user)
+      create(:assignment, user: @user, unit: @unit)
+      sign_in_as @user
+      create(:permission, abbr: "pass_edit", unit: @unit)
+      endpoints = Rails.configuration.endpoints
+      @vanilla_url = endpoints[:vanilla][:base_url][:internal]
+      @disocurse_url = endpoints[:discourse][:base_url][:internal]
+    end
+
+    test "links user with same steam id as enlistment field" do
+      create(:permission, abbr: "enlistment_edit_any", unit: @unit)
+      stub_request(:any, /#{@vanilla_url}.*/).to_return(status: 404)
+      stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
+
+      steam_id = "12345678912345678"
+      enlistment = create(:enlistment, steam_id: steam_id)
+      _other_user = create(:user, steam_id: steam_id, last_name: "Matchee")
+
+      get manage_enlistment_url(enlistment)
+
+      assert_select "#linked-users-by-steam-id", /Matchee/
+    end
+
+    test "links user with same steam id as enlistment user" do
+      create(:permission, abbr: "enlistment_edit_any", unit: @unit)
+      stub_request(:any, /#{@vanilla_url}.*/).to_return(status: 404)
+      stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
+
+      steam_id = "12345678912345678"
+      user = create(:user, steam_id: steam_id)
+      enlistment = create(:enlistment, steam_id: "99999999999999999", user: user)
+      _other_user = create(:user, steam_id: steam_id, last_name: "Matchee")
+
+      get manage_enlistment_url(enlistment)
+
+      assert_select "#linked-users-by-steam-id", /Matchee/
+    end
+  end
+
   class ProcessEnlistmentTest < Manage::EnlistmentsControllerTest
     setup do
       endpoints = Rails.configuration.endpoints
