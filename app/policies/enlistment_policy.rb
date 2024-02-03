@@ -31,7 +31,7 @@ class EnlistmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    false
+    user&.has_permission?("admin")
   end
 
   def transfer?
