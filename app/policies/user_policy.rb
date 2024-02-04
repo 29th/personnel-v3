@@ -1,4 +1,4 @@
-class UserPolicy < ApplicationPolicy
+class UserPolicy < Manage::UserPolicy
   def index?
     true
   end
@@ -20,7 +20,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def qualifications?
-    user&.member?
+    AITQualificationPolicy.new(user, AITQualification).index?
   end
 
   def recruits?
@@ -28,33 +28,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def reprimands?
-    user&.member?
+    DemeritPolicy.new(user, Demerit).index?
   end
 
   def extended_loas?
-    user&.member?
-  end
-
-  def create?
-    user&.has_permission?("admin")
-  end
-
-  def update?
-    (record && user&.has_permission_on_user?("profile_edit", record)) ||
-      user&.has_permission?("profile_edit_any") ||
-      user&.has_permission?("admin")
-  end
-
-  def destroy?
-    user&.has_permission?("admin")
-  end
-
-  def update_forum_roles?
-    # Support record being the User class or an instance of a User,
-    # which is needed by admin batch action
-    (record.is_a?(User) && user&.has_permission_on_user?("assignment_edit", record)) ||
-      (record == User && user&.has_permission?("assignment_edit")) ||
-      user&.has_permission?("assignment_edit_any") ||
-      user&.has_permission?("admin")
+    ExtendedLOAPolicy.new(user, ExtendedLOA).index?
   end
 end

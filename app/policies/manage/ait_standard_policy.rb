@@ -1,10 +1,10 @@
-class SpecialForumRolePolicy < ApplicationPolicy
+class Manage::AITStandardPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?("admin")
+    create?
   end
 
   def show?
-    user&.has_permission?("admin")
+    create?
   end
 
   def create?

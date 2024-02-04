@@ -1,4 +1,4 @@
-class UnitForumRolePolicy < ApplicationPolicy
+class Manage::UnitForumRolePolicy < ApplicationPolicy
   def index?
     user&.has_permission?("admin")
   end

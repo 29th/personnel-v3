@@ -1,10 +1,10 @@
-class PermissionPolicy < ApplicationPolicy
+class Manage::PositionPolicy < ApplicationPolicy
   def index?
-    user&.has_permission?("admin")
+    new?
   end
 
   def show?
-    user&.has_permission?("admin")
+    new?
   end
 
   def create?

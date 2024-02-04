@@ -14,7 +14,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     assert_select "#user-dropdown", /^Pvt\. Foo/
   end
 
-  test "manage pages should only be viewable to someone with :new access on one of the pages" do
+  test "manage pages should only be viewable to someone with :index access on one of the pages" do
     rifleman = create(:user)
     clerk = create(:user)
     clerk_unit = create(:unit)
