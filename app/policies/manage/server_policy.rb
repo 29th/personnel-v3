@@ -1,10 +1,10 @@
-class AITStandardPolicy < ApplicationPolicy
+class Manage::ServerPolicy < ApplicationPolicy
   def index?
-    true
+    create?
   end
 
   def show?
-    true
+    create?
   end
 
   def create?

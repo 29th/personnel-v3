@@ -89,14 +89,15 @@ class User < ApplicationRecord
     permissions_on_user(user).pluck("abilities.abbr").include?(permission)
   end
 
-  # Checks whether user has :new? permission on any active admin resources
+  # Checks whether user has :index? permission on any active admin resources
+  # except User and Unit, as those allow any member to view them
   def active_admin_editor?
     namespace = ActiveAdmin.application.default_namespace
     resources = ActiveAdmin.application.namespaces[namespace].resources
     resource_classes = resources.grep(ActiveAdmin::Resource).map(&:resource_class)
-    resource_classes -= [Enlistment]
+    resource_classes -= [User, Unit]
     resource_classes.any? do |resource_class|
-      Pundit.policy(self, resource_class)&.new?
+      Pundit.policy(self, [namespace, resource_class])&.index?
     end
   end
 
