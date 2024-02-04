@@ -62,6 +62,27 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
 
       assert_select "#linked-users-by-steam-id", /Matchee/
     end
+
+    test "links users with similar last names" do
+      create(:permission, abbr: "enlistment_edit_any", unit: @unit)
+      stub_request(:any, /#{@vanilla_url}.*/).to_return(status: 404)
+      stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
+
+      user = create(:user, last_name: "Anders", first_name: "Subject")
+      enlistment = create(:enlistment, user: user)
+      create(:user, last_name: "Anders", first_name: "Another")
+      create(:user, last_name: "Anderson")
+      create(:user, last_name: "AnDers")
+      create(:user, last_name: "Somethingelse")
+
+      get manage_enlistment_url(enlistment)
+
+      assert_select "#users-with-matching-name a", {text: /Another/, count: 1}
+      assert_select "#users-with-matching-name a", {text: /Anderson/, count: 1}
+      assert_select "#users-with-matching-name a", {text: /AnDers/, count: 1}
+      assert_select "#users-with-matching-name a", {text: /Somethingelse/, count: 0}
+      assert_select "#users-with-matching-name a", {text: /Subject/, count: 0}
+    end
   end
 
   class ProcessEnlistmentTest < Manage::EnlistmentsControllerTest

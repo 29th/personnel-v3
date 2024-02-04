@@ -129,11 +129,32 @@ ActiveAdmin.register Enlistment do
             end
           end
 
+          users_with_matching_name = enlistment.users_with_matching_name
+            .order(:last_name, :first_name, :id)
+            .page(params[:page])
+            .per(5)
+
+          if users_with_matching_name.any?
+            panel "Users with matching name", id: "users-with-matching-name" do
+              paginated_collection(users_with_matching_name, download_links: false) do
+                table_for(users_with_matching_name) do
+                  column "User" do |user|
+                    label = "#{user.rank.abbr} #{user.full_name_last_first}"
+                    link_to label, manage_user_path(user)
+                  end
+                  column "Status" do |user|
+                    user.status_detail
+                  end
+                end
+              end
+            end
+          end
+
           if enlistment.linked_users_by_steam_id.any?
             panel "Linked Users by Steam ID", id: "linked-users-by-steam-id" do
               table_for(enlistment.linked_users_by_steam_id) do
                 column "User" do |user|
-                  link_to user
+                  link_to user, manage_user_path(user)
                 end
                 column "Steam ID", :steam_id do |user|
                   link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"

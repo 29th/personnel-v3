@@ -59,6 +59,13 @@ class Enlistment < ApplicationRecord
       .result(distinct: true)
   end
 
+  def users_with_matching_name
+    User
+      .includes(:rank, :discharges, active_assignments: :unit)
+      .ransack(last_name_start: last_name, id_not_eq: user.id)
+      .result(distinct: true)
+  end
+
   def create_assignment!
     recruit = Position.recruit
     Assignment.create!(user: user, unit: unit, start_date: Date.current,
