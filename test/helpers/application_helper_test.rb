@@ -2,7 +2,7 @@ require "test_helper"
 
 class ApplicationHelperTest < ActionView::TestCase
   setup do
-    @base_url = Rails.configuration.endpoints[:personnel_v2_app][:base_url][:external]
+    @base_url = Settings.personnel_v2_app.base_url.external
   end
 
   test "v2 url helper returns base_url when given no args" do

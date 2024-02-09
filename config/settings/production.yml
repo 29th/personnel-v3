@@ -1,0 +1,33 @@
+discourse:
+  base_url:
+    internal: https://forums.29th.org
+    external: https://forums.29th.org
+  api_key: ~
+  webhooks_secret: ~
+  sso_secret: ~
+personnel_v2_app:
+  base_url:
+    internal: https://personnel.29th.org
+    external: https://personnel.29th.org
+personnel_v2_api:
+  base_url:
+    internal: https://api.29th.org
+    external: https://api.29th.org
+  api_key: ~
+vanilla:
+  base_url:
+    internal: https://vanilla.29th.org
+    external: https://vanilla.29th.org
+  api_key: ~
+smf:
+  base_url:
+    internal: https://smf.29th.org
+    external: https://smf.29th.org
+storage:
+  endpoint: ~
+  bucket: ~
+  region: ~
+  access_key_id: ~
+  secret_access_key: ~
+  public_host: https://uploads.29th.org
+

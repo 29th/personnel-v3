@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def discourse_url(user: nil, topic: nil)
-    url = Rails.configuration.endpoints[:discourse][:base_url][:external]
+    url = Settings.discourse.base_url.external
     if user.present?
       case user
       when User
@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def vanilla_url(user: nil, topic: nil)
-    url = Rails.configuration.endpoints[:vanilla][:base_url][:external]
+    url = Settings.vanilla.base_url.external
     if user.present?
       case user
       when User
@@ -42,7 +42,7 @@ module ApplicationHelper
   end
 
   def smf_url(topic: nil)
-    url = Rails.configuration.endpoints[:smf][:base_url][:external]
+    url = Settings.smf.base_url.external
     if topic.present?
       url += "/?topic=#{topic}"
     end
@@ -50,7 +50,7 @@ module ApplicationHelper
   end
 
   def personnel_v2_app_url(user: nil, unit: nil, suffix: nil)
-    base_url = Rails.configuration.endpoints[:personnel_v2_app][:base_url][:external]
+    base_url = Settings.personnel_v2_app.base_url.external
     paths = []
 
     if user.present?

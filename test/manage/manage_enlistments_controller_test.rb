@@ -2,9 +2,8 @@ require "test_helper"
 
 class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
   test "user cannot process enlistment without permission" do
-    endpoints = Rails.configuration.endpoints
-    stub_request(:any, /#{endpoints[:vanilla][:base_url][:internal]}.*/)
-    stub_request(:any, /#{endpoints[:discourse][:base_url][:internal]}.*/)
+    stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
+    stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
     unit = create(:unit)
     create(:permission, abbr: "pass_edit", unit: unit)
@@ -29,9 +28,8 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       create(:assignment, user: @user, unit: @unit)
       sign_in_as @user
       create(:permission, abbr: "pass_edit", unit: @unit)
-      endpoints = Rails.configuration.endpoints
-      @vanilla_url = endpoints[:vanilla][:base_url][:internal]
-      @disocurse_url = endpoints[:discourse][:base_url][:internal]
+      @vanilla_url = Settings.vanilla.base_url.internal
+      @disocurse_url = Settings.discourse.base_url.internal
     end
 
     test "links user with same steam id as enlistment field" do
@@ -87,9 +85,8 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
 
   class ProcessEnlistmentTest < Manage::EnlistmentsControllerTest
     setup do
-      endpoints = Rails.configuration.endpoints
-      stub_request(:any, /#{endpoints[:vanilla][:base_url][:internal]}.*/)
-      stub_request(:any, /#{endpoints[:discourse][:base_url][:internal]}.*/)
+      stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
+      stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
       unit = create(:unit)
       create(:permission, abbr: "enlistment_process_any", unit: unit)
