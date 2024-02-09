@@ -3,6 +3,7 @@ require "test_helper"
 class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: @user_unit)
     create(:permission, :leader, abbr: "promotion_add", unit: @user_unit)
 
     @user = create(:user)

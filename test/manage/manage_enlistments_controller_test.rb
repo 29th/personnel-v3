@@ -6,7 +6,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
     unit = create(:unit)
-    create(:permission, abbr: "pass_edit", unit: unit)
+    create(:permission, abbr: "manage", unit: unit)
     user = create(:user)
     create(:assignment, user: user, unit: unit)
     sign_in_as user
@@ -27,7 +27,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       @user = create(:user)
       create(:assignment, user: @user, unit: @unit)
       sign_in_as @user
-      create(:permission, abbr: "pass_edit", unit: @unit)
+      create(:permission, abbr: "manage", unit: @unit)
       @vanilla_url = Settings.vanilla.base_url.internal
       @disocurse_url = Settings.discourse.base_url.internal
     end
@@ -89,11 +89,9 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
       unit = create(:unit)
+      create(:permission, abbr: "manage", unit: unit)
       create(:permission, abbr: "enlistment_process_any", unit: unit)
       create(:position, name: "Recruit")
-
-      # TODO: fix access issue - see User#active_admin_editor?
-      create(:permission, abbr: "pass_edit", unit: unit)
 
       @user = create(:user)
       create(:assignment, user: @user, unit: unit)

@@ -3,6 +3,7 @@ require "test_helper"
 class Manage::DischargesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: @user_unit)
     create(:permission, :leader, abbr: "discharge_add", unit: @user_unit)
 
     @user = create(:user)

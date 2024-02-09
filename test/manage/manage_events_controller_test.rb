@@ -5,6 +5,7 @@ class Manage::EventsControllerTest < ActionDispatch::IntegrationTest
     user = create(:user)
     unit = create(:unit)
     server = create(:server)
+    create(:permission, :elevated, abbr: "manage", unit: unit)
     create(:permission, :elevated, abbr: "event_add", unit: unit)
     create(:assignment, :elevated, user: user, unit: unit)
     sign_in_as user

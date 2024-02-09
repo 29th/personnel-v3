@@ -3,6 +3,7 @@ require "test_helper"
 class Manage::PassesControllerTest < ActionDispatch::IntegrationTest
   setup do
     unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: unit)
     create(:permission, :leader, abbr: "pass_edit", unit: unit)
 
     @user = create(:user)
