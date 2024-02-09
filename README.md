@@ -34,5 +34,7 @@ without docker, you can run it locally if you have Ruby installed:
 rails server
 ```
 
+To override settings, like discourse base url, api keys, etc., create `config/settings.local.yml` and populate it with the keys you want to override from `config/settings/development.yml`.
+
 ### Notes
 * Application performance monitoring sponsored by [AppSignal](https://www.appsignal.com/)

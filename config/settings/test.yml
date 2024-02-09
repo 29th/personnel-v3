@@ -1,0 +1,32 @@
+discourse:
+  base_url:
+    internal: http://docker.host.internal:3000
+    external: https://forums.29th.local
+  api_key: test
+  webhooks_secret: developmentsecret
+  sso_secret: test
+personnel_v2_app:
+  base_url:
+    internal: http://app
+    external: https://personnel.29th.local
+personnel_v2_api:
+  base_url:
+    internal: http://api
+    external: https://api.29th.local
+  api_key: test
+vanilla:
+  base_url:
+    internal: http://forums
+    external: https://vanilla.29th.local
+  api_key: test
+smf:
+  base_url:
+    internal: https://smf
+    external: https://smf.29th.local
+storage:
+  endpoint: ~
+  bucket: ~
+  region: ~
+  access_key_id: ~
+  secret_access_key: ~
+  public_host: https://uploads.29th.org

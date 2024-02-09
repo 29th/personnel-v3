@@ -2,11 +2,10 @@ class DiscourseService
   attr_reader :user
 
   def initialize(forum_member_id = nil)
-    config = Rails.configuration.endpoints[:discourse]
-    url = config[:base_url][:internal]
+    url = Settings.discourse.base_url.internal
     @conn = Faraday.new(url) do |conn|
       conn.headers = {
-        "Api-Key" => config[:api_key],
+        "Api-Key" => Settings.discourse.api_key,
         "Api-Username" => "system"
       }
       conn.request :json

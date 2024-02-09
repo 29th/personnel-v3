@@ -4,18 +4,18 @@ module UsersHelper
   end
 
   def discourse_user_url(user)
-    base_url = Rails.configuration.endpoints[:discourse][:base_url][:external]
+    base_url = Settings.discourse.base_url.external
     "#{base_url}/user-by-id/#{user.forum_member_id}/summary"
   end
 
   def v2_user_url(user)
-    base_url = Rails.configuration.endpoints[:personnel_v2_app][:base_url][:external]
+    base_url = Settings.personnel_v2_app.base_url.external
     "#{base_url}/#members/#{user.id}"
   end
 
   def coat_url(user)
     if (user.member? || user.honorably_discharged?) && user.steam_id.present?
-      base_url = Rails.configuration.endpoints[:personnel_v2_api][:base_url][:external]
+      base_url = Settings.personnel_v2_api.base_url.external
       "#{base_url}/coats/#{user.steam_id}.png"
     end
   end

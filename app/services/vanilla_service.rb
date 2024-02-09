@@ -2,10 +2,9 @@ class VanillaService
   attr_reader :user
 
   def initialize(forum_member_id = nil)
-    config = Rails.configuration.endpoints[:vanilla]
-    url = "#{config[:base_url][:internal]}/api/v2"
+    url = "#{Settings.vanilla.base_url.internal}/api/v2"
     @conn = Faraday.new(url) do |conn|
-      conn.request :authorization, "Bearer", config[:api_key]
+      conn.request :authorization, "Bearer", Settings.vanilla.api_key
       conn.request :json
       conn.response :raise_error
       conn.response :json, content_type: /\bjson$/

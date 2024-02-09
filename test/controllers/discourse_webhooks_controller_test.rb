@@ -121,7 +121,7 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
   private
 
   def sign(body)
-    webhooks_secret = Rails.configuration.endpoints[:discourse][:webhooks_secret]
+    webhooks_secret = Settings.discourse.webhooks_secret
     "sha256=#{OpenSSL::HMAC.hexdigest("sha256", webhooks_secret, body.to_json)}"
   end
 end

@@ -28,9 +28,6 @@ module Personnel
     config.homepage = config_for(:homepage)
     config.siblings = config_for(:siblings)
 
-    endpoints_config_path = Rails.root.join("config", "endpoints", "#{Rails.env}.yml")
-    config.endpoints = config_for(endpoints_config_path)
-
     config.active_job.queue_adapter = :delayed_job
 
     config.time_zone = "Eastern Time (US & Canada)"
