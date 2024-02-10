@@ -8,6 +8,7 @@ class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: user_unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
     create(:assignment, :leader, user: user, unit: user_unit)
@@ -19,6 +20,7 @@ class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create assignment if unit is in scope" do
     user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: user_unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
     create(:assignment, :leader, user: user, unit: user_unit)
@@ -37,6 +39,7 @@ class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should fail to create assignment if unit is not in scope" do
     user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: user_unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
     create(:assignment, :leader, user: user, unit: user_unit)
@@ -55,6 +58,7 @@ class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should end old assignment if transfer_from_assignment is in scope" do
     user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: user_unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
     create(:assignment, :leader, user: user, unit: user_unit)
@@ -80,6 +84,7 @@ class Manage::AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should fail to create assignment or end old assignment if transfer_from_assignment is not in scope" do
     user_unit = create(:unit)
+    create(:permission, :leader, abbr: "manage", unit: user_unit)
     create(:permission, :leader, abbr: "assignment_add", unit: user_unit)
     user = create(:user)
     create(:assignment, :leader, user: user, unit: user_unit)

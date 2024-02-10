@@ -89,15 +89,8 @@ class User < ApplicationRecord
     permissions_on_user(user).pluck("abilities.abbr").include?(permission)
   end
 
-  # Checks whether user has :new? permission on any active admin resources
   def active_admin_editor?
-    namespace = ActiveAdmin.application.default_namespace
-    resources = ActiveAdmin.application.namespaces[namespace].resources
-    resource_classes = resources.grep(ActiveAdmin::Resource).map(&:resource_class)
-    resource_classes -= [Enlistment]
-    resource_classes.any? do |resource_class|
-      Pundit.policy(self, resource_class)&.new?
-    end
+    has_permission?("manage")
   end
 
   def status
