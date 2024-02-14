@@ -7,11 +7,18 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     assert_select "#user-dropdown", "Sign in"
   end
 
-  test "nav bar should show short name when logged in" do
+  test "nav bar should show short name when logged in as a member" do
     user = create(:user, rank_abbr: "Pvt.", last_name: "Foo")
     sign_in_as(user)
     get root_url
-    assert_select "#user-dropdown", /^Pvt\. Foo/
+    assert_select "#user-dropdown .dropdown-toggle", "Pvt. Foo"
+  end
+
+  test "nav bar should show username when logged in as an unregistered user" do
+    user = build(:unregistered_user)
+    sign_in_as(user)
+    get root_url
+    assert_select "#user-dropdown .dropdown-toggle", user.forum_member_username
   end
 
   test "manage pages should only be viewable to someone with manage permission" do

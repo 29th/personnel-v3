@@ -12,7 +12,17 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
     OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock(:discourse, {uid: user.forum_member_id})
+
+    if user.is_a?(UnregisteredUser)
+      OmniAuth.config.add_mock(:discourse, {
+        uid: user.forum_member_id,
+        info: {"nickname" => user.forum_member_username, "email" => user.forum_member_email,
+               "time_zone" => user.time_zone}
+      })
+    else
+      OmniAuth.config.add_mock(:discourse, {uid: user.forum_member_id})
+    end
+
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:discourse]
     post create_user_session_url(:discourse)
     OmniAuth.config.mock_auth[:discourse] = nil

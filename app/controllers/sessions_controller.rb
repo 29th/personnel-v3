@@ -4,12 +4,15 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-    user = User.find_by_forum_member_id!(auth[:uid])
-
-    reset_session
-    session[:user_id] = user.id
-
     origin = request.env["omniauth.origin"] if is_known_host(request.env["omniauth.origin"])
+    reset_session
+
+    if (user = User.find_by_forum_member_id(auth[:uid]))
+      session[:user_id] = user.id
+    else
+      session["omniauth.discourse_data"] = auth.except(:extra)
+    end
+
     redirect_to origin || root_url, notice: "Signed in!"
   end
 

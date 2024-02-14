@@ -231,6 +231,24 @@ FactoryBot.define do
     end
   end
 
+  factory :unregistered_user do
+    forum_member_id { FactoryBot.generate(:random_id) }
+    forum_member_username { Faker::Internet.username }
+    forum_member_email { Faker::Internet.email }
+    time_zone { "Europe/London" }
+
+    initialize_with {
+      new({
+        :uid => forum_member_id,
+        "info" => {
+          "nickname" => forum_member_username,
+          "email" => forum_member_email,
+          "time_zone" => time_zone
+        }
+      })
+    }
+  end
+
   factory :user do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
