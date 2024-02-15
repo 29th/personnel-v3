@@ -56,4 +56,15 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     get events_url, headers: {HTTP_REFERER: "https://google.com"}
     assert_redirected_to root_url
   end
+
+  test "unregistered users cannot access members-only pages" do
+    user = build(:unregistered_user)
+    sign_in_as(user)
+
+    get events_url
+    assert_response 302
+
+    get manage_root_url
+    assert_response 302
+  end
 end
