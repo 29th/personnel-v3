@@ -27,8 +27,58 @@
 
   <% else %>
 
-    <%= simple_form_for @enlistment do |f| %>
+    <%= simple_form_for @enlistment, data: {controller: "nested-form", nested_form_wrapper_selector_value: ".nested-form-wrapper"} do |f| %>
       <%= f.error_notification %>
+
+      <div class="form-row">
+        <%= f.input :first_name, wrapper_html: {class: "col-md-5"} %>
+        <%= f.input :middle_name, label: "Middle Initial",
+          wrapper_html: {class: "col-md-2"}  %>
+        <%= f.input :last_name, hint: "Please use your real name or a realistic sounding name.",
+          wrapper_html: {class: "col-md-5"} %>
+      </div>
+      
+      <%= f.input :age, collection: ["Under 13", *13..99] %>
+      
+      <%= f.association :country %>
+      
+      <%= f.input :timezone, label: "Preferred Time", collection: timezone_opts,
+        hint: "Which time do you prefer for practicing? (Give or take an hour)" %>
+
+      <%= f.input :game, collection: game_opts, hint: "Which game are you enlisting in?" %>
+
+      <%= f.input :ingame_name, hint: "What name do you play with?" %>
+
+      <%= f.input :steam_id, label: "Steam ID", as: :string,
+        hint: "Your Steam Identification number. #{link_to "Click here for help", "https://29th.org/roid", target: "_blank"}.".html_safe %>
+      
+      <template data-nested-form-target="template">
+        <%= f.simple_fields_for :previous_units, PreviousUnit.new,
+          child_index: "NEW_RECORD" do |previous_unit_fields| %>
+          <%= render "previous_unit_form", f: previous_unit_fields %>
+        <% end%>
+      </template>
+      
+      <%= f.simple_fields_for :previous_units do |previous_unit_fields| %>
+        <%= render "previous_unit_form", f: previous_unit_fields %>
+      <% end%>
+      
+      <fieldset>
+        <legend>Previous Units</legend>
+        <small class="text-muted">List all previous units you took part in.</small>
+        <div data-nested-form-target="target"></div>
+        <div class="mt-2 mb-3">
+          <%= f.button :button, "Add previous unit", class: "btn-secondary", data: {action: "nested-form#add"} %>
+        </div>
+      </fieldset>
+      
+      <%= f.input :recruiter, label: "Who recruited you?",
+        hint: "What was the name of the 29th member who asked you to enlist? If you were not recruited by someone, how did you find out about the 29th Infantry Division?" %>
+        
+      <%= f.input :comments, label: "Other comments" %>
+
+
+      <%= f.button :submit, "Submit Enlistment", class: 'btn-primary' %>
     <% end %>
 
   <% end %>
