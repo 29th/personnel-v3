@@ -598,7 +598,7 @@ DEPENDENCIES
   selenium-webdriver
   shrine (~> 3.0)
   simple_calendar (~> 2.0)
-  simple_form (~> 5.1)
+  simple_form (~> 5.3)
   spring
   spring-watcher-listen (~> 2.0.0)
   standard (~> 1.0, >= 1.0.4)
