@@ -138,7 +138,11 @@ class User < ApplicationRecord
   end
 
   def cadet?
-    false
+    assignments.active.training.any?
+  end
+
+  def has_pending_enlistment?
+    enlistments.pending.any?
   end
 
   def assigned_to_subtree?(unit)

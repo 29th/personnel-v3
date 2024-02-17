@@ -13,11 +13,12 @@ class EnlistmentPolicy < ApplicationPolicy
   end
 
   def new?
-    false
+    true
   end
 
   def create?
-    false
+    user.present? && !user.member? && !user.cadet? &&
+      !user.has_pending_enlistment?
   end
 
   def update?

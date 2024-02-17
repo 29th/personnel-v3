@@ -28,6 +28,8 @@ class UnregisteredUser
 
   def honorably_discharged? = false
 
+  def cadet? = false
+
   def has_permission?(_permission) = false
 
   def has_permission_on_unit?(_permission, _unit) = false
@@ -35,4 +37,6 @@ class UnregisteredUser
   def has_permission_on_user?(_permission, _user) = false
 
   def active_admin_editor? = false
+
+  def has_pending_enlistment? = false
 end

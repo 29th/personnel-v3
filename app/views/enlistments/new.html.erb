@@ -1,0 +1,36 @@
+<% content_for(:page_title) { "New Enlistment" } %>
+
+<article>
+  <h1>Enlist</h1>
+  
+  <% if !current_user %>
+
+    <h4 class="reason">You need to be signed in to enlist</h4>
+    <p>Sign in to an existing account on our forum, or create a new account, then return to this page.</p>
+
+    <%= button_to 'Sign in', sign_in_path(:discourse, flash[:sign_in_origin]),
+          method: :post, class: 'btn btn-primary', data: { turbo: false } %>
+
+  <% elsif current_user.member? %>
+
+    <h4 class="reason">You're already a member</h4>
+
+  <% elsif current_user.cadet? %>
+
+    <h4 class="reason">You're already assigned to a training platoon</h4>
+    <%= link_to "View your enlistment", current_user.enlistments.last if current_user.enlistments.any? %>
+
+  <% elsif current_user.has_pending_enlistment? %>
+
+    <h4 class="reason">You already have a pending enlistment</h4>
+    <%= link_to "View your enlistment", current_user.enlistments.last if current_user.enlistments.any? %>
+
+  <% else %>
+
+    <%= simple_form_for @enlistment do |f| %>
+      <%= f.error_notification %>
+    <% end %>
+
+  <% end %>
+
+</article>
