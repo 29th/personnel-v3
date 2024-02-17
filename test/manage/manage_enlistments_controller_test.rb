@@ -188,6 +188,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
           }
         end
 
+        enlistment.user.assignments.reload
         assert enlistment.user.assignments.empty?
       end
     end
