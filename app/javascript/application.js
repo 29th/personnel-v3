@@ -6,9 +6,11 @@ import { Application } from '@hotwired/stimulus'
 const application = Application.start()
 
 // Configure Stimulus development experience
-application.debug = false
+application.debug = true
 window.Stimulus = application
 
 import NestedForm from 'stimulus-rails-nested-form'
+import RealismExperience from './controllers/realism_experience_controller'
 
-application.register("nested-form", NestedForm)
+application.register('nested-form', NestedForm)
+application.register('realism-experience', RealismExperience)
