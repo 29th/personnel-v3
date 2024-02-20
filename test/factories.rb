@@ -106,7 +106,7 @@ FactoryBot.define do
     experience { "none" }
     comments { "" }
     recruiter { "" }
-    ingame_name { "" }
+    ingame_name { "player" }
     forum_id { "Discourse" }
   end
 
