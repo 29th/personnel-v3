@@ -239,7 +239,7 @@ FactoryBot.define do
 
     initialize_with {
       new({
-        :uid => forum_member_id,
+        "uid" => forum_member_id,
         "info" => {
           "nickname" => forum_member_username,
           "email" => forum_member_email,

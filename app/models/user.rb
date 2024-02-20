@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :awards, through: :user_awards
   has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
-  has_many :enlistments, foreign_key: "member_id"
+  has_many :enlistments, foreign_key: "member_id", inverse_of: :user
   has_many :extended_loas, foreign_key: "member_id"
   has_many :finance_records, foreign_key: "member_id"
   has_many :notes, foreign_key: "member_id"

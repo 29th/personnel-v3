@@ -14,10 +14,18 @@ class UnregisteredUser
   validates :forum_member_id, presence: true, numericality: {only_integer: true}
 
   def initialize(discourse_sso_data)
-    @forum_member_id = discourse_sso_data[:uid]
+    @forum_member_id = discourse_sso_data["uid"]
     @forum_member_username = discourse_sso_data["info"]["nickname"]
     @forum_member_email = discourse_sso_data["info"]["email"]
     @time_zone = discourse_sso_data["info"]["time_zone"]
+  end
+
+  def to_normal_user(params)
+    User.new(**params,
+      forum_member_id: @forum_member_id,
+      email: @forum_member_email,
+      time_zone: @time_zone,
+      rank: Rank.recruit)
   end
 
   def id = nil

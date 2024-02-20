@@ -2,7 +2,7 @@ class Enlistment < ApplicationRecord
   include HasForumTopic
   include StoreModel::NestedAttributes
   audited
-  belongs_to :user, foreign_key: "member_id"
+  belongs_to :user, foreign_key: "member_id", inverse_of: :enlistments
   belongs_to :liaison, class_name: "User", foreign_key: "liaison_member_id",
     optional: true
   belongs_to :recruiter_user, class_name: "User", foreign_key: "recruiter_member_id",
@@ -19,6 +19,8 @@ class Enlistment < ApplicationRecord
   normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
 
   validates :user, presence: true
+  validates_associated :user
+
   validates :date, timeliness: {date: true}
   validates :status, presence: true
   validates :first_name, presence: true, length: {in: 1..30}
