@@ -463,4 +463,9 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal 11, user.service_duration.in_months.round
   end
+
+  test "new user is invalid without a forum_member_id" do
+    user = build(:user, forum_member_id: nil)
+    refute user.valid?
+  end
 end

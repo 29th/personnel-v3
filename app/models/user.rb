@@ -37,6 +37,7 @@ class User < ApplicationRecord
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
   validates :forum_member_id, uniqueness: true, allow_nil: true
+  validates :forum_member_id, presence: true, on: :create
   validate :known_time_zone
 
   def full_name
