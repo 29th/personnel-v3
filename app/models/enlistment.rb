@@ -43,6 +43,13 @@ class Enlistment < ApplicationRecord
 
   delegate :linked_forum_users, to: :user
 
+  def full_name
+    middle_initial = "#{middle_name[0]}." if middle_name.present?
+    [first_name, middle_initial, last_name]
+      .reject(&:blank?)
+      .join(" ")
+  end
+
   def linked_ban_logs
     ips = linked_forum_users.pluck(:ips).flatten.uniq
 

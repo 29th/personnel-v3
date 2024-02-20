@@ -36,4 +36,19 @@ module EnlistmentsHelper
       ["Squad", "SQ"]
     ]
   end
+
+  STATUS_BADGE_MODIFIERS = {
+    accepted: "badge-success",
+    denied: "badge-danger",
+    withdrawn: "badge-warning",
+    awol: "badge-warning",
+    pending: "badge-secondary",
+    default: "badge-secondary"
+  }
+
+  def status_badge(status)
+    modifier = STATUS_BADGE_MODIFIERS[status] || STATUS_BADGE_MODIFIERS[:default]
+    status_label = Enlistment.statuses[status].humanize
+    tag.span(status_label, class: "badge badge-pill #{modifier}")
+  end
 end
