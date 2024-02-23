@@ -47,4 +47,4 @@ jobs:
           RAILS_ENV: test
           
       - name: Run tests
-        run: bundle exec rails test
+        run: bundle exec rails test:all

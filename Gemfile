@@ -63,6 +63,7 @@ group :test do
   gem "webmock", "~> 3.12", ">= 3.12.1"
   gem "minitest-stub_any_instance", "~> 1.0", ">= 1.0.2"
   gem "mocha", "~> 2.1"
+  gem "cuprite", "~> 0.15"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

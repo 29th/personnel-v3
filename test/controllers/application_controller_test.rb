@@ -4,7 +4,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
   test "nav bar should show sign in link when not logged in" do
     get root_url
     assert_response :success
-    assert_select "#user-dropdown", "Sign in"
+    assert_select "#user-dropdown", /Sign in/
   end
 
   test "nav bar should show short name when logged in as a member" do

@@ -53,7 +53,7 @@
             <%= button_to 'Sign in', sign_in_path(:discourse, flash[:sign_in_origin]),
                   method: :post, class: 'btn btn-link nav-link', data: { turbo: false } %>
           </li>
-            <% if Rails.env.development? %>
+            <% unless Rails.env.production? %>
             <li class="nav-item">
               <%= button_to 'Sign in (dev)', sign_in_path(:developer, flash[:sign_in_origin]),
                     method: :post, class: 'btn btn-link nav-link', data: { turbo: false } %>
