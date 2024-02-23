@@ -24,7 +24,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
   class AnalyzeEnlistmentTest < Manage::EnlistmentsControllerTest
     setup do
       @unit = create(:unit)
-      @user = create(:user)
+      @user = create(:user, last_name: "Golf")
       create(:assignment, user: @user, unit: @unit)
       sign_in_as @user
       create(:permission, abbr: "manage", unit: @unit)
