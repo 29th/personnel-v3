@@ -1,3 +1,4 @@
+host: www.29th.org
 discourse:
   base_url:
     internal: https://forums.29th.org
@@ -5,6 +6,8 @@ discourse:
   api_key: ~
   webhooks_secret: ~
   sso_secret: ~
+  categories:
+    enlistment_office: 37
 personnel_v2_app:
   base_url:
     internal: https://personnel.29th.org

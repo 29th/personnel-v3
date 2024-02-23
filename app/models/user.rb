@@ -213,6 +213,8 @@ class User < ApplicationRecord
     end
   end
 
+  def create_forum_topic(...) = discourse_service.user.create_topic(...)
+
   def linked_forum_users
     @linked_forum_users ||= begin
       linked_forum_users = []

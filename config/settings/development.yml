@@ -1,3 +1,4 @@
+host: www.29th.local
 discourse:
   base_url:
     internal: http://host.docker.internal:3000
@@ -5,6 +6,8 @@ discourse:
   api_key: dev
   webhooks_secret: developmentsecret
   sso_secret: dev
+  categories:
+    enlistment_office: 4
 personnel_v2_app:
   base_url:
     internal: http://app

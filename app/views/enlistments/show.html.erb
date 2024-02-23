@@ -76,6 +76,13 @@
     <dd><%= @enlistment.comments %></dd>
   </dl>
   
+  <h2>Forum replies</h2>
+  <% if @enlistment.discourse? %>
+    <%= render "manage/enlistments/discourse_embed", {topic_id: @enlistment.topic_id} %>
+  <% elsif @enlistment.vanilla? || @enlistment.forum_id.nil? %>
+    <%= render "manage/enlistments/vanilla_embed", {id: @enlistment.id} %>
+  <% end %>
+  
   <% if policy(@enlistment).edit? %>
     <%= link_to "Manage", manage_enlistment_path(@enlistment), class: "btn btn-secondary" %>
   <% end %>

@@ -97,4 +97,35 @@ class DiscourseServiceTest < ActiveSupport::TestCase
       user.update_forum_roles
     end
   end
+
+  test "create_topic uses username in header" do
+    forum_member_id = 1
+    username = "fluffy_panda"
+
+    create(:user, forum_member_id: forum_member_id)
+
+    stub_user_request(forum_member_id, username: username)
+    stub_request(:post, %r{/posts.json})
+
+    DiscourseService.new(forum_member_id).user.create_topic(1, "title", "body")
+
+    assert_requested(:post, %r{/posts.json},
+      headers: {"Api-Username" => "fluffy_panda"})
+  end
+
+  test "create_topic uses allow-listed kwargs if provided" do
+    forum_member_id = 1
+    username = "fluffy_panda"
+
+    create(:user, forum_member_id: forum_member_id)
+
+    stub_user_request(forum_member_id, username: username)
+    stub_request(:post, %r{/posts.json})
+
+    DiscourseService.new(forum_member_id).user.create_topic(1, "title", "body",
+      external_id: 9)
+
+    assert_requested(:post, %r{/posts.json},
+      body: {category: 1, title: "title", raw: "body", external_id: 9})
+  end
 end

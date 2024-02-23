@@ -24,6 +24,9 @@ class EnlistmentsController < ApplicationController
 
     if @enlistment.save
       sign_in_as @enlistment.user if is_new_user
+
+      CreateEnlistmentForumTopicJob.perform_now(@enlistment)
+
       redirect_to @enlistment, notice: "Enlistment was successfully created."
     else
       render :new, status: :unprocessable_entity

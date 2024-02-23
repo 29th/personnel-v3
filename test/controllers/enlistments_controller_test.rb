@@ -68,6 +68,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     test "uses existing member record when one exists" do
       user = create(:user)
       sign_in_as(user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       assert_difference(-> { User.count } => 0, -> { Enlistment.count } => 1) do
         post enlistments_url, params: {enlistment: @valid_attrs}
@@ -81,6 +82,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     test "creates member record for unregistered user" do
       user = build(:unregistered_user)
       sign_in_as(user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       assert_difference(-> { User.count } => 1, -> { Enlistment.count } => 1) do
         post enlistments_url, params: {enlistment: @valid_attrs}
@@ -94,6 +96,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     test "signs in as newly created user" do
       user = build(:unregistered_user)
       sign_in_as(user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       post enlistments_url, params: {enlistment: @valid_attrs}
 
@@ -104,6 +107,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     test "does not create member record if enlistment is invalid" do
       user = build(:unregistered_user)
       sign_in_as(user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now).never
 
       invalid_attrs = {**@valid_attrs, ingame_name: nil}
       assert_difference(-> { User.count } => 0, -> { Enlistment.count } => 0) do

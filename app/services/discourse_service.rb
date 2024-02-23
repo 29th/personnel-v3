@@ -90,6 +90,16 @@ class DiscourseService
       end
     end
 
+    def create_topic(category, title, body, external_id: nil, embed_url: nil)
+      path = "/posts.json"
+      headers = {"Api-Username" => username}
+      body = {category: category, title: title, raw: body}
+      body[:external_id] = external_id if external_id.present?
+      body[:embed_url] = embed_url if embed_url.present?
+      response = @conn.post(path, body, headers)
+      response.body
+    end
+
     private
 
     def user_data
