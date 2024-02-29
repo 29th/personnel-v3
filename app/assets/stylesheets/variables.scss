@@ -1,3 +1,7 @@
+/*
+  See the full list of variables at:
+  https://github.com/twbs/bootstrap/blob/v4.6.2/scss/_variables.scss
+*/
 $olive-drab: #565a43ff;
 $rifle-green: #414336ff;
 $jet: #2b2c28ff;
@@ -41,3 +45,5 @@ $nav-tabs-link-active-border-color: $nav-tabs-border-color;
 $card-bg: $dark;
 
 $input-bg: $beige;
+$input-disabled-bg: $text-muted;
+$input-disabled-color: $jet; // implemented in application.scss
