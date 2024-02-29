@@ -30,13 +30,24 @@
     <%= simple_form_for @enlistment, data: {controller: "nested-form", nested_form_wrapper_selector_value: ".nested-form-wrapper"} do |f| %>
       <%= f.error_notification %>
 
-      <div class="form-row">
-        <%= f.input :first_name, wrapper_html: {class: "col-md-5"} %>
-        <%= f.input :middle_name, label: "Middle Initial",
-          wrapper_html: {class: "col-md-2"}  %>
-        <%= f.input :last_name, hint: "Please use your real name or a realistic sounding name.",
-          wrapper_html: {class: "col-md-5"} %>
-      </div>
+      <%= f.simple_fields_for :user, current_user do |user_fields| %>
+        <div class="form-row">
+          <% if current_user.is_a?(UnregisteredUser) %>
+            <%= user_fields.input :first_name, wrapper_html: {class: "col-md-5"} %>
+            <%= user_fields.input :middle_name, label: "Middle Initial",
+              wrapper_html: {class: "col-md-2"}  %>
+            <%= user_fields.input :last_name, hint: "Please use your real name or a realistic sounding name.",
+              wrapper_html: {class: "col-md-5"} %>
+          <% else %>
+            <%= user_fields.input :first_name, disabled: true,
+              wrapper_html: {class: "col-md-5"}, hint: "If you want to change your name, please explain in the 'Other comments' field below." %>
+            <%= user_fields.input :middle_name, label: "Middle Initial",
+              disabled: true, wrapper_html: {class: "col-md-2"}  %>
+            <%= user_fields.input :last_name,
+              disabled: true, wrapper_html: {class: "col-md-5"} %>
+          <% end %>
+        </div>
+      <% end %>
       
       <%= f.input :age, collection: ["Under 13", *13..99] %>
       
@@ -49,8 +60,16 @@
 
       <%= f.input :ingame_name, hint: "What name do you play with?" %>
 
-      <%= f.input :steam_id, label: "Steam ID", as: :string,
-        hint: "Your Steam Identification number. #{link_to "Click here for help", "https://29th.org/roid", target: "_blank"}.".html_safe %>
+      <%= f.simple_fields_for :user, current_user do |user_fields| %>
+        <% if current_user.is_a?(UnregisteredUser) %>
+          <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
+            hint: "Your Steam Identification number. #{link_to "Click here for help", "https://29th.org/roid", target: "_blank"}.".html_safe %>
+        <% else %>
+          <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
+            disabled: true,
+            hint: "To change your Steam ID, please explain in the 'Other comments' field below." %>
+        <% end %>
+      <% end %>
       
       <%= f.input :recruiter, label: "Who recruited you?",
         hint: "What was the name of the 29th member who asked you to enlist? If you were not recruited by someone, how did you find out about the 29th Infantry Division?" %>

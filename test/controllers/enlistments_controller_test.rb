@@ -57,12 +57,16 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     setup do
       create(:rank, name: "Recruit")
       country = create(:country)
-      @valid_attrs = {first_name: "Jane", middle_name: "Adelade", last_name: "Doe",
-                      age: "20", country_id: country.id, timezone: "est", game: "rs2",
-                      ingame_name: "jdo", steam_id: "123456789", recruiter: "Pvt Pyle",
-                      experience: "Yes", comments: "", previous_units: [
-                        {unit: "1st LOL", game: "Tetris", name: "jdo", rank: "", reason: "Disbanded"}
-                      ]}
+      @valid_attrs = {
+        age: "20", country_id: country.id, timezone: "est", game: "rs2",
+        ingame_name: "jdo", recruiter: "Pvt Pyle", experience: "Yes", comments: "",
+        user_attributes: {
+          first_name: "Jane", middle_name: "Adelade", last_name: "Doe", steam_id: "123456789"
+        },
+        previous_units: [
+          {unit: "1st LOL", game: "Tetris", name: "jdo", rank: "", reason: "Disbanded"}
+        ]
+      }
     end
 
     test "uses existing member record when one exists" do
@@ -80,8 +84,8 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "creates member record for unregistered user" do
-      user = build(:unregistered_user)
-      sign_in_as(user)
+      unregistered_user = build(:unregistered_user)
+      sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       assert_difference(-> { User.count } => 1, -> { Enlistment.count } => 1) do
@@ -93,9 +97,67 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       assert_equal User.last, new_enlistment.user
     end
 
-    test "signs in as newly created user" do
-      user = build(:unregistered_user)
+    test "combines form data with session data when enlisting as unregistered user" do
+      unregistered_user = build(:unregistered_user)
+      sign_in_as(unregistered_user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
+
+      post enlistments_url, params: {enlistment: @valid_attrs}
+
+      new_enlistment = Enlistment.last
+      new_user = User.last
+      assert_equal new_user, new_enlistment.user
+      assert_equal unregistered_user.forum_member_id, new_user.forum_member_id
+      assert_equal unregistered_user.forum_member_email, new_user.email
+      assert_equal @valid_attrs[:user_attributes][:last_name], new_user.last_name
+    end
+
+    test "does not allow user attributes to be updated when enlisting as existing user" do
+      user = create(:user, last_name: "Delphi", steam_id: "888")
       sign_in_as(user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
+
+      # @valid_attrs has a different last_name and steam_id
+      post enlistments_url, params: {enlistment: @valid_attrs}
+
+      new_enlistment = Enlistment.last
+      assert_equal user, new_enlistment.user
+      assert_equal "Delphi", new_enlistment.user.last_name
+      assert_equal "888", new_enlistment.user.steam_id
+    end
+
+    test "copies user attributes to legacy enlistment fields for unregistered users" do
+      unregistered_user = build(:unregistered_user)
+      sign_in_as(unregistered_user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
+
+      post enlistments_url, params: {enlistment: @valid_attrs}
+
+      new_enlistment = Enlistment.last
+      new_user = User.last
+      assert_equal new_user.first_name, new_enlistment.first_name
+      assert_equal new_user.middle_name, new_enlistment.middle_name
+      assert_equal new_user.last_name, new_enlistment.last_name
+      assert_equal new_user.steam_id, new_enlistment.steam_id
+    end
+
+    test "copies user attributes to legacy enlistment fields for existing users" do
+      user = create(:user, middle_name: "Foo")
+      sign_in_as(user)
+      CreateEnlistmentForumTopicJob.expects(:perform_now)
+
+      post enlistments_url, params: {enlistment: @valid_attrs}
+
+      new_enlistment = Enlistment.last
+      assert_equal user.first_name, new_enlistment.first_name
+      assert_equal user.middle_name, new_enlistment.middle_name
+      assert_equal user.last_name, new_enlistment.last_name
+      assert_equal user.steam_id, new_enlistment.steam_id
+    end
+
+    test "signs in as newly created user" do
+      unregistered_user = build(:unregistered_user)
+      sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       post enlistments_url, params: {enlistment: @valid_attrs}

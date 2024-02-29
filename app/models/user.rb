@@ -34,6 +34,8 @@ class User < ApplicationRecord
     joins(:assignments).merge(Assignment.active(date)).distinct
   }
 
+  normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
   validates :forum_member_id, uniqueness: true, allow_nil: true

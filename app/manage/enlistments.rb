@@ -4,9 +4,10 @@ ActiveAdmin.register Enlistment do
   includes :unit
   actions :index, :show, :edit, :update
   permit_params do
-    params = [:first_name, :middle_name, :last_name, :age, :game, :timezone,
-      :country_id, :steam_id, :ingame_name, :recruiter, :experience, :comments,
-      previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]]
+    params = [:age, :game, :timezone, :country_id, :ingame_name, :recruiter,
+      :experience, :comments,
+      previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy],
+      user_attributes: [:first_name, :middle_name, :last_name, :steam_id]]
 
     params += [:member_id] if authorized?(:transfer, resource)
     params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
@@ -53,9 +54,15 @@ ActiveAdmin.register Enlistment do
           tag_row :status
           row :unit
           row :user
-          row :first_name
-          row "Middle initial", :middle_name
-          row :last_name
+          row :first_name do |enlistment|
+            enlistment.user.first_name
+          end
+          row "Middle initial" do |enlistment|
+            enlistment.user.middle_name
+          end
+          row :last_name do |enlistment|
+            enlistment.user.last_name
+          end
           row :age
           row :game do |enlistment|
             Enlistment.games[enlistment.game]
@@ -72,7 +79,7 @@ ActiveAdmin.register Enlistment do
             end
           end
           row "Steam ID", :steam_id do |enlistment|
-            link_to enlistment.steam_id, "http://steamcommunity.com/profiles/#{enlistment.steam_id}" if enlistment.steam_id.present?
+            link_to enlistment.user.steam_id, "http://steamcommunity.com/profiles/#{enlistment.user.steam_id}" if enlistment.user.steam_id.present?
           end
 
           row :ingame_name
@@ -224,15 +231,18 @@ ActiveAdmin.register Enlistment do
         end
       end
 
-      f.input :first_name
-      f.input :middle_name, label: "Middle initial"
-      f.input :last_name
+      f.has_many :user, new_record: false do |u|
+        u.input :first_name
+        u.input :middle_name, label: "Middle initial"
+        u.input :last_name
+        u.input :steam_id, label: "Steam ID", as: :string
+      end
+
       f.input :age, as: :select, collection: Enlistment::VALID_AGES
       f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
       f.input :timezone, label: "Preferred time", as: :select,
         collection: Enlistment.timezones.map(&:reverse)
       f.input :country
-      f.input :steam_id, label: "Steam ID", as: :string
       f.input :ingame_name
       f.input :recruiter
       f.input :experience

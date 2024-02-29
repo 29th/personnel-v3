@@ -14,11 +14,20 @@ class EnlistmentsController < ApplicationController
     @enlistment.date = Date.today
 
     if current_user.is_a?(UnregisteredUser)
-      @enlistment.user = current_user.to_normal_user(user_params)
+      @enlistment.user.forum_member_id = current_user.forum_member_id
+      @enlistment.user.email = current_user.forum_member_email
+      @enlistment.user.time_zone = current_user.time_zone
+      @enlistment.user.rank = Rank.recruit
       is_new_user = true
     else
       @enlistment.user = current_user
     end
+
+    # Copy user attributes to legacy enlistment fields
+    @enlistment.last_name = @enlistment.user.last_name
+    @enlistment.middle_name = @enlistment.user.middle_name
+    @enlistment.first_name = @enlistment.user.first_name
+    @enlistment.steam_id = @enlistment.user.steam_id
 
     authorize @enlistment
 
@@ -41,23 +50,29 @@ class EnlistmentsController < ApplicationController
   end
 
   def enlistment_params
-    params.require(:enlistment).permit(
-      :first_name,
-      :middle_name,
-      :last_name,
+    attrs = [
       :age,
       :country_id,
       :timezone,
       :game,
       :ingame_name,
-      :steam_id,
       :recruiter,
       :experience,
       :comments,
       previous_units_attributes: [
         :unit, :game, :name, :rank, :reason, :_destroy
       ]
-    )
+    ]
+    user_attrs = [
+      user_attributes: [
+        :first_name,
+        :middle_name,
+        :last_name,
+        :steam_id
+      ]
+    ]
+    attrs += user_attrs if current_user.is_a?(UnregisteredUser)
+    params.require(:enlistment).permit(attrs)
   end
 
   def user_params

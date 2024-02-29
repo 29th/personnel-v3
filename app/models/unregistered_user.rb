@@ -6,6 +6,7 @@ class UnregisteredUser
 
   attr_reader :forum_member_id, :forum_member_username,
     :forum_member_email, :time_zone
+  attr_accessor :first_name, :middle_name, :last_name, :steam_id
 
   alias_method :full_name, :forum_member_username
   alias_method :short_name, :forum_member_username

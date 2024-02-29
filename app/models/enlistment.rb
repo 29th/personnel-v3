@@ -20,6 +20,7 @@ class Enlistment < ApplicationRecord
 
   validates :user, presence: true
   validates_associated :user
+  accepts_nested_attributes_for :user, update_only: true
 
   validates :date, timeliness: {date: true}
   validates :status, presence: true
