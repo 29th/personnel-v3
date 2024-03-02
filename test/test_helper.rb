@@ -14,15 +14,11 @@ class ActiveSupport::TestCase
   def sign_in_as(user)
     OmniAuth.config.test_mode = true
 
-    if user.is_a?(UnregisteredUser)
-      OmniAuth.config.add_mock(:discourse, {
-        uid: user.forum_member_id,
-        info: {"nickname" => user.forum_member_username, "email" => user.forum_member_email,
-               "time_zone" => user.time_zone}
-      })
-    else
-      OmniAuth.config.add_mock(:discourse, {uid: user.forum_member_id})
-    end
+    OmniAuth.config.add_mock(:discourse, {
+      uid: user.forum_member_id,
+      info: {"nickname" => user.username, "email" => user.email,
+             "time_zone" => user.time_zone}
+    })
 
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:discourse]
     post create_user_session_url(:discourse)

@@ -46,14 +46,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "signing in as an unregistered user saves discourse info in the session" do
-    user = build(:unregistered_user)
+    user = build(:user, :unregistered)
     sign_in_as(user)
 
     assert_nil session[:user_id]
 
     assert session["omniauth.discourse_data"], "omniauth.discourse_data is not set in session"
     assert_equal user.forum_member_id, session["omniauth.discourse_data"][:uid]
-    assert_equal user.forum_member_username, session["omniauth.discourse_data"]["info"]["nickname"]
+    assert_equal user.username, session["omniauth.discourse_data"]["info"]["nickname"]
     assert_match(/Signed in/, flash[:notice])
   end
 end

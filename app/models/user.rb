@@ -35,12 +35,27 @@ class User < ApplicationRecord
   }
 
   normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+  attr_accessor :username
 
   nilify_blanks
   validates_presence_of :last_name, :first_name, :rank
   validates :forum_member_id, uniqueness: true, allow_nil: true
   validates :forum_member_id, presence: true, on: :create
   validate :known_time_zone
+
+  def self.from_sso(sso_data)
+    find_or_initialize_by(forum_member_id: sso_data["uid"]) do |user|
+      user.forum_member_id = sso_data["uid"]
+      user.username = sso_data["info"]["nickname"]
+      user.email = sso_data["info"]["email"]
+      user.time_zone = sso_data["info"]["time_zone"]
+      user.rank = Rank.recruit
+    end
+  end
+
+  # Unregistered users have never enlisted, thus do not have a record in the
+  # members table
+  def unregistered? = !persisted?
 
   def full_name
     middle_initial = "#{middle_name.first}." if middle_name.present?
@@ -66,7 +81,7 @@ class User < ApplicationRecord
   end
 
   def to_s
-    short_name
+    last_name.present? ? short_name : username
   end
 
   # For active admin

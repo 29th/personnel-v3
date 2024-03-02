@@ -9,13 +9,13 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "unregistered user accessing new is shown form" do
-      sign_in_as(build(:unregistered_user))
+      sign_in_as(build(:user, :unregistered))
       get new_enlistment_url
       assert_select "form#new_enlistment", 1
     end
 
     test "existing user accessing new is shown form" do
-      sign_in_as(build(:user))
+      sign_in_as(create(:user))
       get new_enlistment_url
       assert_select "form#new_enlistment", 1
     end
@@ -84,7 +84,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "creates member record for unregistered user" do
-      unregistered_user = build(:unregistered_user)
+      unregistered_user = build(:user, :unregistered)
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
@@ -98,7 +98,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "combines form data with session data when enlisting as unregistered user" do
-      unregistered_user = build(:unregistered_user)
+      unregistered_user = build(:user, :unregistered)
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
@@ -127,7 +127,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "copies user attributes to legacy enlistment fields for unregistered users" do
-      unregistered_user = build(:unregistered_user)
+      unregistered_user = build(:user, :unregistered)
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
@@ -156,7 +156,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "signs in as newly created user" do
-      unregistered_user = build(:unregistered_user)
+      unregistered_user = build(:user, :unregistered)
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
@@ -167,7 +167,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "does not create member record if enlistment is invalid" do
-      user = build(:unregistered_user)
+      user = build(:user, :unregistered)
       sign_in_as(user)
       CreateEnlistmentForumTopicJob.expects(:perform_now).never
 

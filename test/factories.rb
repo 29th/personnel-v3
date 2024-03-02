@@ -231,24 +231,6 @@ FactoryBot.define do
     end
   end
 
-  factory :unregistered_user do
-    forum_member_id { FactoryBot.generate(:random_id) }
-    forum_member_username { Faker::Internet.username }
-    forum_member_email { Faker::Internet.email }
-    time_zone { "Europe/London" }
-
-    initialize_with {
-      new({
-        "uid" => forum_member_id,
-        "info" => {
-          "nickname" => forum_member_username,
-          "email" => forum_member_email,
-          "time_zone" => time_zone
-        }
-      })
-    }
-  end
-
   factory :user do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
@@ -263,6 +245,24 @@ FactoryBot.define do
       rank_attrs = {}
       rank_attrs[:abbr] = rank_abbr if rank_abbr.present?
       association(:rank, **rank_attrs)
+    end
+
+    trait :unregistered do
+      first_name { nil }
+      last_name { nil }
+
+      initialize_with {
+        create(:rank, name: "Recruit", abbr: "Rec.")
+
+        User.from_sso({
+          "uid" => forum_member_id,
+          "info" => {
+            "nickname" => Faker::Internet.username,
+            "email" => Faker::Internet.email,
+            "time_zone" => "Europe/London"
+          }
+        })
+      }
     end
   end
 

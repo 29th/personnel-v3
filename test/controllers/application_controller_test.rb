@@ -15,10 +15,10 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "nav bar should show username when logged in as an unregistered user" do
-    user = build(:unregistered_user)
+    user = build(:user, :unregistered)
     sign_in_as(user)
     get root_url
-    assert_select "#user-dropdown .dropdown-toggle", user.forum_member_username
+    assert_select "#user-dropdown .dropdown-toggle", user.username
   end
 
   test "manage pages should only be viewable to someone with manage permission" do
@@ -58,7 +58,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "unregistered users cannot access members-only pages" do
-    user = build(:unregistered_user)
+    user = build(:user, :unregistered)
     sign_in_as(user)
 
     get events_url

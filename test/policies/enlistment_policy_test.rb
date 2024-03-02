@@ -6,7 +6,7 @@ class EnlistmentPolicyTest < ActiveSupport::TestCase
   end
 
   test "unregistered user CAN create" do
-    user = build(:unregistered_user)
+    user = build(:user, :unregistered)
     assert_permit user, Enlistment, :create
   end
 
