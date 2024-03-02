@@ -5,9 +5,13 @@ ActiveAdmin.register Enlistment do
   actions :index, :show, :edit, :update
   permit_params do
     params = [
-      :age, :game, :timezone, :country_id, :ingame_name, :recruiter, :experience, :comments,
-      previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy],
-      user_attributes: [:first_name, :middle_name, :last_name, :steam_id]
+      :age, :game, :timezone, :ingame_name, :recruiter, :experience, :comments,
+      previous_units_attributes: [
+        :unit, :game, :name, :rank, :reason, :_destroy
+      ],
+      user_attributes: [
+        :first_name, :middle_name, :last_name, :country_id, :steam_id
+      ]
     ]
 
     params += [:member_id] if authorized?(:transfer, resource)
@@ -74,9 +78,10 @@ ActiveAdmin.register Enlistment do
           row :liaison
 
           row :country do |enlistment|
-            if enlistment.country.present?
-              span flag_icon(enlistment.country.sym, title: enlistment.country.name)
-              span enlistment.country.name
+            country = enlistment.user.country
+            if country.present?
+              span flag_icon(country.sym, title: country.name)
+              span country.name
             end
           end
           row "Steam ID", :steam_id do |enlistment|
@@ -233,13 +238,13 @@ ActiveAdmin.register Enlistment do
         u.input :middle_name, label: "Middle initial"
         u.input :last_name
         u.input :steam_id, label: "Steam ID", as: :string
+        u.input :country
       end
 
       f.input :age, as: :select, collection: Enlistment::VALID_AGES
       f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
       f.input :timezone, label: "Preferred time", as: :select,
         collection: Enlistment.timezones.map(&:reverse)
-      f.input :country
       f.input :ingame_name
       f.input :recruiter
       f.input :experience

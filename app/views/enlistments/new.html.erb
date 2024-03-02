@@ -31,27 +31,29 @@
       <%= f.error_notification %>
 
       <%= simple_fields_for :user, current_user do |user_fields| %>
-        <div class="form-row">
           <% if current_user.unregistered? %>
-            <%= user_fields.input :first_name, wrapper_html: {class: "col-md-5"} %>
-            <%= user_fields.input :middle_name, label: "Middle Initial",
-              wrapper_html: {class: "col-md-2"}  %>
-            <%= user_fields.input :last_name, hint: "Please use your real name or a realistic sounding name.",
-              wrapper_html: {class: "col-md-5"} %>
+            <div class="form-row">
+              <%= user_fields.input :first_name, wrapper_html: {class: "col-md-5"} %>
+              <%= user_fields.input :middle_name, label: "Middle Initial",
+                wrapper_html: {class: "col-md-2"}  %>
+              <%= user_fields.input :last_name, hint: "Please use your real name or a realistic sounding name.",
+                wrapper_html: {class: "col-md-5"} %>
+            </div>
+            <%= user_fields.association :country %>
           <% else %>
-            <%= user_fields.input :first_name, disabled: true,
-              wrapper_html: {class: "col-md-5"}, hint: "If you want to change your name, please explain in the 'Other comments' field below." %>
-            <%= user_fields.input :middle_name, label: "Middle Initial",
-              disabled: true, wrapper_html: {class: "col-md-2"}  %>
-            <%= user_fields.input :last_name,
-              disabled: true, wrapper_html: {class: "col-md-5"} %>
+            <div class="form-row">
+              <%= user_fields.input :first_name, disabled: true,
+                wrapper_html: {class: "col-md-5"}, hint: "If you want to change your name, please explain in the 'Other comments' field below." %>
+              <%= user_fields.input :middle_name, label: "Middle Initial",
+                disabled: true, wrapper_html: {class: "col-md-2"}  %>
+              <%= user_fields.input :last_name,
+                disabled: true, wrapper_html: {class: "col-md-5"} %>
+            </div>
+            <%= user_fields.association :country, disabled: true, hint: "To change your country, please explain in the 'Other comments' field below." %>
           <% end %>
-        </div>
       <% end %>
       
       <%= f.input :age, collection: ["Under 13", *13..99] %>
-      
-      <%= f.association :country %>
       
       <%= f.input :timezone, label: "Preferred Time", collection: timezone_opts,
         hint: "Which time do you prefer for practicing? (Give or take an hour)" %>

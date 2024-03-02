@@ -7,7 +7,7 @@ class Enlistment < ApplicationRecord
     optional: true
   belongs_to :recruiter_user, class_name: "User", foreign_key: "recruiter_member_id",
     optional: true # There's already a column called recruiter
-  belongs_to :country
+  belongs_to :country, optional: true
   belongs_to :unit, optional: true
 
   enum status: {pending: "Pending", accepted: "Accepted", denied: "Denied",
@@ -102,7 +102,7 @@ class Enlistment < ApplicationRecord
 
   # backwards compatibility - can be removed after full transition
   def set_legacy_attributes_from_user
-    legacy_attributes = [:first_name, :middle_name, :last_name, :steam_id]
+    legacy_attributes = [:first_name, :middle_name, :last_name, :country, :steam_id]
     assign_attributes(user.slice(legacy_attributes))
   end
 

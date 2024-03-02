@@ -42,7 +42,6 @@ class EnlistmentsController < ApplicationController
   def enlistment_params
     params.require(:enlistment).permit(
       :age,
-      :country_id,
       :timezone,
       :game,
       :ingame_name,
@@ -60,6 +59,7 @@ class EnlistmentsController < ApplicationController
       :first_name,
       :middle_name,
       :last_name,
+      :country_id,
       :steam_id
     )
   end

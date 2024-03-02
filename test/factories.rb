@@ -98,7 +98,6 @@ FactoryBot.define do
     user
     age { rand(13..85).to_s }
     date { Date.current }
-    country
     timezone { :est }
     experience { "none" }
     comments { "" }

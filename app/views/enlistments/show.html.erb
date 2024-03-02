@@ -19,11 +19,12 @@
     <dt>Preferred time</dt>
     <dd><%= Enlistment.timezones[@enlistment.timezone] %></dd>
     
-    <% if @enlistment.country.present? %>
+    <% country = @enlistment.user.country %>
+    <% if country.present? %>
       <dt>Country</dt>
       <dd>
-        <span><%= flag_icon(@enlistment.country.sym, title: @enlistment.country.name) %></span>
-        <span><%= @enlistment.country.name %></span>
+        <span><%= flag_icon(country.sym, title: country.name) %></span>
+        <span><%= country.name %></span>
       </dd>
     <% end %>
     

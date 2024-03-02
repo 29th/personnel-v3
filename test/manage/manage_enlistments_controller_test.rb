@@ -102,11 +102,13 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
 
     test "copies user attributes to legacy enlistment fields when updated" do
       enlistment = create(:enlistment)
+      uk = create(:country, name: "UK")
 
       patch manage_enlistment_url(enlistment), params: {
         enlistment: {
           user_attributes: {
             last_name: "Zulu",
+            country_id: uk.id,
             steam_id: "7777"
           }
         }
@@ -115,6 +117,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       enlistment.reload
       assert_equal "Zulu", enlistment.last_name
       assert_equal "7777", enlistment.steam_id
+      assert_equal "UK", enlistment.country.name
     end
 
     test "changing last_name of accepted enlistment updates forum display name" do

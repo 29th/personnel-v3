@@ -57,14 +57,15 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     setup do
       country = create(:country)
       @valid_enlistment_attrs = {
-        age: "20", country_id: country.id, timezone: "est", game: "rs2",
-        ingame_name: "jdo", recruiter: "Pvt Pyle", experience: "Yes", comments: "",
+        age: "20", timezone: "est", game: "rs2", ingame_name: "jdo",
+        recruiter: "Pvt Pyle", experience: "Yes", comments: "",
         previous_units: [
           {unit: "1st LOL", game: "Tetris", name: "jdo", rank: "", reason: "Disbanded"}
         ]
       }
       @valid_user_attrs = {
-        first_name: "Jane", middle_name: "Adelade", last_name: "Doe", steam_id: "123456789"
+        first_name: "Jane", middle_name: "Adelade", last_name: "Doe",
+        steam_id: "123456789", country_id: country.id
       }
     end
 
@@ -112,17 +113,19 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "does not allow user attributes to be updated when enlisting as existing user" do
-      user = create(:user, last_name: "Delphi", steam_id: "888")
+      uk = create(:country, name: "UK")
+      user = create(:user, last_name: "Delphi", steam_id: "888", country: uk)
       sign_in_as(user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
-      # @valid_user_attrs has a different last_name and steam_id
+      # @valid_user_attrs has a different last_name, steam_id, and country
       post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
 
       new_enlistment = Enlistment.last
       assert_equal user, new_enlistment.user
       assert_equal "Delphi", new_enlistment.user.last_name
       assert_equal "888", new_enlistment.user.steam_id
+      assert_equal "UK", new_enlistment.country.name
     end
 
     test "copies user attributes to legacy enlistment fields for unregistered users" do
@@ -138,10 +141,11 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       assert_equal new_user.middle_name, new_enlistment.middle_name
       assert_equal new_user.last_name, new_enlistment.last_name
       assert_equal new_user.steam_id, new_enlistment.steam_id
+      assert_equal new_user.country, new_enlistment.country
     end
 
     test "copies user attributes to legacy enlistment fields for existing users" do
-      user = create(:user, middle_name: "Foo")
+      user = create(:user, middle_name: "Foo", country: build(:country))
       sign_in_as(user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
@@ -152,6 +156,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       assert_equal user.middle_name, new_enlistment.middle_name
       assert_equal user.last_name, new_enlistment.last_name
       assert_equal user.steam_id, new_enlistment.steam_id
+      assert_equal user.country, new_enlistment.country
     end
 
     test "signs in as newly created user" do
