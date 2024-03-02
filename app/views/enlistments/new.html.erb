@@ -30,7 +30,7 @@
     <%= simple_form_for @enlistment, data: {controller: "nested-form", nested_form_wrapper_selector_value: ".nested-form-wrapper"} do |f| %>
       <%= f.error_notification %>
 
-      <%= f.simple_fields_for :user, current_user do |user_fields| %>
+      <%= simple_fields_for :user, current_user do |user_fields| %>
         <div class="form-row">
           <% if current_user.unregistered? %>
             <%= user_fields.input :first_name, wrapper_html: {class: "col-md-5"} %>
@@ -60,7 +60,7 @@
 
       <%= f.input :ingame_name, hint: "What name do you play with?" %>
 
-      <%= f.simple_fields_for :user, current_user do |user_fields| %>
+      <%= simple_fields_for :user, current_user do |user_fields| %>
         <% if current_user.unregistered? %>
           <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
             hint: "Your Steam Identification number. #{link_to "Click here for help", "https://29th.org/roid", target: "_blank"}.".html_safe %>

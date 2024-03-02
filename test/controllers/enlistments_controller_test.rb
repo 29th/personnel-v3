@@ -55,17 +55,16 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
 
   class Create < EnlistmentsControllerTest
     setup do
-      create(:rank, name: "Recruit")
       country = create(:country)
-      @valid_attrs = {
+      @valid_enlistment_attrs = {
         age: "20", country_id: country.id, timezone: "est", game: "rs2",
         ingame_name: "jdo", recruiter: "Pvt Pyle", experience: "Yes", comments: "",
-        user_attributes: {
-          first_name: "Jane", middle_name: "Adelade", last_name: "Doe", steam_id: "123456789"
-        },
         previous_units: [
           {unit: "1st LOL", game: "Tetris", name: "jdo", rank: "", reason: "Disbanded"}
         ]
+      }
+      @valid_user_attrs = {
+        first_name: "Jane", middle_name: "Adelade", last_name: "Doe", steam_id: "123456789"
       }
     end
 
@@ -75,7 +74,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       assert_difference(-> { User.count } => 0, -> { Enlistment.count } => 1) do
-        post enlistments_url, params: {enlistment: @valid_attrs}
+        post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
       end
 
       new_enlistment = Enlistment.last
@@ -89,7 +88,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
       assert_difference(-> { User.count } => 1, -> { Enlistment.count } => 1) do
-        post enlistments_url, params: {enlistment: @valid_attrs}
+        post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
       end
 
       new_enlistment = Enlistment.last
@@ -102,14 +101,14 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
-      post enlistments_url, params: {enlistment: @valid_attrs}
+      post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
 
       new_enlistment = Enlistment.last
       new_user = User.last
       assert_equal new_user, new_enlistment.user
       assert_equal unregistered_user.forum_member_id, new_user.forum_member_id
-      assert_equal unregistered_user.forum_member_email, new_user.email
-      assert_equal @valid_attrs[:user_attributes][:last_name], new_user.last_name
+      assert_equal unregistered_user.email, new_user.email
+      assert_equal @valid_user_attrs[:last_name], new_user.last_name
     end
 
     test "does not allow user attributes to be updated when enlisting as existing user" do
@@ -117,8 +116,8 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       sign_in_as(user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
-      # @valid_attrs has a different last_name and steam_id
-      post enlistments_url, params: {enlistment: @valid_attrs}
+      # @valid_user_attrs has a different last_name and steam_id
+      post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
 
       new_enlistment = Enlistment.last
       assert_equal user, new_enlistment.user
@@ -131,7 +130,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
-      post enlistments_url, params: {enlistment: @valid_attrs}
+      post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
 
       new_enlistment = Enlistment.last
       new_user = User.last
@@ -146,7 +145,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       sign_in_as(user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
-      post enlistments_url, params: {enlistment: @valid_attrs}
+      post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
 
       new_enlistment = Enlistment.last
       assert_equal user.first_name, new_enlistment.first_name
@@ -160,7 +159,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       sign_in_as(unregistered_user)
       CreateEnlistmentForumTopicJob.expects(:perform_now)
 
-      post enlistments_url, params: {enlistment: @valid_attrs}
+      post enlistments_url, params: {enlistment: @valid_enlistment_attrs, user: @valid_user_attrs}
 
       new_user = User.last
       assert_equal new_user.id, session[:user_id]
@@ -171,9 +170,9 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       sign_in_as(user)
       CreateEnlistmentForumTopicJob.expects(:perform_now).never
 
-      invalid_attrs = {**@valid_attrs, ingame_name: nil}
+      invalid_enlistment_attrs = {**@valid_enlistment_attrs, ingame_name: nil}
       assert_difference(-> { User.count } => 0, -> { Enlistment.count } => 0) do
-        post enlistments_url, params: {enlistment: invalid_attrs}
+        post enlistments_url, params: {enlistment: invalid_enlistment_attrs, user: @valid_user_attrs}
       end
     end
   end

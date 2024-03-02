@@ -28,12 +28,6 @@ class EnlistmentTest < ActiveSupport::TestCase
     refute enlistment.previous_units.any? { |pu| pu.attributes.has_key?("foo") }, "has foo attribute"
   end
 
-  test "last_name is invalid if present in restricted names" do
-    restricted_name = create(:restricted_name)
-    enlistment = build_stubbed(:enlistment, last_name: restricted_name.name)
-    refute enlistment.valid?
-  end
-
   test "age is invalid if not in known list" do
     enlistment = build_stubbed(:enlistment, age: "12")
     refute enlistment.valid?

@@ -19,20 +19,15 @@ class Enlistment < ApplicationRecord
   normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
 
   validates :user, presence: true
-  validates_associated :user
   accepts_nested_attributes_for :user, update_only: true
+  validates_associated :user
 
   validates :date, timeliness: {date: true}
   validates :status, presence: true
-  validates :first_name, presence: true, length: {in: 1..30}
-  validates :middle_name, length: {maximum: 1}
-  validates :last_name, presence: true, length: {in: 2..40}
-  validate :last_name_not_restricted
   validates :age, presence: true, inclusion: {in: VALID_AGES, message: "not recognized"}
   validates :timezone, presence: true
   validates :game, presence: true
   validates :ingame_name, presence: true, length: {maximum: 60}
-  validates :steam_id, presence: true, numericality: {only_integer: true}, length: {maximum: 17}
   validates :experience, presence: true, length: {maximum: 1500}
   validates :recruiter, length: {maximum: 128}
   validates :comments, length: {maximum: 1500}
@@ -44,12 +39,7 @@ class Enlistment < ApplicationRecord
 
   delegate :linked_forum_users, to: :user
 
-  def full_name
-    middle_initial = "#{middle_name[0]}." if middle_name.present?
-    [first_name, middle_initial, last_name]
-      .reject(&:blank?)
-      .join(" ")
-  end
+  before_save :set_legacy_attributes_from_user
 
   def linked_ban_logs
     ips = linked_forum_users.pluck(:ips).flatten.uniq
@@ -110,10 +100,10 @@ class Enlistment < ApplicationRecord
     user.assignments.active.training
   end
 
-  def last_name_not_restricted
-    if RestrictedName.where(name: last_name).where.not(user: user).exists?
-      errors.add(:last_name, "is already taken")
-    end
+  # backwards compatibility - can be removed after full transition
+  def set_legacy_attributes_from_user
+    legacy_attributes = [:first_name, :middle_name, :last_name, :steam_id]
+    assign_attributes(user.slice(legacy_attributes))
   end
 
   def unit_classification_is_training

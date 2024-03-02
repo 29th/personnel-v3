@@ -12,27 +12,15 @@ class EnlistmentsController < ApplicationController
   def create
     @enlistment = Enlistment.new(enlistment_params)
     @enlistment.date = Date.today
+    @enlistment.user = current_user
 
-    if current_user.is_a?(UnregisteredUser)
-      @enlistment.user.forum_member_id = current_user.forum_member_id
-      @enlistment.user.email = current_user.forum_member_email
-      @enlistment.user.time_zone = current_user.time_zone
-      @enlistment.user.rank = Rank.recruit
-      is_new_user = true
-    else
-      @enlistment.user = current_user
-    end
-
-    # Copy user attributes to legacy enlistment fields
-    @enlistment.last_name = @enlistment.user.last_name
-    @enlistment.middle_name = @enlistment.user.middle_name
-    @enlistment.first_name = @enlistment.user.first_name
-    @enlistment.steam_id = @enlistment.user.steam_id
+    # Don't allow existing users to update their name etc.
+    @enlistment.user.assign_attributes(user_params) unless @enlistment.user.persisted?
 
     authorize @enlistment
 
     if @enlistment.save
-      sign_in_as @enlistment.user if is_new_user
+      ensure_signed_in_as @enlistment.user
 
       CreateEnlistmentForumTopicJob.perform_now(@enlistment)
 
@@ -44,13 +32,15 @@ class EnlistmentsController < ApplicationController
 
   private
 
-  def sign_in_as(user)
-    reset_session
-    session[:user_id] = user.id
+  def ensure_signed_in_as(user)
+    unless session[:user_id] == user.id
+      reset_session
+      session[:user_id] = user.id
+    end
   end
 
   def enlistment_params
-    attrs = [
+    params.require(:enlistment).permit(
       :age,
       :country_id,
       :timezone,
@@ -62,25 +52,14 @@ class EnlistmentsController < ApplicationController
       previous_units_attributes: [
         :unit, :game, :name, :rank, :reason, :_destroy
       ]
-    ]
-    user_attrs = [
-      user_attributes: [
-        :first_name,
-        :middle_name,
-        :last_name,
-        :steam_id
-      ]
-    ]
-    attrs += user_attrs if current_user.is_a?(UnregisteredUser)
-    params.require(:enlistment).permit(attrs)
+    )
   end
 
   def user_params
-    params.require(:enlistment).permit(
+    params.require(:user).permit(
       :first_name,
       :middle_name,
       :last_name,
-      :country_id,
       :steam_id
     )
   end

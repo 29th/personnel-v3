@@ -5,7 +5,7 @@
 
   <dl>
     <dt>Full name</dt>
-    <dd><%= @enlistment.full_name %></dd>
+    <dd><%= @enlistment.user.full_name %></dd>
     
     <dt>Status</dt>
     <dd><%= status_badge(@enlistment.status) %></dd>
@@ -27,9 +27,9 @@
       </dd>
     <% end %>
     
-    <% if @enlistment.steam_id.present? %>
+    <% if @enlistment.user.steam_id.present? %>
       <dt>Steam ID</dt>
-      <dd><%= link_to @enlistment.steam_id, "https://steamcommunity.com/profiles/#{@enlistment.steam_id}" %></dd>
+      <dd><%= link_to @enlistment.user.steam_id, "https://steamcommunity.com/profiles/#{@enlistment.user.steam_id}" %></dd>
     <% end %>
     
     <dt>In-game name</dt>

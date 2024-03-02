@@ -34,11 +34,17 @@ class User < ApplicationRecord
     joins(:assignments).merge(Assignment.active(date)).distinct
   }
 
-  normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
   attr_accessor :username
 
   nilify_blanks
-  validates_presence_of :last_name, :first_name, :rank
+  validates :first_name, presence: true, length: {in: 1..30}
+  normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+  validates :last_name, presence: true, length: {in: 2..40}
+  validate :last_name_not_restricted
+
+  validates :rank, presence: true
+  validates :steam_id, presence: true, numericality: {only_integer: true}, length: {maximum: 17}
+
   validates :forum_member_id, uniqueness: true, allow_nil: true
   validates :forum_member_id, presence: true, on: :create
   validate :known_time_zone
@@ -337,6 +343,12 @@ class User < ApplicationRecord
   def known_time_zone
     if time_zone? && !ActiveSupport::TimeZone[time_zone].present?
       errors.add(:time_zone, "is not known")
+    end
+  end
+
+  def last_name_not_restricted
+    if RestrictedName.where(name: last_name).where.not(user: self).exists?
+      errors.add(:last_name, "is already taken")
     end
   end
 end

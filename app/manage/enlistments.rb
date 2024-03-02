@@ -4,10 +4,11 @@ ActiveAdmin.register Enlistment do
   includes :unit
   actions :index, :show, :edit, :update
   permit_params do
-    params = [:age, :game, :timezone, :country_id, :ingame_name, :recruiter,
-      :experience, :comments,
+    params = [
+      :age, :game, :timezone, :country_id, :ingame_name, :recruiter, :experience, :comments,
       previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy],
-      user_attributes: [:first_name, :middle_name, :last_name, :steam_id]]
+      user_attributes: [:first_name, :middle_name, :last_name, :steam_id]
+    ]
 
     params += [:member_id] if authorized?(:transfer, resource)
     params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
@@ -215,10 +216,6 @@ ActiveAdmin.register Enlistment do
     end
   end
 
-  action_item :edit_user, only: :show, if: -> { authorized?(:edit, enlistment.user) } do
-    link_to "Edit User", edit_manage_user_path(enlistment.user)
-  end
-
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
     f.inputs do
@@ -288,6 +285,10 @@ ActiveAdmin.register Enlistment do
       else
         enlistment.destroy_assignments
       end
+    elsif (enlistment.user.saved_change_to_last_name? ||
+        enlistment.user.saved_change_to_name_prefix?) &&
+        enlistment.status == "accepted"
+      enlistment.user.update_forum_display_name
     end
   end
 end

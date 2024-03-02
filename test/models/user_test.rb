@@ -468,4 +468,10 @@ class UserTest < ActiveSupport::TestCase
     user = build(:user, forum_member_id: nil)
     refute user.valid?
   end
+
+  test "last_name is invalid if present in restricted names" do
+    restricted_name = create(:restricted_name)
+    enlistment = build_stubbed(:user, last_name: restricted_name.name)
+    refute enlistment.valid?
+  end
 end

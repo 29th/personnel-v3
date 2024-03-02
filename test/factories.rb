@@ -96,13 +96,10 @@ FactoryBot.define do
 
   factory :enlistment do
     user
-    first_name { user.first_name }
-    last_name { user.last_name }
     age { rand(13..85).to_s }
     date { Date.current }
     country
     timezone { :est }
-    steam_id { user.steam_id }
     experience { "none" }
     comments { "" }
     recruiter { "" }
