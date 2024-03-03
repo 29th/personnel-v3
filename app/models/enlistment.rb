@@ -39,7 +39,7 @@ class Enlistment < ApplicationRecord
 
   delegate :linked_forum_users, to: :user
 
-  before_save :set_legacy_attributes_from_user
+  before_validation :set_legacy_attributes_from_user
 
   def linked_ban_logs
     ips = linked_forum_users.pluck(:ips).flatten.uniq
