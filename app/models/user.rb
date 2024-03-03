@@ -37,8 +37,11 @@ class User < ApplicationRecord
   attr_accessor :username
 
   nilify_blanks
-  validates :first_name, presence: true, length: {in: 1..30}
+  normalizes :first_name, :last_name, :steam_id, with: ->(attribute) { attribute.strip }
   normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+  normalizes :email, with: ->(email) { email.strip.downcase }
+
+  validates :first_name, presence: true, length: {in: 1..30}
   validates :last_name, presence: true, length: {in: 2..40}
   validate :last_name_not_restricted
 

@@ -36,8 +36,9 @@ class EnlistmentTest < ActiveSupport::TestCase
     refute enlistment.valid?
   end
 
-  test "middle_name only saves first character" do
-    enlistment = build_stubbed(:enlistment, middle_name: "Anthony")
-    assert enlistment.middle_name == "A"
+  test "strips whitespace from attributes" do
+    enlistment = create(:enlistment, ingame_name: " frank ", recruiter: "someone ")
+    assert_equal "frank", enlistment.ingame_name
+    assert_equal "someone", enlistment.recruiter
   end
 end

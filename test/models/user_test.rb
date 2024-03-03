@@ -474,4 +474,10 @@ class UserTest < ActiveSupport::TestCase
     enlistment = build_stubbed(:user, last_name: restricted_name.name)
     refute enlistment.valid?
   end
+
+  test "whitespace stripped from name fields" do
+    user = create(:user, first_name: " John", last_name: "Doe  ")
+    assert_equal "John", user.first_name
+    assert_equal "Doe", user.last_name
+  end
 end

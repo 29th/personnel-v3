@@ -16,7 +16,7 @@ class Enlistment < ApplicationRecord
   enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
   VALID_AGES = ["Under 13", *13..99].map(&:to_s)
 
-  normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+  normalizes :ingame_name, :recruiter, :comments, with: ->(attribute) { attribute.strip }
 
   validates :user, presence: true
   accepts_nested_attributes_for :user, update_only: true
