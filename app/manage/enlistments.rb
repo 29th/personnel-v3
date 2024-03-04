@@ -223,24 +223,15 @@ ActiveAdmin.register Enlistment do
 
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
-    f.inputs do
-      if authorized?(:transfer, resource)
-        f.input :user, as: :searchable_select, ajax: true
-      else
-        li do
-          label "User"
-          span link_to f.object.user, manage_user_path(f.object.user) # management path
-        end
-      end
+    f.has_many :user, new_record: false do |u|
+      u.input :first_name
+      u.input :middle_name, label: "Middle initial"
+      u.input :last_name
+      u.input :steam_id, label: "Steam ID", as: :string
+      u.input :country
+    end
 
-      f.has_many :user, new_record: false do |u|
-        u.input :first_name
-        u.input :middle_name, label: "Middle initial"
-        u.input :last_name
-        u.input :steam_id, label: "Steam ID", as: :string
-        u.input :country
-      end
-
+    f.inputs "Enlistment" do
       f.input :age, as: :select, collection: Enlistment::VALID_AGES
       f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
       f.input :timezone, label: "Preferred time", as: :select,
@@ -277,6 +268,15 @@ ActiveAdmin.register Enlistment do
     else
       render :process_enlistment
     end
+  end
+
+  action_item :transfer, only: :show,
+    if: proc { authorized?(:transfer, enlistment) } do
+    link_to "Transfer Enlistment", transfer_manage_enlistment_path(enlistment)
+  end
+
+  member_action :transfer, method: :get do
+    render :transfer
   end
 
   after_save do |enlistment|
