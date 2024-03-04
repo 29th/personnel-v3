@@ -90,7 +90,7 @@ class User < ApplicationRecord
   end
 
   def to_s
-    last_name.present? ? short_name : username
+    persisted? ? short_name : username
   end
 
   # For active admin
