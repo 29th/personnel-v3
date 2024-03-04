@@ -33,7 +33,8 @@ module EnlistmentsHelper
       ["Red Orchestra 2", "RO2"],
       ["Rising Storm", "RS"],
       ["Rising Storm 2: Vietnam", "RS2"],
-      ["Squad", "SQ"]
+      ["Squad", "SQ"],
+      ["Other", "Other"]
     ]
   end
 
