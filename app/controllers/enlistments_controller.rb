@@ -15,7 +15,7 @@ class EnlistmentsController < ApplicationController
     @enlistment.user = current_user
 
     # Don't allow existing users to update their name etc.
-    @enlistment.user.assign_attributes(user_params) unless @enlistment.user.persisted?
+    @enlistment.user.assign_attributes(user_params) if @enlistment.user.unregistered?
 
     authorize @enlistment
 
