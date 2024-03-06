@@ -70,7 +70,7 @@
       <%= simple_fields_for :user, current_user do |user_fields| %>
         <% if current_user.unregistered? %>
           <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
-            hint: "Your Steam Identification number. #{link_to "Click here for help", "https://29th.org/roid", target: "_blank"}.".html_safe %>
+            hint: "Your Steam Identification number. #{link_to "Click here for help", "https://help.steampowered.com/en/faqs/view/2816-BE67-5B69-0FEC", target: "_blank"}.".html_safe %>
         <% else %>
           <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
             disabled: true,
