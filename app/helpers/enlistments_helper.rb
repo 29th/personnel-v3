@@ -38,6 +38,12 @@ module EnlistmentsHelper
     ]
   end
 
+  def time_zone_options
+    TZInfo::Timezone.all
+      .sort_by { |tz| [tz.base_utc_offset, tz.identifier] }
+      .map { |tz| [ActiveSupport::TimeZone.new(tz).to_s, tz.identifier] }
+  end
+
   STATUS_BADGE_MODIFIERS = {
     accepted: "badge-success",
     denied: "badge-danger",

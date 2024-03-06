@@ -82,12 +82,6 @@ module ApplicationHelper
     end
   end
 
-  def time_zone_options
-    TZInfo::Timezone.all
-      .sort_by { |tz| [tz.base_utc_offset, tz.identifier] }
-      .map { |tz| [ActiveSupport::TimeZone.new(tz).to_s, tz.identifier] }
-  end
-
   private
 
   def ensure_trailing_slash(url)
