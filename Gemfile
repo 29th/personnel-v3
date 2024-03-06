@@ -62,6 +62,7 @@ group :test do
   # gem 'webdrivers'
   gem "webmock", "~> 3.12", ">= 3.12.1"
   gem "minitest-stub_any_instance", "~> 1.0", ">= 1.0.2"
+  gem "mocha", "~> 2.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -76,7 +77,7 @@ gem "ancestry", "~> 3.2", ">= 3.2.1"
 gem "jwt", "~> 2.2", ">= 2.2.2"
 gem "validates_timeliness", "~> 7.0.0.beta2"
 gem "activeadmin_addons", "~> 1.10", ">= 1.10.1"
-gem "simple_form", "~> 5.1"
+gem "simple_form", "~> 5.3"
 gem "ransack", "~> 4.1", ">= 4.1.1"
 gem "simple_calendar", "~> 2.0"
 gem "redcarpet", "~> 3.6", ">= 3.6.0"

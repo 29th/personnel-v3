@@ -4,9 +4,15 @@ ActiveAdmin.register Enlistment do
   includes :unit
   actions :index, :show, :edit, :update
   permit_params do
-    params = [:first_name, :middle_name, :last_name, :age, :game, :timezone,
-      :country_id, :steam_id, :ingame_name, :recruiter, :experience, :comments,
-      previous_units_attributes: [:unit, :game, :name, :rank, :reason, :_destroy]]
+    params = [
+      :age, :game, :timezone, :ingame_name, :recruiter, :experience, :comments,
+      previous_units_attributes: [
+        :unit, :game, :name, :rank, :reason, :_destroy
+      ],
+      user_attributes: [
+        :first_name, :middle_name, :last_name, :country_id, :steam_id
+      ]
+    ]
 
     params += [:member_id] if authorized?(:transfer, resource)
     params += [:status, :unit_id, :recruiter_member_id] if authorized?(:process_enlistment, resource)
@@ -53,9 +59,15 @@ ActiveAdmin.register Enlistment do
           tag_row :status
           row :unit
           row :user
-          row :first_name
-          row "Middle initial", :middle_name
-          row :last_name
+          row :first_name do |enlistment|
+            enlistment.user.first_name
+          end
+          row "Middle initial" do |enlistment|
+            enlistment.user.middle_name
+          end
+          row :last_name do |enlistment|
+            enlistment.user.last_name
+          end
           row :age
           row :game do |enlistment|
             Enlistment.games[enlistment.game]
@@ -66,13 +78,14 @@ ActiveAdmin.register Enlistment do
           row :liaison
 
           row :country do |enlistment|
-            if enlistment.country.present?
-              span flag_icon(enlistment.country.sym, title: enlistment.country.name)
-              span enlistment.country.name
+            country = enlistment.user.country
+            if country.present?
+              span flag_icon(country.sym, title: country.name)
+              span country.name
             end
           end
           row "Steam ID", :steam_id do |enlistment|
-            link_to enlistment.steam_id, "http://steamcommunity.com/profiles/#{enlistment.steam_id}" if enlistment.steam_id.present?
+            link_to enlistment.user.steam_id, "http://steamcommunity.com/profiles/#{enlistment.user.steam_id}" if enlistment.user.steam_id.present?
           end
 
           row :ingame_name
@@ -208,31 +221,21 @@ ActiveAdmin.register Enlistment do
     end
   end
 
-  action_item :edit_user, only: :show, if: -> { authorized?(:edit, enlistment.user) } do
-    link_to "Edit User", edit_manage_user_path(enlistment.user)
-  end
-
   form do |f|
     f.semantic_errors(*f.object.errors.attribute_names)
-    f.inputs do
-      if authorized?(:transfer, resource)
-        f.input :user, as: :searchable_select, ajax: true
-      else
-        li do
-          label "User"
-          span link_to f.object.user, manage_user_path(f.object.user) # management path
-        end
-      end
+    f.has_many :user, new_record: false do |u|
+      u.input :first_name
+      u.input :middle_name, label: "Middle initial"
+      u.input :last_name
+      u.input :steam_id, label: "Steam ID", as: :string
+      u.input :country
+    end
 
-      f.input :first_name
-      f.input :middle_name, label: "Middle initial"
-      f.input :last_name
+    f.inputs "Enlistment" do
       f.input :age, as: :select, collection: Enlistment::VALID_AGES
       f.input :game, as: :select, collection: Enlistment.games.map(&:reverse)
       f.input :timezone, label: "Preferred time", as: :select,
         collection: Enlistment.timezones.map(&:reverse)
-      f.input :country
-      f.input :steam_id, label: "Steam ID", as: :string
       f.input :ingame_name
       f.input :recruiter
       f.input :experience
@@ -267,6 +270,15 @@ ActiveAdmin.register Enlistment do
     end
   end
 
+  action_item :transfer, only: :show,
+    if: proc { authorized?(:transfer, enlistment) } do
+    link_to "Transfer Enlistment", transfer_manage_enlistment_path(enlistment)
+  end
+
+  member_action :transfer, method: :get do
+    render :transfer
+  end
+
   after_save do |enlistment|
     if enlistment.saved_change_to_status? || enlistment.saved_change_to_unit_id?
       if enlistment.status == "accepted"
@@ -278,6 +290,10 @@ ActiveAdmin.register Enlistment do
       else
         enlistment.destroy_assignments
       end
+    elsif (enlistment.user.saved_change_to_last_name? ||
+        enlistment.user.saved_change_to_name_prefix?) &&
+        enlistment.status == "accepted"
+      enlistment.user.update_forum_display_name
     end
   end
 end

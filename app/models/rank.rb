@@ -20,6 +20,10 @@ class Rank < ApplicationRecord
     grade&.starts_with? "O-"
   end
 
+  def self.recruit
+    find_by(name: "Recruit")
+  end
+
   private_class_method :ransackable_attributes
 
   def self.ransackable_attributes(_auth_object = nil)

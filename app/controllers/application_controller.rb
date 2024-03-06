@@ -48,7 +48,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= if session[:user_id]
+      User.find(session[:user_id])
+    elsif session["omniauth.discourse_data"]
+      User.from_sso(session["omniauth.discourse_data"])
+    end
   end
 
   def user_not_authorized(_exception)

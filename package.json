@@ -17,6 +17,7 @@
     "jquery-events-to-dom-events": "^1.1.0",
     "rails-timezone": "^1.1.0",
     "stimulus-flatpickr": "^3.0.0-0",
+    "stimulus-rails-nested-form": "^4.1.0",
     "timeago.js": "^4.0.2",
     "tippy.js": "^6.3.7",
     "webpack": "^5.89.0",

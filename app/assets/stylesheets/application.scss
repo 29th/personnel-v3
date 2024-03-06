@@ -96,3 +96,7 @@ footer {
   z-index: 1030;
   padding: 0 5vw;
 }
+
+input.form-control:disabled {
+  color: $input-disabled-color;
+}

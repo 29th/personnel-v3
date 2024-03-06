@@ -16,7 +16,8 @@ class VanillaServiceTest < ActiveSupport::TestCase
 
   test "update_roles sends expected roles" do
     vanilla_forum_member_id = 1
-    user = create(:user, vanilla_forum_member_id: vanilla_forum_member_id, forum_member_id: nil)
+    user = create(:user, vanilla_forum_member_id: vanilla_forum_member_id)
+    user.update(forum_member_id: nil) # don't execute discourse request
     unit = create(:unit)
     create(:assignment, user: user, unit: unit)
 

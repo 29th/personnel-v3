@@ -3,6 +3,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "webmock/minitest"
 require "minitest/stub_any_instance"
+require "mocha/minitest"
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -12,7 +13,13 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   def sign_in_as(user)
     OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock(:discourse, {uid: user.forum_member_id})
+
+    OmniAuth.config.add_mock(:discourse, {
+      uid: user.forum_member_id,
+      info: {"nickname" => user.username, "email" => user.email,
+             "time_zone" => user.time_zone}
+    })
+
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:discourse]
     post create_user_session_url(:discourse)
     OmniAuth.config.mock_auth[:discourse] = nil

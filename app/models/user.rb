@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :awards, through: :user_awards
   has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
-  has_many :enlistments, foreign_key: "member_id"
+  has_many :enlistments, foreign_key: "member_id", inverse_of: :user
   has_many :extended_loas, foreign_key: "member_id"
   has_many :finance_records, foreign_key: "member_id"
   has_many :notes, foreign_key: "member_id"
@@ -34,10 +34,36 @@ class User < ApplicationRecord
     joins(:assignments).merge(Assignment.active(date)).distinct
   }
 
+  attr_accessor :username
+
   nilify_blanks
-  validates_presence_of :last_name, :first_name, :rank
+  normalizes :first_name, :last_name, :steam_id, with: ->(attribute) { attribute.strip }
+  normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+  normalizes :email, with: ->(email) { email.strip.downcase }
+
+  validates :first_name, presence: true, length: {in: 1..30}
+  validates :last_name, presence: true, length: {in: 2..40}
+  validate :last_name_not_restricted
+
+  validates :rank, presence: true
+  validates :steam_id, presence: true, numericality: {only_integer: true}, length: {maximum: 17}
+
   validates :forum_member_id, uniqueness: true, allow_nil: true
+  validates :forum_member_id, presence: true, on: :create
   validate :known_time_zone
+
+  def self.from_sso(sso_data)
+    find_or_initialize_by(forum_member_id: sso_data["uid"]) do |user|
+      user.username = sso_data["info"]["nickname"]
+      user.email = sso_data["info"]["email"]
+      user.time_zone = sso_data["info"]["time_zone"]
+      user.rank = Rank.recruit
+    end
+  end
+
+  # Unregistered users have never enlisted, thus do not have a record in the
+  # members table
+  def unregistered? = !persisted?
 
   def full_name
     middle_initial = "#{middle_name.first}." if middle_name.present?
@@ -63,7 +89,7 @@ class User < ApplicationRecord
   end
 
   def to_s
-    short_name
+    persisted? ? short_name : username
   end
 
   # For active admin
@@ -138,7 +164,11 @@ class User < ApplicationRecord
   end
 
   def cadet?
-    false
+    assignments.active.training.any?
+  end
+
+  def has_pending_enlistment?
+    enlistments.pending.any?
   end
 
   def assigned_to_subtree?(unit)
@@ -207,6 +237,8 @@ class User < ApplicationRecord
       vanilla_service.user.update_roles(expected_roles)
     end
   end
+
+  def create_forum_topic(...) = discourse_service.user.create_topic(...)
 
   def linked_forum_users
     @linked_forum_users ||= begin
@@ -313,6 +345,12 @@ class User < ApplicationRecord
   def known_time_zone
     if time_zone? && !ActiveSupport::TimeZone[time_zone].present?
       errors.add(:time_zone, "is not known")
+    end
+  end
+
+  def last_name_not_restricted
+    if RestrictedName.where(name: last_name).where.not(user: self).exists?
+      errors.add(:last_name, "is already taken")
     end
   end
 end

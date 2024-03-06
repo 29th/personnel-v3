@@ -96,17 +96,13 @@ FactoryBot.define do
 
   factory :enlistment do
     user
-    first_name { user.first_name }
-    last_name { user.last_name }
     age { rand(13..85).to_s }
     date { Date.current }
-    country
     timezone { :est }
-    steam_id { user.steam_id }
     experience { "none" }
     comments { "" }
     recruiter { "" }
-    ingame_name { "" }
+    ingame_name { "player" }
     forum_id { "Discourse" }
   end
 
@@ -245,6 +241,24 @@ FactoryBot.define do
       rank_attrs = {}
       rank_attrs[:abbr] = rank_abbr if rank_abbr.present?
       association(:rank, **rank_attrs)
+    end
+
+    trait :unregistered do
+      first_name { nil }
+      last_name { nil }
+
+      initialize_with {
+        create(:rank, name: "Recruit", abbr: "Rec.")
+
+        User.from_sso({
+          "uid" => forum_member_id,
+          "info" => {
+            "nickname" => Faker::Internet.username,
+            "email" => Faker::Internet.email,
+            "time_zone" => "Europe/London"
+          }
+        })
+      }
     end
   end
 

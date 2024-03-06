@@ -1,0 +1,13 @@
+<div class="nested-form-wrapper form-row align-items-end" data-new-record="<%= f.object.new_record? %>">
+  <%= f.input :unit, wrapper_html: {class: "col-md-2"} %>
+  <%= f.input :game, collection: previous_unit_game_opts, wrapper_html: {class: "col-md-2"} %>
+  <%= f.input :name, wrapper_html: {class: "col-md-2"} %>
+  <%= f.input :rank, wrapper_html: {class: "col-md-1"} %>
+  <%= f.input :reason, label: "Reason for leaving", wrapper_html: {class: "col-md-4"} %>
+  
+  <div class="col-md-1 form-group">
+    <%= f.button :button, "X", class: "btn-danger", data: {action: "nested-form#remove"} %>
+  </div>
+
+  <%= f.hidden_field :_destroy %>
+</div>

@@ -1,0 +1,90 @@
+<% content_for(:page_title) { "Enlistment - #{@enlistment.user.short_name}" } %>
+
+<article>
+  <h1>Enlistment</h1>
+
+  <dl>
+    <dt>Full name</dt>
+    <dd><%= @enlistment.user.full_name %></dd>
+    
+    <dt>Status</dt>
+    <dd><%= status_badge(@enlistment.status) %></dd>
+    
+    <dt>Age</dt>
+    <dd><%= @enlistment.age %></dd>
+
+    <dt>Game</dt>
+    <dd><%= Enlistment.games[@enlistment.game] %></dd>
+    
+    <dt>Preferred time</dt>
+    <dd><%= Enlistment.timezones[@enlistment.timezone] %></dd>
+    
+    <% country = @enlistment.user.country %>
+    <% if country.present? %>
+      <dt>Country</dt>
+      <dd>
+        <span><%= flag_icon(country.sym, title: country.name) %></span>
+        <span><%= country.name %></span>
+      </dd>
+    <% end %>
+    
+    <% if @enlistment.user.steam_id.present? %>
+      <dt>Steam ID</dt>
+      <dd><%= link_to @enlistment.user.steam_id, "https://steamcommunity.com/profiles/#{@enlistment.user.steam_id}" %></dd>
+    <% end %>
+    
+    <dt>In-game name</dt>
+    <dd><%= @enlistment.ingame_name %></dd>
+
+    <dt>Recruiter</dt>
+    <dd>
+      <%= @enlistment.recruiter %>
+      <% if @enlistment.recruiter_user.present? %>
+        <div><%= link_to @enlistment.recruiter_user %></div>
+      <% end %>
+    </dd>
+    
+    <dt>Realism experience</dt>
+    <dd><%= @enlistment.experience %></dd>
+    
+    <% if @enlistment.previous_units.any? %>
+      <dt>Previous units</dt>
+      <dd>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Unit</th>
+              <th scope="col">Game</th>
+              <th scope="col">Name</th>
+              <th scope="col">Rank</th>
+              <th scope="col">Reason for leaving</th>
+            </tr>
+            <% @enlistment.previous_units.each do |pu| %>
+              <tr>
+                <td><%= pu.unit %></td>
+                <td><%= pu.game %></td>
+                <td><%= pu.name %></td>
+                <td><%= pu.rank %></td>
+                <td><%= pu.reason %></td>
+              </tr>
+            <% end %>
+          </thead>
+        </table>
+      </dd>
+    <% end %>
+
+    <dt>Comments</dt>
+    <dd><%= @enlistment.comments %></dd>
+  </dl>
+  
+  <h2>Forum replies</h2>
+  <% if @enlistment.discourse? %>
+    <%= render "manage/enlistments/discourse_embed", {topic_id: @enlistment.topic_id} %>
+  <% elsif @enlistment.vanilla? || @enlistment.forum_id.nil? %>
+    <%= render "manage/enlistments/vanilla_embed", {id: @enlistment.id} %>
+  <% end %>
+  
+  <% if policy(@enlistment).edit? %>
+    <%= link_to "Manage", manage_enlistment_path(@enlistment), class: "btn btn-secondary" %>
+  <% end %>
+</article>

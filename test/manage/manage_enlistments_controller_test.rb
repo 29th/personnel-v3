@@ -24,7 +24,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
   class AnalyzeEnlistmentTest < Manage::EnlistmentsControllerTest
     setup do
       @unit = create(:unit)
-      @user = create(:user)
+      @user = create(:user, last_name: "Golf")
       create(:assignment, user: @user, unit: @unit)
       sign_in_as @user
       create(:permission, abbr: "manage", unit: @unit)
@@ -38,7 +38,8 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
 
       steam_id = "12345678912345678"
-      enlistment = create(:enlistment, steam_id: steam_id)
+      enlistment = create(:enlistment)
+      enlistment.update_columns(steam_id: steam_id) # bypass before_save callback
       _other_user = create(:user, steam_id: steam_id, last_name: "Matchee")
 
       get manage_enlistment_url(enlistment)
@@ -53,7 +54,8 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
 
       steam_id = "12345678912345678"
       user = create(:user, steam_id: steam_id)
-      enlistment = create(:enlistment, steam_id: "99999999999999999", user: user)
+      enlistment = create(:enlistment, user: user)
+      enlistment.update_columns(steam_id: "9999") # bypass before_save callback
       _other_user = create(:user, steam_id: steam_id, last_name: "Matchee")
 
       get manage_enlistment_url(enlistment)
@@ -80,6 +82,59 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       assert_select "#users-with-matching-name a", {text: /AnDers/, count: 1}
       assert_select "#users-with-matching-name a", {text: /Somethingelse/, count: 0}
       assert_select "#users-with-matching-name a", {text: /Subject/, count: 0}
+    end
+  end
+
+  class EditEnlistmentTest < Manage::EnlistmentsControllerTest
+    setup do
+      stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
+      stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
+
+      unit = create(:unit)
+      create(:permission, abbr: "manage", unit: unit)
+      create(:permission, abbr: "enlistment_edit_any", unit: unit)
+      create(:position, name: "Recruit")
+
+      @user = create(:user)
+      create(:assignment, user: @user, unit: unit)
+      sign_in_as @user
+    end
+
+    test "copies user attributes to legacy enlistment fields when updated" do
+      enlistment = create(:enlistment)
+      uk = create(:country, name: "UK")
+
+      patch manage_enlistment_url(enlistment), params: {
+        enlistment: {
+          user_attributes: {
+            last_name: "Zulu",
+            country_id: uk.id,
+            steam_id: "7777"
+          }
+        }
+      }
+
+      enlistment.reload
+      assert_equal "Zulu", enlistment.last_name
+      assert_equal "7777", enlistment.steam_id
+      assert_equal "UK", enlistment.country.name
+    end
+
+    test "changing last_name of accepted enlistment updates forum display name" do
+      enlistment = create(:enlistment, status: :accepted)
+
+      methods_called = []
+      User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
+        patch manage_enlistment_url(enlistment), params: {
+          enlistment: {
+            user_attributes: {
+              last_name: "Zulu"
+            }
+          }
+        }
+      end
+
+      assert_includes methods_called, :update_forum_display_name
     end
   end
 
@@ -188,6 +243,7 @@ class Manage::EnlistmentsControllerTest < ActionDispatch::IntegrationTest
           }
         end
 
+        enlistment.user.assignments.reload
         assert enlistment.user.assignments.empty?
       end
     end

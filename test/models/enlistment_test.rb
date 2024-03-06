@@ -28,12 +28,6 @@ class EnlistmentTest < ActiveSupport::TestCase
     refute enlistment.previous_units.any? { |pu| pu.attributes.has_key?("foo") }, "has foo attribute"
   end
 
-  test "last_name is invalid if present in restricted names" do
-    restricted_name = create(:restricted_name)
-    enlistment = build_stubbed(:enlistment, last_name: restricted_name.name)
-    refute enlistment.valid?
-  end
-
   test "age is invalid if not in known list" do
     enlistment = build_stubbed(:enlistment, age: "12")
     refute enlistment.valid?
@@ -42,8 +36,9 @@ class EnlistmentTest < ActiveSupport::TestCase
     refute enlistment.valid?
   end
 
-  test "middle_name only saves first character" do
-    enlistment = build_stubbed(:enlistment, middle_name: "Anthony")
-    assert enlistment.middle_name == "A"
+  test "strips whitespace from attributes" do
+    enlistment = create(:enlistment, ingame_name: " frank ", recruiter: "someone ")
+    assert_equal "frank", enlistment.ingame_name
+    assert_equal "someone", enlistment.recruiter
   end
 end

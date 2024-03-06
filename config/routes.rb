@@ -58,4 +58,6 @@ Rails.application.routes.draw do
       put "loa", to: "events#loa"
     end
   end
+
+  resources :enlistments, only: [:show, :new, :create]
 end

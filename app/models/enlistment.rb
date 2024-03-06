@@ -2,12 +2,12 @@ class Enlistment < ApplicationRecord
   include HasForumTopic
   include StoreModel::NestedAttributes
   audited
-  belongs_to :user, foreign_key: "member_id"
+  belongs_to :user, foreign_key: "member_id", inverse_of: :enlistments
   belongs_to :liaison, class_name: "User", foreign_key: "liaison_member_id",
     optional: true
   belongs_to :recruiter_user, class_name: "User", foreign_key: "recruiter_member_id",
     optional: true # There's already a column called recruiter
-  belongs_to :country
+  belongs_to :country, optional: true
   belongs_to :unit, optional: true
 
   enum status: {pending: "Pending", accepted: "Accepted", denied: "Denied",
@@ -16,20 +16,18 @@ class Enlistment < ApplicationRecord
   enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
   VALID_AGES = ["Under 13", *13..99].map(&:to_s)
 
-  normalizes :middle_name, with: ->(middle_name) { middle_name.strip[0] }
+  normalizes :ingame_name, :recruiter, :comments, with: ->(attribute) { attribute.strip }
 
   validates :user, presence: true
+  accepts_nested_attributes_for :user, update_only: true
+  validates_associated :user
+
   validates :date, timeliness: {date: true}
   validates :status, presence: true
-  validates :first_name, presence: true, length: {in: 1..30}
-  validates :middle_name, length: {maximum: 1}
-  validates :last_name, presence: true, length: {in: 2..40}
-  validate :last_name_not_restricted
   validates :age, presence: true, inclusion: {in: VALID_AGES, message: "not recognized"}
   validates :timezone, presence: true
   validates :game, presence: true
-  validates :ingame_name, length: {maximum: 60}
-  validates :steam_id, presence: true, numericality: {only_integer: true}, length: {maximum: 17}
+  validates :ingame_name, presence: true, length: {maximum: 60}
   validates :experience, presence: true, length: {maximum: 1500}
   validates :recruiter, length: {maximum: 128}
   validates :comments, length: {maximum: 1500}
@@ -40,6 +38,8 @@ class Enlistment < ApplicationRecord
   validates_associated :previous_units, store_model: {merge_array_errors: true}
 
   delegate :linked_forum_users, to: :user
+
+  before_validation :set_legacy_attributes_from_user
 
   def linked_ban_logs
     ips = linked_forum_users.pluck(:ips).flatten.uniq
@@ -100,10 +100,10 @@ class Enlistment < ApplicationRecord
     user.assignments.active.training
   end
 
-  def last_name_not_restricted
-    if RestrictedName.where(name: last_name).where.not(user: user).exists?
-      errors.add(:last_name, "is already taken")
-    end
+  # backwards compatibility - can be removed after full transition
+  def set_legacy_attributes_from_user
+    legacy_attributes = [:first_name, :middle_name, :last_name, :country, :steam_id]
+    assign_attributes(user.slice(legacy_attributes))
   end
 
   def unit_classification_is_training

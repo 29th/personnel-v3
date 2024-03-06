@@ -1,0 +1,115 @@
+<% content_for(:page_title) { "New Enlistment" } %>
+
+<article>
+  <h1>Enlist</h1>
+  
+  <% if !current_user %>
+
+    <h4 class="reason">You need to be signed in to enlist</h4>
+    <p>Sign in to an existing account on our forum, or create a new account, then return to this page.</p>
+
+    <%= button_to 'Sign in', sign_in_path(:discourse, flash[:sign_in_origin]),
+          method: :post, class: 'btn btn-primary', data: { turbo: false } %>
+
+  <% elsif current_user.member? %>
+
+    <h4 class="reason">You're already a member</h4>
+
+  <% elsif current_user.cadet? %>
+
+    <h4 class="reason">You're already assigned to a training platoon</h4>
+    <%= link_to "View your enlistment", current_user.enlistments.last if current_user.enlistments.any? %>
+
+  <% elsif current_user.has_pending_enlistment? %>
+
+    <h4 class="reason">You already have a pending enlistment</h4>
+    <%= link_to "View your enlistment", current_user.enlistments.last if current_user.enlistments.any? %>
+
+  <% else %>
+
+    <%= simple_form_for @enlistment, data: {controller: "nested-form", nested_form_wrapper_selector_value: ".nested-form-wrapper"} do |f| %>
+      <%= f.error_notification %>
+
+      <%= simple_fields_for :user, current_user do |user_fields| %>
+          <% if current_user.unregistered? %>
+            <div class="form-row">
+              <%= user_fields.input :first_name, wrapper_html: {class: "col-md-5"} %>
+              <%= user_fields.input :middle_name, label: "Middle Initial",
+                wrapper_html: {class: "col-md-2"}  %>
+              <%= user_fields.input :last_name, hint: "Please use your real name or a realistic sounding name.",
+                wrapper_html: {class: "col-md-5"} %>
+            </div>
+            <div class="form-row">
+              <%= user_fields.association :country, wrapper_html: {class: "col-md-6"} %>
+              <%= user_fields.input :time_zone, collection: time_zone_options,
+                input_html: {"data-controller": "time-zone-guesser"},
+                wrapper_html: {class: "col-md-6"} %>
+            </div>
+          <% else %>
+            <div class="form-row">
+              <%= user_fields.input :first_name, disabled: true,
+                wrapper_html: {class: "col-md-5"}, hint: "If you want to change your name, please explain in the 'Other comments' field below." %>
+              <%= user_fields.input :middle_name, label: "Middle Initial",
+                disabled: true, wrapper_html: {class: "col-md-2"}  %>
+              <%= user_fields.input :last_name,
+                disabled: true, wrapper_html: {class: "col-md-5"} %>
+            </div>
+            <%= user_fields.association :country, disabled: true, hint: "To change your country, please explain in the 'Other comments' field below." %>
+          <% end %>
+      <% end %>
+      
+      <%= f.input :age, collection: ["Under 13", *13..99] %>
+      
+      <%= f.input :timezone, label: "Preferred Time", collection: timezone_opts,
+        hint: "Which time do you prefer for practicing? (Give or take an hour)" %>
+
+      <%= f.input :game, collection: game_opts, hint: "Which game are you enlisting in?" %>
+
+      <%= f.input :ingame_name, hint: "What name do you play with?" %>
+
+      <%= simple_fields_for :user, current_user do |user_fields| %>
+        <% if current_user.unregistered? %>
+          <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
+            hint: "Your Steam Identification number. #{link_to "Click here for help", "https://29th.org/roid", target: "_blank"}.".html_safe %>
+        <% else %>
+          <%= user_fields.input :steam_id, label: "Steam ID", as: :string,
+            disabled: true,
+            hint: "To change your Steam ID, please explain in the 'Other comments' field below." %>
+        <% end %>
+      <% end %>
+      
+      <%= f.input :recruiter, label: "Who recruited you?",
+        hint: "What was the name of the 29th member who asked you to enlist? If you were not recruited by someone, how did you find out about the 29th Infantry Division?" %>
+        
+      <div data-controller="realism-experience">
+        <%= f.input :experience, label: "Have you ever been part of a realism unit?",
+          as: :radio_buttons, collection: [["Yes", "Yes"], ["No", "No"]],
+          input_html: {"data-action": "change->realism-experience#toggle",
+            "data-realism-experience-target": "selection"} %>
+
+        <template data-nested-form-target="template">
+          <%= f.simple_fields_for :previous_units, PreviousUnit.new,
+            child_index: "NEW_RECORD" do |previous_unit_fields| %>
+            <%= render "previous_unit_form", f: previous_unit_fields %>
+          <% end%>
+        </template>
+        
+        <fieldset data-realism-experience-target="previousUnits">
+          <legend>Previous Units</legend>
+          <small class="text-muted">List all previous units you took part in. Please provide all this information to ensure acceptance.</small>
+          <div data-nested-form-target="target"></div>
+          <div class="mt-2 mb-3">
+            <%= f.button :button, "Add previous unit", class: "btn-secondary", data: {action: "nested-form#add"} %>
+          </div>
+        </fieldset>
+      </div>
+        
+      <%= f.input :comments, label: "Other comments" %>
+
+
+      <%= f.button :submit, "Submit Enlistment", class: 'btn-primary' %>
+    <% end %>
+
+  <% end %>
+
+</article>

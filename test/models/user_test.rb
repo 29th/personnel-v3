@@ -463,4 +463,21 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal 11, user.service_duration.in_months.round
   end
+
+  test "new user is invalid without a forum_member_id" do
+    user = build(:user, forum_member_id: nil)
+    refute user.valid?
+  end
+
+  test "last_name is invalid if present in restricted names" do
+    restricted_name = create(:restricted_name)
+    enlistment = build_stubbed(:user, last_name: restricted_name.name)
+    refute enlistment.valid?
+  end
+
+  test "whitespace stripped from name fields" do
+    user = create(:user, first_name: " John", last_name: "Doe  ")
+    assert_equal "John", user.first_name
+    assert_equal "Doe", user.last_name
+  end
 end

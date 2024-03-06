@@ -7,11 +7,18 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     assert_select "#user-dropdown", "Sign in"
   end
 
-  test "nav bar should show short name when logged in" do
+  test "nav bar should show short name when logged in as a member" do
     user = create(:user, rank_abbr: "Pvt.", last_name: "Foo")
     sign_in_as(user)
     get root_url
-    assert_select "#user-dropdown", /^Pvt\. Foo/
+    assert_select "#user-dropdown .dropdown-toggle", "Pvt. Foo"
+  end
+
+  test "nav bar should show username when logged in as an unregistered user" do
+    user = build(:user, :unregistered)
+    sign_in_as(user)
+    get root_url
+    assert_select "#user-dropdown .dropdown-toggle", user.username
   end
 
   test "manage pages should only be viewable to someone with manage permission" do
@@ -48,5 +55,16 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
 
     get events_url, headers: {HTTP_REFERER: "https://google.com"}
     assert_redirected_to root_url
+  end
+
+  test "unregistered users cannot access members-only pages" do
+    user = build(:user, :unregistered)
+    sign_in_as(user)
+
+    get events_url
+    assert_response 302
+
+    get manage_root_url
+    assert_response 302
   end
 end
