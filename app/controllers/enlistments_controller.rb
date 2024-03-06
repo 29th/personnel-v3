@@ -60,7 +60,8 @@ class EnlistmentsController < ApplicationController
       :middle_name,
       :last_name,
       :country_id,
-      :steam_id
+      :steam_id,
+      :time_zone
     )
   end
 end

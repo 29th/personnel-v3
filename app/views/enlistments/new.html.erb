@@ -39,7 +39,12 @@
               <%= user_fields.input :last_name, hint: "Please use your real name or a realistic sounding name.",
                 wrapper_html: {class: "col-md-5"} %>
             </div>
-            <%= user_fields.association :country %>
+            <div class="form-row">
+              <%= user_fields.association :country, wrapper_html: {class: "col-md-6"} %>
+              <%= user_fields.input :time_zone, collection: time_zone_options,
+                input_html: {"data-controller": "time-zone-guesser"},
+                wrapper_html: {class: "col-md-6"} %>
+            </div>
           <% else %>
             <div class="form-row">
               <%= user_fields.input :first_name, disabled: true,

@@ -65,7 +65,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       }
       @valid_user_attrs = {
         first_name: "Jane", middle_name: "Adelade", last_name: "Doe",
-        steam_id: "123456789", country_id: country.id
+        steam_id: "123456789", country_id: country.id, time_zone: "Europe/London"
       }
     end
 
@@ -110,6 +110,7 @@ class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
       assert_equal unregistered_user.forum_member_id, new_user.forum_member_id
       assert_equal unregistered_user.email, new_user.email
       assert_equal @valid_user_attrs[:last_name], new_user.last_name
+      assert_equal @valid_user_attrs[:time_zone], new_user.time_zone
     end
 
     test "does not allow user attributes to be updated when enlisting as existing user" do
