@@ -21,7 +21,7 @@ class Rank < ApplicationRecord
   end
 
   def self.recruit
-    find_by!(name: "Recruit")
+    find_by(name: "Recruit")
   end
 
   private_class_method :ransackable_attributes
