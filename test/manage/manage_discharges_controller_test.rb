@@ -28,8 +28,6 @@ class Manage::DischargesControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    puts @subject.assignments.active
-
     refute @subject.member?, "user is still a member"
     assert_includes methods_called, :update_forum_roles
   end
