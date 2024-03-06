@@ -54,7 +54,6 @@ class User < ApplicationRecord
 
   def self.from_sso(sso_data)
     find_or_initialize_by(forum_member_id: sso_data["uid"]) do |user|
-      user.forum_member_id = sso_data["uid"]
       user.username = sso_data["info"]["nickname"]
       user.email = sso_data["info"]["email"]
       user.time_zone = sso_data["info"]["time_zone"]
