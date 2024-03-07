@@ -49,6 +49,6 @@ Here's how enlisting works:
 1. <%= link_to 'Create an account', 'https://forums.29th.org/signup' %>
    on our forums
 2. Confirm your email address by clicking the link in the registration email
-3. While logged in, <%= link_to 'fill out an enlistment form', 'https://personnel.29th.org/#enlist' %>
+3. While logged in, <%= link_to 'fill out an enlistment form', new_enlistment_path %>
 4. Bookmark the page you're taken to when it's posted and check back tomorrow
    for a response
