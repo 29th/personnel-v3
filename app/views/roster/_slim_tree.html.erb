@@ -18,13 +18,6 @@
                                 class: "is16x16" unless assignment.user.rank.image(:icon).nil? %>
                   <%= link_to assignment.user.short_name, assignment.user %>,
                   <%= assignment.position.name %>
-                  <% if @show_discourse_status %>
-                    <% if assignment.user.forum_member_id.present? %>
-                      ✅
-                    <% else %>
-                      ⛔️
-                    <% end %>
-                  <% end %>
                 </li>
               <% end %>
             </ul>

@@ -17,6 +17,14 @@ class Assignment < ApplicationRecord
     joins(:unit).merge(Unit.not_training)
   }
 
+  scope :roster, ->(unit_ids) {
+    includes(user: :rank)
+      .includes(:position)
+      .where(unit_id: unit_ids)
+      .order("positions.order DESC, ranks.order DESC")
+      .group_by(&:unit_id)
+  }
+
   nilify_blanks
   validates :user, presence: true
   validates :unit, presence: true
