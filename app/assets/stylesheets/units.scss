@@ -17,3 +17,18 @@
     margin-bottom: 0;
   }
 }
+
+.unit-attendance {
+  .unit-attendance__attendance-col {
+    text-align: right;
+  }
+
+  .unit-attendance__absent-col {
+    text-align: right;
+    
+    .awol {
+      color: lighten($danger, 8%);
+      font-weight: bold;
+    }
+  }
+}

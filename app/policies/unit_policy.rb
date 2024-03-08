@@ -7,6 +7,10 @@ class UnitPolicy < ApplicationPolicy
     true
   end
 
+  def attendance?
+    user&.member?
+  end
+
   def new?
     user&.has_permission?("unit_add") ||
       user&.has_permission?("admin")

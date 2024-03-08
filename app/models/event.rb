@@ -12,9 +12,19 @@ class Event < ApplicationRecord
   has_many :users, through: :attendance_records
 
   scope :by_user, ->(user) do
-    unit_ids = user.active_assignment_unit_path_ids
-    where(unit: unit_ids)
+    by_unit(user.active_assignment_unit_path_ids)
   end
+
+  scope :by_unit, ->(unit) { where(unit: unit) }
+
+  scope :past, -> { where(starts_at: ..Date.current) }
+
+  scope :with_stats, -> {
+    with(attendance_stats: AttendanceRecord.stats_by_event)
+      .left_joins(:attendance_stats)
+      .select("*")
+      .select(attendance_stats: [:attended_count, :expected_count, :absent_count])
+  }
 
   attr_accessor :bulk_dates
   attr_accessor :time

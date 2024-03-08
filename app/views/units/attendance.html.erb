@@ -1,0 +1,41 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - Attendance" } %>
+
+<h2>Attendance</h2>
+
+<table class="table table-striped unit-attendance">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Event</th>
+      <th scope="col">Mandatory</th>
+      <th class="unit-attendance__attendance-col" scope="col">Attendance</th>
+      <th class="unit-attendance__absent-col" scope="col">Absent</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= timestamp_tag event.starts_at %></td>
+      <td><%= link_to event.title, event %></td>
+      <td><%= event.mandatory %></td>
+      <td class="unit-attendance__attendance-col">
+        <% if event.expected_count.present? %>
+          <%= event.attended_count || 0 %>
+          /
+          <%= event.expected_count %>
+        <% else %>
+          <span class="badge badge-secondary">Missing AAR</span>
+        <% end %>
+      </td>
+      <td class="unit-attendance__absent-col">
+        <% if event.absent_count.present? && event.absent_count > 0 %>
+          <span class="<%= event.mandatory ? "awol" : "absent" %>">
+            <%= event.absent_count %>
+          </span>
+        <% end %>
+      </td>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @events %>

@@ -43,7 +43,7 @@
       <nav class="nav flex-column nav-pills">
         <% links = {}
         links['Roster'] = unit_path(@unit)
-        # links['Attendance'] = unit_attendance_path(@unit) if policy(@unit).attendance?
+        links['Attendance'] = unit_attendance_path(@unit) if policy(@unit).attendance?
         %>
         <% links.each do |label, path| %>
           <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>
