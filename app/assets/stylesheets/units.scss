@@ -1,0 +1,19 @@
+@import "variables";
+
+.unit-profile-header {
+  margin-bottom: 16px;
+
+  .unit-profile-header__title {
+    margin-bottom: 5px;
+    h1 {
+      font-size: clamp(20px, 40px, 2vw);
+      display: inline;
+    }
+  }
+
+  .unit-profile-header__slogans {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+}

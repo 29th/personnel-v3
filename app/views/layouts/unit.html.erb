@@ -1,0 +1,55 @@
+<% content_for :content do %>
+  <div class="row">
+    <article class="col-md-9 order-md-2">
+      <div class="media unit-profile-header">
+        <%= image_tag @unit.logo_url,
+                      alt: @unit.abbr,
+                      title: @unit.name,
+                      class: "is60x60 mr-3" unless @unit.logo.nil? %>
+        <div class="media-body">
+          <div class="unit-profile-header__title">
+            <h1><%= @unit.name %></h1>
+            <small class="unit-profile-header__subtitle text-muted">(<%= @unit.abbr %>)</small>
+          </div>
+
+          <% if @unit.classification == "staff" %>
+            <span class="badge badge-primary">Staff</span>
+          <% elsif @unit.classification == "training" %>
+            <span class="badge badge-warning">Training</span>
+          <% end %>
+
+          <% if !@unit.active %>
+            <span class="badge badge-danger">Inactive</span>
+          <% end %>
+
+          <% if @unit.nickname || @unit.slogan %>
+            <ul class="unit-profile-header__slogans">
+              <% if @unit.nickname.present? %>
+                <li>aka "<%= @unit.nickname %>"</li>
+              <% end %>
+              <% if @unit.slogan.present? %>
+                <li><em><%= @unit.slogan %></em></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+
+      <%= yield %>
+
+    </article>
+
+    <div class="col-md-3 order-md-1">
+      <nav class="nav flex-column nav-pills">
+        <% links = {}
+        links['Roster'] = unit_path(@unit)
+        # links['Attendance'] = unit_attendance_path(@unit) if policy(@unit).attendance?
+        %>
+        <% links.each do |label, path| %>
+          <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>

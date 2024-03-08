@@ -50,6 +50,8 @@ Rails.application.routes.draw do
     get "extended-loas", to: "users#extended_loas"
   end
 
+  resources :units, only: [:show]
+
   resources :passes, only: [:index, :show]
   resources :events, only: [:index, :show] do
     member do
