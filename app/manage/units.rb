@@ -13,6 +13,12 @@ ActiveAdmin.register Unit do
   scope :active, default: true
   scope :all, default: true
 
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
+
   searchable_select_options(
     name: :active_training_platoons,
     scope: -> {
@@ -52,6 +58,7 @@ ActiveAdmin.register Unit do
 
   show do
     attributes_table do
+      row :id
       row :name
       row :abbr
       row :ancestors

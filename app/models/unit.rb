@@ -1,6 +1,8 @@
 class Unit < ApplicationRecord
   audited max_audits: 10
   include UnitLogoImageUploader::Attachment(:logo)
+  include FriendlyId
+  friendly_id :prepare_slug
 
   has_ancestry orphan_strategy: :restrict
   has_many :assignments
@@ -43,10 +45,6 @@ class Unit < ApplicationRecord
     abbr
   end
 
-  def slug
-    abbr.delete(" ").downcase
-  end
-
   def self.find_root
     active.where(ancestry: nil, classification: :combat).first
   end
@@ -66,6 +64,14 @@ class Unit < ApplicationRecord
 
   def end_assignments
     assignments.active.update_all(end_date: Date.today)
+  end
+
+  def prepare_slug
+    if staff?
+      name
+    else
+      abbr&.sub(/ Co. HQ$/, "")&.sub(/ HQ$/, "")
+    end
   end
 
   # the database uses a column named `class`, which is a reserved

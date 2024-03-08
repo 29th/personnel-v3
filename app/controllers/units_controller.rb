@@ -11,7 +11,7 @@ class UnitsController < ApplicationController
   private
 
   def find_and_authorize_unit
-    @unit = Unit.find(params[:id])
+    @unit = Unit.friendly.find(params[:id])
     authorize @unit
   end
 end

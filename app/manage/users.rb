@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  belongs_to :unit, optional: true
+  belongs_to :unit, optional: true, finder: :find_by_slug
 
   includes :rank, :country
 

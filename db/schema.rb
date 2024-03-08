@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_164505) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_130710) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -148,7 +148,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_164505) do
     t.string "name", limit: 80, null: false
   end
 
-  create_table "delayed_jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "data_migrations", primary_key: "version", id: :string, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  end
+
+  create_table "delayed_jobs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
@@ -450,7 +453,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_164505) do
     t.string "ancestry"
     t.column "classification", "enum('Combat','Staff','Training')", default: "Training", null: false
     t.text "logo_data"
+    t.string "slug"
     t.index ["ancestry"], name: "index_units_on_ancestry"
+    t.index ["slug"], name: "index_units_on_slug", unique: true
   end
 
   create_table "usertracking", id: :integer, charset: "utf8mb3", force: :cascade do |t|
