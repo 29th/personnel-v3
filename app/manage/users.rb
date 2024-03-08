@@ -81,6 +81,7 @@ ActiveAdmin.register User do
 
   show do
     attributes_table do
+      row :id
       row :last_name
       row :first_name
       row :middle_name
