@@ -49,6 +49,15 @@ FactoryBot.define do
       attended { true }
     end
 
+    trait :excused do
+      excused { true }
+    end
+
+    trait :absent do
+      attended { false }
+      excused { false }
+    end
+
     trait :mandatory do
       event { association :event, mandatory: true, starts_at: event_starts_at }
     end

@@ -2,6 +2,20 @@
 
 <h2>Attendance</h2>
 
+<dl class="user-attendance-stats">
+  <dt>Last 30 days:</dt>
+  <dd><%= @attendance_stats.last_30_days.round %>%</dd>
+
+  <dt>Last 60 days:</dt>
+  <dd><%= @attendance_stats.last_60_days.round %>%</dd>
+
+  <dt>Last 90 days:</dt>
+  <dd><%= @attendance_stats.last_90_days.round %>%</dd>
+
+  <dt>Total:</dt>
+  <dd><%= @attendance_stats.total.round %>%</dd>
+</dl>
+
 <table class="table table-striped unit-attendance">
   <thead>
     <tr>

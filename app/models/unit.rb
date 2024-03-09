@@ -74,6 +74,10 @@ class Unit < ApplicationRecord
     end
   end
 
+  def attendance_stats
+    @attendance_stats ||= AttendanceStats.for_unit(subtree)
+  end
+
   # the database uses a column named `class`, which is a reserved
   # word in ruby. this hack prevents it breaking the app.
   class << self

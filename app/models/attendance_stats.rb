@@ -44,6 +44,21 @@ class AttendanceStats
     query.first # TODO: Cast the result as AttendanceStats
   end
 
+  def self.for_unit(unit)
+    aggregations = [
+      percent_attended(30),
+      percent_attended(60),
+      percent_attended(90),
+      PERCENT_TOTAL
+    ]
+
+    AttendanceRecord
+      .select(aggregations.join(", "))
+      .joins(:event)
+      .where(event: {unit: unit, mandatory: true})
+      .first
+  end
+
   private_class_method def self.percent_attended(days)
     from_date = (Date.today - days).iso8601
     attr_name = "last_#{days}_days"

@@ -9,13 +9,14 @@ class UnitsController < ApplicationController
   end
 
   def attendance
-    units = @unit.subtree # include inactive
-    @events = Event.by_unit(units)
+    @events = Event.by_unit(@unit.subtree) # include inactive units
       .past
       .with_stats
       .includes(:unit)
       .order(starts_at: :desc)
       .page(params[:page])
+
+    @attendance_stats = @unit.attendance_stats
   end
 
   private
