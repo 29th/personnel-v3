@@ -5,9 +5,10 @@ class AttendanceRecord < ApplicationRecord
 
   scope :without_cancelled_loas, -> { where.not(attended: nil).or(where(excused: true)) }
   scope :awol, -> {
-    includes(:event)
+    includes(event: :unit)
       .where(attended: false, excused: false,
         event: {mandatory: true, starts_at: ..24.hours.ago})
+      .where.not(unit: {classification: :training})
   }
   scope :stats_by_event, -> {
     group(:event_id)
