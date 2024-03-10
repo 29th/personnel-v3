@@ -95,8 +95,8 @@ ActiveAdmin.register User do
       row "Steam ID", :steam_id do |user|
         link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
       end
-      row "Forum ID", :forum_member_id do |user|
-        link_to user.short_name, "https://forums.29th.org/profile/#{user.forum_member_id}/#{user.short_name}"
+      row "Forum User", :forum_member_id do |user|
+        link_to "View forum profile", discourse_url(user: user)
       end
     end
   end
