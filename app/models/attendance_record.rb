@@ -17,6 +17,10 @@ class AttendanceRecord < ApplicationRecord
       .select("count(*) as total_expected")
       .select("sum(attended = false and excused = false) as total_absent")
   }
+  scope :by_unit, ->(unit) {
+    includes(:event)
+      .where(event: {unit: unit})
+  }
 
   validates :attended, inclusion: {in: [true, false]}, allow_nil: true
   validates :excused, inclusion: {in: [true, false]}

@@ -1,0 +1,18 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - AWOLs" } %>
+
+<h2>AWOLs</h2>
+
+<% if @awols.any? %>
+  <ul>
+    <% @awols.each do |awol| %>
+      <li>
+        <%= awol.event.starts_at.strftime("%F") %>
+        -
+        <%= link_to awol.event.title, awol.event %>
+        <% if awol.event.starts_at.before?(30.days.ago) %>
+          <small class="text-muted">(expired)</small>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

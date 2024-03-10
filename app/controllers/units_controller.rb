@@ -19,6 +19,13 @@ class UnitsController < ApplicationController
     @attendance_stats = @unit.attendance_stats
   end
 
+  def awols
+    @awols = AttendanceRecord.by_unit(@unit.subtree)
+      .awol
+      .order("event.starts_at DESC")
+    # .group_by()
+  end
+
   private
 
   def find_and_authorize_unit
