@@ -64,4 +64,23 @@ Rails.application.routes.draw do
   end
 
   resources :enlistments, only: [:show, :new, :create]
+
+  # reverse proxy legacy routes
+  match "a3(/*path)" => "reverse_proxy#a3", :via => :all, :constraints => {path: /.*/}
+  match "awards(/*path)" => "reverse_proxy#awards", :via => :all, :constraints => {path: /.*/}
+  match "bans(/*path)" => "reverse_proxy#bans", :via => :all, :constraints => {path: /.*/}
+  match "coats(/*path)" => "reverse_proxy#coats", :via => :all, :constraints => {path: /.*/}
+  match "darkest-hour-infobank(/*path)" => "reverse_proxy#darkest_hour_infobank", :via => :all, :constraints => {path: /.*/}
+  match "dh(/*path)" => "reverse_proxy#dh", :via => :all, :constraints => {path: /.*/}
+  match "forums(/*path)" => "reverse_proxy#forums", :via => :all, :constraints => {path: /.*/}
+  match "ForumPostImages(/*path)" => "reverse_proxy#forum_post_images", :via => :all, :constraints => {path: /.*/}
+  match "handbook(/*path)" => "reverse_proxy#handbook", :via => :all, :constraints => {path: /.*/}
+  match "images(/*path)" => "reverse_proxy#images", :via => :all, :constraints => {path: /.*/}
+  match "medical(/*path)" => "reverse_proxy#medical", :via => :all, :constraints => {path: /.*/}
+  match "roid(/*path)" => "reverse_proxy#roid", :via => :all, :constraints => {path: /.*/}
+  match "rs(/*path)" => "reverse_proxy#rs", :via => :all, :constraints => {path: /.*/}
+  match "signalcorps(/*path)" => "reverse_proxy#signal_corps", :via => :all, :constraints => {path: /.*/}
+  match "sigs(/*path)" => "reverse_proxy#sigs", :via => :all, :constraints => {path: /.*/}
+  match "stamps(/*path)" => "reverse_proxy#stamps", :via => :all, :constraints => {path: /.*/}
+  match "wiki(/*path)" => "reverse_proxy#wiki", :via => :all, :constraints => {path: /.*/}
 end
