@@ -68,7 +68,6 @@ class UsersController < ApplicationController
     @demerits = @user.demerits.includes(author: :rank).order(date: :desc)
     @awols = @user.attendance_records
       .awol
-      .includes(event: :unit)
       .order("event.starts_at DESC")
   end
 
