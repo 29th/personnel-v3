@@ -80,8 +80,8 @@
   <h2>Forum replies</h2>
   <% if @enlistment.discourse? %>
     <%= render "manage/enlistments/discourse_embed", {topic_id: @enlistment.topic_id} %>
-  <% elsif @enlistment.vanilla? || @enlistment.forum_id.nil? %>
-    <%= render "manage/enlistments/vanilla_embed", {id: @enlistment.id} %>
+  <% elsif @enlistment.vanilla? %>
+    <%= render "manage/enlistments/vanilla_embed", {id: @enlistment.id, topic_id: @enlistment.topic_id} %>
   <% end %>
   
   <% if policy(@enlistment).edit? %>

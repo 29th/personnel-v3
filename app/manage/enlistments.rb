@@ -213,10 +213,8 @@ ActiveAdmin.register Enlistment do
     panel "Forum Replies" do
       if enlistment.discourse?
         render "discourse_embed", {topic_id: enlistment.topic_id}
-      elsif enlistment.vanilla? || enlistment.forum_id.nil?
-        # topic_id was not saved on enlistment records prior to discourse.
-        # instead, vanilla looks it up by the enlistment's unique identifier.
-        render "vanilla_embed", {id: enlistment.id}
+      elsif enlistment.vanilla?
+        render "vanilla_embed", {id: enlistment.id, topic_id: enlistment.topic_id}
       end
     end
   end
