@@ -116,7 +116,11 @@ ActiveAdmin.register Enlistment do
           panel "User Details" do
             attributes_table_for enlistment.user do
               row "Personnel User" do |user|
-                user
+                span user
+                span " - "
+                span link_to "Manage", manage_user_path(user)
+                span " - "
+                span link_to "Public profile", user_path(user) if policy(user).service_record?
               end
               if enlistment.user.forum_member_id
                 row "Discourse User" do |user|
