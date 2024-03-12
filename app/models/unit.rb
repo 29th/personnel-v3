@@ -9,7 +9,7 @@ class Unit < ApplicationRecord
   has_many :users, through: :assignments
   has_many :permissions
   has_many :unit_forum_roles
-  has_many :events, inverse_of: "unit"
+  has_many :events, -> { order(starts_at: :desc) }, inverse_of: "unit"
 
   enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
   enum timezone: {est: "EST", gmt: "GMT", pst: "PST"}
