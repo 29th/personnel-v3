@@ -26,7 +26,7 @@ class Unit < ApplicationRecord
   }
   scope :with_event_range, -> {
     # Used by Process Enlistment action to show date range of training platoons
-    select("units.*, (SELECT CONCAT( DATE_FORMAT(MIN(datetime),'%d %b %Y'),' - ', DATE_FORMAT(MAX(datetime),'%d %b %Y')) FROM events WHERE events.unit_id = `units`.id) AS event_range")
+    select("units.*, (SELECT CONCAT( DATE_FORMAT(MIN(starts_at),'%d %b %Y'),' - ', DATE_FORMAT(MAX(starts_at),'%d %b %Y')) FROM events WHERE events.unit_id = `units`.id) AS event_range")
   }
 
   nilify_blanks
