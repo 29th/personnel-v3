@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  # root-to-www redirect
+  if Rails.env.production?
+    match "(*any)",
+      constraints: {subdomain: ""},
+      to: redirect(subdomain: "www"),
+      via: :all
+  end
+
   root "home#landing"
 
   ActiveAdmin.routes(self)
