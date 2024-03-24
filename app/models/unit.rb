@@ -29,6 +29,13 @@ class Unit < ApplicationRecord
     # Used by Process Enlistment action to show date range of training platoons
     select("units.*, (SELECT CONCAT( DATE_FORMAT(MIN(starts_at),'%d %b %Y'),' - ', DATE_FORMAT(MAX(starts_at),'%d %b %Y')) FROM events WHERE events.unit_id = `units`.id) AS event_range")
   }
+  scope :ordered_squads, -> {
+    active
+      .combat
+      .order(:ancestry, :order, :name)
+      .ransack({name_i_cont: "Squad"})
+      .result(distinct: true)
+  }
 
   nilify_blanks
   validates :name, presence: true

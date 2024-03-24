@@ -1,6 +1,6 @@
 class Assignment < ApplicationRecord
   audited
-  belongs_to :unit
+  belongs_to :unit, inverse_of: :assignments
   belongs_to :user, foreign_key: "member_id", inverse_of: :assignments
   belongs_to :position
 

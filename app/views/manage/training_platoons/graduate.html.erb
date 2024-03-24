@@ -1,0 +1,35 @@
+<%= simple_form_for @graduation, url: graduate_manage_training_platoon_path(resource) do |f| %>
+  <%= f.error_notification %>
+  
+  <fieldset class="inputs">
+    <legend><span>Assignments</span></legend>
+    <ol>
+      <%= f.simple_fields_for :cadets do |c| %>
+        <%= c.input :unit_id, label: link_to(c.object, manage_user_path(c.object)),
+          collection: @squads, wrapper_tag: "li", label_method: :abbr %>
+      <% end %>
+    </ol>
+  </fieldset>
+
+  <fieldset class="inputs">
+    <legend><span>Apply to all users</span></legend>
+    <ol>
+      <%= f.input :award_ids, label: "Awards", collection: @awards,
+        as: :select, multiple: true, wrapper_tag: "li", include_blank: false %>
+      <%= f.input :rank_id, collection: @ranks,
+        wrapper_tag: "li" %>
+      <%= f.input :position_id, collection: @positions,
+        wrapper_tag: "li" %>
+      <%= f.input :topic_id, label: "Topic ID", wrapper_tag: "li" %>
+    </ol>
+  </fieldset>
+  
+  <fieldset class="actions">
+    <ol>
+      <li><%= f.button :submit, "Process Graduation" %></li>
+      <li class="cancel">
+        <%= link_to "Cancel", manage_training_platoon_path(resource) %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

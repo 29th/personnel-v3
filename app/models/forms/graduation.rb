@@ -29,11 +29,13 @@ class Forms::Graduation
   # }
   def cadets_attributes=(attributes)
     attributes_collection = attributes.values.filter { |a| a.key?("id") }
-    @assignments = attributes_collection.each_with_object({}) do |a, memo|
-      memo[a["id"].to_i] = a["unit_id"].to_i
-    end
-    user_ids = @assignments.keys
+    user_ids = attributes_collection.pluck("id")
     @cadets = user_ids.empty? ? [] : Cadet.where(id: user_ids)
+
+    attributes_collection.each do |attributes_item|
+      existing_record = @cadets.find { |cadet| cadet.id.to_s == attributes_item["id"].to_s }
+      existing_record.assign_attributes(attributes_item) if existing_record.present?
+    end
   end
 
   def save
@@ -42,7 +44,7 @@ class Forms::Graduation
     cadets.each(&method(:verify_eligibility!))
 
     ActiveRecord::Base.transaction do
-      cadets.each { |cadet| graduate_user!(cadet, @assignments[cadet.id]) }
+      cadets.each { |cadet| graduate_user!(cadet, cadet.unit_id) }
 
       unit.end_assignments
       unit.update!(active: false)
