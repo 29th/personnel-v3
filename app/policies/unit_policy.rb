@@ -27,4 +27,8 @@ class UnitPolicy < ApplicationPolicy
   def destroy?
     user&.has_permission?("admin")
   end
+
+  def graduate?
+    user&.has_permission?("admin")
+  end
 end

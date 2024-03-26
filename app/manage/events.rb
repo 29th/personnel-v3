@@ -95,6 +95,6 @@ ActiveAdmin.register Event do
     link_to "View on site", event_path(event)
   end
 
-  config.sort_order = "datetime_desc"
+  config.sort_order = "starts_at_desc"
   config.create_another = true
 end
