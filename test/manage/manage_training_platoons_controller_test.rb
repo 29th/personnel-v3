@@ -26,9 +26,9 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
       @rank = create(:rank)
       @position = create(:position, name: "Rifleman")
 
-      cadet_delay_proxy = mock("delay_proxy")
-      Cadet.any_instance.stubs(:delay).returns(cadet_delay_proxy)
-      @cadet_stubs = cadet_delay_proxy.stubs(update_forum_display_name: true,
+      user_delay_proxy = mock("delay_proxy")
+      User.any_instance.stubs(:delay).returns(user_delay_proxy)
+      @user_stubs = user_delay_proxy.stubs(update_forum_display_name: true,
         update_forum_roles: true, update_coat: true)
 
       sign_in_as @user
@@ -47,7 +47,7 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
       assert_difference "Assignment.count", 0 do
         post graduate_manage_training_platoon_path(@tp), params: {
           forms_graduation: {
-            cadets_attributes: cadets_attributes,
+            assignments_attributes: assignments_attributes,
             award_ids: @awards.pluck(:id),
             rank_id: @rank.id,
             position_id: @position.id,
@@ -61,7 +61,7 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
       get graduate_manage_training_platoon_path(@tp)
 
       @cadets.each do |cadet|
-        assert_select ".forms_graduation_cadets_unit_id label", /#{cadet}/
+        assert_select ".forms_graduation_assignments_unit_id label", /#{cadet}/
       end
     end
 
@@ -71,16 +71,16 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
 
       get graduate_manage_training_platoon_path(@tp)
 
-      assert_select ".forms_graduation_cadets_unit_id label", text: /#{denied_enl.user}/, count: 0
-      assert_select ".forms_graduation_cadets_unit_id label", text: /#{withdrawn_enl.user}/, count: 0
+      assert_select ".forms_graduation_assignments_unit_id label", text: /#{denied_enl.user}/, count: 0
+      assert_select ".forms_graduation_assignments_unit_id label", text: /#{withdrawn_enl.user}/, count: 0
     end
 
     test "lists user timezone and recruiter unit" do
       skip
       get graduate_manage_training_platoon_path(@tp)
 
-      assert_select ".forms_graduation_cadets_unit_id small", /PST/
-      assert_select ".forms_graduation_cadets_unit_id small", /S1/
+      assert_select ".forms_graduation_assignments_unit_id small", /PST/
+      assert_select ".forms_graduation_assignments_unit_id small", /S1/
     end
 
     test "unit selection only lists squads" do
@@ -89,9 +89,9 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
 
       get graduate_manage_training_platoon_path(@tp)
 
-      assert_select ".forms_graduation_cadets_unit_id:first select option", {text: /S1/, count: 1}
-      assert_select ".forms_graduation_cadets_unit_id:first select option", {text: /S2/, count: 1}
-      assert_select ".forms_graduation_cadets_unit_id:first select option", {text: /P1/, count: 0}
+      assert_select ".forms_graduation_assignments_unit_id:last select option", {text: /S1/, count: 1}
+      assert_select ".forms_graduation_assignments_unit_id:last select option", {text: /S2/, count: 1}
+      assert_select ".forms_graduation_assignments_unit_id:last select option", {text: /P1/, count: 0}
     end
 
     test "unit selection includes number of active members" do
@@ -101,8 +101,8 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
 
       get graduate_manage_training_platoon_path(@tp)
 
-      assert_select ".forms_graduation_cadets_unit_id:first select option", /S1 \(1\)/
-      assert_select ".forms_graduation_cadets_unit_id:first select option", /S2 \(0\)/
+      assert_select ".forms_graduation_assignments_unit_id:last select option", /S1 \(1\)/
+      assert_select ".forms_graduation_assignments_unit_id:last select option", /S2 \(0\)/
     end
 
     test "redirected to training platoon on success" do
@@ -110,7 +110,7 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
         # assert_difference -> { Assignment.count } => @cadets.size, -> { Promotion.count } => @cadets.size do
         post graduate_manage_training_platoon_path(@tp), params: {
           forms_graduation: {
-            cadets_attributes: cadets_attributes,
+            assignments_attributes: assignments_attributes,
             award_ids: @awards.pluck(:id),  # .prepend(""),
             rank_id: @rank.id,
             position_id: @position.id,
@@ -123,14 +123,14 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "throws validation error if any user assignment is omitted" do
-      modified_cadets_attributes = cadets_attributes.dup
-      last_key = modified_cadets_attributes.keys.last
-      modified_cadets_attributes[last_key]["unit_id"] = ""
+      modified_assignments_attributes = assignments_attributes.dup
+      last_key = modified_assignments_attributes.keys.last
+      modified_assignments_attributes[last_key]["unit_id"] = ""
 
       assert_no_difference "Assignment.count" do
         post graduate_manage_training_platoon_path(@tp), params: {
           forms_graduation: {
-            cadets_attributes: modified_cadets_attributes,
+            assignments_attributes: modified_assignments_attributes,
             award_ids: @awards.pluck(:id).prepend(""),
             rank_id: @rank.id,
             position_id: @position.id,
@@ -146,7 +146,7 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
       assert_no_difference "Assignment.count" do
         post graduate_manage_training_platoon_path(@tp), params: {
           forms_graduation: {
-            cadets_attributes: cadets_attributes,
+            assignments_attributes: assignments_attributes,
             award_ids: @awards.pluck(:id).prepend(""),
             rank_id: @rank.id,
             position_id: "",
@@ -155,15 +155,15 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
         }
       end
 
-      assert_select ".forms_graduation_cadets_unit_id select option[selected]", /#{@squad.abbr}/
+      assert_select ".forms_graduation_assignments_unit_id select option[selected]", /#{@squad.abbr}/
       assert_select "#forms_graduation_rank_id option[selected]", @rank.name
     end
 
     private
 
-    def cadets_attributes
+    def assignments_attributes
       @cadets.each_with_index.each_with_object({}) do |(cadet, index), accum|
-        accum[index.to_s] = {"id" => cadet.id, "unit_id" => @squad.id}
+        accum[index.to_s] = {"member_id" => cadet.id, "unit_id" => @squad.id}
       end
     end
   end

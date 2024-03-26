@@ -14,25 +14,25 @@ class Forms::GraduationTest < ActiveSupport::TestCase
       unit.name = "Squad #{index + 1}"
     end
 
-    @cadets_attributes = @cadets.each_with_index.each_with_object({}) do |(cadet, index), accum|
-      accum[index.to_s] = {"id" => cadet.id.to_s, "unit_id" => @squads[index].id.to_s}
+    @assignments_attributes = @cadets.each_with_index.each_with_object({}) do |(cadet, index), accum|
+      accum[index.to_s] = {"member_id" => cadet.id.to_s, "unit_id" => @squads[index].id.to_s}
     end
 
     @awards = create_list(:award, 2)
     @rank = create(:rank)
     @position = create(:position, name: "Rifleman")
 
-    cadet_delay_proxy = mock("delay_proxy")
-    Cadet.any_instance.stubs(:delay).returns(cadet_delay_proxy)
-    @cadet_stubs = cadet_delay_proxy.stubs(update_forum_display_name: true,
+    user_delay_proxy = mock("delay_proxy")
+    User.any_instance.stubs(:delay).returns(user_delay_proxy)
+    @user_stubs = user_delay_proxy.stubs(update_forum_display_name: true,
       update_forum_roles: true, update_coat: true)
   end
 
   test "save rolls back if any cadet fails" do
-    modified_cadets_attributes = @cadets_attributes.dup
-    last_key = modified_cadets_attributes.keys.last
-    modified_cadets_attributes[last_key]["unit_id"] = 999999
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: modified_cadets_attributes,
+    modified_assignments_attributes = @assignments_attributes.dup
+    last_key = modified_assignments_attributes.keys.last
+    modified_assignments_attributes[last_key]["unit_id"] = 999999
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: modified_assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
@@ -47,7 +47,7 @@ class Forms::GraduationTest < ActiveSupport::TestCase
   end
 
   test "save rolls back if unit updates fail" do
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: @cadets_attributes,
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
@@ -59,20 +59,23 @@ class Forms::GraduationTest < ActiveSupport::TestCase
   end
 
   test "validates presence of all attributes" do
-    graduation_without_unit = Forms::Graduation.new(cadets_attributes: @cadets_attributes,
+    graduation_without_unit = Forms::Graduation.new(assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
-    graduation_without_cadets = Forms::Graduation.new(unit: @tp, topic_id: 0,
+    graduation_without_assignments = Forms::Graduation.new(training_platoon: @tp, topic_id: 0,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id)
-    graduation_without_awards = Forms::Graduation.new(unit: @tp, cadets_attributes: @cadets_attributes,
+    graduation_without_awards = Forms::Graduation.new(training_platoon: @tp,
+      assignments_attributes: @assignments_attributes,
       rank_id: @rank.id, position_id: @position.id, topic_id: 0)
-    graduation_without_rank = Forms::Graduation.new(unit: @tp, cadets_attributes: @cadets_attributes,
+    graduation_without_rank = Forms::Graduation.new(training_platoon: @tp,
+      assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), position_id: @position.id, topic_id: 0)
-    graduation_without_position = Forms::Graduation.new(unit: @tp, cadets_attributes: @cadets_attributes,
+    graduation_without_position = Forms::Graduation.new(training_platoon: @tp,
+      assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, topic_id: 0)
 
     refute graduation_without_unit.valid?, "unit should be required"
-    refute graduation_without_cadets.valid?, "cadets should be required"
+    refute graduation_without_assignments.valid?, "assignments should be required"
     refute graduation_without_awards.valid?, "awards should be required"
     refute graduation_without_rank.valid?, "rank should be required"
     refute graduation_without_position.valid?, "position should be required"
@@ -81,7 +84,7 @@ class Forms::GraduationTest < ActiveSupport::TestCase
   end
 
   test "creates all awards, assignment, promotion records and updates user rank" do
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: @cadets_attributes,
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
@@ -98,20 +101,20 @@ class Forms::GraduationTest < ActiveSupport::TestCase
   end
 
   test "queues update_* background jobs" do
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: @cadets_attributes,
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
-    @cadet_stubs.times(@cadets.size)
+    @user_stubs.times(@cadets.size)
 
     assert graduation.save
   end
 
   test "does not allow graduating a user who is not part of the training platoon" do
     non_member = create(:user)
-    modified_cadets_attributes = @cadets_attributes.dup
-    modified_cadets_attributes["999"] = {"id" => non_member.id, "unit_id" => @squads.first.id}
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: modified_cadets_attributes,
+    modified_assignments_attributes = @assignments_attributes.dup
+    modified_assignments_attributes["999"] = {"member_id" => non_member.id, "unit_id" => @squads.first.id}
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: modified_assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
@@ -132,10 +135,10 @@ class Forms::GraduationTest < ActiveSupport::TestCase
       start_date: 2.weeks.ago, end_date: 1.week.ago)
     create(:assignment, user: already_graduated_user, unit: @squads.first)
 
-    modified_cadets_attributes = @cadets_attributes.dup
-    modified_cadets_attributes["999"] = {"id" => already_graduated_user.id, "unit_id" => @squads.last.id}
+    modified_assignments_attributes = @assignments_attributes.dup
+    modified_assignments_attributes["999"] = {"member_id" => already_graduated_user.id, "unit_id" => @squads.last.id}
 
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: modified_cadets_attributes,
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: modified_assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
@@ -155,10 +158,10 @@ class Forms::GraduationTest < ActiveSupport::TestCase
     create(:assignment, unit: @tp, user: denied_user, start_date: 2.days.ago,
       end_date: 1.day.ago)
 
-    modified_cadets_attributes = @cadets_attributes.dup
-    modified_cadets_attributes["999"] = {"id" => denied_user.id, "unit_id" => @squads.last.id}
+    modified_assignments_attributes = @assignments_attributes.dup
+    modified_assignments_attributes["999"] = {"member_id" => denied_user.id, "unit_id" => @squads.last.id}
 
-    graduation = Forms::Graduation.new(unit: @tp, cadets_attributes: modified_cadets_attributes,
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: modified_assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 

@@ -4,8 +4,9 @@
   <fieldset class="inputs">
     <legend><span>Assignments</span></legend>
     <ol>
-      <%= f.simple_fields_for :cadets do |c| %>
-        <%= c.input :unit_id, label: link_to(c.object, manage_user_path(c.object)),
+      <%= f.simple_fields_for :assignments do |af| %>
+        <%= af.input :member_id, as: :hidden %>
+        <%= af.input :unit_id, label: link_to(af.object.user, manage_user_path(af.object.user)),
           collection: @squads, wrapper_tag: "li", label_method: :abbr %>
       <% end %>
     </ol>

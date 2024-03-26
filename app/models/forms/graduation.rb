@@ -2,70 +2,76 @@ class Forms::Graduation
   include ActiveModel::Model
   include ActiveModel::Attributes
 
-  attr_accessor :unit
-  attr_accessor :cadets
-  attr_accessor :award_ids
+  attr_accessor :training_platoon
+  # attr_accessor :cadets
+  attr_reader :award_ids
   attribute :rank_id, :integer
   attribute :position_id, :integer
   attribute :topic_id, :integer
 
-  validates :unit, presence: true
+  validates :training_platoon, presence: true
   validates :award_ids, presence: true
   validates :rank_id, presence: true
   validates :position_id, presence: true
-  validates :cadets, presence: true
+  # validates :cadets, presence: true
   validates :topic_id, presence: true
+  validate :assignments_have_unit_ids
 
-  # "forms_graduation"=>{
-  #   "cadets_attributes"=>{
-  #     "0"=>{"unit_id"=>"28", "id"=>"92295"},
-  #     "1"=>{"unit_id"=>"29", "id"=>"92301"},
-  #     "2"=>{"unit_id"=>"1246", "id"=>"92290"}
-  #   },
-  #   "award_ids"=>["", "27", "109"],
-  #   "rank_id"=>"2",
-  #   "position_id"=>"1",
-  #   "topic_id"=>"123"
-  # }
-  def cadets_attributes=(attributes)
-    attributes_collection = attributes.values.filter { |a| a.key?("id") }
-    user_ids = attributes_collection.pluck("id")
-    @cadets = user_ids.empty? ? [] : Cadet.where(id: user_ids)
-
-    attributes_collection.each do |attributes_item|
-      existing_record = @cadets.find { |cadet| cadet.id.to_s == attributes_item["id"].to_s }
-      existing_record.assign_attributes(attributes_item) if existing_record.present?
+  def assignments
+    @assignments ||= training_platoon.enlistments
+      .accepted
+      .includes(user: :rank)
+      .map do |enlistment|
+      Assignment.new(user: enlistment.user)
     end
+  end
+
+  def assignments_attributes=(attributes)
+    @assignments = attributes.values.map { |attrs| Assignment.new(attrs) }
+  end
+
+  def award_ids=(award_ids)
+    @award_ids = award_ids.filter(&:present?)
   end
 
   def save
     return false unless valid?
 
-    cadets.each(&method(:verify_eligibility!))
+    # Triggering n+1 because verify_eligibility! access user's other assignments
+    assignments.each { |assignment| verify_eligibility!(assignment.user) }
 
     ActiveRecord::Base.transaction do
-      cadets.each { |cadet| graduate_user!(cadet, cadet.unit_id) }
+      assignments.each(&method(:process_graduation_assignment!))
 
-      unit.end_assignments
-      unit.update!(active: false)
+      training_platoon.end_assignments
+      training_platoon.update!(active: false)
     end
 
-    cadets.each(&method(:queue_background_jobs)) # unless txn fails?
-  rescue ActiveRecord::RecordInvalid
+    assignments.each { |assignment| queue_background_jobs(assignment.user) }
+  rescue ActiveRecord::RecordInvalid => exc
     false
   end
 
   private
 
+  def assignments_have_unit_ids
+    unless assignments.all? { |assignment| assignment.unit_id.present? }
+      errors.add(:assignments, "unit is required")
+    end
+  end
+
   def verify_eligibility!(user)
-    if user.member? || !user.assigned_to_unit?(unit) || !unit.enlistments.accepted.exists?(user: user)
+    if user.member? || !user.assigned_to_unit?(training_platoon) ||
+        !training_platoon.enlistments.accepted.exists?(user: user)
       raise IneligibleCadet.new(user: user)
     end
   end
 
-  def graduate_user!(user, assignment_unit_id)
-    user.assignments.build(unit_id: assignment_unit_id, position_id: position_id,
-      start_date: Date.current)
+  def process_graduation_assignment!(assignment)
+    user = assignment.user
+
+    assignment.assign_attributes(position_id: position_id, start_date: Date.current)
+    user.assignments << assignment
 
     user.promotions.build(new_rank_id: rank_id, old_rank_id: user.rank.id,
       date: Date.current, forum_id: :discourse, topic_id: topic_id)

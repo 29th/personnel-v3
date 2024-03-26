@@ -1,4 +1,4 @@
-ActiveAdmin.register TrainingPlatoon do
+ActiveAdmin.register Unit, as: "Training Platoon" do
   controller do
     def scoped_collection
       # the usual includes config doesn't seem to apply to show pages
@@ -18,12 +18,16 @@ ActiveAdmin.register TrainingPlatoon do
         :position_id,
         :topic_id,
         award_ids: [],
-        cadets_attributes: [
-          :id,
+        assignments_attributes: [
+          :member_id,
           :unit_id
         ]
       )
     end
+  end
+
+  scope_to do
+    Unit.training_platoons
   end
 
   actions :index, :show
@@ -99,14 +103,14 @@ ActiveAdmin.register TrainingPlatoon do
     @positions = Position.active
 
     if request.post?
-      @graduation = Forms::Graduation.new(unit: resource, **graduation_params)
+      @graduation = Forms::Graduation.new(training_platoon: resource, **graduation_params)
       if @graduation.save
         redirect_to resource_path, notice: "Graduation processed"
       else
         render :graduate
       end
     else
-      @graduation = Forms::Graduation.new(unit: resource, cadets: resource.cadets)
+      @graduation = Forms::Graduation.new(training_platoon: resource)
       render :graduate
     end
   end
