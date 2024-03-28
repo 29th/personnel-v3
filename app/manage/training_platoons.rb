@@ -101,6 +101,10 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
     @awards = Award.active.order(:title)
     @ranks = Rank.all
     @positions = Position.active
+    @enlistments_by_user = resource.enlistments
+      .accepted
+      .with_recruiter_details
+      .index_by(&:member_id)
 
     if request.post?
       @graduation = Forms::Graduation.new(training_platoon: resource, **graduation_params)

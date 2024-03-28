@@ -5,9 +5,13 @@
     <legend><span>Assignments</span></legend>
     <ol>
       <%= f.simple_fields_for :assignments do |af| %>
+        <% enlistment = @enlistments_by_user[af.object.user.id] %>
+        <% link_to_user = link_to(af.object.user, manage_user_path(af.object.user)) %>
+
         <%= af.input :member_id, as: :hidden %>
-        <%= af.input :unit_id, label: link_to(af.object.user, manage_user_path(af.object.user)),
-          collection: @squads, wrapper_tag: "li", label_method: :abbr %>
+        <%= af.input :unit_id, label: link_to_user,
+          collection: @squads, wrapper_tag: "li", label_method: :abbr,
+          hint: assignment_hint(enlistment) %>
       <% end %>
     </ol>
   </fieldset>

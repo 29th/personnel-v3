@@ -3,7 +3,6 @@ class Forms::Graduation
   include ActiveModel::Attributes
 
   attr_accessor :training_platoon
-  # attr_accessor :cadets
   attr_reader :award_ids
   attribute :rank_id, :integer
   attribute :position_id, :integer
@@ -13,7 +12,6 @@ class Forms::Graduation
   validates :award_ids, presence: true
   validates :rank_id, presence: true
   validates :position_id, presence: true
-  # validates :cadets, presence: true
   validates :topic_id, presence: true
 
   def assignments
@@ -55,7 +53,6 @@ class Forms::Graduation
   end
 
   private
-
 
   def verify_eligibility!(user)
     if user.member? || !user.assigned_to_unit?(training_platoon) ||
