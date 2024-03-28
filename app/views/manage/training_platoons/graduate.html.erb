@@ -20,7 +20,8 @@
     <legend><span>Apply to all users</span></legend>
     <ol>
       <%= f.input :award_ids, label: "Awards", collection: @awards,
-        as: :select, multiple: true, wrapper_tag: "li", include_blank: false %>
+        as: :select, multiple: true, wrapper_tag: "li", include_blank: false,
+        hint: "Game: #{Unit.games[resource.game]}" %>
       <%= f.input :rank_id, collection: @ranks,
         wrapper_tag: "li" %>
       <%= f.input :position_id, collection: @positions,
