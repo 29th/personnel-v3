@@ -62,8 +62,6 @@ class Forms::GraduationTest < ActiveSupport::TestCase
     graduation_without_unit = Forms::Graduation.new(assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
-    graduation_without_assignments = Forms::Graduation.new(training_platoon: @tp, topic_id: 0,
-      award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id)
     graduation_without_awards = Forms::Graduation.new(training_platoon: @tp,
       assignments_attributes: @assignments_attributes,
       rank_id: @rank.id, position_id: @position.id, topic_id: 0)
@@ -75,7 +73,6 @@ class Forms::GraduationTest < ActiveSupport::TestCase
       award_ids: @awards.pluck(:id), rank_id: @rank.id, topic_id: 0)
 
     refute graduation_without_unit.valid?, "unit should be required"
-    refute graduation_without_assignments.valid?, "assignments should be required"
     refute graduation_without_awards.valid?, "awards should be required"
     refute graduation_without_rank.valid?, "rank should be required"
     refute graduation_without_position.valid?, "position should be required"
@@ -98,6 +95,23 @@ class Forms::GraduationTest < ActiveSupport::TestCase
       assert_equal 1, cadet.promotions.size
       assert_equal @rank, cadet.rank
     end
+  end
+
+  test "does not create any records for users with no assignment set" do
+    modified_assignments_attributes = @assignments_attributes.dup
+    last_key = modified_assignments_attributes.keys.last
+    modified_assignments_attributes[last_key]["unit_id"] = ""
+    washout_user_id = modified_assignments_attributes[last_key]["member_id"]
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: modified_assignments_attributes,
+      award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
+      topic_id: 0)
+
+    assert graduation.save
+
+    washout = User.find(washout_user_id)
+    assert_empty washout.promotions
+    assert_empty washout.user_awards
+    refute_equal @rank, washout.rank
   end
 
   test "queues update_* background jobs" do

@@ -122,26 +122,6 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to manage_training_platoon_path(@tp)
     end
 
-    test "throws validation error if any user assignment is omitted" do
-      modified_assignments_attributes = assignments_attributes.dup
-      last_key = modified_assignments_attributes.keys.last
-      modified_assignments_attributes[last_key]["unit_id"] = ""
-
-      assert_no_difference "Assignment.count" do
-        post graduate_manage_training_platoon_path(@tp), params: {
-          forms_graduation: {
-            assignments_attributes: modified_assignments_attributes,
-            award_ids: @awards.pluck(:id).prepend(""),
-            rank_id: @rank.id,
-            position_id: @position.id,
-            topic_id: 0
-          }
-        }
-      end
-
-      assert_select "#page_title", "Graduate"
-    end
-
     test "re-renders previously selected form values when displaying validation errors" do
       assert_no_difference "Assignment.count" do
         post graduate_manage_training_platoon_path(@tp), params: {

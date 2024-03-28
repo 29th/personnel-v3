@@ -15,7 +15,6 @@ class Forms::Graduation
   validates :position_id, presence: true
   # validates :cadets, presence: true
   validates :topic_id, presence: true
-  validate :assignments_have_unit_ids
 
   def assignments
     @assignments ||= training_platoon.enlistments
@@ -37,28 +36,26 @@ class Forms::Graduation
   def save
     return false unless valid?
 
+    relevant_assignments = assignments.filter { |assignment| assignment.unit_id.present? }
+
     # Triggering n+1 because verify_eligibility! access user's other assignments
-    assignments.each { |assignment| verify_eligibility!(assignment.user) }
+    relevant_assignments.each { |assignment| verify_eligibility!(assignment.user) }
 
     ActiveRecord::Base.transaction do
-      assignments.each(&method(:process_graduation_assignment!))
+      relevant_assignments.each(&method(:process_graduation_assignment!))
 
       training_platoon.end_assignments
       training_platoon.update!(active: false)
     end
 
-    assignments.each { |assignment| queue_background_jobs(assignment.user) }
-  rescue ActiveRecord::RecordInvalid => exc
+    relevant_assignments.each { |assignment| queue_background_jobs(assignment.user) }
+    true
+  rescue ActiveRecord::RecordInvalid
     false
   end
 
   private
 
-  def assignments_have_unit_ids
-    unless assignments.all? { |assignment| assignment.unit_id.present? }
-      errors.add(:assignments, "unit is required")
-    end
-  end
 
   def verify_eligibility!(user)
     if user.member? || !user.assigned_to_unit?(training_platoon) ||
