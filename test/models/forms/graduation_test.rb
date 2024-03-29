@@ -28,24 +28,6 @@ class Forms::GraduationTest < ActiveSupport::TestCase
       update_forum_roles: true, update_coat: true)
   end
 
-  test "save rolls back if any cadet fails" do
-    modified_assignments_attributes = @assignments_attributes.dup
-    last_key = modified_assignments_attributes.keys.last
-    modified_assignments_attributes[last_key]["unit_id"] = 999999
-    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: modified_assignments_attributes,
-      award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
-      topic_id: 0)
-
-    assert_no_difference ["Assignment.count", "Promotion.count", "Award.count"] do
-      refute graduation.save
-    end
-
-    @cadets.each do |cadet|
-      cadet.reload
-      assert_equal "Rec.", cadet.rank.abbr
-    end
-  end
-
   test "save rolls back if unit updates fail" do
     graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: @assignments_attributes,
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,

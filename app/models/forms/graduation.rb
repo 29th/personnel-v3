@@ -61,7 +61,7 @@ class Forms::Graduation
   def save
     return false unless valid?
 
-    relevant_assignments = assignments.filter { |assignment| assignment.unit_id.present? }
+    relevant_assignments = assignments.filter { |assignment| assignment.unit.present? }
 
     # Triggering n+1 because verify_eligibility! access user's other assignments
     relevant_assignments.each { |assignment| verify_eligibility!(assignment.user) }
