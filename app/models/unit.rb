@@ -36,6 +36,12 @@ class Unit < ApplicationRecord
       .ransack({name_i_cont: "Squad"})
       .result(distinct: true)
   }
+  scope :with_assignment_count, -> {
+    with(assignment_counts: Assignment.active.count_by_unit)
+      .left_joins(:assignment_counts)
+      .select("*")
+      .select(assignment_counts: [:assignment_count])
+  }
 
   nilify_blanks
   validates :name, presence: true

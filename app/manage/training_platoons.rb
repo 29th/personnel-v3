@@ -97,7 +97,7 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
   end
 
   member_action :graduate, method: [:get, :post] do
-    @squads = Unit.ordered_squads
+    @squads = Unit.ordered_squads.with_assignment_count
     @awards = Award.active.order(:title)
     @ranks = Rank.all
     @positions = Position.active

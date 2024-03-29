@@ -35,6 +35,12 @@ class Assignment < ApplicationRecord
 
   attr_accessor :transfer_from_assignment_id
 
+  def self.count_by_unit
+    group(:unit_id)
+      .select(:unit_id)
+      .select("count(id) as assignment_count")
+  end
+
   def period
     start_date..(end_date || Date.current)
   end
