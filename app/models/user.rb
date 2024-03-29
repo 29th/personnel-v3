@@ -171,6 +171,10 @@ class User < ApplicationRecord
     enlistments.pending.any?
   end
 
+  def assigned_to_unit?(unit)
+    active_assignments.exists?(unit: unit)
+  end
+
   def assigned_to_subtree?(unit)
     active_assignment_unit_path_ids.include? unit.id
   end

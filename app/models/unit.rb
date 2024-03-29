@@ -9,7 +9,8 @@ class Unit < ApplicationRecord
   has_many :users, through: :assignments
   has_many :permissions
   has_many :unit_forum_roles
-  has_many :events, inverse_of: "unit"
+  has_many :events, -> { order(starts_at: :desc) }, inverse_of: "unit"
+  has_many :enlistments
 
   enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
   enum timezone: {est: "EST", gmt: "GMT", pst: "PST"}
@@ -26,7 +27,20 @@ class Unit < ApplicationRecord
   }
   scope :with_event_range, -> {
     # Used by Process Enlistment action to show date range of training platoons
-    select("units.*, (SELECT CONCAT( DATE_FORMAT(MIN(datetime),'%d %b %Y'),' - ', DATE_FORMAT(MAX(datetime),'%d %b %Y')) FROM events WHERE events.unit_id = `units`.id) AS event_range")
+    select("units.*, (SELECT CONCAT( DATE_FORMAT(MIN(starts_at),'%d %b %Y'),' - ', DATE_FORMAT(MAX(starts_at),'%d %b %Y')) FROM events WHERE events.unit_id = `units`.id) AS event_range")
+  }
+  scope :ordered_squads, -> {
+    active
+      .combat
+      .order(:ancestry, :order, :name)
+      .ransack({name_i_cont: "Squad"})
+      .result(distinct: true)
+  }
+  scope :with_assignment_count, -> {
+    with(assignment_counts: Assignment.active.count_by_unit)
+      .left_joins(:assignment_counts)
+      .select("*")
+      .select(assignment_counts: [:assignment_count])
   }
 
   nilify_blanks

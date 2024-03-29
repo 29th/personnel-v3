@@ -1,6 +1,6 @@
 class Assignment < ApplicationRecord
   audited
-  belongs_to :unit
+  belongs_to :unit, inverse_of: :assignments
   belongs_to :user, foreign_key: "member_id", inverse_of: :assignments
   belongs_to :position
 
@@ -34,6 +34,12 @@ class Assignment < ApplicationRecord
   validates_date :end_date, allow_blank: true
 
   attr_accessor :transfer_from_assignment_id
+
+  def self.count_by_unit
+    group(:unit_id)
+      .select(:unit_id)
+      .select("count(id) as assignment_count")
+  end
 
   def period
     start_date..(end_date || Date.current)

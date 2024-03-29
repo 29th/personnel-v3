@@ -41,6 +41,8 @@ class Enlistment < ApplicationRecord
 
   before_validation :set_legacy_attributes_from_user
 
+  scope :with_recruiter_details, -> { includes(recruiter_user: [:rank, active_assignments: :unit]) }
+
   def linked_ban_logs
     ips = linked_forum_users.pluck(:ips).flatten.uniq
 
