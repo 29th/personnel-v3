@@ -15,4 +15,10 @@ module GraduationHelper
 
     hint
   end
+
+  def squad_label(squad)
+    size = squad.assignment_count || 0
+    timezone = Unit.timezones[squad.timezone]
+    "#{squad.abbr} (#{size}) (#{timezone})"
+  end
 end

@@ -76,7 +76,6 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "lists user timezone and recruiter unit" do
-      skip
       get graduate_manage_training_platoon_path(@tp)
 
       assert_select ".forms_graduation_assignments_unit_id small", /PST/
@@ -95,7 +94,6 @@ class Manage::TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "unit selection includes number of active members" do
-      skip
       create(:unit, name: "Second Squad", abbr: "S2")
       create(:assignment, unit: @squad, end_date: 1.day.ago)
 

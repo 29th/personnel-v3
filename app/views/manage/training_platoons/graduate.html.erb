@@ -11,7 +11,7 @@
         <%= af.input :member_id, as: :hidden %>
         <%= af.input :unit_id, label: link_to_user,
           collection: @squads, wrapper_tag: "li",
-          label_method: ->(squad) { "#{squad.abbr} (#{squad.assignment_count})" },
+          label_method: ->(squad) { squad_label(squad) },
           hint: assignment_hint(enlistment) %>
       <% end %>
     </ol>
