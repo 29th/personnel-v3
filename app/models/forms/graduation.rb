@@ -23,12 +23,39 @@ class Forms::Graduation
     end
   end
 
+  # Preload the users and units to avoid n+1 queries later
   def assignments_attributes=(attributes)
-    @assignments = attributes.values.map { |attrs| Assignment.new(attrs) }
+    user_ids = attributes.values.pluck("member_id")
+    users_by_id = User.where(id: user_ids).includes(:rank).index_by(&:id)
+
+    unit_ids = attributes.values.pluck("unit_id")
+    units_by_id = Unit.active.where(id: unit_ids).index_by(&:id)
+
+    @assignments = attributes.values.map do |attrs|
+      user_id = attrs["member_id"]&.to_i
+      user = users_by_id[user_id]
+
+      unit_id = attrs["unit_id"]&.to_i
+      unit = units_by_id[unit_id]
+
+      Assignment.new(user:, unit:)
+    end
   end
 
   def award_ids=(award_ids)
     @award_ids = award_ids.filter(&:present?)
+  end
+
+  def awards
+    @awards ||= Award.where(id: award_ids)
+  end
+
+  def position
+    @position ||= Position.find(position_id)
+  end
+
+  def rank
+    @rank ||= Rank.find(rank_id)
   end
 
   def save
@@ -61,19 +88,21 @@ class Forms::Graduation
     end
   end
 
+  # Include user attribute in built records (even though it isn't necessary)
+  # to avoid n+1 queries
   def process_graduation_assignment!(assignment)
     user = assignment.user
+    date = Date.current
 
-    assignment.assign_attributes(position_id: position_id, start_date: Date.current)
+    assignment.assign_attributes(position: position, start_date: date)
     user.assignments << assignment
 
-    user.promotions.build(new_rank_id: rank_id, old_rank_id: user.rank.id,
-      date: Date.current, forum_id: :discourse, topic_id: topic_id)
-    user.rank_id = rank_id
+    user.promotions.build(new_rank: rank, old_rank: user.rank, date:, topic_id:,
+      user:, forum_id: :discourse)
+    user.rank = rank
 
-    award_ids.each do |award_id|
-      user.user_awards.build(award_id: award_id, date: Date.current,
-        forum_id: :discourse, topic_id: topic_id)
+    awards.each do |award|
+      user.user_awards.build(award:, date:, topic_id:, user:, forum_id: :discourse)
     end
 
     user.save!
