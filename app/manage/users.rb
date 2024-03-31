@@ -107,6 +107,7 @@ ActiveAdmin.register User do
       li link_to "Assignments", manage_user_assignments_path(resource) if authorized?(:index, Assignment)
       li link_to "Demerits", manage_user_demerits_path(resource) if authorized?(:index, Demerit)
       li link_to "Discharges", manage_user_discharges_path(resource) if authorized?(:index, Discharge)
+      li link_to "Enlistments", manage_user_enlistments_path(resource) if authorized?(:index, Enlistment)
       li link_to "Extended LOAs", manage_user_extended_loas_path(resource) if authorized?(:index, ExtendedLOA)
       li link_to "Finance Records", manage_user_finance_records_path(resource) if authorized?(:index, FinanceRecord)
       li link_to "Notes", manage_user_notes_path(resource) if authorized?(:index, Note)
