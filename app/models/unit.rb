@@ -32,7 +32,7 @@ class Unit < ApplicationRecord
   scope :ordered_squads, -> {
     active
       .combat
-      .order(:ancestry, :order, :name)
+      .order(:abbr)
       .ransack({name_i_cont: "Squad"})
       .result(distinct: true)
   }
