@@ -62,7 +62,8 @@ class ReverseProxyController < ApplicationController
   end
 
   def roid
-    mask :dreamhost, "/roid"
+    redirect_to "https://help.steampowered.com/en/faqs/view/2816-BE67-5B69-0FEC",
+      allow_other_host: true
   end
 
   def rs
