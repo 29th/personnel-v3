@@ -219,6 +219,9 @@ FactoryBot.define do
     ancestry {
       parent ? [parent.ancestry, parent.id].compact.join("/") : nil
     }
+    path {
+      ancestry.present? ? "/#{ancestry}/" : "/"
+    }
   end
 
   factory :unit_forum_role do

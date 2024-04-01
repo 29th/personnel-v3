@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_08_130710) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_01_160836) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -439,7 +439,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_130710) do
     t.string "name", limit: 64, null: false
     t.string "abbr", limit: 32, null: false
     t.string "old_path", limit: 32
-    t.string "path", limit: 32
+    t.string "path", limit: 32, null: false
     t.integer "order", default: 0, null: false
     t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
     t.string "timezone", limit: 3
