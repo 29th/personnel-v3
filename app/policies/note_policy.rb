@@ -34,8 +34,7 @@ class NotePolicy < ApplicationPolicy
   end
 
   def update?
-    new? && access_to_note?(record) &&
-      (user == record.author || user&.has_permission?("admin"))
+    create?
   end
 
   def destroy?

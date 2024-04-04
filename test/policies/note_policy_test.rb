@@ -121,7 +121,7 @@ class NotePolicyTest < ActiveSupport::TestCase
     assert_permit user, note, :create
   end
 
-  test "update denies user who is not original author" do
+  test "update allows user who is not original author" do
     unit = create(:unit)
     create(:permission, abbr: "note_view_pl", unit: unit)
 
@@ -129,7 +129,7 @@ class NotePolicyTest < ActiveSupport::TestCase
     create(:assignment, user: user, unit: unit)
 
     note = create(:note, access: :platoon_level)
-    refute_permit user, note, :update
+    assert_permit user, note, :update
   end
 
   test "update denies original author with note_view_sq on platoon_level note" do
