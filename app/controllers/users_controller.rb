@@ -52,6 +52,7 @@ class UsersController < ApplicationController
     # Avoid having to check permission for every qualification,
     # as they'd all be the same result
     _key, qualification = @ait_qualifications.first
+    qualification ||= AITQualification.new(user: @user)
     @can_create_qualifications = policy(qualification).create? if qualification
     @can_destroy_qualifications = policy(qualification).destroy? if qualification
   end
