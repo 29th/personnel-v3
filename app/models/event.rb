@@ -95,6 +95,11 @@ class Event < ApplicationRecord
     AttendanceRecord.upsert_all(attendance) if extended_loas.any?
   end
 
+  def attended?(user)
+    attendance_record = attendance_records.find { |ar| ar.user == user }
+    attendance_record&.attended
+  end
+
   def posted_loa?(user)
     attendance_record = attendance_records.find_by_user(user)
     attendance_record&.excused

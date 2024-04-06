@@ -76,7 +76,10 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
       end
     end
 
-      events = training_platoon.events.asc.with_stats
+    events = training_platoon.events
+      .asc
+      .with_stats
+      .includes(:attendance_records)
 
     panel "Events" do
       day = 0
@@ -104,6 +107,13 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
         tag_column :status
         column "" do |enlistment|
           link_to "View Enlistment", manage_enlistment_path(enlistment)
+        end
+
+        events.each_with_index do |event, index|
+          day = index + 1
+          column "Day #{day}" do |enlistment|
+            event.attended?(enlistment.user)
+          end
         end
       end
     end
