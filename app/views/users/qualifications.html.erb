@@ -46,7 +46,8 @@
                               <% if qualification.present? %>
                                 <%= link_to_if @can_destroy_qualifications,
                                   icon("fa-solid", "square-check"),
-                                  manage_user_ait_qualification_path(@user, qualification) %>
+                                  manage_user_ait_qualification_path(@user, qualification),
+                                  target: "_blank" %>
 
                                 <%= standard.description %>
 
@@ -61,7 +62,8 @@
                                   icon("fa-solid", "square"),
                                   new_manage_user_ait_qualification_path(@user, {
                                     ait_qualification: {standard_id: standard.id}
-                                  }) %>
+                                  }),
+                                  target: "_blank" %>
 
                                 <%= standard.description %>
                               <% end %>
