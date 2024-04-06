@@ -13,7 +13,7 @@ class UnitsController < ApplicationController
       .past
       .with_stats
       .includes(:unit)
-      .order(starts_at: :desc)
+      .desc
       .page(params[:page])
 
     @attendance_stats = @unit.attendance_stats

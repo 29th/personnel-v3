@@ -19,6 +19,9 @@ class Event < ApplicationRecord
 
   scope :past, -> { where(starts_at: ..Date.current) }
 
+  scope :asc, -> { order(starts_at: :asc) }
+  scope :desc, -> { order(starts_at: :desc) }
+
   scope :with_stats, -> {
     with(attendance_stats: AttendanceRecord.stats_by_event)
       .left_joins(:attendance_stats)

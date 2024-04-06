@@ -49,10 +49,11 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
       Unit.timezones[tp.timezone]
     end
     column :dates do |tp|
-      if tp.events.any?
-        span timestamp_tag(tp.events.last.starts_at_local, "%F")
+      events = tp.events.asc
+      if events.any?
+        span timestamp_tag(events.first.starts_at_local, "%F")
         span " - "
-        span timestamp_tag(tp.events.first.starts_at_local, "%F")
+        span timestamp_tag(events.last.starts_at_local, "%F")
       end
     end
     column :recruits do |tp|
@@ -72,6 +73,28 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
       end
       row :timezone do |tp|
         Unit.timezones[tp.timezone]
+      end
+    end
+
+      events = training_platoon.events.asc.with_stats
+
+    panel "Events" do
+      day = 0
+      table_for events do
+        column("Day") { day += 1 }
+        column "Starts at" do |event|
+          timestamp_tag event.starts_at_local
+        end
+        column "Attendance" do |event|
+          if event.expected_count.present?
+            span event.attended_count || 0
+            span "/"
+            span event.expected_count
+          end
+        end
+        column "" do |event|
+          link_to "View Event", event_path(event)
+        end
       end
     end
 
