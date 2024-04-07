@@ -4,7 +4,7 @@
       <li>
         <details open>
           <summary>
-            <strong><%= parent.name %></strong>
+            <strong><%= link_to parent.name, parent %></strong>
             <small class="text-muted">
               (<%= @assignments[parent.id]&.length %>)
             </small>

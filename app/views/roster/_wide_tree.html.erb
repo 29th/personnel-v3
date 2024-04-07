@@ -6,7 +6,7 @@
           <h3>
             <%= image_tag parent.logo_url,
                           class: "is60x60" unless parent.logo.nil? %>
-            <%= parent.name %>
+            <%= link_to parent.name, parent %>
             <small class="text-muted">
               (<%= @assignments[parent.id]&.length %>)
             </small>
