@@ -31,16 +31,16 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to 'Calendar', events_path, class: 'dropdown-item' if policy(Event).index? %>
-              <%= link_to 'Ban logs', personnel_v2_app_url(suffix: "banlogs"), class: 'dropdown-item' if policy(BanLog).index? %>
-              <%= link_to 'Enlistments', personnel_v2_app_url(suffix: "enlistments"), class: 'dropdown-item' if policy(Enlistment).index? %>
-              <%= link_to 'Training platoons', personnel_v2_app_url(suffix: "tps"), class: 'dropdown-item' %>
-              <%= link_to 'Extended LOAs', personnel_v2_app_url(suffix: "eloas"), class: 'dropdown-item' if policy(ExtendedLOA).index? %>
-              <%= link_to 'Finances', personnel_v2_app_url(suffix: "finances"), class: 'dropdown-item' if policy(FinanceRecord).index? %>
-              <%= link_to 'Weapon passes', passes_path, class: 'dropdown-item' if policy(Pass).index? %>
               <%= link_to 'Recruits', personnel_v2_app_url(suffix: "recruits"), class: 'dropdown-item' %>
-              <%= link_to 'Notes', personnel_v2_app_url(suffix: "notes"), class: 'dropdown-item' if policy(Note).index? %>
-              <%= link_to 'Member search', personnel_v2_app_url(suffix: "membersearch"), class: 'dropdown-item' %>
+              <%= link_to 'Weapon passes', passes_path, class: 'dropdown-item' if policy(Pass).index? %>
               <% if current_user.active_admin_editor? %>
+                <%= link_to 'Ban logs', manage_ban_logs_path, class: 'dropdown-item' if policy(BanLog).index? %>
+                <%= link_to 'Enlistments', manage_enlistments_path, class: 'dropdown-item' if policy(Enlistment).index? %>
+                <%= link_to 'Training platoons', manage_training_platoons_path, class: 'dropdown-item' if policy(Unit).index? %>
+                <%= link_to 'Extended LOAs', manage_extended_loas_path, class: 'dropdown-item' if policy(ExtendedLOA).index? %>
+                <%= link_to 'Finances', manage_finance_records_path, class: 'dropdown-item' if policy(FinanceRecord).index? %>
+                <%= link_to 'Notes', manage_notes_path, class: 'dropdown-item' if policy(Note).index? %>
+                <%= link_to 'Member search', manage_users_path, class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to 'Manage', manage_root_path, class: 'dropdown-item' %>
               <% end %>
