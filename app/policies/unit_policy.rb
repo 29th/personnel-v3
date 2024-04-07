@@ -11,6 +11,26 @@ class UnitPolicy < ApplicationPolicy
     user&.member?
   end
 
+  def awols?
+    user&.member?
+  end
+
+  def alerts?
+    user&.has_permission_on_unit?("awarding_add", record)
+  end
+
+  def stats?
+    user&.member?
+  end
+
+  def recruits?
+    user&.member?
+  end
+
+  def discharges?
+    user&.member?
+  end
+
   def new?
     user&.has_permission?("unit_add") ||
       user&.has_permission?("admin")

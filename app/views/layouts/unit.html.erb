@@ -42,8 +42,13 @@
     <div class="col-md-3 order-md-1">
       <nav class="nav flex-column nav-pills">
         <% links = {}
-        links['Roster'] = unit_path(@unit)
-        links['Attendance'] = unit_attendance_path(@unit) if policy(@unit).attendance?
+        links["Roster"] = unit_path(@unit)
+        links["Attendance"] = unit_attendance_path(@unit) if policy(@unit).attendance?
+        links["AWOLs"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "awols") if policy(@unit).awols?
+        links["Alerts"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "alerts") if policy(@unit).alerts?
+        links["Stats"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "stats") if policy(@unit).stats?
+        links["Recruits"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "recruits") if policy(@unit).recruits?
+        links["Discharges"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "discharges") if policy(@unit).discharges?
         %>
         <% links.each do |label, path| %>
           <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>

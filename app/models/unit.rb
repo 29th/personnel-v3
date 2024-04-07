@@ -88,6 +88,12 @@ class Unit < ApplicationRecord
     end
   end
 
+  def v2_slug
+    abbr&.sub(/ Co. HQ$/, "")
+      &.sub(/ HQ$/, "")
+      &.sub(" ", "")
+  end
+
   def attendance_stats
     @attendance_stats ||= AttendanceStats.for_unit(subtree)
   end
