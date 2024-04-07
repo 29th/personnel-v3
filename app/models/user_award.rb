@@ -5,6 +5,8 @@ class UserAward < ApplicationRecord
   belongs_to :user, foreign_key: "member_id"
   belongs_to :award
 
+  attribute :date, :date, default: -> { Date.current }
+
   validates :date, presence: true
   validates_date :date
 

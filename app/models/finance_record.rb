@@ -13,6 +13,8 @@ class FinanceRecord < ApplicationRecord
                 digital_ocean: "Digital Ocean, Inc",
                 google: "Google"}
 
+  attribute :date, :date, default: -> { Date.current }
+
   validates :date, presence: true
   validates_date :date
   validates :vendor, presence: true

@@ -25,6 +25,8 @@ class Assignment < ApplicationRecord
       .group_by(&:unit_id)
   }
 
+  attribute :start_date, :date, default: -> { Date.current }
+
   nilify_blanks
   validates :user, presence: true
   validates :unit, presence: true

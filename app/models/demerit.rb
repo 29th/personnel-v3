@@ -4,6 +4,8 @@ class Demerit < ApplicationRecord
   belongs_to :user, foreign_key: "member_id"
   belongs_to :author, class_name: "User", foreign_key: "author_member_id"
 
+  attribute :date, :date, default: -> { Date.current }
+
   validates :date, presence: true
   validates_date :date
   validates :user, presence: true

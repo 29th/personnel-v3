@@ -5,6 +5,8 @@ class Promotion < ApplicationRecord
   belongs_to :old_rank, class_name: "Rank", optional: true
   belongs_to :new_rank, class_name: "Rank"
 
+  attribute :date, :date, default: -> { Date.current }
+
   validates :user, presence: true
   validates :new_rank, presence: true
   validates :date, presence: true

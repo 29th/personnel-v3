@@ -12,6 +12,8 @@ class Discharge < ApplicationRecord
 
   attr_accessor :end_assignments
 
+  attribute :date, :date, default: -> { Date.current }
+
   validates :user, presence: true
   validates :date, presence: true
   validates_date :date

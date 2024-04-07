@@ -40,7 +40,7 @@ class Manage::DischargesControllerTest < ActionDispatch::IntegrationTest
 
     methods_called = []
     User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
-      post manage_discharges_url, params: {promotion: discharge_attributes(discharge)}
+      post manage_discharges_url, params: {discharge: discharge_attributes(discharge)}
     end
 
     assert @subject.member?, "user is no longer a member"

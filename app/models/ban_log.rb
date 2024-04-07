@@ -5,6 +5,8 @@ class BanLog < ApplicationRecord
   belongs_to :admin, class_name: "User", foreign_key: "id_admin"
   belongs_to :poster, class_name: "User", foreign_key: "id_poster"
 
+  attribute :date, :date, default: -> { Date.current }
+
   validates :date, presence: true
   validates_date :date
   validates :roid, presence: true, numericality: {only_integer: true}
