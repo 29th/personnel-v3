@@ -12,10 +12,6 @@ class ReverseProxyController < ApplicationController
     github: "https://29th.github.io"
   }
 
-  def a3
-    mask :dreamhost, "/a3"
-  end
-
   def awards
     mask :uploads, "/legacy-dreamhost/awards"
   end
