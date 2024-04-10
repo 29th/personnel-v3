@@ -92,6 +92,9 @@ ActiveAdmin.register User do
           span user.country.name
         end
       end
+      row :donated do |user|
+        format_donation_balance(FinanceRecord.user_donated(user))
+      end
       row "Steam ID", :steam_id do |user|
         link_to user.steam_id, "http://steamcommunity.com/profiles/#{user.steam_id}"
       end
