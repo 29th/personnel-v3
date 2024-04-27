@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   layout "about", except: :landing
 
   def landing
+    @active_member_count = User.active.count
   end
 
   def about
