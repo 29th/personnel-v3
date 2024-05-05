@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get "/enlist" => "home#enlist"
 
   get "/roster" => "roster#index"
+  get "/roster/squad.xml" => "roster#squad_xml"
 
   scope "/api/webhooks" do
     post "/discourse",
@@ -75,7 +76,6 @@ Rails.application.routes.draw do
 
   # reverse proxy legacy routes
   with_options controller: "reverse_proxy", via: :all, constraints: {path: /.*/} do
-    match "a3/29thSquadXML(/*path)", action: "squad_xml"
     match "awards(/*path)", action: "awards"
     match "bans(/*path)", action: "bans"
     match "coats(/*path)", action: "coats"

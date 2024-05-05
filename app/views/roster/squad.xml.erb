@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE squad SYSTEM "squad.dtd">
+
+<squad nick="29th ID">
+	<name>29th Infantry Division</name>
+	<email>admin@29th.org</email>
+	<web>https://www.29th.org</web>
+	<picture>logo.paa</picture>
+	<title>29th ID</title>
+
+	<% @users.each do |user| %>
+		<% assignment = user.active_assignments.first %>
+		<member id="<%= user.steam_id %>" nick="<%= user.short_name %>">
+			<name><%= user.full_name_last_first %></name>
+			<email></email>
+			<icq><%= assignment.unit.abbr %></icq>
+			<remark><%= assignment.position.name %></remark>
+		</member>
+	<% end %>
+
+</squad>

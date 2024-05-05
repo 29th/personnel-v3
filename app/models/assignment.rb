@@ -25,6 +25,10 @@ class Assignment < ApplicationRecord
       .group_by(&:unit_id)
   }
 
+  scope :ordered, -> {
+    order("unit.classification", "position.order DESC", "rank.order DESC")
+  }
+
   attribute :start_date, :date, default: -> { Date.current }
 
   nilify_blanks

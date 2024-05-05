@@ -74,10 +74,6 @@ class ReverseProxyController < ApplicationController
     mask :uploads, "/legacy-dreamhost/sigs"
   end
 
-  def squad_xml
-    mask :dreamhost, "/a3/29thSquadXML"
-  end
-
   def stamps
     mask :uploads, "/legacy-dreamhost/stamps"
   end

@@ -6,4 +6,11 @@ class RosterController < ApplicationController
 
     @slim = params.key?(:slim)
   end
+
+  def squad_xml
+    @users = User.active
+      .includes(:rank, active_assignments: [:unit, :position])
+      .merge(Assignment.ordered)
+    render "squad", formats: :xml
+  end
 end
