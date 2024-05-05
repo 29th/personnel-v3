@@ -9,7 +9,7 @@ class NotePolicy < ApplicationPolicy
         end
       end
 
-      scope.by_access(permitted_access_levels.to_set)
+      scope.for_access(permitted_access_levels.to_set)
     end
   end
 

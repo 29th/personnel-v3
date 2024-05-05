@@ -25,7 +25,7 @@ class FinanceRecord < ApplicationRecord
 
   scope :income, -> { where("amount_received > 0") }
   scope :expenses, -> { where("amount_paid > 0") }
-  scope :by_user, ->(user) { where(user: user) }
+  scope :for_user, ->(user) { where(user: user) }
 
   def self.balance
     FinanceRecord.select("SUM(amount_received) - SUM(amount_paid) - SUM(fee) AS balance")
@@ -34,7 +34,7 @@ class FinanceRecord < ApplicationRecord
   end
 
   def self.user_donated(user)
-    income.by_user(user).sum(:amount_received)
+    income.for_user(user).sum(:amount_received)
   end
 
   private_class_method :ransackable_attributes, :ransackable_associations

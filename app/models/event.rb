@@ -11,11 +11,11 @@ class Event < ApplicationRecord
   end
   has_many :users, through: :attendance_records
 
-  scope :by_user, ->(user) do
-    by_unit(user.active_assignment_unit_path_ids)
+  scope :for_user, ->(user) do
+    for_unit(user.active_assignment_unit_path_ids)
   end
 
-  scope :by_unit, ->(unit) { where(unit: unit) }
+  scope :for_unit, ->(unit) { where(unit: unit) }
 
   scope :past, -> { where(starts_at: ..Date.current) }
 
