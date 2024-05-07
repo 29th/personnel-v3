@@ -5,10 +5,12 @@ active_admin_form_for resource, url: process_enlistment_manage_enlistment_path(r
       hint: "Applicant wrote: #{Enlistment.games[f.object.game]} - #{Enlistment.timezones[f.object.timezone]}"
     f.input :status, as: :select, collection: Enlistment.statuses.map(&:reverse)
     f.input :recruiter_user, as: :searchable_select, ajax: true,
-      hint: ("Applicant wrote: #{f.object.recruiter}" unless f.object.recruiter.empty?)
+      hint: ("Applicant wrote: #{f.object.recruiter}" unless f.object.recruiter.empty?),
+      input_html: {data: {"allow-clear": true, placeholder: ""}}
 
     if authorized?(:assign_liaison, resource)
-      f.input :liaison, as: :searchable_select, ajax: true
+      f.input :liaison, as: :searchable_select, ajax: true,
+        input_html: {data: {"allow-clear": true, placeholder: ""}}
     end
   end
   f.actions do
