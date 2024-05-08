@@ -8,7 +8,8 @@ class DemeritPolicy < ApplicationPolicy
   end
 
   def new?
-    user&.has_permission?("demerit_add_any") ||
+    user&.has_permission?("demerit_add") ||
+      user&.has_permission?("demerit_add_any") ||
       user&.has_permission?("admin")
   end
 
