@@ -13,6 +13,7 @@ class UnitsController < ApplicationController
       .past
       .includes(:unit, :attendance_totals)
       .desc
+      .select(:id, :unit_id, :mandatory, :starts_at, :time_zone, :type)
       .page(params[:page])
 
     @attendance_stats = @unit.attendance_stats
