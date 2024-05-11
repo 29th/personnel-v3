@@ -33,18 +33,18 @@
       <td><%= link_to event.title, event %></td>
       <td><%= event.mandatory %></td>
       <td class="unit-attendance__attendance-col">
-        <% if event.expected_count.present? %>
-          <%= event.attended_count || 0 %>
+        <% if event.attendance_totals.present? %>
+          <%= event.attendance_totals.total_attended || 0 %>
           /
-          <%= event.expected_count %>
+          <%= event.attendance_totals.total_expected %>
         <% else %>
           <span class="badge badge-secondary">Missing AAR</span>
         <% end %>
       </td>
       <td class="unit-attendance__absent-col">
-        <% if event.absent_count.present? && event.absent_count > 0 %>
+        <% if event.attendance_totals.present? && event.attendance_totals.total_absent > 0 %>
           <span class="<%= event.mandatory ? "awol" : "absent" %>">
-            <%= event.absent_count %>
+            <%= event.attendance_totals.total_absent %>
           </span>
         <% end %>
       </td>

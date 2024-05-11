@@ -10,12 +10,12 @@ class AttendanceRecord < ApplicationRecord
         event: {mandatory: true, starts_at: ..24.hours.ago})
       .where.not(unit: {classification: :training})
   }
-  scope :stats_by_event, -> {
+  scope :totals_by_event, -> {
     group(:event_id)
       .select(:event_id)
-      .select("sum(attended = true) as attended_count")
-      .select("count(id) as expected_count")
-      .select("sum(attended = false and excused = false) as absent_count")
+      .select("sum(attended = true) as total_attended")
+      .select("count(*) as total_expected")
+      .select("sum(attended = false and excused = false) as total_absent")
   }
 
   validates :attended, inclusion: {in: [true, false]}, allow_nil: true

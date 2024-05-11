@@ -10,6 +10,7 @@ class Event < ApplicationRecord
     end
   end
   has_many :users, through: :attendance_records
+  has_one :attendance_totals, -> { totals_by_event }, class_name: "AttendanceRecord"
 
   scope :for_user, ->(user) do
     for_unit(user.active_assignment_unit_path_ids)
@@ -21,13 +22,6 @@ class Event < ApplicationRecord
 
   scope :asc, -> { order(starts_at: :asc) }
   scope :desc, -> { order(starts_at: :desc) }
-
-  scope :with_stats, -> {
-    with(attendance_stats: AttendanceRecord.stats_by_event)
-      .left_joins(:attendance_stats)
-      .select("*")
-      .select(attendance_stats: [:attended_count, :expected_count, :absent_count])
-  }
 
   attr_accessor :bulk_dates
   attr_accessor :time

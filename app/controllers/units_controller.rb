@@ -11,8 +11,7 @@ class UnitsController < ApplicationController
   def attendance
     @events = Event.for_unit(@unit.subtree) # include inactive units
       .past
-      .with_stats
-      .includes(:unit)
+      .includes(:unit, :attendance_totals)
       .desc
       .page(params[:page])
 
