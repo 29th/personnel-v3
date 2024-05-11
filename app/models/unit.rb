@@ -95,7 +95,10 @@ class Unit < ApplicationRecord
   end
 
   def attendance_stats
-    @attendance_stats ||= AttendanceStats.for_unit(subtree)
+    @attendance_stats ||= Rails.cache.fetch("units/#{id}/attendance_stats",
+      expires_in: 1.hour) do
+      AttendanceStats.for_unit(subtree)
+    end
   end
 
   # the database uses a column named `class`, which is a reserved
