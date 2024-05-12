@@ -78,8 +78,7 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
 
     events = training_platoon.events
       .asc
-      .with_stats
-      .includes(:attendance_records)
+      .includes(:attendance_records, :attendance_totals)
 
     panel "Events" do
       day = 0
@@ -89,10 +88,10 @@ ActiveAdmin.register Unit, as: "Training Platoon" do
           timestamp_tag event.starts_at_local
         end
         column "Attendance" do |event|
-          if event.expected_count.present?
-            span event.attended_count || 0
+          if event.attendance_totals.present?
+            span event.attendance_totals.total_attended || 0
             span "/"
-            span event.expected_count
+            span event.attendance_totals.total_expected
           end
         end
         column "" do |event|
