@@ -89,9 +89,7 @@ class Unit < ApplicationRecord
   end
 
   def v2_slug
-    abbr&.sub(/ Co. HQ$/, "")
-      &.sub(/ HQ$/, "")
-      &.sub(" ", "")
+    abbr&.gsub(/ Co| HQ|[ \.]/, "")
   end
 
   def attendance_stats
