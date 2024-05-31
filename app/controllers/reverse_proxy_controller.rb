@@ -8,7 +8,6 @@ class ReverseProxyController < ApplicationController
 
   SITES = {
     uploads: "https://uploads.29th.org",
-    dreamhost: "https://29th.dreamhosters.com",
     github: "https://29th.github.io"
   }
 
@@ -37,8 +36,7 @@ class ReverseProxyController < ApplicationController
   end
 
   def forums
-    # TODO: Should this instead redirect to smf.29th.org ?
-    mask :dreamhost, "/forums"
+    redirect_to "https://smf.29th.org", allow_other_host: true
   end
 
   def forum_post_images
@@ -53,17 +51,9 @@ class ReverseProxyController < ApplicationController
     mask :uploads, "/legacy-dreamhost/images"
   end
 
-  def medical
-    mask :dreamhost, "/medical"
-  end
-
   def roid
     redirect_to "https://help.steampowered.com/en/faqs/view/2816-BE67-5B69-0FEC",
       allow_other_host: true
-  end
-
-  def rs
-    mask :dreamhost, "/rs"
   end
 
   def signal_corps
