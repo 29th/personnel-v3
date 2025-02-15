@@ -59,11 +59,11 @@
       <% end %>
       
       <%= f.input :age, collection: ["Under 13", *13..99] %>
+
+      <%= f.input :game, collection: game_opts, hint: "Which game are you enlisting in?" %>
       
       <%= f.input :timezone, label: "Preferred Time", collection: timezone_opts,
         hint: "Which time do you prefer for practicing? (Give or take an hour)" %>
-
-      <%= f.input :game, collection: game_opts, hint: "Which game are you enlisting in?" %>
 
       <%= f.input :ingame_name, hint: "What name do you play with?" %>
 
