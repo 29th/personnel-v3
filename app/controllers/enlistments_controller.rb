@@ -45,6 +45,7 @@ class EnlistmentsController < ApplicationController
       :timezone,
       :game,
       :ingame_name,
+      :discord_username,
       :recruiter,
       :experience,
       :comments,

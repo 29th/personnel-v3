@@ -5,7 +5,7 @@ ActiveAdmin.register Enlistment do
   actions :index, :show, :edit, :update
   permit_params do
     params = [
-      :age, :game, :timezone, :ingame_name, :recruiter, :experience, :comments,
+      :age, :game, :timezone, :ingame_name, :discord_username, :recruiter, :experience, :comments,
       previous_units_attributes: [
         :unit, :game, :name, :rank, :reason, :_destroy
       ],
@@ -89,6 +89,7 @@ ActiveAdmin.register Enlistment do
           end
 
           row :ingame_name
+          row :discord_username
           row :recruiter do |enlistment|
             div enlistment.recruiter
             span link_to enlistment.recruiter_user if enlistment.recruiter_user.present?
@@ -239,6 +240,7 @@ ActiveAdmin.register Enlistment do
       f.input :timezone, label: "Preferred time", as: :select,
         collection: Enlistment.timezones.map(&:reverse)
       f.input :ingame_name
+      f.input :discord_username
       f.input :recruiter
       f.input :experience
       f.input :comments

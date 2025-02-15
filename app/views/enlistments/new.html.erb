@@ -67,6 +67,8 @@
 
       <%= f.input :ingame_name, hint: "What name do you play with?" %>
 
+      <%= f.input :discord_username, hint: "If you have a Discord account, what is your Discord username?" %>
+
       <%= simple_fields_for :user, current_user do |user_fields| %>
         <% if current_user.unregistered? %>
           <%= user_fields.input :steam_id, label: "Steam ID", as: :string,

@@ -28,6 +28,7 @@ class Enlistment < ApplicationRecord
   validates :timezone, presence: true
   validates :game, presence: true
   validates :ingame_name, presence: true, length: {maximum: 60}
+  validates :discord_username, length: {maximum: 64}
   validates :experience, presence: true, length: {maximum: 1500}
   validates :recruiter, length: {maximum: 128}
   validates :comments, length: {maximum: 1500}
