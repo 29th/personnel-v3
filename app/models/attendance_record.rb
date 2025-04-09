@@ -1,4 +1,6 @@
 class AttendanceRecord < ApplicationRecord
+  DISCHARGEABLE_PERIOD_DAYS = 30
+
   self.table_name = "attendance"
   belongs_to :user, foreign_key: "member_id"
   belongs_to :event
@@ -20,6 +22,9 @@ class AttendanceRecord < ApplicationRecord
   scope :by_unit, ->(unit) {
     includes(:event)
       .where(event: {unit: unit})
+  }
+  scope :active_users, -> {
+    joins(:user).merge(User.active)
   }
 
   validates :attended, inclusion: {in: [true, false]}, allow_nil: true
@@ -48,5 +53,24 @@ class AttendanceRecord < ApplicationRecord
 
   def excused_by_extended_loa?
     user.on_extended_loa?(event.datetime)
+  end
+
+  def self.dischargeable_dates(awols)
+    unique_dates = awols.map { |awol| awol.event.starts_at.to_date }.uniq.sort
+
+    dischargeable_dates = Set.new
+
+    # For each unique date, check the remaining dates to see if they fall within
+    # a 30-day period. If there are 3 or more, add them to the dischargeable dates set.
+    (0..unique_dates.size - 3).each do |i|
+      dates_within_period = unique_dates[i..]
+        .take_while { |date| date - unique_dates[i] <= DISCHARGEABLE_PERIOD_DAYS }
+
+      if dates_within_period.size >= 3
+        dischargeable_dates.merge(dates_within_period)
+      end
+    end
+
+    dischargeable_dates
   end
 end

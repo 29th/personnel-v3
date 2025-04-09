@@ -2,16 +2,23 @@
 
 <h2>AWOLs</h2>
 
-<% if @awols.any? %>
+<% if @awols_by_user.any? %>
   <ul>
-    <% @awols.each do |awol| %>
+    <% @awols_by_user.each do |user, data| %>
       <li>
-        <%= awol.event.starts_at.strftime("%F") %>
-        -
-        <%= link_to awol.event.title, awol.event %>
-        <% if awol.event.starts_at.before?(30.days.ago) %>
-          <small class="text-muted">(expired)</small>
-        <% end %>
+        <%= link_to user %>
+        <ul>
+          <% data[:awols].each do |awol| %>
+            <li>
+              <%= awol.event.starts_at.strftime("%F") %>
+              -
+              <%= link_to awol.event.title, awol.event %>
+              <% if data[:dischargeable_dates].include?(awol.event.starts_at.to_date) %>
+                <span class="badge bg-danger">30-day period</span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
       </li>
     <% end %>
   </ul>

@@ -20,10 +20,18 @@ class UnitsController < ApplicationController
   end
 
   def awols
-    @awols = AttendanceRecord.by_unit(@unit.subtree)
+    @awols_by_user = AttendanceRecord.by_unit(@unit.subtree)
       .awol
+      .active_users
+      .includes(user: :rank)
       .order("event.starts_at DESC")
-    # .group_by()
+      .group_by(&:user) # {user => [attendance_record, attendance_record, ...]}
+      .transform_values do |awols|
+        {
+          awols:,
+          dischargeable_dates: AttendanceRecord.dischargeable_dates(awols)
+        }
+      end
   end
 
   private
