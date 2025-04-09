@@ -1,0 +1,25 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - AWOLs" } %>
+
+<h2>AWOLs</h2>
+
+<% if @awols_by_user.any? %>
+  <ul>
+    <% @awols_by_user.each do |user, data| %>
+      <li>
+        <%= link_to user %>
+        <ul>
+          <% data[:awols].each do |awol| %>
+            <li>
+              <%= awol.event.starts_at.strftime("%F") %>
+              -
+              <%= link_to awol.event.title, awol.event %>
+              <% if data[:dischargeable_dates].include?(awol.event.starts_at.to_date) %>
+                <span class="badge bg-danger">30-day period</span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

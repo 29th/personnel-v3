@@ -61,6 +61,7 @@ Rails.application.routes.draw do
 
   resources :units, only: [:show] do
     get "attendance", to: "units#attendance"
+    get "awols", to: "units#awols"
   end
 
   resources :passes, only: [:index, :show]
