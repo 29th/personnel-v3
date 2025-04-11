@@ -23,6 +23,7 @@ class UnitsController < ApplicationController
     @awols_by_user = AttendanceRecord.by_unit(@unit.subtree)
       .awol
       .active_users
+      .event_on_or_after(90.days.ago)
       .includes(user: :rank)
       .order("event.starts_at DESC")
       .group_by(&:user) # {user => [attendance_record, attendance_record, ...]}

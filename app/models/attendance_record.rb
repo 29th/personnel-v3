@@ -26,6 +26,9 @@ class AttendanceRecord < ApplicationRecord
   scope :active_users, -> {
     joins(:user).merge(User.active)
   }
+  scope :event_on_or_after, ->(date) {
+    joins(:event).where({event: {starts_at: date..}})
+  }
 
   validates :attended, inclusion: {in: [true, false]}, allow_nil: true
   validates :excused, inclusion: {in: [true, false]}
