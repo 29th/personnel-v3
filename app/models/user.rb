@@ -11,9 +11,17 @@ class User < ApplicationRecord
       .merge(where("assignments.end_date > ?", Date.today).or(where(end_date: nil)))
   }, class_name: "Assignment", foreign_key: "member_id"
 
+  has_many :non_training_assignments, -> {
+    joins(:unit).where.not(units: {classification: "Training"})
+  }, class_name: "Assignment", foreign_key: "member_id"
+
   has_many :awards, through: :user_awards
   has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
+  has_one :latest_non_honorable_discharge, -> {
+    where.not(type: "Honorable").order(date: :desc).limit(1)
+  }, class_name: "Discharge", foreign_key: "member_id"
+
   has_many :enlistments, foreign_key: "member_id", inverse_of: :user
   has_many :extended_loas, foreign_key: "member_id"
   has_many :finance_records, foreign_key: "member_id"
@@ -187,12 +195,17 @@ class User < ApplicationRecord
       .uniq
   end
 
+  # Calculate service duration
+  # To avoid N+1 queries, ensure non_training_assignments and latest_non_honorable_discharge are preloaded
   def service_duration
-    relevant_assignments = assignments.not_training
+    # Don't include training assignments in service duration
+    relevant_assignments = non_training_assignments
 
-    last_non_honorable_discharge = discharges.not_honorable.last
-    if last_non_honorable_discharge.present?
-      relevant_assignments = relevant_assignments.since(last_non_honorable_discharge.date)
+    # Filter assignments since last non-honorable discharge if applicable
+    if latest_non_honorable_discharge.present?
+      # Filter in memory instead of using the since scope to avoid N+1 queries
+      discharge_date = latest_non_honorable_discharge.date
+      relevant_assignments = relevant_assignments.select { |a| a.start_date >= discharge_date }
     end
 
     days_of_service = relevant_assignments
