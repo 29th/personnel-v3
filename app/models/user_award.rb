@@ -10,8 +10,6 @@ class UserAward < ApplicationRecord
   validates :date, presence: true
   validates_date :date
 
-  scope :by_date, ->(date_range) { where(date: date_range) if date_range.present? }
-
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object = nil)

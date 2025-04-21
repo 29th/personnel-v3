@@ -11,7 +11,6 @@ class MissingAwardCalculator
 
   def missing_service_duration_awards
     service_duration = @user.service_duration
-    since_discharge = @user.latest_non_honorable_discharge.present? ? @user.latest_non_honorable_discharge.date.. : nil
 
     # Calculate how many awards the user should have based on service duration
     months_of_service = (service_duration.to_i / 1.month).floor
@@ -23,10 +22,18 @@ class MissingAwardCalculator
     # For every 2 years of service, a user should be awarded a World War I Victory Medal (ww1v)
     expected_ww1v_count = (years_of_service / 2).floor
 
+    # Ignore awards given prior to non-honorable discharge
+    discharge = @user.latest_non_honorable_discharge
+    relevant_awards = if discharge.present?
+      @user.user_awards.select { |ua| (discharge.date..).cover?(ua.date) }
+    else
+      @user.user_awards
+    end
+
     # Count how many of each award the user already has
-    # Using preloaded user_awards and filtering in memory to avoid N+1 queries
-    actual_aocc_count = @user.user_awards.by_date(since_discharge).count { |ua| ua.award.code == "aocc" }
-    actual_ww1v_count = @user.user_awards.by_date(since_discharge).count { |ua| ua.award.code == "ww1v" }
+    # Filter in memory to avoid N+1 queries
+    actual_aocc_count = relevant_awards.count { |ua| ua.award.code == "aocc" }
+    actual_ww1v_count = relevant_awards.count { |ua| ua.award.code == "ww1v" }
 
     # Calculate missing awards
     missing_aocc = [expected_aocc_count - actual_aocc_count, 0].max
