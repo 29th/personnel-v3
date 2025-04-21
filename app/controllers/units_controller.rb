@@ -40,6 +40,7 @@ class UnitsController < ApplicationController
     users = @unit.subtree_users.active.includes(
       :rank,
       :latest_non_honorable_discharge,
+      :accepted_recruited_enlistments,
       user_awards: :award,
       non_training_assignments: :unit
     )
@@ -49,7 +50,9 @@ class UnitsController < ApplicationController
       missing_awards = MissingAwardCalculator.call(user)
 
       # Only include users with missing awards
-      if missing_awards[:aocc] > 0 || missing_awards[:ww1v] > 0
+      if missing_awards[:aocc] > 0 || missing_awards[:ww1v] > 0 ||
+          missing_awards[:cab1] > 0 || missing_awards[:cab2] > 0 ||
+          missing_awards[:cab3] > 0 || missing_awards[:cab4] > 0
         @users_with_missing_awards[user] = {
           service_duration: user.service_duration,
           missing_awards:

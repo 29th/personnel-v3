@@ -6,25 +6,43 @@
   <ul>
     <% @users_with_missing_awards.each do |user, data| %>
       <li>
-        <%= link_to user %>
-
-        <small class="text-muted">
-          <%= format_service_duration(data[:service_duration]) %> of service
-        </small>
+        <strong><%= link_to user %></strong>
         <ul>
-          <% data[:missing_awards] => {aocc:, ww1v:} %>
-          <% if aocc > 0 %>
+          <% data[:missing_awards] => {aocc:, ww1v:, cab1:, cab2:, cab3:, cab4:} %>
+          <% if aocc > 0 || ww1v > 0 %>
             <li>
-              Missing <%= aocc %>
-              <em>Army of Occupation</em>
-              <%= "medal".pluralize(aocc) %>
+              Missing 
+              <% if aocc > 0 %>
+                <%= aocc %> <em>Army of Occupation</em> <%= "medal".pluralize(aocc) %>
+                <%= "and" if ww1v > 0 %>
+              <% end %>
+              <% if ww1v > 0 %>
+                <%= ww1v %> <em>World War I Victory</em> <%= "medal".pluralize(ww1v) %>
+              <% end %>
+              <br>
+              <small class="text-muted">
+                <%= format_service_duration(data[:service_duration]) %> of service
+              </small>
             </li>
           <% end %>
-          <% if ww1v > 0 %>
+
+          <% if cab1 > 0 || cab2 > 0 || cab3 > 0 || cab4 > 0 %>
             <li>
-              Missing <%= ww1v %>
-              <em>World War I Victory</em>
-              <%= "medal".pluralize(ww1v) %>
+              Missing <em>Combat Action Badge</em>,
+              <% missing_cab_awards = [] %>
+              <% missing_cab_awards << "1st" if cab1 > 0 %>
+              <% missing_cab_awards << "2nd" if cab2 > 0 %>
+              <% missing_cab_awards << "3rd" if cab3 > 0 %>
+              <% missing_cab_awards << "4th" if cab4 > 0 %>
+
+              <%= missing_cab_awards.to_sentence %>
+              <%= "Award".pluralize(missing_cab_awards.size) %>
+              <br>
+              <small class="text-muted">
+                <%= user.accepted_recruited_enlistments.size.ordinalize %>
+                recruit enlisted on
+                <%= user.accepted_recruited_enlistments.last&.date&.to_date %>
+              </small>
             </li>
           <% end %>
         </ul>
