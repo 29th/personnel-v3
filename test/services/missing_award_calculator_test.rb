@@ -152,4 +152,15 @@ class MissingAwardCalculatorTest < ActiveSupport::TestCase
       assert_equal 0, result[:cab4]
     end
   end
+
+  test "a user with recruits from before a discharge" do
+    create_list(:enlistment, 3, date: 4.years.ago, recruiter_user: user, status: :accepted)
+    create(:discharge, user: user, type: :general, date: 3.years.ago)
+    create_list(:enlistment, 2, date: 1.year.ago, recruiter_user: user, status: :accepted)
+
+    result = MissingAwardCalculator.call(user)
+
+    assert_equal 1, result[:cab1]
+    assert_equal 0, result[:cab2]
+  end
 end

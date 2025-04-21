@@ -44,8 +44,20 @@ class MissingAwardCalculator
   end
 
   def missing_recruitment_awards
+    # Ignore enlistments and awards given prior to non-honorable discharge
+    discharge = @user.latest_non_honorable_discharge
+
+    # Filter relevant enlistments based on discharge date
+    relevant_enlistments = if discharge.present?
+      # Filter in memory to avoid N+1 queries
+      # Only count enlistments after the discharge date
+      @user.accepted_recruited_enlistments.select { |e| e.date >= discharge.date }
+    else
+      @user.accepted_recruited_enlistments
+    end
+
     # Get the count of accepted enlistments where this user is the recruiter
-    recruitment_count = @user.accepted_recruited_enlistments.size
+    recruitment_count = relevant_enlistments.size
 
     # Calculate how many awards the user should have based on recruitment count
     expected_cab1_count = (recruitment_count >= 2) ? 1 : 0
@@ -53,10 +65,9 @@ class MissingAwardCalculator
     expected_cab3_count = (recruitment_count >= 10) ? 1 : 0
     expected_cab4_count = (recruitment_count >= 20) ? 1 : 0
 
-    # Ignore awards given prior to non-honorable discharge
-    discharge = @user.latest_non_honorable_discharge
+    # Filter relevant awards based on discharge date
     relevant_awards = if discharge.present?
-      @user.user_awards.select { |ua| (discharge.date..).cover?(ua.date) }
+      @user.user_awards.select { |ua| ua.date >= discharge.date }
     else
       @user.user_awards
     end
