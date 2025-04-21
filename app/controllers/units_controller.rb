@@ -35,6 +35,29 @@ class UnitsController < ApplicationController
       end
   end
 
+  def missing_awards
+    # Get all active users in the unit's subtree with preloaded associations to avoid N+1 queries
+    users = @unit.subtree_users.active.includes(
+      :rank,
+      :latest_non_honorable_discharge,
+      user_awards: :award,
+      non_training_assignments: :unit
+    )
+
+    @users_with_missing_awards = {}
+    users.each do |user|
+      missing_awards = MissingAwardCalculator.call(user)
+
+      # Only include users with missing awards
+      if missing_awards[:aocc] > 0 || missing_awards[:ww1v] > 0
+        @users_with_missing_awards[user] = {
+          service_duration: user.service_duration,
+          missing_awards:
+        }
+      end
+    end
+  end
+
   private
 
   def find_and_authorize_unit

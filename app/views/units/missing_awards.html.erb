@@ -1,0 +1,36 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - Missing Awards" } %>
+
+<h2>Missing Awards</h2>
+
+<% if @users_with_missing_awards.any? %>
+  <ul>
+    <% @users_with_missing_awards.each do |user, data| %>
+      <li>
+        <%= link_to user %>
+
+        <small class="text-muted">
+          <%= format_service_duration(data[:service_duration]) %> of service
+        </small>
+        <ul>
+          <% data[:missing_awards] => {aocc:, ww1v:} %>
+          <% if aocc > 0 %>
+            <li>
+              Missing <%= aocc %>
+              <em>Army of Occupation</em>
+              <%= "medal".pluralize(aocc) %>
+            </li>
+          <% end %>
+          <% if ww1v > 0 %>
+            <li>
+              Missing <%= ww1v %>
+              <em>World War I Victory</em>
+              <%= "medal".pluralize(ww1v) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No missing awards found for this unit.</p>
+<% end %>
