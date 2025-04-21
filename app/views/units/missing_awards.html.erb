@@ -12,18 +12,19 @@
           <%= format_service_duration(data[:service_duration]) %> of service
         </small>
         <ul>
-          <% if data[:missing_aocc] > 0 %>
+          <% data[:missing_awards] => {aocc:, ww1v:} %>
+          <% if aocc > 0 %>
             <li>
-              Missing <%= data[:missing_aocc] %>
+              Missing <%= aocc %>
               <em>Army of Occupation</em>
-              <%= "medal".pluralize(data[:missing_aocc]) %>
+              <%= "medal".pluralize(aocc) %>
             </li>
           <% end %>
-          <% if data[:missing_ww1v] > 0 %>
+          <% if ww1v > 0 %>
             <li>
-              Missing <%= data[:missing_ww1v] %>
+              Missing <%= ww1v %>
               <em>World War I Victory</em>
-              <%= "medal".pluralize(data[:missing_ww1v]) %>
+              <%= "medal".pluralize(ww1v) %>
             </li>
           <% end %>
         </ul>
