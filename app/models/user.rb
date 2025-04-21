@@ -35,6 +35,8 @@ class User < ApplicationRecord
   has_many :attendance_records, foreign_key: "member_id"
   has_many :recruited_enlistments, class_name: "Enlistment",
     foreign_key: "recruiter_member_id", inverse_of: :recruiter_user
+  has_many :accepted_recruited_enlistments, -> { accepted },
+    class_name: "Enlistment", foreign_key: "recruiter_member_id"
   belongs_to :rank
   belongs_to :country, optional: true
 
