@@ -61,7 +61,50 @@ class UnitsController < ApplicationController
     end
   end
 
+  def stats
+    # Get units in hierarchical order
+    units = @unit.subtree.active
+    unit_tree = units.arrange(order: :order)
+
+    # Flatten the tree while preserving hierarchical order
+    @units = flatten_arranged_units(unit_tree)
+
+    # Get all users in the subtree with preloaded associations to avoid N+1 queries
+    users = User.joins(:assignments)
+      .where(assignments: {unit_id: units.ids})
+      .active
+      .includes(
+        :rank,
+        assignments: :position
+      )
+      .distinct
+      .order("positions.order DESC, ranks.order DESC")
+
+    # Get all user IDs for preloading attendance stats
+    user_ids = users.map(&:id)
+
+    # Preload attendance stats for all users at once
+    @attendance_stats_by_user_id = AttendanceStats.for_users(user_ids)
+      .index_by(&:member_id)
+
+    @users_by_unit = {}
+
+    # Group users by unit
+    @units.each do |unit|
+      @users_by_unit[unit] = users.select do |user|
+        user.assignments.any? { |a| a.unit_id == unit.id }
+      end
+    end
+  end
+
   private
+
+  # Helper method to flatten an arranged tree of units while preserving hierarchical order
+  def flatten_arranged_units(arranged_units)
+    arranged_units.flat_map do |unit, children|
+      [unit, *flatten_arranged_units(children)]
+    end
+  end
 
   def find_and_authorize_unit
     @unit = Unit.friendly.find(params[:unit_id] || params[:id])

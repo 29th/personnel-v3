@@ -32,3 +32,15 @@
     }
   }
 }
+
+.unit-stats {
+  caption {
+    caption-side: top;
+  }
+  
+  .unit-stats__attendance-col {
+    width: 3ch; // 3 characters
+    text-align: center;
+    font-weight: bold;
+  }
+}

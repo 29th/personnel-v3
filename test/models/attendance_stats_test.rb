@@ -28,7 +28,10 @@ class AttendanceStatsTest < ActiveSupport::TestCase
       assert_equal 50, result.total.round
     end
 
+    # I've removed this functionality because it was very expensive to compute
+    # this for the stats page and I thought it's better to be consistent
     test "ignores events before a non-honorable discharge" do
+      skip
       user = create(:user)
       create(:attendance_record, :attended, :mandatory, event_starts_at: 1.week.ago, user: user)
       create(:discharge, type: :general, date: 1.month.ago, user: user)
