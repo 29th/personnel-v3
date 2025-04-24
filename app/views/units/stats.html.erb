@@ -1,0 +1,72 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - Stats" } %>
+
+<h2>Attendance Stats</h2>
+
+<% @units.each do |unit| %>
+  <% users = @users_by_unit[unit] %>
+  <% next if users.empty? %>
+  
+  
+  <table class="table table-striped unit-stats">
+    <caption><h3><%= link_to unit.abbr, unit %></h3></caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col" class="text-center"
+          title="Attendance of mandatory events over the past 30 days"
+          data-toggle="tooltip" data-controller="tooltip">30</th>
+        <th scope="col" class="text-center"
+          title="Attendance of mandatory events over the past 60 days"
+          data-toggle="tooltip" data-controller="tooltip">60</th>
+        <th scope="col" class="text-center"
+          title="Attendance of mandatory events over the past 90 days"
+          data-toggle="tooltip" data-controller="tooltip">90</th>
+        <th scope="col" class="text-center"
+          title="Attendance of all mandatory events"
+          data-toggle="tooltip" data-controller="tooltip">All</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td>
+            <%= image_tag user.rank.image(:icon).url,
+                          alt: user.rank.abbr,
+                          class: "is16x16" unless user.rank.image(:icon).nil? %>
+            <%= link_to user.short_name, user %>
+            <% position = user.assignments.find { |a| a.unit_id == unit.id }&.position %>
+            <% if position %>
+              <small class="text-muted"><%= position.name %></small>
+            <% end %>
+          </td>
+          
+          <% stats = @attendance_stats_by_user_id[user.id] %>
+          <% if stats.present? %>
+            <td class="unit-stats__attendance-col">
+              <span class="<%= attendance_badge_class(stats.last_30_days) %>">
+                <%= stats.last_30_days.round %>%
+              </span>
+            </td>
+            <td class="unit-stats__attendance-col">
+              <span class="<%= attendance_badge_class(stats.last_60_days) %>">
+                <%= stats.last_60_days.round %>%
+              </span>
+            </td>
+            <td class="unit-stats__attendance-col">
+              <span class="<%= attendance_badge_class(stats.last_90_days) %>">
+                <%= stats.last_90_days.round %>%
+              </span>
+            </td>
+            <td class="unit-stats__attendance-col">
+              <span class="<%= attendance_badge_class(stats.total) %>">
+                <%= stats.total.round %>%
+              </span>
+            </td>
+          <% else %>
+            <td colspan="4" class="text-center"></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

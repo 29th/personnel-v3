@@ -24,36 +24,43 @@ class AttendanceStats
   SQL
 
   def self.for_user(user)
-    aggregations = [
-      percent_attended(30),
-      percent_attended(60),
-      percent_attended(90),
-      PERCENT_TOTAL
-    ]
-
-    query = AttendanceRecord
-      .select(aggregations.join(", "))
+    AttendanceRecord
+      .select([
+        percent_attended(30),
+        percent_attended(60),
+        percent_attended(90),
+        PERCENT_TOTAL
+      ].join(", "))
       .joins(:event)
       .where(user: user, event: {mandatory: true})
+      .first
+  end
 
-    last_non_honorable_discharge = user.discharges.not_honorable.last
-    if last_non_honorable_discharge.present?
-      query = query.where("starts_at > ?", last_non_honorable_discharge.date)
-    end
+  def self.for_users(user_ids)
+    return {} if user_ids.empty?
 
-    query.first # TODO: Cast the result as AttendanceStats
+    # Query for attendance stats for all users at once
+    AttendanceRecord
+      .select([
+        percent_attended(30),
+        percent_attended(60),
+        percent_attended(90),
+        PERCENT_TOTAL,
+        "attendance.member_id"
+      ].join(", "))
+      .joins(:event)
+      .where(member_id: user_ids, event: {mandatory: true})
+      .group(:member_id)
   end
 
   def self.for_unit(unit)
-    aggregations = [
-      percent_attended(30),
-      percent_attended(60),
-      percent_attended(90),
-      PERCENT_TOTAL
-    ]
-
     AttendanceRecord
-      .select(aggregations.join(", "))
+      .select([
+        percent_attended(30),
+        percent_attended(60),
+        percent_attended(90),
+        PERCENT_TOTAL
+      ].join(", "))
       .joins(:event)
       .where(event: {unit: unit, mandatory: true})
       .first
