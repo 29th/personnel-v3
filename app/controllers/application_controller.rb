@@ -21,6 +21,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Make controller data available to lograge logger. You must
+  # still add it to the log payload in the environment config.
+  def append_info_to_payload(payload)
+    super
+    payload[:host] = request.host
+    payload[:remote_ip] = request.remote_ip
+    payload[:user_id] = current_user.try(:id)
+  end
+
   protected
 
   def active_admin_controller?
