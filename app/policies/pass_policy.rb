@@ -1,10 +1,12 @@
 class PassPolicy < ApplicationPolicy
   def index?
-    true
+    # Require user is signed in (but not necessarily a member) to stop bot scraping
+    user&.present?
   end
 
   def show?
-    true
+    # Require user is signed in (but not necessarily a member) to stop bot scraping
+    user&.present?
   end
 
   def new?
