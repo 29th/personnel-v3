@@ -8,7 +8,6 @@ module EnlistmentsHelper
   def timezone_opts
     [
       ["7pm EST (Midnight GMT)", "est"],
-      ["6pm PST (2am GMT)", "pst"],
       ["2pm EST (7pm GMT)", "gmt"],
       ["Any", "any_timezone"]
     ]
