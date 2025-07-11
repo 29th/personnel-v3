@@ -30,6 +30,20 @@
         <th scope="col" class="text-center"
           title="Squad Leadership Training progress"
           data-toggle="tooltip" data-controller="tooltip">SLT</th>
+        
+        <th scope="col" class="text-center">Rifle</th>
+        <th scope="col" class="text-center"
+          title="Combat Engineer"
+          data-toggle="tooltip" data-controller="tooltip">CE</th>
+        <%# <th scope="col" class="text-center">Crew</th> %>
+        <th scope="col" class="text-center"
+          title="Automatic Rifle"
+          data-toggle="tooltip" data-controller="tooltip">AR</th>
+        <th scope="col" class="text-center">Sniper</th>
+        <th scope="col" class="text-center">Grenadier</th>
+        <th scope="col" class="text-center"
+          title="Sub-Machine Gun"
+          data-toggle="tooltip" data-controller="tooltip">SMG</th>
       </tr>
     </thead>
     <tbody>
@@ -85,6 +99,42 @@
           <td class="unit-stats__standard-progress-col">
             <% progress = user_progress_calculations[:slt][:notapplicable] %>
             <%= render_progress(progress, @awards[:slt]) %>
+          </td>
+          
+          <!-- Rifle -->
+          <td class="unit-stats__standard-progress-col">
+            <% progress = user_progress_calculations[:rifle][:marksman] %>
+            <%= render_progress(progress, @awards[:marksman]) %>
+          </td>
+
+          <!-- Combat Engineer -->
+          <td class="unit-stats__standard-progress-col">
+            <% progress = user_progress_calculations[:combat_engineer][:marksman] %>
+            <%= render_progress(progress, @awards[:marksman]) %>
+          </td>
+
+          <!-- Automatic Rifle -->
+          <td class="unit-stats__standard-progress-col">
+            <% progress = user_progress_calculations[:automatic_rifle][:marksman] %>
+            <%= render_progress(progress, @awards[:marksman]) %>
+          </td>
+
+          <!-- Sniper -->
+          <td class="unit-stats__standard-progress-col">
+            <% progress = user_progress_calculations[:sniper][:marksman] %>
+            <%= render_progress(progress, @awards[:marksman]) %>
+          </td>
+
+          <!-- Grenadier -->
+          <td class="unit-stats__standard-progress-col">
+            <% progress = user_progress_calculations[:grenadier][:marksman] %>
+            <%= render_progress(progress, @awards[:marksman]) %>
+          </td>
+
+          <!-- Submachine Gun -->
+          <td class="unit-stats__standard-progress-col">
+            <% progress = user_progress_calculations[:submachine_gun][:marksman] %>
+            <%= render_progress(progress, @awards[:marksman]) %>
           </td>
         </tr>
       <% end %>

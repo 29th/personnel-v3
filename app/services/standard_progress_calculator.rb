@@ -16,13 +16,18 @@ class StandardProgressCalculator
   STANDARDS = {
     eib: {notapplicable: "eib"},
     slt: {notapplicable: "anpdr"},
-    rifle: {marksman: "m:rifle:{game}", sharpshooter: "s:rifle:{game}", expert: "e:rifle:{game}"}
+    rifle: {marksman: "m:rifle:{game}", sharpshooter: "s:rifle:{game}", expert: "e:rifle:{game}"},
+    combat_engineer: {marksman: "m:zook:{game}", sharpshooter: "s:zook:{game}", expert: "e:zook:{game}"},
+    automatic_rifle: {marksman: "m:bar:{game}", sharpshooter: "s:bar:{game}", expert: "e:bar:{game}"},
+    sniper: {marksman: "m:sniper:{game}", sharpshooter: "s:sniper:{game}", expert: "e:sniper:{game}"},
+    grenadier: {marksman: "m:grenadier:{game}", sharpshooter: "s:grenadier:{game}", expert: "e:grenadier:{game}"},
+    submachine_gun: {marksman: "m:smg:{game}", sharpshooter: "s:smg:{game}", expert: "e:smg:{game}"}
   }
 
   # Award codes' game suffix sometimes differs from Unit#game enum
   UNIT_GAME_TO_AWARD_CODE_GAME = {
-    arma3: "a3",
-    squad: "sq"
+    "arma3" => "a3",
+    "squad" => "sq"
   }
 
   def initialize(users, game)
