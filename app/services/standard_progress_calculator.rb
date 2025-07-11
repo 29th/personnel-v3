@@ -1,0 +1,110 @@
+class StandardProgressCalculator
+  include Service
+
+  # Plan:
+  # - define the relevant standards
+  # - fetch the count of AITStandards for each standard
+  # - fetch the count of each standard for each user, by level, perhaps by game as well
+  #
+  # nb: if aitstandard criteria changes over time, this will become out of sync,
+  # as it just compares raw counts; not counts of specific criteria. but that shouldn't
+  # matter because if the user has received the award, it shows that instead of percentage.
+
+  # Units#game: DH, RS, Arma 3, RS2, Squad
+  # Awards#code: dh, rs, a3, rs2, sq
+
+  STANDARDS = {
+    eib: {notapplicable: "eib"},
+    slt: {notapplicable: "anpdr"},
+    rifle: {marksman: "m:rifle:{game}", sharpshooter: "s:rifle:{game}", expert: "e:rifle:{game}"}
+  }
+
+  # Award codes' game suffix sometimes differs from Unit#game enum
+  UNIT_GAME_TO_AWARD_CODE_GAME = {
+    arma3: "a3",
+    squad: "sq"
+  }
+
+  def initialize(users, game)
+    @users = users
+    @game = game
+  end
+
+  # TODO: Make this work for units with no game value
+  # Returns each user's progress percentage toward each badge, or :award.
+  # {568 => {eib: {notapplicable: 13}, 90944 => {rifle: {marksman: :award, sharpshooter: 90}}}
+  def call
+    relevant_game_values = ["", nil, @game] # slt and eib have game set to an empty string
+
+    # {["eib", "notapplicable"] => 13, ["rifle", "marksman"] => 9}
+    criteria_counts = AITStandard
+      .where(game: relevant_game_values)
+      .group(:weapon, :badge)
+      .count
+
+    # {[568, "eib", "notapplicable"] => 13, [90944, "automatic_rifle", "marksman"] => 7}
+    qualification_counts = AITQualification
+      .joins(:ait_standard)
+      .where(user: @users, ait_standard: {game: relevant_game_values})
+      .group(:member_id, :weapon, :badge)
+      .count
+      .transform_keys do |member_id, raw_weapon, raw_badge|
+        # Use the enums from AITStandard so we're comparing like-for-like
+        [member_id, AITStandard.weapons.key(raw_weapon), AITStandard.badges.key(raw_badge)]
+      end
+
+    relevant_award_codes = STANDARDS.values.flat_map(&:values).map(&method(:interpolate_game))
+
+    # TODO: Omit UserAward records given before a user's latest non-honourable discharge
+    awards_by_user = UserAward
+      .joins(:award)
+      .includes(:award)
+      .where(user: @users)
+      .where(awards: {code: relevant_award_codes})
+      .group_by(&:member_id)
+
+    @users.each_with_object({}) do |user, result|
+      result[user.id] = {}
+
+      STANDARDS.each do |standard, levels|
+        result[user.id][standard] = {}
+
+        levels.each do |level, award_code|
+          # Check if the user has the award
+          if awards_by_user[user.id]&.any? { |user_award| user_award.award.code == interpolate_game(award_code) }
+            result[user.id][standard][level] = :award
+          else
+            # Get the count of qualifications for this user
+            count = qualification_counts[[user.id, standard.to_s, level.to_s]] || 0
+
+            # Get the total number of standards for this standard type
+            total = criteria_counts[[standard.to_s, level.to_s]] || 0
+
+            result[user.id][standard][level] = (total > 0) ? (count * 100 / total) : 0
+          end
+        end
+      end
+    end
+  end
+
+  # Returns the awards given when standards are met
+  # e.g. {eib: Award, marksman: Award, sharpshooter: Award, expert: Award}
+  def self.awards
+    {
+      eib: Award.find_by(code: "eib"),
+      slt: Award.find_by(code: "andpr"),
+      marksman: Award.where("code LIKE ?", "m:%").first,
+      sharpshooter: Award.where("code LIKE ?", "s:%").first,
+      expert: Award.where("code LIKE ?", "e:%").first
+    }
+  end
+
+  private
+
+  # replace "{game}" with the game string used in award codes
+  # TODO: We can use the `game` column of the Award model instead
+  def interpolate_game(code)
+    award_code_game = UNIT_GAME_TO_AWARD_CODE_GAME[@game] || @game
+    code.gsub("{game}", award_code_game)
+  end
+end

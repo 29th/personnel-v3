@@ -5,6 +5,7 @@
 
   .unit-profile-header__title {
     margin-bottom: 5px;
+
     h1 {
       font-size: clamp(20px, 40px, 2vw);
       display: inline;
@@ -25,7 +26,7 @@
 
   .unit-attendance__absent-col {
     text-align: right;
-    
+
     .awol {
       color: lighten($danger, 8%);
       font-weight: bold;
@@ -37,10 +38,19 @@
   caption {
     caption-side: top;
   }
-  
+
   .unit-stats__attendance-col {
     width: 3ch; // 3 characters
     text-align: center;
     font-weight: bold;
+  }
+
+  .unit-stats__standard-progress-col {
+    width: 3ch; // 3 characters
+    text-align: center;
+
+    .inline-award {
+      max-width: 32px;
+    }
   }
 }

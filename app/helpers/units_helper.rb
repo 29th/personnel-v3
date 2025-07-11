@@ -17,4 +17,22 @@ module UnitsHelper
       ""
     end
   end
+
+  def render_progress(progress, award)
+    if progress == :award
+      render_progress_award(award)
+    elsif progress.is_a?(Integer) && progress > 0
+      content_tag(:span, "#{progress}%")
+    else
+      content_tag(:span, "&mdash;".html_safe)
+    end
+  end
+
+  def render_progress_award(award)
+    if award&.ribbon_image.present?
+      image_tag(award.ribbon_image.url, alt: award.title, class: "inline-award", title: award.title)
+    else
+      icon("fa-solid", "square-check")
+    end
+  end
 end

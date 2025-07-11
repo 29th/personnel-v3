@@ -62,6 +62,8 @@ class UnitsController < ApplicationController
   end
 
   def stats
+    @wide = true
+
     # Get units in hierarchical order
     units = @unit.subtree.active
     unit_tree = units.arrange(order: :order)
@@ -75,10 +77,19 @@ class UnitsController < ApplicationController
       .active
       .includes(
         :rank,
+        :latest_non_honorable_discharge,
         assignments: :position
       )
       .distinct
       .order("positions.order DESC, ranks.order DESC")
+
+    @users_by_unit = users.each_with_object({}) do |user, result|
+      user.assignments.each do |assignment|
+        result[assignment.unit_id] ||= []
+        result[assignment.unit_id].append(user)
+      end
+      result
+    end
 
     # Get all user IDs for preloading attendance stats
     user_ids = users.map(&:id)
@@ -87,14 +98,9 @@ class UnitsController < ApplicationController
     @attendance_stats_by_user_id = AttendanceStats.for_users(user_ids)
       .index_by(&:member_id)
 
-    @users_by_unit = {}
+    @standard_progress_by_user = StandardProgressCalculator.call(users, @unit.game)
 
-    # Group users by unit
-    @units.each do |unit|
-      @users_by_unit[unit] = users.select do |user|
-        user.assignments.any? { |a| a.unit_id == unit.id }
-      end
-    end
+    @awards = StandardProgressCalculator.awards
   end
 
   private
