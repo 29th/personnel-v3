@@ -10,6 +10,15 @@ class UserAward < ApplicationRecord
   validates :date, presence: true
   validates_date :date
 
+  scope :since_latest_non_honorable_discharge, -> {
+    left_joins(user: :non_honorable_discharges)
+      .group("awardings.id")
+      .having(<<~SQL)
+        MAX(discharges.date) IS NULL
+        OR awardings.date >= MAX(discharges.date)
+      SQL
+  }
+
   private_class_method :ransackable_attributes, :ransackable_associations
 
   def self.ransackable_attributes(_auth_object = nil)

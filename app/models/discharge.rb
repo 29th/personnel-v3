@@ -20,6 +20,8 @@ class Discharge < ApplicationRecord
   validates :type, presence: true
   validates :reason, presence: true
 
+  scope :non_honorable, -> { where.not(type: "Honorable") }
+
   def type_abbr
     {"honorable" => "HD",
      "general" => "GD",

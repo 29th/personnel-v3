@@ -55,8 +55,8 @@ class StandardProgressCalculator
 
     relevant_award_codes = STANDARDS.values.flat_map(&:values).map(&method(:interpolate_game))
 
-    # TODO: Omit UserAward records given before a user's latest non-honourable discharge
     awards_by_user = UserAward
+      .since_latest_non_honorable_discharge
       .joins(:award)
       .includes(:award)
       .where(user: @users)

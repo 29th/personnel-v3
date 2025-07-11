@@ -18,8 +18,10 @@ class User < ApplicationRecord
   has_many :awards, through: :user_awards
   has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
+  has_many :non_honorable_discharges, -> { non_honorable },
+    class_name: "Discharge", foreign_key: "member_id"
   has_one :latest_non_honorable_discharge, -> {
-    where.not(type: "Honorable").order(date: :desc).limit(1)
+    non_honorable.order(date: :desc).limit(1)
   }, class_name: "Discharge", foreign_key: "member_id"
 
   has_many :enlistments, foreign_key: "member_id", inverse_of: :user
