@@ -18,56 +18,74 @@ module UnitsHelper
     end
   end
 
-  def render_progress(progress, award)
-    if progress == :award
-      render_progress_award(award)
-    elsif progress.is_a?(Integer) && progress > 0
-      content_tag(:span, "#{progress}%")
+  def render_progress(achievement, progress)
+    if achievement == :eib || achievement == :slt
+      render_basic_progress(achievement, progress[:notapplicable])
+    elsif progress.key?(:marksman)
+      render_weapon_progress(progress)
+    end
+  end
+
+  private
+
+  def render_basic_progress(achievement, percentage)
+    if percentage == :award
+      render_award(achievement)
+    elsif percentage.is_a?(Integer) && percentage > 0
+      content_tag(:span, "#{percentage}%")
     else
       content_tag(:span, "&mdash;".html_safe)
     end
   end
 
-  def render_progress_award(award)
-    if award&.ribbon_image.present?
-      image_tag(award.ribbon_image.url, alt: award.title, class: "inline-award", title: award.title)
-    else
-      icon("fa-solid", "square-check")
-    end
-  end
-
   # Determines what to display for a weapon: highest badge earned + progress toward next level
-  # weapon_progress: hash with keys [:marksman, :sharpshooter, :expert] containing progress or :award
-  # awards: hash with keys [:marksman, :sharpshooter, :expert] containing Award objects
-  def render_weapon_badge(weapon_progress, awards)
-    marksman = weapon_progress[:marksman]
-    sharpshooter = weapon_progress[:sharpshooter]
-    expert = weapon_progress[:expert]
+  # @param progress - hash with keys :marksman, :sharpshooter, :expert containing progress or :award
+  def render_weapon_progress(progress)
+    marksman = progress[:marksman]
+    sharpshooter = progress[:sharpshooter]
+    expert = progress[:expert]
 
     if expert == :award
-      display_content = render_progress_award(awards[:expert])
+      display_content = render_award(:expert)
       tooltip_text = "Expert"
     elsif sharpshooter == :award
-      if expert.is_a?(Integer) && expert > 0
-        display_content = "#{render_progress_award(awards[:sharpshooter])} + #{expert}%".html_safe
+      if expert > 0
+        display_content = "#{render_award(:sharpshooter)} + #{expert}%".html_safe
         tooltip_text = "Sharpshooter + #{expert}% toward Expert"
       else
-        display_content = render_progress_award(awards[:sharpshooter])
+        display_content = render_award(:sharpshooter)
         tooltip_text = "Sharpshooter"
       end
     elsif marksman == :award
-      if sharpshooter.is_a?(Integer) && sharpshooter > 0
-        display_content = "#{render_progress_award(awards[:marksman])} + #{sharpshooter}%".html_safe
+      if sharpshooter > 0
+        display_content = "#{render_award(:marksman)} + #{sharpshooter}%".html_safe
         tooltip_text = "Marksman + #{sharpshooter}% toward Sharpshooter"
       else
-        display_content = render_progress_award(awards[:marksman])
+        display_content = render_award(:marksman)
         tooltip_text = "Marksman"
       end
     else
-      display_content = render_progress(marksman, awards[:marksman])
+      display_content = "#{marksman}%"
       tooltip_text = "#{marksman}% toward Marksman"
     end
 
     content_tag(:span, display_content, title: tooltip_text, "data-toggle": "tooltip", "data-controller": "tooltip")
+  end
+
+  def render_award(achievement)
+    case achievement
+    when :eib
+      image_tag("awards/eib.gif", alt: "Expert Infantry Badge", class: "inline-award", title: "Expert Infantry Badge")
+    when :slt
+      image_tag("awards/anpdr.gif", alt: "Army NCO Professional Development Ribbon", class: "inline-award", title: "Army NCO Professional Development Ribbon")
+    when :marksman
+      image_tag("awards/marksman.gif", alt: "Marksman", class: "inline-badge", title: "Marksman")
+    when :sharpshooter
+      image_tag("awards/sharpshooter.gif", alt: "Sharpshooter", class: "inline-badge", title: "Sharpshooter")
+    when :expert
+      image_tag("awards/expert.gif", alt: "Expert", class: "inline-badge", title: "Expert")
+    else
+      icon("fa-solid", "square-check")
+    end
   end
 end

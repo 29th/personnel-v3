@@ -89,8 +89,6 @@ class UnitsController < ApplicationController
       .index_by(&:member_id)
 
     @standard_progress_by_user = StandardProgressCalculator.call(users, @unit.game)
-
-    @awards = StandardProgressCalculator.awards
   end
 
   private

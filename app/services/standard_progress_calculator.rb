@@ -92,18 +92,6 @@ class StandardProgressCalculator
     end
   end
 
-  # Returns the awards given when standards are met
-  # e.g. {eib: Award, marksman: Award, sharpshooter: Award, expert: Award}
-  def self.awards
-    {
-      eib: Award.find_by(code: "eib"),
-      slt: Award.find_by(code: "andpr"),
-      marksman: Award.where("code LIKE ?", "m:%").first,
-      sharpshooter: Award.where("code LIKE ?", "s:%").first,
-      expert: Award.where("code LIKE ?", "e:%").first
-    }
-  end
-
   private
 
   # replace "{game}" with the game string used in award codes

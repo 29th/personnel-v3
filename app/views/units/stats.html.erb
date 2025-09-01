@@ -91,44 +91,42 @@
 
           <!-- EIB -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:eib][:notapplicable] %>
-            <%= render_progress(progress, @awards[:eib]) %>
+            <%= render_progress(:eib, user_progress_calculations[:eib]) %>
           </td>
           
           <!-- SLT -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:slt][:notapplicable] %>
-            <%= render_progress(progress, @awards[:slt]) %>
+            <%= render_progress(:slt, user_progress_calculations[:slt]) %>
           </td>
           
           <!-- Rifle -->
           <td class="unit-stats__standard-progress-col">
-            <%= render_weapon_badge(user_progress_calculations[:rifle], @awards) %>
+            <%= render_progress(:rifle, user_progress_calculations[:rifle]) %>
           </td>
 
           <!-- Combat Engineer -->
           <td class="unit-stats__standard-progress-col">
-            <%= render_weapon_badge(user_progress_calculations[:combat_engineer], @awards) %>
+            <%= render_progress(:combat_engineer, user_progress_calculations[:combat_engineer]) %>
           </td>
 
           <!-- Automatic Rifle -->
           <td class="unit-stats__standard-progress-col">
-            <%= render_weapon_badge(user_progress_calculations[:automatic_rifle], @awards) %>
+            <%= render_progress(:automatic_rifle, user_progress_calculations[:automatic_rifle]) %>
           </td>
 
           <!-- Sniper -->
           <td class="unit-stats__standard-progress-col">
-            <%= render_weapon_badge(user_progress_calculations[:sniper], @awards) %>
+            <%= render_progress(:sniper, user_progress_calculations[:sniper]) %>
           </td>
 
           <!-- Grenadier -->
           <td class="unit-stats__standard-progress-col">
-            <%= render_weapon_badge(user_progress_calculations[:grenadier], @awards) %>
+            <%= render_progress(:grenadier, user_progress_calculations[:grenadier]) %>
           </td>
 
           <!-- Submachine Gun -->
           <td class="unit-stats__standard-progress-col">
-            <%= render_weapon_badge(user_progress_calculations[:submachine_gun], @awards) %>
+            <%= render_progress(:submachine_gun, user_progress_calculations[:submachine_gun]) %>
           </td>
         </tr>
       <% end %>
