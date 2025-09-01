@@ -18,6 +18,7 @@ class StandardProgressCalculator
     slt: {notapplicable: "anpdr"},
     rifle: {marksman: "m:rifle:{game}", sharpshooter: "s:rifle:{game}", expert: "e:rifle:{game}"},
     combat_engineer: {marksman: "m:zook:{game}", sharpshooter: "s:zook:{game}", expert: "e:zook:{game}"},
+    armor: {marksman: "m:armor:{game}", sharpshooter: "s:armor:{game}", expert: "e:armor:{game}"},
     automatic_rifle: {marksman: "m:bar:{game}", sharpshooter: "s:bar:{game}", expert: "e:bar:{game}"},
     sniper: {marksman: "m:sniper:{game}", sharpshooter: "s:sniper:{game}", expert: "e:sniper:{game}"},
     grenadier: {marksman: "m:grenadier:{game}", sharpshooter: "s:grenadier:{game}", expert: "e:grenadier:{game}"},

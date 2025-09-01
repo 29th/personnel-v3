@@ -36,7 +36,7 @@
           <th scope="col" class="text-center unit-stats__weapon-progress-col"
             title="Combat Engineer"
             data-toggle="tooltip" data-controller="tooltip">CE</th>
-          <%# <th scope="col" class="text-center">Crew</th> %>
+          <th scope="col" class="text-center unit-stats__weapon-progress-col">Armor</th>
           <th scope="col" class="text-center unit-stats__weapon-progress-col"
             title="Automatic Rifle"
             data-toggle="tooltip" data-controller="tooltip">AR</th>
@@ -110,6 +110,11 @@
             <!-- Combat Engineer -->
             <td class="unit-stats__weapon-progress-col">
               <%= render_progress(:combat_engineer, user_progress_calculations[:combat_engineer]) %>
+            </td>
+
+            <!-- Armor -->
+            <td class="unit-stats__weapon-progress-col">
+              <%= render_progress(:armor, user_progress_calculations[:armor]) %>
             </td>
 
             <!-- Automatic Rifle -->
