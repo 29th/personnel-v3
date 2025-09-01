@@ -46,7 +46,7 @@
         links["Attendance"] = unit_attendance_path(@unit) if policy(@unit).attendance?
         links["AWOLs"] = unit_awols_path(@unit) if policy(@unit).awols?
         links["Missing Awards"] = unit_missing_awards_path(@unit) if policy(@unit).missing_awards?
-        links["Stats"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "stats") if policy(@unit).stats?
+        links["Stats"] = unit_stats_path(@unit) if policy(@unit).stats?
         links["Recruits"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "recruits") if policy(@unit).recruits?
         links["Discharges"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "discharges") if policy(@unit).discharges?
         %>
