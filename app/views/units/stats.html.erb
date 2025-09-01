@@ -52,13 +52,15 @@
       <% users.each do |user| %>
         <tr>
           <td>
-            <%= image_tag user.rank.image(:icon).url,
-                          alt: user.rank.abbr,
-                          class: "is16x16" unless user.rank.image(:icon).nil? %>
-            <%= link_to user.short_name, user %>
+            <div>
+              <%= image_tag user.rank.image(:icon).url,
+                            alt: user.rank.abbr,
+                            class: "is16x16" unless user.rank.image(:icon).nil? %>
+              <%= link_to user.short_name, user %>
+            </div>
             <% position = user.assignments.find { |a| a.unit_id == unit.id }&.position %>
             <% if position %>
-              <small class="text-muted"><%= position.name %></small>
+              <div><small class="text-muted"><%= position.name %></small></div>
             <% end %>
           </td>
           

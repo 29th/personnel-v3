@@ -34,12 +34,16 @@
   }
 }
 
-.unit-stats {
+table.unit-stats {
   table-layout: fixed; // Fixed layout for consistent column alignment
   width: 100%;
 
   caption {
     caption-side: top;
+  }
+
+  td {
+    vertical-align: middle;
   }
 
   // Explicitly set width for name column
