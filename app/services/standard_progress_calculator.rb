@@ -98,6 +98,10 @@ class StandardProgressCalculator
   # TODO: We can use the `game` column of the Award model instead
   def interpolate_game(code)
     award_code_game = UNIT_GAME_TO_AWARD_CODE_GAME[@game] || @game
-    code.gsub("{game}", award_code_game)
+
+    # Skip interpolation if no game is specified - return empty string for weapon codes
+    return "" if award_code_game.nil? && code.include?("{game}")
+
+    code.gsub("{game}", award_code_game.to_s)
   end
 end
