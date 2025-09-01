@@ -71,27 +71,17 @@ class UnitsController < ApplicationController
     # Flatten the tree while preserving hierarchical order
     @units = flatten_arranged_units(unit_tree)
 
-    # Get all users in the subtree with preloaded associations to avoid N+1 queries
-    users = User.joins(:assignments)
-      .where(assignments: {unit_id: units.ids})
-      .active
-      .includes(
-        :rank,
-        :latest_non_honorable_discharge,
-        assignments: :position
-      )
-      .distinct
+    # Get assignments with proper ordering and all needed associations for stats
+    @assignments_by_unit = Assignment.active
+      .includes(user: [:rank, :latest_non_honorable_discharge, :assignments])
+      .includes(:position)
+      .where(unit_id: units.ids)
       .order("positions.order DESC, ranks.order DESC")
-
-    @users_by_unit = users.each_with_object({}) do |user, result|
-      user.assignments.each do |assignment|
-        result[assignment.unit_id] ||= []
-        result[assignment.unit_id].append(user)
-      end
-      result
-    end
+      .group_by(&:unit_id)
+    @users_by_unit = @assignments_by_unit.transform_values { |assignments| assignments.map(&:user) }
 
     # Get all user IDs for preloading attendance stats
+    users = @users_by_unit.values.flatten.uniq
     user_ids = users.map(&:id)
 
     # Preload attendance stats for all users at once
