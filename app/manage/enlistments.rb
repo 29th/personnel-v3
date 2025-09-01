@@ -2,6 +2,7 @@ ActiveAdmin.register Enlistment do
   belongs_to :user, optional: true, finder: :find_by_slug
   includes user: :rank, liaison: :rank
   includes :unit
+  includes recruiter_user: :rank
   actions :index, :show, :edit, :update
   permit_params do
     params = [
@@ -34,6 +35,7 @@ ActiveAdmin.register Enlistment do
   filter :user_last_name_cont, label: "Last name"
   filter :game, as: :select, collection: Enlistment.games.map(&:reverse)
   filter :timezone, as: :select, collection: Enlistment.timezones.map(&:reverse)
+  filter :recruiter_user, as: :searchable_select, ajax: true, label: "Recruiter"
 
   index do
     selectable_column
@@ -48,6 +50,7 @@ ActiveAdmin.register Enlistment do
       Enlistment.timezones[enlistment.timezone]
     end
     column :liaison
+    column :recruiter_user, label: "Recruiter"
     actions
   end
 
