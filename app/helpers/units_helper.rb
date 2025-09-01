@@ -35,4 +35,39 @@ module UnitsHelper
       icon("fa-solid", "square-check")
     end
   end
+
+  # Determines what to display for a weapon: highest badge earned + progress toward next level
+  # weapon_progress: hash with keys [:marksman, :sharpshooter, :expert] containing progress or :award
+  # awards: hash with keys [:marksman, :sharpshooter, :expert] containing Award objects
+  def render_weapon_badge(weapon_progress, awards)
+    marksman = weapon_progress[:marksman]
+    sharpshooter = weapon_progress[:sharpshooter]
+    expert = weapon_progress[:expert]
+
+    if expert == :award
+      display_content = render_progress_award(awards[:expert])
+      tooltip_text = "Expert"
+    elsif sharpshooter == :award
+      if expert.is_a?(Integer) && expert > 0
+        display_content = "#{render_progress_award(awards[:sharpshooter])} + #{expert}%".html_safe
+        tooltip_text = "Sharpshooter + #{expert}% toward Expert"
+      else
+        display_content = render_progress_award(awards[:sharpshooter])
+        tooltip_text = "Sharpshooter"
+      end
+    elsif marksman == :award
+      if sharpshooter.is_a?(Integer) && sharpshooter > 0
+        display_content = "#{render_progress_award(awards[:marksman])} + #{sharpshooter}%".html_safe
+        tooltip_text = "Marksman + #{sharpshooter}% toward Sharpshooter"
+      else
+        display_content = render_progress_award(awards[:marksman])
+        tooltip_text = "Marksman"
+      end
+    else
+      display_content = render_progress(marksman, awards[:marksman])
+      tooltip_text = "#{marksman}% toward Marksman"
+    end
+
+    content_tag(:span, display_content, title: tooltip_text, "data-toggle": "tooltip", "data-controller": "tooltip")
+  end
 end

@@ -103,38 +103,32 @@
           
           <!-- Rifle -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:rifle][:marksman] %>
-            <%= render_progress(progress, @awards[:marksman]) %>
+            <%= render_weapon_badge(user_progress_calculations[:rifle], @awards) %>
           </td>
 
           <!-- Combat Engineer -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:combat_engineer][:marksman] %>
-            <%= render_progress(progress, @awards[:marksman]) %>
+            <%= render_weapon_badge(user_progress_calculations[:combat_engineer], @awards) %>
           </td>
 
           <!-- Automatic Rifle -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:automatic_rifle][:marksman] %>
-            <%= render_progress(progress, @awards[:marksman]) %>
+            <%= render_weapon_badge(user_progress_calculations[:automatic_rifle], @awards) %>
           </td>
 
           <!-- Sniper -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:sniper][:marksman] %>
-            <%= render_progress(progress, @awards[:marksman]) %>
+            <%= render_weapon_badge(user_progress_calculations[:sniper], @awards) %>
           </td>
 
           <!-- Grenadier -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:grenadier][:marksman] %>
-            <%= render_progress(progress, @awards[:marksman]) %>
+            <%= render_weapon_badge(user_progress_calculations[:grenadier], @awards) %>
           </td>
 
           <!-- Submachine Gun -->
           <td class="unit-stats__standard-progress-col">
-            <% progress = user_progress_calculations[:submachine_gun][:marksman] %>
-            <%= render_progress(progress, @awards[:marksman]) %>
+            <%= render_weapon_badge(user_progress_calculations[:submachine_gun], @awards) %>
           </td>
         </tr>
       <% end %>
