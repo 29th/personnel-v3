@@ -1,6 +1,6 @@
 <% content_for(:page_title) { "#{@unit.subtree_abbr} - Stats" } %>
 
-<h2>Attendance Stats</h2>
+<h2>Unit Statistics</h2>
 
 <% @units.each do |unit| %>
   <% users = @users_by_unit[unit.id] %>
@@ -11,37 +11,37 @@
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__attendance-col"
           title="Attendance of mandatory events over the past 30 days"
           data-toggle="tooltip" data-controller="tooltip">30</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__attendance-col"
           title="Attendance of mandatory events over the past 60 days"
           data-toggle="tooltip" data-controller="tooltip">60</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__attendance-col"
           title="Attendance of mandatory events over the past 90 days"
           data-toggle="tooltip" data-controller="tooltip">90</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__attendance-col"
           title="Attendance of all mandatory events"
           data-toggle="tooltip" data-controller="tooltip">All</th>
 
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__basic-progress-col"
           title="Expert Infantry Badge progress"
           data-toggle="tooltip" data-controller="tooltip">EIB</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__basic-progress-col"
           title="Squad Leadership Training progress"
           data-toggle="tooltip" data-controller="tooltip">SLT</th>
         
-        <th scope="col" class="text-center">Rifle</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__weapon-progress-col">Rifle</th>
+        <th scope="col" class="text-center unit-stats__weapon-progress-col"
           title="Combat Engineer"
           data-toggle="tooltip" data-controller="tooltip">CE</th>
         <%# <th scope="col" class="text-center">Crew</th> %>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__weapon-progress-col"
           title="Automatic Rifle"
           data-toggle="tooltip" data-controller="tooltip">AR</th>
-        <th scope="col" class="text-center">Sniper</th>
-        <th scope="col" class="text-center">Grenadier</th>
-        <th scope="col" class="text-center"
+        <th scope="col" class="text-center unit-stats__weapon-progress-col">Sniper</th>
+        <th scope="col" class="text-center unit-stats__weapon-progress-col">Grenadier</th>
+        <th scope="col" class="text-center unit-stats__weapon-progress-col"
           title="Sub-Machine Gun"
           data-toggle="tooltip" data-controller="tooltip">SMG</th>
       </tr>
@@ -90,42 +90,42 @@
           <% user_progress_calculations = @standard_progress_by_user[user.id] %>
 
           <!-- EIB -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__basic-progress-col">
             <%= render_progress(:eib, user_progress_calculations[:eib]) %>
           </td>
           
           <!-- SLT -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__basic-progress-col">
             <%= render_progress(:slt, user_progress_calculations[:slt]) %>
           </td>
           
           <!-- Rifle -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__weapon-progress-col">
             <%= render_progress(:rifle, user_progress_calculations[:rifle]) %>
           </td>
 
           <!-- Combat Engineer -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__weapon-progress-col">
             <%= render_progress(:combat_engineer, user_progress_calculations[:combat_engineer]) %>
           </td>
 
           <!-- Automatic Rifle -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__weapon-progress-col">
             <%= render_progress(:automatic_rifle, user_progress_calculations[:automatic_rifle]) %>
           </td>
 
           <!-- Sniper -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__weapon-progress-col">
             <%= render_progress(:sniper, user_progress_calculations[:sniper]) %>
           </td>
 
           <!-- Grenadier -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__weapon-progress-col">
             <%= render_progress(:grenadier, user_progress_calculations[:grenadier]) %>
           </td>
 
           <!-- Submachine Gun -->
-          <td class="unit-stats__standard-progress-col">
+          <td class="unit-stats__weapon-progress-col">
             <%= render_progress(:submachine_gun, user_progress_calculations[:submachine_gun]) %>
           </td>
         </tr>

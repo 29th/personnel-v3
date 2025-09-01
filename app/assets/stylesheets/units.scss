@@ -35,23 +35,38 @@
 }
 
 .unit-stats {
+  table-layout: fixed; // Fixed layout for consistent column alignment
+  width: 100%;
+
   caption {
     caption-side: top;
   }
 
+  // Explicitly set width for name column
+  th:first-child,
+  td:first-child {
+    width: 200px; // Fixed width for name + position
+  }
+
   .unit-stats__attendance-col {
-    width: 3ch; // 3 characters
+    width: 36px; // Minimum width for "100%"
     text-align: center;
     font-weight: bold;
   }
 
-  .unit-stats__standard-progress-col {
-    width: 3ch; // 3 characters
+  .unit-stats__basic-progress-col {
+    width: 40px; // Just wide enough for 32px images + padding
     text-align: center;
 
     .inline-award {
       max-width: 32px;
     }
+  }
+
+  .unit-stats__weapon-progress-col {
+    width: 72px; // 16px image + space for " + XX%"
+    text-align: center;
+    white-space: nowrap; // Prevent wrapping within columns
 
     .inline-badge {
       max-width: 16px;
