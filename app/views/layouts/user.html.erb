@@ -21,7 +21,7 @@
             <% @active_assignments.each do |assignment| %>
               <li>
                 <%= assignment.position.name %>,
-                <%= link_to assignment.unit.name, personnel_v2_app_url(unit: assignment.unit) %>
+                <%= link_to assignment.unit.name, assignment.unit %>
               </li>
             <% end %>
           </ul>

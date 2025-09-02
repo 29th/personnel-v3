@@ -55,7 +55,7 @@
         <ul class="attendance">
           <% @attendance_records.each do |attendance_record| %>
             <li>
-              <%= link_to attendance_record.user, v2_user_url(attendance_record.user) %>
+              <%= link_to attendance_record.user %>
               <% case attendance_record.status
                 when :attended %>
               <% when :extended_loa %><span class="badge badge-secondary">Extended LOA</span>

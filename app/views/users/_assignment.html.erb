@@ -1,6 +1,6 @@
 <li class="user-service-record__item">
   <time><%= assignment.start_date %></time>
   Assigned to
-  <%= link_to assignment.unit.name, personnel_v2_app_url(unit: assignment.unit) %>
+  <%= link_to assignment.unit.name, assignment.unit %>
   as <%= assignment.position.name %>
 </li>
