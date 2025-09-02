@@ -45,6 +45,7 @@
           <th scope="col" class="text-center unit-stats__weapon-progress-col"
             title="Sub-Machine Gun"
             data-toggle="tooltip" data-controller="tooltip">SMG</th>
+          <th scope="col" class="text-center unit-stats__weapon-progress-col">Pilot</th>
         <% end %>
       </tr>
     </thead>
@@ -137,6 +138,11 @@
             <!-- Submachine Gun -->
             <td class="unit-stats__weapon-progress-col">
               <%= render_progress(:submachine_gun, user_progress_calculations[:submachine_gun]) %>
+            </td>
+            
+            <!-- Pilot -->
+            <td class="unit-stats__weapon-progress-col">
+              <%= render_progress(:pilot, user_progress_calculations[:pilot]) %>
             </td>
           <% end %>
         </tr>

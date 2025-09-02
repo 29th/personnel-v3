@@ -22,7 +22,8 @@ class StandardProgressCalculator
     automatic_rifle: {marksman: "m:bar:{game}", sharpshooter: "s:bar:{game}", expert: "e:bar:{game}"},
     sniper: {marksman: "m:sniper:{game}", sharpshooter: "s:sniper:{game}", expert: "e:sniper:{game}"},
     grenadier: {marksman: "m:grenadier:{game}", sharpshooter: "s:grenadier:{game}", expert: "e:grenadier:{game}"},
-    submachine_gun: {marksman: "m:smg:{game}", sharpshooter: "s:smg:{game}", expert: "e:smg:{game}"}
+    submachine_gun: {marksman: "m:smg:{game}", sharpshooter: "s:smg:{game}", expert: "e:smg:{game}"},
+    pilot: {marksman: "m:pilot:{game}", sharpshooter: "s:pilot:{game}", expert: "e:pilot:{game}"}
   }
 
   # Award codes' game suffix sometimes differs from Unit#game enum
