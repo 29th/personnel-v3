@@ -14,11 +14,13 @@ class ExtendedLOA < ApplicationRecord
   self.skip_time_zone_conversion_for_attributes = [:posting_date]
 
   scope :active, ->(date = Date.current) {
+    date = date.to_date # strip time component
     where("start_date <= ? AND end_date >= ? AND (return_date IS NULL OR return_date >= ?)", date, date, date)
   }
 
   def active?(date = Date.current)
-    start_date <= date && end_date >= date && (!return_date || return_date >= date)
+    date = date.to_date # strip time component
+    date.between?(start_date, end_date) && (!return_date || return_date >= date)
   end
 
   def duration
