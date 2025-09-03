@@ -142,4 +142,105 @@ class UnitsHelperTest < ActionView::TestCase
       refute_includes result, ".gif"
     end
   end
+
+  class UnitTotalSizeTest < UnitsHelperTest
+    test "counts direct assignments to a single unit" do
+      user1 = create(:user)
+      user2 = create(:user)
+      unit = create(:unit)
+
+      assignment1 = create(:assignment, user: user1, unit: unit)
+      assignment2 = create(:assignment, user: user2, unit: unit)
+
+      assignments = {unit.id => [assignment1, assignment2]}
+      unit_tree = {unit => {}}
+
+      result = unit_total_size(unit, unit_tree, assignments)
+
+      assert_equal 2, result
+    end
+
+    test "counts users across unit and subunits" do
+      user1 = create(:user)
+      user2 = create(:user)
+      user3 = create(:user)
+
+      parent_unit = create(:unit)
+      child_unit = create(:unit, parent: parent_unit)
+
+      parent_assignment = create(:assignment, user: user1, unit: parent_unit)
+      child_assignment1 = create(:assignment, user: user2, unit: child_unit)
+      child_assignment2 = create(:assignment, user: user3, unit: child_unit)
+
+      assignments = {
+        parent_unit.id => [parent_assignment],
+        child_unit.id => [child_assignment1, child_assignment2]
+      }
+      unit_tree = {parent_unit => {child_unit => {}}}
+
+      result = unit_total_size(parent_unit, unit_tree, assignments)
+
+      assert_equal 3, result
+    end
+
+    test "deduplicates users with multiple assignments in same hierarchy" do
+      user1 = create(:user)
+      user2 = create(:user)
+
+      parent_unit = create(:unit)
+      child_unit = create(:unit, parent: parent_unit)
+
+      # user1 has assignments in both parent and child unit
+      parent_assignment = create(:assignment, user: user1, unit: parent_unit)
+      child_assignment1 = create(:assignment, user: user1, unit: child_unit)
+      child_assignment2 = create(:assignment, user: user2, unit: child_unit)
+
+      assignments = {
+        parent_unit.id => [parent_assignment],
+        child_unit.id => [child_assignment1, child_assignment2]
+      }
+      unit_tree = {parent_unit => {child_unit => {}}}
+
+      result = unit_total_size(parent_unit, unit_tree, assignments)
+
+      # Should count user1 only once, plus user2 = 2 total
+      assert_equal 2, result
+    end
+
+    test "handles unit with no assignments" do
+      unit = create(:unit)
+
+      assignments = {}
+      unit_tree = {unit => {}}
+
+      result = unit_total_size(unit, unit_tree, assignments)
+
+      assert_equal 0, result
+    end
+
+    test "handles nested subunit hierarchies" do
+      user1 = create(:user)
+      user2 = create(:user)
+      user3 = create(:user)
+
+      parent_unit = create(:unit)
+      child_unit = create(:unit, parent: parent_unit)
+      grandchild_unit = create(:unit, parent: child_unit)
+
+      parent_assignment = create(:assignment, user: user1, unit: parent_unit)
+      child_assignment = create(:assignment, user: user2, unit: child_unit)
+      grandchild_assignment = create(:assignment, user: user3, unit: grandchild_unit)
+
+      assignments = {
+        parent_unit.id => [parent_assignment],
+        child_unit.id => [child_assignment],
+        grandchild_unit.id => [grandchild_assignment]
+      }
+      unit_tree = {parent_unit => {child_unit => {grandchild_unit => {}}}}
+
+      result = unit_total_size(parent_unit, unit_tree, assignments)
+
+      assert_equal 3, result
+    end
+  end
 end

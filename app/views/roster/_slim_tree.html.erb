@@ -6,7 +6,7 @@
           <summary>
             <strong><%= link_to parent.name, parent %></strong>
             <small class="text-muted">
-              (<%= @assignments[parent.id]&.length %>)
+              (<%= unit_total_size(parent, units, @assignments) %>)
             </small>
           </summary>
           <% if @assignments[parent.id] %>

@@ -8,7 +8,7 @@
                           class: "is60x60" unless parent.logo.nil? %>
             <%= link_to parent.name, parent %>
             <small class="text-muted">
-              (<%= @assignments[parent.id]&.length %>)
+              (<%= unit_total_size(parent, units, @assignments) %>)
             </small>
           </h3>
         </summary>

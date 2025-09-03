@@ -18,6 +18,12 @@ module UnitsHelper
     end
   end
 
+  def unit_total_size(unit, unit_tree, assignments)
+    # Collect unique user IDs from this unit and all subunits
+    unique_user_ids = collect_unique_user_ids(unit, unit_tree, assignments, Set.new)
+    unique_user_ids.size
+  end
+
   def render_progress(achievement, progress)
     if achievement == :eib || achievement == :slt
       render_basic_progress(achievement, progress[:notapplicable])
@@ -27,6 +33,25 @@ module UnitsHelper
   end
 
   private
+
+  def collect_unique_user_ids(unit, unit_tree, assignments, user_ids_set)
+    # Add user IDs from direct assignments to this unit
+    if assignments.key?(unit.id)
+      assignments[unit.id].each do |assignment|
+        user_ids_set.add(assignment.user.id)
+      end
+    end
+
+    # Find children of this unit in the tree
+    children = unit_tree[unit] || {}
+
+    # Recursively collect user IDs from all subunits
+    children.each do |child_unit, child_tree|
+      collect_unique_user_ids(child_unit, {child_unit => child_tree}, assignments, user_ids_set)
+    end
+
+    user_ids_set
+  end
 
   def render_basic_progress(achievement, percentage)
     if percentage == :award
