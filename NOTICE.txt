@@ -1,0 +1,25 @@
+This product includes software developed by the 29th Infantry Division.
+Website: https://29th.org
+
+Attribution Requirement:
+-------------------------
+If you distribute, embed, or include this software — in source form,
+binary form, or as part of a larger work — you MUST display the following
+attribution clearly and visibly in the following places:
+- The user interface of the product (e.g., footer, or "About" page)
+- Public documentation
+- Any publicly accessible website or online service that uses this software
+
+Required Text:
+"Powered by software from the 29th Infantry Division"
+
+You may adjust the formatting to match your product’s style, but the
+text itself must remain unchanged.
+
+The Required Text should either include the URL of the 29th Infantry Division
+website, or part of the Required Text should be a hyperlink to it.
+The Website URL is: https://29th.org
+
+Failure to comply with this attribution requirement constitutes a
+violation of the license terms and may result in termination of rights
+granted under the Apache License, Version 2.0.
