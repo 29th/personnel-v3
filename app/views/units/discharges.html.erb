@@ -1,0 +1,24 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - Discharges" } %>
+
+<h2>Discharges</h2>
+
+<table class="table table-striped unit-discharges">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Member</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @discharges.each do |discharge| %>
+    <tr>
+      <td><%= link_to_forum_topic(discharge.date.strftime("%F"), discharge) %></td>
+      <td><%= link_to discharge.user %></td>
+      <td><%= Discharge.types[discharge.type] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @discharges %>

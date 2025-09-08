@@ -48,7 +48,7 @@
         links["Missing Awards"] = unit_missing_awards_path(@unit) if policy(@unit).missing_awards?
         links["Stats"] = unit_stats_path(@unit) if policy(@unit).stats?
         links["Recruits"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "recruits") if policy(@unit).recruits?
-        links["Discharges"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "discharges") if policy(@unit).discharges?
+        links["Discharges"] = unit_discharges_path(@unit) if policy(@unit).discharges?
         %>
         <% links.each do |label, path| %>
           <%= active_link_to label, path, class: 'nav-link', active: :exclusive %>

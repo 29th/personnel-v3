@@ -91,6 +91,13 @@ class UnitsController < ApplicationController
     @standard_progress_by_user = StandardProgressCalculator.call(users, @unit.game)
   end
 
+  def discharges
+    @discharges = Discharge.for_unit(@unit.subtree) # include inactive units
+      .includes(user: :rank)
+      .desc
+      .page(params[:page])
+  end
+
   private
 
   # Helper method to flatten an arranged tree of units while preserving hierarchical order

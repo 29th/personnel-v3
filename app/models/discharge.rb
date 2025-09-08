@@ -22,6 +22,14 @@ class Discharge < ApplicationRecord
 
   scope :non_honorable, -> { where.not(type: "Honorable") }
 
+  scope :for_unit, ->(unit) {
+    joins(user: :assignments)
+      .where(assignments: {unit_id: unit})
+      .where("assignments.end_date = discharges.date")
+  }
+
+  scope :desc, -> { order(date: :desc) }
+
   def type_abbr
     {"honorable" => "HD",
      "general" => "GD",
