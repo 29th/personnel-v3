@@ -47,7 +47,7 @@
         links["AWOLs"] = unit_awols_path(@unit) if policy(@unit).awols?
         links["Missing Awards"] = unit_missing_awards_path(@unit) if policy(@unit).missing_awards?
         links["Stats"] = unit_stats_path(@unit) if policy(@unit).stats?
-        links["Recruits"] = personnel_v2_app_url(unit: @unit.v2_slug, suffix: "recruits") if policy(@unit).recruits?
+        links["Recruits"] = unit_recruits_path(@unit) if policy(@unit).recruits?
         links["Discharges"] = unit_discharges_path(@unit) if policy(@unit).discharges?
         %>
         <% links.each do |label, path| %>

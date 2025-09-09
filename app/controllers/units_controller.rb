@@ -98,6 +98,15 @@ class UnitsController < ApplicationController
       .page(params[:page])
   end
 
+  def recruits
+    @recruited_enlistments = Enlistment
+      .accepted
+      .includes(:unit, user: :rank)
+      .where(recruiter_user: @unit.subtree_users.active)
+      .order(date: :desc)
+      .page(params[:page])
+  end
+
   private
 
   # Helper method to flatten an arranged tree of units while preserving hierarchical order

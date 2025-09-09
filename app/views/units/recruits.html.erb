@@ -1,0 +1,24 @@
+<% content_for(:page_title) { "#{@unit.subtree_abbr} - Recruits" } %>
+
+<h2>Recruits</h2>
+
+<table class="table table-striped unit-discharges">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Member</th>
+      <th scope="col">Recruit</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @recruited_enlistments.each do |enlistment| %>
+    <tr>
+      <td><%= enlistment.date.strftime("%F") %></td>
+      <td><%= link_to enlistment.recruiter_user %></td>
+      <td><%= link_to enlistment.user %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @recruited_enlistments %>
