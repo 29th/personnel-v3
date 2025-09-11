@@ -99,12 +99,21 @@ class UnitsController < ApplicationController
   end
 
   def recruits
-    @recruited_enlistments = Enlistment
+    @wide = true
+
+    # Set up ransack query for filtering
+    @query = Enlistment
       .accepted
-      .includes(:unit, user: :rank)
+      .includes(:unit, user: :rank, recruiter_user: :rank)
       .where(recruiter_user: @unit.subtree_users.active)
+      .ransack(params[:q])
+
+    @recruited_enlistments = @query.result(distinct: true)
       .order(date: :desc)
       .page(params[:page])
+
+    # Get users for the filter dropdowns
+    @recruiters = @unit.subtree_users.active.includes(:rank).order("rank.order DESC", "last_name")
   end
 
   private

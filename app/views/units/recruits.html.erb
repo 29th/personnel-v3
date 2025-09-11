@@ -2,23 +2,44 @@
 
 <h2>Recruits</h2>
 
-<table class="table table-striped unit-discharges">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Member</th>
-      <th scope="col">Recruit</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @recruited_enlistments.each do |enlistment| %>
-    <tr>
-      <td><%= enlistment.date.strftime("%F") %></td>
-      <td><%= link_to enlistment.recruiter_user %></td>
-      <td><%= link_to enlistment.user %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-9">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@query, :date, 'Date') %></th>
+          <th><%= sort_link(@query, :recruiter_user_last_name, 'Member') %></th>
+          <th><%= sort_link(@query, :user_last_name, 'Recruit') %></th>
+        </tr>
+      </thead>
 
-<%= paginate @recruited_enlistments %>
+      <tbody>
+        <% @recruited_enlistments.each do |enlistment| %>
+        <tr>
+          <td><%= enlistment.date.strftime("%F") %></td>
+          <td><%= link_to enlistment.recruiter_user %></td>
+          <td><%= link_to enlistment.user %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= page_entries_info @recruited_enlistments, entry_name: "recruit" %>
+    <%= paginate @recruited_enlistments %>
+
+  </div>
+  <div class="col">
+    <div class="card bg-dark">
+      <div class="card-body">
+        <h5 class="card-title">Filters</h5>
+        <%= search_form_for @query, url: unit_recruits_path(@unit) do |f| %>
+          <%= f.input :recruiter_user_id_eq, label: 'Member', as: :select, collection: @recruiters, required: false %>
+          <%= f.input :date_gteq, label: 'Date from', as: :date, html5: true, required: false %>
+          <%= f.input :date_lteq, label: 'Date to', as: :date, html5: true, required: false %>
+          <%= f.button :submit, 'Filter', class: 'btn-secondary' %>
+          <%= link_to 'Clear filters', unit_recruits_path(@unit), class: 'btn btn-outline-secondary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

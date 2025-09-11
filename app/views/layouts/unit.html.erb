@@ -1,6 +1,6 @@
 <% content_for :content do %>
   <div class="row">
-    <article class="<%= class_names("order-md-2", {"col-md-9": !@wide}) %>">
+    <article class="<%= class_names("order-md-2", {"col-md-9": !@wide, "col-md-12": @wide}) %>">
       <div class="media unit-profile-header">
         <%= image_tag @unit.logo_url,
                       alt: @unit.abbr,
