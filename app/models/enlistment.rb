@@ -44,6 +44,29 @@ class Enlistment < ApplicationRecord
 
   scope :with_recruiter_details, -> { includes(recruiter_user: [:rank, active_assignments: :unit]) }
 
+  scope :with_recruit_result, -> {
+    select("enlistments.*")
+      .select(
+        'CASE
+        WHEN EXISTS (
+          SELECT 1 FROM promotions
+          JOIN ranks ON promotions.new_rank_id = ranks.id
+          WHERE promotions.member_id = enlistments.member_id
+          AND ranks.order > 2 -- Greater than Private
+          AND promotions.date > enlistments.date
+        ) THEN "Promoted"
+        WHEN EXISTS (
+          SELECT 1 FROM assignments
+          JOIN units ON assignments.unit_id = units.id
+          WHERE assignments.member_id = enlistments.member_id
+          AND units.classification = "Combat"
+          AND assignments.start_date > enlistments.date
+        ) THEN "Graduated"
+        ELSE "Accepted"
+       END AS result'
+      )
+  }
+
   def linked_ban_logs
     ips = linked_forum_users.pluck(:ips).flatten.uniq
 

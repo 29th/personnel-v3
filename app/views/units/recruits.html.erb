@@ -10,6 +10,7 @@
           <th><%= sort_link(@query, :date, 'Date') %></th>
           <th><%= sort_link(@query, :recruiter_user_last_name, 'Member') %></th>
           <th><%= sort_link(@query, :user_last_name, 'Recruit') %></th>
+          <th>Result</th>
         </tr>
       </thead>
 
@@ -19,6 +20,7 @@
           <td><%= enlistment.date.strftime("%F") %></td>
           <td><%= link_to enlistment.recruiter_user %></td>
           <td><%= link_to enlistment.user %></td>
+          <td><%= enlistment.result %></td>
         </tr>
         <% end %>
       </tbody>

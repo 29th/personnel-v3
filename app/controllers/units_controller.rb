@@ -104,6 +104,7 @@ class UnitsController < ApplicationController
     # Set up ransack query for filtering
     @query = Enlistment
       .accepted
+      .with_recruit_result
       .includes(:unit, user: :rank, recruiter_user: :rank)
       .where(recruiter_user: @unit.subtree_users.active)
       .ransack(params[:q])
