@@ -17,6 +17,11 @@ personnel_v2_api:
     internal: https://api.29th.org
     external: https://api.29th.org
   api_key: ~
+service_coat_generator:
+  base_url:
+    internal: https://service-coat-generator-v82di.ondigitalocean.app
+    external: https://service-coat-generator-v82di.ondigitalocean.app
+  api_key: ~
 vanilla:
   base_url:
     internal: https://vanilla.29th.org
