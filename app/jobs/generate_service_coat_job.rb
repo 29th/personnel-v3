@@ -37,7 +37,9 @@ class GenerateServiceCoatJob < ApplicationJob
     {
       last_name: user.last_name,
       rank_abbr: user.rank&.abbr,
-      unit_key: unit_key_for(unit)
+      unit_key: unit_key_for(unit),
+      awards_abbr: user.awards.pluck(:code),
+      balance: FinanceRecord.user_donated(user)
     }.compact
   end
 

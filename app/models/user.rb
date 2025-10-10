@@ -16,6 +16,7 @@ class User < ApplicationRecord
     joins(:unit).where.not(units: {classification: "Training"})
   }, class_name: "Assignment", foreign_key: "member_id"
 
+  has_many :user_awards, foreign_key: "member_id"
   has_many :awards, through: :user_awards
   has_many :demerits, foreign_key: "member_id"
   has_many :discharges, foreign_key: "member_id"
@@ -32,7 +33,6 @@ class User < ApplicationRecord
   has_many :passes, inverse_of: :user, foreign_key: "member_id"
   has_many :promotions, foreign_key: "member_id"
   has_many :units, through: :assignments
-  has_many :user_awards, foreign_key: "member_id"
   has_many :ait_qualifications, foreign_key: "member_id"
   has_many :ait_standards, through: :ait_qualifications
   has_many :attendance_records, foreign_key: "member_id"
