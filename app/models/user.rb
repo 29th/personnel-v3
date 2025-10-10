@@ -228,7 +228,7 @@ class User < ApplicationRecord
   end
 
   def update_coat
-    PersonnelV2Service.new.update_coat(id)
+    GenerateServiceCoatJob.perform_now(self)
   end
 
   def forum_member_username
