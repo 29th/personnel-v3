@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_15_191600) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_06_063847) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -303,6 +303,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_15_191600) do
     t.integer "forum_member_id", limit: 3, unsigned: true
     t.string "time_zone", default: "UTC"
     t.string "slug"
+    t.text "service_coat_data"
     t.index ["country_id"], name: "CountryID"
     t.index ["forum_member_id"], name: "index_members_on_forum_member_id", unique: true
     t.index ["primary_assignment_id"], name: "Assignment"
