@@ -60,10 +60,6 @@ class GenerateServiceCoatJob < ApplicationJob
 
     user.service_coat = tempfile
     user.save!
-    # if user.respond_to?(:service_coat_derivatives!)
-    #   user.service_coat_derivatives!
-    #   user.save! if user.changed?
-    # end
   ensure
     tempfile&.close!
   end

@@ -2,19 +2,26 @@ require "image_processing/mini_magick"
 
 class ServiceCoatUploader < Shrine
   plugin :pretty_location, identifier: :friendly_id
-  plugin :derivatives # , create_on_promote: true
+  plugin :derivatives
   plugin :determine_mime_type
   plugin :store_dimensions, analyzer: :mini_magick
 
   Attacher.derivatives do |original|
     magick = ImageProcessing::MiniMagick.source(original)
-    width = magick.width
-    height = 312
-    x_offset = 0
-    y_offset = record.rank&.officer? ? 130 : 199
+    crop_width = 800
+    crop_height = 312
+    crop_x_offset = 0
+    crop_y_offset = record.rank&.officer? ? 130 : 199
+
+    resized_width = 332
+    resized_height = 128
+
+    sig_derivative = magick
+      .crop("#{crop_width}x#{crop_height}+#{crop_x_offset}+#{crop_y_offset}")
+      .resize("#{resized_width}x#{resized_height}!")
 
     {
-      sig: magick.crop("#{width}x#{height}+#{x_offset}+#{y_offset}") # TODO: repage
+      sig: sig_derivative.call
     }
   end
 end
