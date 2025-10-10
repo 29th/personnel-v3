@@ -15,7 +15,7 @@ module UsersHelper
 
   def coat_url(user)
     if user.member? || user.honorably_discharged?
-      if user.service_coat.attached?
+      if user.service_coat.present?
         user.service_coat_url
       elsif user.steam_id.present?
         base_url = Settings.personnel_v2_api.base_url.external
