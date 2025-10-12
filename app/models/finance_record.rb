@@ -4,7 +4,7 @@ class FinanceRecord < ApplicationRecord
   audited
   belongs_to :user, foreign_key: "member_id", optional: true
 
-  enum vendor: {notapplicable: "N/A",
+  enum :vendor, {notapplicable: "N/A",
                 game_servers: "Game Servers",
                 branzone: "Branzone",
                 dreamhost: "Dreamhost",

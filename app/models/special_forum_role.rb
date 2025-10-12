@@ -2,14 +2,14 @@ class SpecialForumRole < ApplicationRecord
   audited
   self.table_name = "special_roles"
 
-  enum special_attribute: {
+  enum :special_attribute, {
     everyone: "everyone",
     member: "member",
     officer: "officer",
     honorably_discharged: "honorably_discharged"
   }
 
-  enum forum_id: {vanilla: "Vanilla",
+  enum :forum_id, {vanilla: "Vanilla",
                   discourse: "Discourse"}
 
   validates :special_attribute, presence: true

@@ -7,7 +7,7 @@ class Pass < ApplicationRecord
 
   attr_accessor :bulk_member_ids
 
-  enum type: {recruitment: "Recruitment",
+  enum :type, {recruitment: "Recruitment",
               recurring_donation: "Recurring Donation",
               award: "Award",
               other: "Other"}

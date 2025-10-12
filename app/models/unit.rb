@@ -12,9 +12,9 @@ class Unit < ApplicationRecord
   has_many :events, inverse_of: "unit"
   has_many :enlistments
 
-  enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
-  enum timezone: {est: "EST", gmt: "GMT", pst: "PST"}
-  enum classification: {combat: "Combat", staff: "Staff", training: "Training"}
+  enum :game, {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
+  enum :timezone, {est: "EST", gmt: "GMT", pst: "PST"}
+  enum :classification, {combat: "Combat", staff: "Staff", training: "Training"}
 
   scope :active, -> { where(active: true) }
   scope :for_dropdown, ->(current_value = nil) {

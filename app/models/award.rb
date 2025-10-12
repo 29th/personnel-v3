@@ -6,7 +6,7 @@ class Award < ApplicationRecord
   has_many :user_awards
   has_many :users, through: :user_awards
 
-  enum game: {notapplicable: "N/A", dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
+  enum :game, {notapplicable: "N/A", dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
 
   validates :code, presence: true
   validates :title, presence: true

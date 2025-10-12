@@ -2,7 +2,7 @@ module HasForumTopic
   extend ActiveSupport::Concern
 
   included do
-    enum forum_id: {phpbb: "PHPBB",
+    enum :forum_id, {phpbb: "PHPBB",
                     smf: "SMF",
                     vanilla: "Vanilla",
                     discourse: "Discourse"}

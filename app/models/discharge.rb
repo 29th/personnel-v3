@@ -6,7 +6,7 @@ class Discharge < ApplicationRecord
 
   belongs_to :user, foreign_key: "member_id"
 
-  enum type: {honorable: "Honorable",
+  enum :type, {honorable: "Honorable",
               general: "General",
               dishonorable: "Dishonorable"}
 

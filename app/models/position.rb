@@ -1,7 +1,7 @@
 class Position < ApplicationRecord
   audited
-  enum access_level: {member: 0, elevated: 5, leader: 10}
-  enum AIT: {leadership: "Leadership",
+  enum :access_level, {member: 0, elevated: 5, leader: 10}
+  enum :AIT, {leadership: "Leadership",
              rifle: "Rifle",
              submachine_gun: "Submachine Gun",
              automatic_rifle: "Automatic Rifle",

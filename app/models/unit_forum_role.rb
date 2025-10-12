@@ -3,9 +3,9 @@ class UnitForumRole < ApplicationRecord
   self.table_name = "unit_roles"
   belongs_to :unit
 
-  enum access_level: {member: 0, elevated: 5, leader: 10}
+  enum :access_level, {member: 0, elevated: 5, leader: 10}
 
-  enum forum_id: {vanilla: "Vanilla",
+  enum :forum_id, {vanilla: "Vanilla",
                   discourse: "Discourse"}
 
   validates :forum_id, presence: true

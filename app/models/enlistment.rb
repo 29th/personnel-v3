@@ -10,10 +10,10 @@ class Enlistment < ApplicationRecord
   belongs_to :country, optional: true
   belongs_to :unit, optional: true
 
-  enum status: {pending: "Pending", accepted: "Accepted", denied: "Denied",
+  enum :status, {pending: "Pending", accepted: "Accepted", denied: "Denied",
                 withdrawn: "Withdrawn", awol: "AWOL"}
-  enum timezone: {est: "EST", gmt: "GMT", pst: "PST", any_timezone: "Any", no_timezone: "None"}
-  enum game: {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
+  enum :timezone, {est: "EST", gmt: "GMT", pst: "PST", any_timezone: "Any", no_timezone: "None"}
+  enum :game, {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
   VALID_AGES = ["Under 13", *13..99].map(&:to_s)
 
   normalizes :ingame_name, :recruiter, :comments, with: ->(attribute) { attribute.strip }
