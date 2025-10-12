@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(".ruby-version").strip
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.2"
+gem "rails", "~> 8.0.3"
 # Use mysql as the database for Active Record
 gem "mysql2", ">= 0.4.4", "< 0.6.0"
 # Use Puma as the app server
@@ -71,7 +71,7 @@ gem "activeadmin", "~> 3.3.0"
 gem "nilify_blanks", "~> 1.4"
 gem "ancestry", "~> 4.3", ">= 4.3.3"
 gem "jwt", "~> 2.2", ">= 2.2.2"
-gem "validates_timeliness", "~> 7.0.0.beta2"
+gem "validates_timeliness", "~> 8.0"
 gem "activeadmin_addons", "~> 1.10", ">= 1.10.1"
 gem "simple_form", "~> 5.3"
 gem "ransack", "~> 4.1", ">= 4.1.1"
