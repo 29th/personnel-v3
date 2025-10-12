@@ -42,7 +42,4 @@ class PassPolicyTest < ActiveSupport::TestCase
 
     refute_permit user, pass, :create
   end
-
-  test "new permits user with pass_edit or pass_edit_any" do
-  end
 end
