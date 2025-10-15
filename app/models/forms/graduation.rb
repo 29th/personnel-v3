@@ -109,9 +109,9 @@ class Forms::Graduation
   end
 
   def queue_background_jobs(user)
-    user.delay.update_forum_display_name
-    user.delay.update_forum_roles
-    user.delay.update_coat
+    user.update_forum_display_name
+    user.update_forum_roles
+    user.update_coat
   end
 
   class IneligibleCadet < StandardError

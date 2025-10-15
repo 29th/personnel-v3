@@ -27,9 +27,7 @@ module Manage
         @rank = create(:rank)
         @position = create(:position, name: "Rifleman")
 
-        user_delay_proxy = mock("delay_proxy")
-        User.any_instance.stubs(:delay).returns(user_delay_proxy)
-        @user_stubs = user_delay_proxy.stubs(update_forum_display_name: true,
+        @user_stubs = User.any_instance.stubs(update_forum_display_name: true,
           update_forum_roles: true, update_coat: true)
 
         sign_in_as @user
