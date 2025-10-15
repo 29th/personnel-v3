@@ -28,8 +28,6 @@ module Personnel
     config.homepage = config_for(:homepage)
     config.siblings = config_for(:siblings)
 
-    config.active_job.queue_adapter = :delayed_job
-
     config.time_zone = "Eastern Time (US & Canada)"
     config.beginning_of_week = :sunday
   end
