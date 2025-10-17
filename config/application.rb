@@ -30,5 +30,8 @@ module Personnel
 
     config.time_zone = "Eastern Time (US & Canada)"
     config.beginning_of_week = :sunday
+
+    # Authorisation is handled by PermissionConstraint in routes.rb instead
+    config.mission_control.jobs.http_basic_auth_enabled = false
   end
 end
