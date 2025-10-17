@@ -2,6 +2,8 @@ require "test_helper"
 
 module Manage
   class AssignmentsControllerTest < ActionDispatch::IntegrationTest
+    include ActiveJob::TestHelper
+
     setup do
       @user_unit = create(:unit)
       create(:permission, :leader, abbr: "manage", unit: @user_unit)
@@ -11,6 +13,7 @@ module Manage
       create(:assignment, :leader, user: @user, unit: @user_unit)
 
       @subject = create(:user)
+      clear_enqueued_jobs
     end
 
     test "should refresh rank, update coat, and forum display name after creation" do
@@ -22,7 +25,7 @@ module Manage
 
       methods_called = []
       User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
-        User.stub_any_instance(:update_coat, -> { methods_called << :update_coat }) do
+        assert_enqueued_with(job: GenerateServiceCoatJob, args: [@subject]) do
           post manage_promotions_url, params: {promotion: promotion_attributes(promotion)}
         end
       end
@@ -31,7 +34,6 @@ module Manage
       assert_equal "Sgt.", @subject.rank.abbr
 
       assert_includes methods_called, :update_forum_display_name
-      assert_includes methods_called, :update_coat
     end
 
     test "should refresh rank, update coat, and forum display name after deletion" do
@@ -43,7 +45,7 @@ module Manage
 
       methods_called = []
       User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
-        User.stub_any_instance(:update_coat, -> { methods_called << :update_coat }) do
+        assert_enqueued_with(job: GenerateServiceCoatJob, args: [@subject]) do
           delete manage_promotion_url(promotion)
         end
       end
@@ -52,7 +54,6 @@ module Manage
       assert_equal old_promotion.new_rank.abbr, @subject.rank.abbr
 
       assert_includes methods_called, :update_forum_display_name
-      assert_includes methods_called, :update_coat
     end
 
     private

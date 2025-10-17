@@ -35,10 +35,10 @@ ActiveAdmin.register UserAward do
   end
 
   after_save do |user_award|
-    user_award.user.update_coat
+    GenerateServiceCoatJob.perform_later(user_award.user)
   end
 
   after_destroy do |user_award|
-    user_award.user.update_coat
+    GenerateServiceCoatJob.perform_later(user_award.user)
   end
 end

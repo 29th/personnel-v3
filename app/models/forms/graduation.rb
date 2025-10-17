@@ -111,7 +111,7 @@ class Forms::Graduation
   def queue_background_jobs(user)
     user.update_forum_display_name
     user.update_forum_roles
-    user.update_coat
+    GenerateServiceCoatJob.perform_later(user)
   end
 
   class IneligibleCadet < StandardError

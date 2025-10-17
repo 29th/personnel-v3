@@ -35,12 +35,12 @@ ActiveAdmin.register Promotion do
   after_save do |promotion|
     promotion.user.refresh_rank
     promotion.user.update_forum_display_name
-    promotion.user.update_coat
+    GenerateServiceCoatJob.perform_later(promotion.user)
   end
 
   after_destroy do |promotion|
     promotion.user.refresh_rank
     promotion.user.update_forum_display_name
-    promotion.user.update_coat
+    GenerateServiceCoatJob.perform_later(promotion.user)
   end
 end

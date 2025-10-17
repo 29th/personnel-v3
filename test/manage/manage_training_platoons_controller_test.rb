@@ -2,6 +2,8 @@ require "test_helper"
 
 module Manage
   class TrainingPlatoonsControllerTest < ActionDispatch::IntegrationTest
+    include ActiveJob::TestHelper
+
     class Graduation < Manage::TrainingPlatoonsControllerTest
       setup do
         @tp = create(:unit, classification: :training)
@@ -27,10 +29,11 @@ module Manage
         @rank = create(:rank)
         @position = create(:position, name: "Rifleman")
 
-        @user_stubs = User.any_instance.stubs(update_forum_display_name: true,
-          update_forum_roles: true, update_coat: true)
+        User.any_instance.stubs(update_forum_display_name: true,
+          update_forum_roles: true)
 
         sign_in_as @user
+        clear_enqueued_jobs
       end
 
       test "unauthorized users cannot access or submit graduation form" do
@@ -103,17 +106,19 @@ module Manage
       end
 
       test "redirected to training platoon on success" do
-        assert_difference "Assignment.count", @cadets.size do
-          # assert_difference -> { Assignment.count } => @cadets.size, -> { Promotion.count } => @cadets.size do
-          post graduate_manage_training_platoon_path(@tp), params: {
-            forms_graduation: {
-              assignments_attributes: assignments_attributes,
-              award_ids: @awards.pluck(:id),  # .prepend(""),
-              rank_id: @rank.id,
-              position_id: @position.id,
-              topic_id: 0
+        assert_enqueued_jobs @cadets.size, only: GenerateServiceCoatJob do
+          assert_difference "Assignment.count", @cadets.size do
+            # assert_difference -> { Assignment.count } => @cadets.size, -> { Promotion.count } => @cadets.size do
+            post graduate_manage_training_platoon_path(@tp), params: {
+              forms_graduation: {
+                assignments_attributes: assignments_attributes,
+                award_ids: @awards.pluck(:id),  # .prepend(""),
+                rank_id: @rank.id,
+                position_id: @position.id,
+                topic_id: 0
+              }
             }
-          }
+          end
         end
 
         assert_redirected_to manage_training_platoon_path(@tp)

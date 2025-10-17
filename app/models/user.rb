@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include FriendlyId
   include ServiceCoatUploader::Attachment(:service_coat)
+
   self.table_name = "members"
   self.ignored_columns = %w[status primary_assignment_id im_type im_handle city]
   audited max_audits: 10
@@ -225,10 +226,6 @@ class User < ApplicationRecord
 
   def attendance_stats
     @attendance_stats ||= AttendanceStats.for_user(self)
-  end
-
-  def update_coat
-    GenerateServiceCoatJob.perform_now(self)
   end
 
   def forum_member_username

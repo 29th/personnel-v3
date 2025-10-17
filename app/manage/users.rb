@@ -147,7 +147,7 @@ ActiveAdmin.register User do
     triggering_attributes = [:last_name, :name_prefix, :rank_id, :forum_member_id]
     if triggering_attributes.any? { |attr| user.saved_change_to_attribute(attr) }
       user.update_forum_display_name
-      user.update_coat
+      GenerateServiceCoatJob.perform_later(user)
     end
   end
 end
