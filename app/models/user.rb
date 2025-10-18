@@ -240,11 +240,6 @@ class User < ApplicationRecord
     @vanilla_forum_member_username ||= vanilla_service.user.username if vanilla_forum_member_id.present?
   end
 
-  def update_forum_display_name
-    discourse_service.user.update_display_name(short_name) if forum_member_id.present?
-    vanilla_service.user.update_display_name(short_name) if vanilla_forum_member_id.present?
-  end
-
   def update_forum_roles
     if forum_member_id.present?
       expected_roles = forum_role_ids(:discourse)

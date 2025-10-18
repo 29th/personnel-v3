@@ -109,7 +109,7 @@ class Forms::Graduation
   end
 
   def queue_background_jobs(user)
-    user.update_forum_display_name
+    UpdateDiscourseDisplayNameJob.perform_later(user)
     user.update_forum_roles
     GenerateServiceCoatJob.perform_later(user)
   end

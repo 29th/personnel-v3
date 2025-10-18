@@ -13,7 +13,7 @@ class DiscourseWebhooksController < ApplicationController
 
     matching_user = User.find_by_email!(discourse_email)
     matching_user.update!(forum_member_id: discourse_user_id)
-    matching_user.update_forum_display_name
+    UpdateDiscourseDisplayNameJob.perform_later(matching_user)
     matching_user.update_forum_roles
 
     head :no_content

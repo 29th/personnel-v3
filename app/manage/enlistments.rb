@@ -291,7 +291,7 @@ ActiveAdmin.register Enlistment do
       if enlistment.status == "accepted"
         enlistment.destroy_assignments
         enlistment.create_assignment!
-        enlistment.user.update_forum_display_name
+        UpdateDiscourseDisplayNameJob.perform_later(enlistment.user)
       elsif enlistment.status == "awol"
         enlistment.end_assignments
       else
@@ -300,7 +300,7 @@ ActiveAdmin.register Enlistment do
     elsif (enlistment.user.saved_change_to_last_name? ||
         enlistment.user.saved_change_to_name_prefix?) &&
         enlistment.status == "accepted"
-      enlistment.user.update_forum_display_name
+      UpdateDiscourseDisplayNameJob.perform_later(enlistment.user)
     end
   end
 end

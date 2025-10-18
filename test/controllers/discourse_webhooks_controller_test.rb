@@ -1,6 +1,8 @@
 require "test_helper"
 
 class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
+  include ActiveJob::TestHelper
+
   setup do
     @discourse_user_id = 10
     @body = {
@@ -19,7 +21,7 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
       "X-Discourse-Event-Type": "user",
       "X-Discourse-Event-Signature": sign(@body)
     }
-
+    clear_enqueued_jobs
     @subject = create(:user, email: "so@so.com")
   end
 
@@ -53,8 +55,8 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
     headers = @headers.merge({"X-Discourse-Event": "user_activated"})
 
     methods_called = []
-    User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
-      User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
+    User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
+      assert_enqueued_with(job: UpdateDiscourseDisplayNameJob, args: [@subject]) do
         post discourse_webhook_user_activated_url, params: @body, headers: headers, as: :json
       end
     end
@@ -62,7 +64,6 @@ class DiscourseWebhooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :no_content
     assert_equal @subject, User.find_by_forum_member_id(@discourse_user_id)
 
-    assert_includes methods_called, :update_forum_display_name
     assert_includes methods_called, :update_forum_roles
   end
 

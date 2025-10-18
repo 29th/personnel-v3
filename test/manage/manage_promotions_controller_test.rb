@@ -23,8 +23,7 @@ module Manage
       rank = create(:rank, abbr: "Sgt.")
       promotion = build(:promotion, user: @subject, new_rank: rank)
 
-      methods_called = []
-      User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
+      assert_enqueued_with(job: UpdateDiscourseDisplayNameJob, args: [@subject]) do
         assert_enqueued_with(job: GenerateServiceCoatJob, args: [@subject]) do
           post manage_promotions_url, params: {promotion: promotion_attributes(promotion)}
         end
@@ -32,8 +31,6 @@ module Manage
 
       @subject.reload
       assert_equal "Sgt.", @subject.rank.abbr
-
-      assert_includes methods_called, :update_forum_display_name
     end
 
     test "should refresh rank, update coat, and forum display name after deletion" do
@@ -43,8 +40,7 @@ module Manage
       old_promotion = create(:promotion, user: @subject, rank_abbr: "Cpl.")
       promotion = create(:promotion, user: @subject, rank_abbr: "Sgt.")
 
-      methods_called = []
-      User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
+      assert_enqueued_with(job: UpdateDiscourseDisplayNameJob, args: [@subject]) do
         assert_enqueued_with(job: GenerateServiceCoatJob, args: [@subject]) do
           delete manage_promotion_url(promotion)
         end
@@ -52,8 +48,6 @@ module Manage
 
       @subject.reload
       assert_equal old_promotion.new_rank.abbr, @subject.rank.abbr
-
-      assert_includes methods_called, :update_forum_display_name
     end
 
     private

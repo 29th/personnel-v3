@@ -2,6 +2,8 @@ require "test_helper"
 
 module Manage
   class EnlistmentsControllerTest < ActionDispatch::IntegrationTest
+    include ActiveJob::TestHelper
+
     test "user cannot process enlistment without permission" do
       stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
       stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
@@ -99,6 +101,7 @@ module Manage
         @user = create(:user)
         create(:assignment, user: @user, unit: unit)
         sign_in_as @user
+        clear_enqueued_jobs
       end
 
       test "copies user attributes to legacy enlistment fields when updated" do
@@ -124,8 +127,7 @@ module Manage
       test "changing last_name of accepted enlistment updates forum display name" do
         enlistment = create(:enlistment, status: :accepted)
 
-        methods_called = []
-        User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
+        assert_enqueued_with(job: UpdateDiscourseDisplayNameJob, args: [enlistment.user]) do
           patch manage_enlistment_url(enlistment), params: {
             enlistment: {
               user_attributes: {
@@ -134,8 +136,6 @@ module Manage
             }
           }
         end
-
-        assert_includes methods_called, :update_forum_display_name
       end
     end
 
@@ -152,6 +152,7 @@ module Manage
         @user = create(:user)
         create(:assignment, user: @user, unit: unit)
         sign_in_as @user
+        clear_enqueued_jobs
       end
 
       test "creates assignment when status set to accepted and unit set" do
@@ -315,8 +316,7 @@ module Manage
         enlistment = create(:enlistment)
         tp = create(:unit, classification: :training)
 
-        methods_called = []
-        User.stub_any_instance(:update_forum_display_name, -> { methods_called << :update_forum_display_name }) do
+        assert_enqueued_with(job: UpdateDiscourseDisplayNameJob, args: [enlistment.user]) do
           patch process_enlistment_manage_enlistment_url(enlistment), params: {
             enlistment: {
               unit_id: tp.id,
@@ -324,8 +324,6 @@ module Manage
             }
           }
         end
-
-        assert_includes methods_called, :update_forum_display_name
       end
 
       test "validation errors redirect back to process enlistment form" do

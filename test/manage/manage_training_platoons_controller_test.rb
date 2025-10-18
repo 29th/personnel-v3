@@ -29,8 +29,7 @@ module Manage
         @rank = create(:rank)
         @position = create(:position, name: "Rifleman")
 
-        User.any_instance.stubs(update_forum_display_name: true,
-          update_forum_roles: true)
+        User.any_instance.stubs(update_forum_roles: true)
 
         sign_in_as @user
         clear_enqueued_jobs
@@ -106,18 +105,20 @@ module Manage
       end
 
       test "redirected to training platoon on success" do
-        assert_enqueued_jobs @cadets.size, only: GenerateServiceCoatJob do
-          assert_difference "Assignment.count", @cadets.size do
-            # assert_difference -> { Assignment.count } => @cadets.size, -> { Promotion.count } => @cadets.size do
-            post graduate_manage_training_platoon_path(@tp), params: {
-              forms_graduation: {
-                assignments_attributes: assignments_attributes,
-                award_ids: @awards.pluck(:id),  # .prepend(""),
-                rank_id: @rank.id,
-                position_id: @position.id,
-                topic_id: 0
+        assert_enqueued_jobs @cadets.size, only: UpdateDiscourseDisplayNameJob do
+          assert_enqueued_jobs @cadets.size, only: GenerateServiceCoatJob do
+            assert_difference "Assignment.count", @cadets.size do
+              # assert_difference -> { Assignment.count } => @cadets.size, -> { Promotion.count } => @cadets.size do
+              post graduate_manage_training_platoon_path(@tp), params: {
+                forms_graduation: {
+                  assignments_attributes: assignments_attributes,
+                  award_ids: @awards.pluck(:id),  # .prepend(""),
+                  rank_id: @rank.id,
+                  position_id: @position.id,
+                  topic_id: 0
+                }
               }
-            }
+            end
           end
         end
 
