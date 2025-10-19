@@ -107,5 +107,3 @@ gem "rails-reverse-proxy", "~> 0.13.0"
 gem "dry-validation", "~> 1.11"
 gem "lograge", "~> 0.14.0"
 gem "logstash-event", "~> 1.2"
-
-gem "solid_queue", "~> 1.2"
