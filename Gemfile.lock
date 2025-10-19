@@ -179,6 +179,9 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     deep_merge (1.2.2)
+    delayed (1.2.1)
+      activerecord (>= 6.0)
+      concurrent-ruby
     dotenv (3.1.8)
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
@@ -603,6 +606,7 @@ DEPENDENCIES
   config (~> 5.1)
   data_migrate (~> 11.3.0)
   debug (>= 1.0.0)
+  delayed (~> 1.2)
   dotenv-rails
   dry-validation (~> 1.11)
   factory_bot_rails
