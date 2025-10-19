@@ -15,13 +15,8 @@ default: &default
   password: pwd
 
 development:
-  primary:
-    <<: *default
-    database: personnel_v2
-  queue:
-    <<: *default
-    database: personnel_development_queue
-    migrations_paths: db/queue_migrate
+  <<: *default
+  database: personnel_v2
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -31,12 +26,5 @@ test:
   database: personnel_test
 
 production:
-  primary: &primary_production
-    <<: *default
-    database: personnel_v2
-    url: <%= ENV["DATABASE_URL"] %>
-  queue:
-    <<: *primary_production
-    database: personnel_v2_queue
-    migrations_paths: db/queue_migrate
-    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_queue" } if ENV["DATABASE_URL"] %>
+  <<: *default
+  database: personnel_v2

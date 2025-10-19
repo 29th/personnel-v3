@@ -37,9 +37,8 @@ Rails.application.configure do
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
 
-  # Use Solid Queue in Development.
-  config.active_job.queue_adapter = :solid_queue
-  config.solid_queue.connects_to = {database: {writing: :queue}}
+  # Use Delayed in Development.
+  config.active_job.queue_adapter = :delayed
 
   # Set localhost to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = {host: "localhost", port: 3000}
