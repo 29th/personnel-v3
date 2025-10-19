@@ -11,10 +11,6 @@ Rails.application.routes.draw do
       via: :all
   end
 
-  constraints PermissionConstraint.new("admin") do
-    mount MissionControl::Jobs::Engine, at: "/jobs"
-  end
-
   root "home#landing"
 
   ActiveAdmin.routes(self)
