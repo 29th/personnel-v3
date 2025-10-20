@@ -2,6 +2,8 @@ require "test_helper"
 
 module Manage
   class DischargesControllerTest < ActionDispatch::IntegrationTest
+    include ActiveJob::TestHelper
+
     setup do
       @user_unit = create(:unit)
       create(:permission, :leader, abbr: "manage", unit: @user_unit)
@@ -11,6 +13,7 @@ module Manage
       create(:assignment, :leader, user: @user, unit: @user_unit)
 
       @subject = create(:user)
+      clear_enqueued_jobs
     end
 
     test "should end assignments and update forum roles after creation" do
@@ -19,8 +22,7 @@ module Manage
       create(:assignment, user: @subject, unit: unit)
       discharge = build(:discharge, user: @subject)
 
-      methods_called = []
-      User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
+      assert_enqueued_with(job: UpdateDiscourseRolesJob, args: [@subject]) do
         post manage_discharges_url, params: {
           discharge: {
             **discharge_attributes(discharge),
@@ -30,7 +32,6 @@ module Manage
       end
 
       refute @subject.member?, "user is still a member"
-      assert_includes methods_called, :update_forum_roles
     end
 
     test "should not end assignments or update forum roles if end_assignments wasn't ticked" do
@@ -39,13 +40,11 @@ module Manage
       create(:assignment, user: @subject, unit: unit)
       discharge = build(:discharge, user: @subject, end_assignments: false)
 
-      methods_called = []
-      User.stub_any_instance(:update_forum_roles, -> { methods_called << :update_forum_roles }) do
+      assert_no_enqueued_jobs only: UpdateDiscourseRolesJob do
         post manage_discharges_url, params: {discharge: discharge_attributes(discharge)}
       end
 
       assert @subject.member?, "user is no longer a member"
-      refute_includes methods_called, :update_forum_roles
     end
 
     private

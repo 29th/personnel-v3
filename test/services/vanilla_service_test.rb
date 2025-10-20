@@ -27,7 +27,8 @@ class VanillaServiceTest < ActiveSupport::TestCase
     stub = stub_request(:patch, %r{/users/#{vanilla_forum_member_id}})
       .with(body: expected_body.to_json)
 
-    user.update_forum_roles
+    expected_roles = user.forum_role_ids(:vanilla)
+    VanillaService.new(vanilla_forum_member_id).user.update_roles(expected_roles)
 
     assert_requested(stub)
   end

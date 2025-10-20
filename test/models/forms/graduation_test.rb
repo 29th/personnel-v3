@@ -24,8 +24,6 @@ class Forms::GraduationTest < ActiveSupport::TestCase
     @rank = create(:rank)
     @position = create(:position, name: "Rifleman")
 
-    User.any_instance.stubs(update_forum_display_name: true,
-      update_forum_roles: true)
     clear_enqueued_jobs
   end
 
@@ -102,11 +100,12 @@ class Forms::GraduationTest < ActiveSupport::TestCase
       award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
       topic_id: 0)
 
-    User.any_instance.expects(:update_forum_display_name).times(@cadets.size)
-    User.any_instance.expects(:update_forum_roles).times(@cadets.size)
-
-    assert_enqueued_jobs @cadets.size, only: GenerateServiceCoatJob do
-      assert graduation.save
+    assert_enqueued_jobs @cadets.size, only: UpdateDiscourseDisplayNameJob do
+      assert_enqueued_jobs @cadets.size, only: UpdateDiscourseRolesJob do
+        assert_enqueued_jobs @cadets.size, only: GenerateServiceCoatJob do
+          assert graduation.save
+        end
+      end
     end
   end
 

@@ -122,7 +122,7 @@ ActiveAdmin.register User do
 
   member_action :update_forum_roles, method: :post do
     authorize! :update_forum_roles, resource
-    resource.update_forum_roles
+    UpdateDiscourseRolesJob.perform_now(resource) # synchronous to provide immediate feedback
     redirect_to resource_path, notice: "Forum roles updated"
   end
 
@@ -138,7 +138,7 @@ ActiveAdmin.register User do
   batch_action :update_forum_roles, if: proc { authorized?(:update_forum_roles, User) } do |ids|
     batch_action_collection.find(ids).each do |user|
       authorize! :update_forum_roles, user
-      user.update_forum_roles
+      UpdateDiscourseRolesJob.perform_later(user) # async
     end
     redirect_to collection_path, notice: "Forum roles updated"
   end
@@ -146,7 +146,7 @@ ActiveAdmin.register User do
   after_save do |user|
     triggering_attributes = [:last_name, :name_prefix, :rank_id, :forum_member_id]
     if triggering_attributes.any? { |attr| user.saved_change_to_attribute(attr) }
-      user.update_forum_display_name
+      UpdateDiscourseDisplayNameJob.perform_later(user)
       GenerateServiceCoatJob.perform_later(user)
     end
   end
