@@ -76,6 +76,32 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "honorably_discharged scope includes inactive users with latest discharge honorable" do
+    user = create(:user)
+    create(:assignment, user: user, start_date: 2.years.ago.to_date, end_date: 1.year.ago.to_date)
+    create(:discharge, user: user, date: 2.months.ago.to_date, type: :general)
+    create(:discharge, user: user, date: 1.month.ago.to_date, type: :honorable)
+
+    assert_includes User.honorably_discharged, user
+  end
+
+  test "honorably_discharged scope omits active users who have been honorably discharged in the past" do
+    user = create(:user)
+    create(:assignment, user: user) # active assignment
+    create(:discharge, user: user, date: 1.year.ago.to_date, type: :honorable)
+
+    refute_includes User.honorably_discharged, user
+  end
+
+  test "honorably_discharged scope omits inactive users with latest discharge non-honorable" do
+    user = create(:user)
+    create(:assignment, user: user, start_date: 2.years.ago.to_date, end_date: 1.year.ago.to_date)
+    create(:discharge, user: user, date: 2.months.ago.to_date, type: :honorable)
+    create(:discharge, user: user, date: 1.month.ago.to_date, type: :dishonorable)
+
+    refute_includes User.honorably_discharged, user
+  end
+
   # has_permission?
 
   test "leader inherits member and elevated permissions" do

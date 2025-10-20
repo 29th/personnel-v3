@@ -48,6 +48,16 @@ class User < ApplicationRecord
     joins(:assignments).merge(Assignment.active(date)).distinct
   }
 
+  scope :honorably_discharged, -> {
+    where.not(id: Assignment.active.select(:member_id))
+      .joins(:discharges)
+      .where(
+        "discharges.date = (SELECT MAX(d2.date) FROM discharges d2 WHERE d2.member_id = members.id)"
+      )
+      .where(discharges: {type: "Honorable"})
+      .distinct
+  }
+
   attr_accessor :username
 
   nilify_blanks
