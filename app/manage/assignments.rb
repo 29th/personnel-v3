@@ -95,10 +95,10 @@ ActiveAdmin.register Assignment do
   end
 
   after_save do |assignment|
-    assignment.user.update_forum_roles
+    UpdateDiscourseRolesJob.perform_later(assignment.user)
   end
 
   after_destroy do |assignment|
-    assignment.user.update_forum_roles
+    UpdateDiscourseRolesJob.perform_later(assignment.user)
   end
 end

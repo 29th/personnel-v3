@@ -122,7 +122,7 @@ ActiveAdmin.register User do
 
   member_action :update_forum_roles, method: :post do
     authorize! :update_forum_roles, resource
-    resource.update_forum_roles
+    UpdateDiscourseRolesJob.perform_now(resource) # synchronous to provide immediate feedback
     redirect_to resource_path, notice: "Forum roles updated"
   end
 
@@ -138,7 +138,7 @@ ActiveAdmin.register User do
   batch_action :update_forum_roles, if: proc { authorized?(:update_forum_roles, User) } do |ids|
     batch_action_collection.find(ids).each do |user|
       authorize! :update_forum_roles, user
-      user.update_forum_roles
+      UpdateDiscourseRolesJob.perform_later(user) # async
     end
     redirect_to collection_path, notice: "Forum roles updated"
   end

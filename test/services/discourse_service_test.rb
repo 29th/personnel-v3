@@ -35,7 +35,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "update_user_roles adds missing roles and deletes extra roles" do
+  test "update_roles adds missing roles and deletes extra roles" do
     forum_member_id = 1
     username = "fluffy_panda"
 
@@ -51,7 +51,8 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     stub_user_request(forum_member_id, username: username, groups: discourse_roles)
 
     stub_request(:any, %r{/admin/users/#{forum_member_id}/groups*})
-    user.update_forum_roles
+    expected_roles = user.forum_role_ids(:discourse)
+    DiscourseService.new(forum_member_id).user.update_roles(expected_roles)
 
     assert_requested(:post, %r{/admin/users/#{forum_member_id}/groups}) do |req|
       req.body = {group_id: missing_role.role_id}
@@ -60,7 +61,7 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     assert_requested(:delete, %r{/admin/users/#{forum_member_id}/groups/#{extra_role.role_id}})
   end
 
-  test "update_user_roles retries on 429 response" do
+  test "update_roles retries on 429 response" do
     forum_member_id = 1
     username = "fluffy_panda"
 
@@ -73,14 +74,15 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     stub_request(:post, %r{/admin/users/#{forum_member_id}/groups})
       .to_return({status: 429}, {status: 200})
 
-    user.update_forum_roles
+    expected_roles = user.forum_role_ids(:discourse)
+    DiscourseService.new(forum_member_id).user.update_roles(expected_roles)
 
     assert_requested(:post, %r{/admin/users/#{forum_member_id}/groups}, times: 2) do |req|
       req.body = {group_id: missing_role.role_id}
     end
   end
 
-  test "update_user_roles throws on 500 response" do
+  test "update_roles throws on 500 response" do
     forum_member_id = 1
     username = "fluffy_panda"
 
@@ -93,8 +95,10 @@ class DiscourseServiceTest < ActiveSupport::TestCase
     stub_request(:post, %r{/admin/users/#{forum_member_id}/groups})
       .to_return(status: 500)
 
+    expected_roles = user.forum_role_ids(:discourse)
+
     assert_raises Faraday::ServerError do
-      user.update_forum_roles
+      DiscourseService.new(forum_member_id).user.update_roles(expected_roles)
     end
   end
 

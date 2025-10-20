@@ -61,7 +61,7 @@ ActiveAdmin.register Discharge do
   after_create do |discharge|
     if discharge.end_assignments
       discharge.user.end_assignments(discharge.date)
-      discharge.user.update_forum_roles
+      UpdateDiscourseRolesJob.perform_later(discharge.user)
     end
   end
 end
