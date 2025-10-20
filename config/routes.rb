@@ -83,6 +83,10 @@ Rails.application.routes.draw do
 
   resources :enlistments, only: [:show, :new, :create]
 
+  constraints PermissionConstraint.new("admin") do
+    mount MaintenanceTasks::Engine, at: "/maintenance_tasks"
+  end
+
   # reverse proxy legacy routes
   with_options controller: "reverse_proxy", via: :all, constraints: {path: /.*/} do
     match "awards(/*path)", action: "awards"
