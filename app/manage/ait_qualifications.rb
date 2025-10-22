@@ -48,7 +48,9 @@ ActiveAdmin.register AITQualification do
       else
         input :user, as: :searchable_select, ajax: true
       end
-      input :ait_standard, member_label: :with_prefix
+      input :ait_standard, as: :select,
+        collection: AITStandard.order(:game, :weapon, :badge, :description)
+          .map { |standard| [standard.with_prefix, standard.id] }
       input :date, as: :datepicker
     end
     f.actions
