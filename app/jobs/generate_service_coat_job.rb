@@ -62,7 +62,7 @@ class GenerateServiceCoatJob < ApplicationJob
     prepare_for_uploader(tempfile, response)
 
     user.service_coat = tempfile
-    user.save!
+    user.save!(validate: false)
   ensure
     tempfile&.close!
   end
