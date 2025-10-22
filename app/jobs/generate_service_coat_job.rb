@@ -53,7 +53,8 @@ class GenerateServiceCoatJob < ApplicationJob
   end
 
   def attach_response_to_user(user, response)
-    tempfile = Tempfile.new([user.steam_id || user.id, ".png"])
+    prefix = user.steam_id || user.id
+    tempfile = Tempfile.new([prefix.to_s, ".png"])
     tempfile.binmode
     tempfile.write(response.body)
     tempfile.rewind
