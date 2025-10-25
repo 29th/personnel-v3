@@ -4,7 +4,7 @@ class UpdateVanillaRolesJob < ApplicationJob
   def perform(user)
     return unless user.vanilla_forum_member_id.present?
 
-    vanilla_service = VanillaForumService.new(user.vanilla_forum_member_id)
+    vanilla_service = VanillaService.new(user.vanilla_forum_member_id)
     expected_roles = user.forum_role_ids(:vanilla)
     vanilla_service.user.update_roles(expected_roles)
   end
