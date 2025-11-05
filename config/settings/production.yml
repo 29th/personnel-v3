@@ -26,7 +26,6 @@ vanilla:
   base_url:
     internal: https://vanilla.29th.org
     external: https://vanilla.29th.org
-  api_key: ~
 smf:
   base_url:
     internal: https://smf.29th.org

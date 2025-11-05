@@ -8,9 +8,5 @@ class UpdateDiscourseRolesJob < ApplicationJob
     discourse_service = DiscourseService.new(user.forum_member_id)
     expected_roles = user.forum_role_ids(:discourse)
     discourse_service.user.update_roles(expected_roles)
-
-    if user.vanilla_forum_member_id.present?
-      UpdateVanillaRolesJob.perform_later(user)
-    end
   end
 end

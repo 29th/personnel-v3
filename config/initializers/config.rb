@@ -77,7 +77,6 @@ Config.setup do |config|
         required(:internal).filled(:string)
         required(:external).filled(:string)
       end
-      required(:api_key).filled(:string)
     end
 
     optional(:smf).hash do
