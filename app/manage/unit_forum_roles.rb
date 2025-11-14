@@ -1,14 +1,10 @@
 ActiveAdmin.register UnitForumRole do
   belongs_to :unit, optional: true, finder: :find_by_slug
   permit_params :unit_id, :access_level, :forum_id, :role_id,
-    :discourse_role_id, :vanilla_role_id
+    :discourse_role_id
   menu parent: "Permissions"
 
   includes :unit
-
-  scope :all, default: true
-  scope :discourse
-  scope :vanilla
 
   filter :unit, collection: -> { Unit.for_dropdown }
   filter :access_level, as: :select, collection: -> { UnitForumRole.access_levels }
@@ -46,13 +42,6 @@ ActiveAdmin.register UnitForumRole do
           :name => "unit_forum_role[discourse_role_id]",
           :id => "unit_forum_role_discourse_role_id"
         }
-      input :role_id, as: :select, label: "Vanilla role",
-        collection: controller.roles[:vanilla].map(&:reverse),
-        input_html: {
-          "data-forum-roles-target" => "vanillaRoles",
-          :name => "unit_forum_role[vanilla_role_id]",
-          :id => "unit_forum_role_vanilla_role_id"
-        }
     end
     f.actions
   end
@@ -60,8 +49,6 @@ ActiveAdmin.register UnitForumRole do
   before_save do |unit_forum_role|
     if unit_forum_role.discourse?
       unit_forum_role.role_id = unit_forum_role.discourse_role_id
-    elsif unit_forum_role.vanilla?
-      unit_forum_role.role_id = unit_forum_role.vanilla_role_id
     end
   end
 
@@ -74,13 +61,7 @@ ActiveAdmin.register UnitForumRole do
           Appsignal.set_error(err)
           {}
         end
-        vanilla = begin
-          VanillaService.new.roles
-        rescue Faraday::Error => err
-          Appsignal.set_error(err)
-          {}
-        end
-        {discourse: discourse, vanilla: vanilla}
+        {discourse: discourse}
       end
     end
   end

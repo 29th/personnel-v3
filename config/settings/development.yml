@@ -26,7 +26,6 @@ vanilla:
   base_url:
     internal: https://forums
     external: https://vanilla.29th.local
-  api_key: dev
 smf:
   base_url:
     internal: https://smf

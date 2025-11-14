@@ -246,10 +246,6 @@ class User < ApplicationRecord
     @forum_member_email ||= discourse_service.user.email if forum_member_id.present?
   end
 
-  def vanilla_forum_member_username
-    @vanilla_forum_member_username ||= vanilla_service.user.username if vanilla_forum_member_id.present?
-  end
-
   def create_forum_topic(...) = discourse_service.user.create_topic(...)
 
   def linked_forum_users
@@ -260,7 +256,7 @@ class User < ApplicationRecord
         linked_forum_users.concat(discourse_users)
       end
       if vanilla_forum_member_id
-        vanilla_users = vanilla_service.user.linked_users
+        vanilla_users = [{user_id: vanilla_forum_member_id, forum: :vanilla, username: nil, ips: []}]
         linked_forum_users.concat(vanilla_users)
       end
       linked_forum_users
@@ -302,10 +298,6 @@ class User < ApplicationRecord
 
   def discourse_service
     @discourse_service ||= DiscourseService.new(forum_member_id)
-  end
-
-  def vanilla_service
-    @vanilla_service ||= VanillaService.new(vanilla_forum_member_id)
   end
 
   def slug_candidates

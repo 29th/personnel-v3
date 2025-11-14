@@ -1,11 +1,10 @@
 ActiveAdmin.register SpecialForumRole do
   permit_params :special_attribute, :forum_id, :role_id,
-    :discourse_role_id, :vanilla_role_id
+    :discourse_role_id
   menu parent: "Permissions"
 
   scope :all, default: true
   scope :discourse
-  scope :vanilla
 
   filter :special_attribute, as: :select, collection: -> { SpecialForumRole.special_attributes }
   filter :forum_id, as: :select, collection: -> { SpecialForumRole.forum_ids.map(&:reverse) }
@@ -40,13 +39,6 @@ ActiveAdmin.register SpecialForumRole do
           :name => "special_forum_role[discourse_role_id]",
           :id => "special_forum_role_discourse_role_id"
         }
-      input :role_id, as: :select, label: "Vanilla role",
-        collection: controller.roles[:vanilla].map(&:reverse),
-        input_html: {
-          "data-forum-roles-target" => "vanillaRoles",
-          :name => "special_forum_role[vanilla_role_id]",
-          :id => "special_forum_role_vanilla_role_id"
-        }
     end
     f.actions
   end
@@ -54,8 +46,6 @@ ActiveAdmin.register SpecialForumRole do
   before_save do |special_forum_role|
     if special_forum_role.discourse?
       special_forum_role.role_id = special_forum_role.discourse_role_id
-    elsif special_forum_role.vanilla?
-      special_forum_role.role_id = special_forum_role.vanilla_role_id
     end
   end
 
@@ -68,13 +58,7 @@ ActiveAdmin.register SpecialForumRole do
           Appsignal.set_error(err)
           {}
         end
-        vanilla = begin
-          VanillaService.new.roles
-        rescue Faraday::Error => err
-          Appsignal.set_error(err)
-          {}
-        end
-        {discourse: discourse, vanilla: vanilla}
+        {discourse: discourse}
       end
     end
   end

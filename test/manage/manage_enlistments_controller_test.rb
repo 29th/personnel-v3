@@ -5,7 +5,6 @@ module Manage
     include ActiveJob::TestHelper
 
     test "user cannot process enlistment without permission" do
-      stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
       stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
       unit = create(:unit)
@@ -31,13 +30,11 @@ module Manage
         create(:assignment, user: @user, unit: @unit)
         sign_in_as @user
         create(:permission, abbr: "manage", unit: @unit)
-        @vanilla_url = Settings.vanilla.base_url.internal
         @disocurse_url = Settings.discourse.base_url.internal
       end
 
       test "links user with same steam id as enlistment field" do
         create(:permission, abbr: "enlistment_edit_any", unit: @unit)
-        stub_request(:any, /#{@vanilla_url}.*/).to_return(status: 404)
         stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
 
         steam_id = "12345678912345678"
@@ -52,7 +49,6 @@ module Manage
 
       test "links user with same steam id as enlistment user" do
         create(:permission, abbr: "enlistment_edit_any", unit: @unit)
-        stub_request(:any, /#{@vanilla_url}.*/).to_return(status: 404)
         stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
 
         steam_id = "12345678912345678"
@@ -68,7 +64,6 @@ module Manage
 
       test "links users with similar last names" do
         create(:permission, abbr: "enlistment_edit_any", unit: @unit)
-        stub_request(:any, /#{@vanilla_url}.*/).to_return(status: 404)
         stub_request(:any, /#{@discourse_url}.*/).to_return(status: 404)
 
         user = create(:user, last_name: "Anders", first_name: "Subject")
@@ -90,7 +85,6 @@ module Manage
 
     class EditEnlistmentTest < Manage::EnlistmentsControllerTest
       setup do
-        stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
         stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
         unit = create(:unit)
@@ -141,7 +135,6 @@ module Manage
 
     class ProcessEnlistmentTest < Manage::EnlistmentsControllerTest
       setup do
-        stub_request(:any, /#{Settings.vanilla.base_url.internal}.*/)
         stub_request(:any, /#{Settings.discourse.base_url.internal}.*/)
 
         unit = create(:unit)

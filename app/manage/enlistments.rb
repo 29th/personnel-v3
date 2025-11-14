@@ -142,9 +142,7 @@ ActiveAdmin.register Enlistment do
               end
               if enlistment.user.vanilla_forum_member_id
                 row "Vanilla User" do |user|
-                  link_to user.vanilla_forum_member_username, vanilla_url(user: user)
-                rescue Faraday::Error => err
-                  error_tag(err)
+                  user.vanilla_forum_member_id
                 end
               end
             end
