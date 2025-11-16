@@ -41,7 +41,4 @@ and continued donations monthly! You can find these rewards
 
 **Monthly Total: $537.24**
 
-The current account balance and a ledger of all account transactions/donations
-[can be viewed here](https://personnel.29th.org/#finances).
-
 Thank you. Your support is appreciated.

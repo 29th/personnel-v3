@@ -8,18 +8,10 @@ module UsersHelper
     "#{base_url}/user-by-id/#{user.forum_member_id}/summary"
   end
 
-  def v2_user_url(user)
-    base_url = Settings.personnel_v2_app.base_url.external
-    "#{base_url}/#members/#{user.id}"
-  end
-
   def coat_url(user)
     if user.member? || user.honorably_discharged?
       if user.service_coat.present?
         user.service_coat_url
-      elsif user.steam_id.present?
-        base_url = Settings.personnel_v2_api.base_url.external
-        "#{base_url}/coats/#{user.steam_id}.png"
       end
     end
   end

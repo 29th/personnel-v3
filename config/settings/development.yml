@@ -8,15 +8,6 @@ discourse:
   sso_secret: dev
   categories:
     enlistment_office: 4
-personnel_v2_app:
-  base_url:
-    internal: http://app
-    external: https://personnel.29th.local
-personnel_v2_api:
-  base_url:
-    internal: http://api
-    external: https://api.29th.local
-  api_key: dev
 service_coat_generator:
   base_url:
     internal: https://service-coat-generator-v82di.ondigitalocean.app

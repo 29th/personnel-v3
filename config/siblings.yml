@@ -1,6 +1,4 @@
 production: &production
-  v2_app: https://personnel.29th.org
-  v2_api: https://api.29th.org
   discourse: https://forums.29th.org
   vanilla: https://vanilla.29th.org
   smf: https://smf.29th.org
@@ -8,8 +6,6 @@ production: &production
 
 development: &development
   <<: *production
-  v2_app: https://personnel.29th.local
-  v2_api: https://api.29th.local
   discourse: https://forums.29th.local
   vanilla: https://vanilla.29th.local
 
