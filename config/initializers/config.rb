@@ -57,21 +57,6 @@ Config.setup do |config|
       required(:sso_secret).filled(:string)
     end
 
-    required(:personnel_v2_app).hash do
-      required(:base_url).hash do
-        required(:internal).filled(:string)
-        required(:external).filled(:string)
-      end
-    end
-
-    required(:personnel_v2_api).hash do
-      required(:base_url).hash do
-        required(:internal).filled(:string)
-        required(:external).filled(:string)
-      end
-      required(:api_key).filled(:string)
-    end
-
     required(:vanilla).hash do
       required(:base_url).hash do
         required(:internal).filled(:string)

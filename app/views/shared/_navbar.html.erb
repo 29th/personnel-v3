@@ -31,7 +31,6 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to 'Calendar', events_path, class: 'dropdown-item' if policy(Event).index? %>
-              <%= link_to 'Recruits', personnel_v2_app_url(suffix: "recruits"), class: 'dropdown-item' %>
               <%= link_to 'Weapon passes', passes_path, class: 'dropdown-item' if policy(Pass).index? %>
               <% if current_user.active_admin_editor? %>
                 <%= link_to 'Ban logs', manage_ban_logs_path, class: 'dropdown-item' if policy(BanLog).index? %>
@@ -65,4 +64,3 @@
     </div>
   </nav>
 </header>
-
