@@ -1,6 +1,40 @@
 require "test_helper"
 
 class AttendanceRecordTest < ActiveSupport::TestCase
+  class Status < AttendanceRecordTest
+    test "status is attended when user attended" do
+      record = create(:attendance_record, :attended)
+
+      assert_equal :attended, record.status
+    end
+
+    test "status is excused when user was excused without an extended LOA" do
+      record = create(:attendance_record, :excused)
+
+      assert_equal :excused, record.status
+    end
+
+    test "status is extended_loa when user was excused during an active extended LOA" do
+      record = create(:attendance_record, :excused, event_starts_at: 1.day.ago)
+      create(:extended_loa, user: record.user,
+        start_date: 1.week.ago, end_date: 1.week.from_now)
+
+      assert_equal :extended_loa, record.status
+    end
+
+    test "status is awol when user missed a mandatory event" do
+      record = create(:attendance_record, :absent, :mandatory)
+
+      assert_equal :awol, record.status
+    end
+
+    test "status is absent when user missed a non-mandatory event" do
+      record = create(:attendance_record, :absent)
+
+      assert_equal :absent, record.status
+    end
+  end
+
   class DischargeableDates < AttendanceRecordTest
     setup do
       @user = create(:user)

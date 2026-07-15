@@ -490,6 +490,69 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 11, user.service_duration.in_months.round
   end
 
+  # status / status_detail
+  test "status is member for user with an active combat or staff assignment" do
+    user = create(:user)
+    create(:assignment, user: user, unit: create(:unit, classification: :combat))
+
+    assert_equal :member, user.status
+  end
+
+  test "status is cadet for user whose only active assignment is training" do
+    user = create(:user)
+    create(:assignment, user: user, unit: create(:unit, classification: :training))
+
+    assert_equal :cadet, user.status
+  end
+
+  test "status is retired for inactive user whose latest discharge is honorable" do
+    user = create(:user)
+    create(:assignment, user: user, end_date: 1.week.ago)
+    create(:discharge, user: user, type: :honorable, date: 1.week.ago)
+
+    assert_equal :retired, user.status
+  end
+
+  test "status is discharged for inactive user whose latest discharge is non-honorable" do
+    user = create(:user)
+    create(:assignment, user: user, end_date: 1.week.ago)
+    create(:discharge, user: user, type: :general, date: 1.week.ago)
+
+    assert_equal :discharged, user.status
+  end
+
+  test "status is none for user with no assignments or discharges" do
+    user = create(:user)
+
+    assert_equal :none, user.status
+  end
+
+  test "status_detail lists units of active assignments without duplicates" do
+    user = create(:user)
+    unit = create(:unit, abbr: "Able Co.")
+    other_unit = create(:unit, abbr: "Lighthouse")
+    create(:assignment, user: user, unit: unit)
+    create(:assignment, user: user, unit: unit)
+    create(:assignment, user: user, unit: other_unit)
+
+    assert_equal "Able Co., Lighthouse", user.status_detail
+  end
+
+  test "status_detail shows latest discharge for inactive user" do
+    user = create(:user)
+    create(:assignment, user: user, end_date: 1.month.ago)
+    create(:discharge, user: user, type: :honorable, date: 2.years.ago.to_date)
+    discharge = create(:discharge, user: user, type: :general, date: 1.month.ago.to_date)
+
+    assert_equal "GD #{discharge.date}", user.status_detail
+  end
+
+  test "status_detail is empty for user with no assignments or discharges" do
+    user = create(:user)
+
+    assert_equal "", user.status_detail
+  end
+
   test "new user is invalid without a forum_member_id" do
     user = build(:user, forum_member_id: nil)
     refute user.valid?

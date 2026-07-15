@@ -76,6 +76,8 @@ FactoryBot.define do
   factory :ban_log do
     date { 1.day.ago }
     roid { Faker::Number.number(digits: 17).to_s }
+    uid { Faker::Number.number(digits: 10).to_s }
+    guid { Faker::Alphanumeric.alphanumeric(number: 32) }
     admin factory: :user
     poster factory: :user
   end
@@ -120,6 +122,20 @@ FactoryBot.define do
     start_date { 1.day.from_now }
     end_date { 1.week.from_now }
     reason { Faker::Lorem.sentence }
+  end
+
+  factory :finance_record do
+    user
+    date { 1.day.ago }
+    vendor { :notapplicable }
+    amount_received { 10 }
+    notes { "" }
+
+    trait :expense do
+      user { nil }
+      amount_received { nil }
+      amount_paid { 10 }
+    end
   end
 
   factory :note do

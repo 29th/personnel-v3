@@ -210,8 +210,9 @@ module Manage
       end
     end
 
-    test "should fail and show errors if form is empty" do
-      skip
+    # Ideally this would re-render the form with validation errors instead,
+    # but batch_create skips validation entirely when no dates are given.
+    test "creates nothing if form is empty" do
       assert_difference("Event.count", 0) do
         post manage_events_url, params: {
           event: {
@@ -226,8 +227,7 @@ module Manage
         }
       end
 
-      assert_response :success # as opposed to redirection
-      assert_select ".errors li"
+      assert_redirected_to manage_events_url
     end
   end
 end

@@ -35,11 +35,13 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
-          cache: 'yarn'
+          node-version-file: '.tool-versions'
+
+      - name: Enable corepack
+        run: corepack enable
 
       - name: Install node modules
-        run: yarn install --pure-lockfile
+        run: yarn install --immutable
 
       - name: Setup test database
         run: bundle exec rails db:setup

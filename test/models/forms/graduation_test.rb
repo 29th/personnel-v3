@@ -173,7 +173,23 @@ class Forms::GraduationTest < ActiveSupport::TestCase
     refute_equal @rank, denied_user.rank, "denied user's rank should not change"
   end
 
-  test "creates forum topic" do
-    skip
+  test "records promotions and awards against the given forum topic" do
+    graduation = Forms::Graduation.new(training_platoon: @tp, assignments_attributes: @assignments_attributes,
+      award_ids: @awards.pluck(:id), rank_id: @rank.id, position_id: @position.id,
+      topic_id: 456)
+
+    assert graduation.save
+
+    @cadets.each do |cadet|
+      cadet.reload
+      cadet.promotions.each do |promotion|
+        assert_equal 456, promotion.topic_id
+        assert promotion.discourse?
+      end
+      cadet.user_awards.each do |user_award|
+        assert_equal 456, user_award.topic_id
+        assert user_award.discourse?
+      end
+    end
   end
 end
