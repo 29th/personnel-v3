@@ -4,6 +4,8 @@
 class ReverseProxyController < ApplicationController
   include ReverseProxy::Controller
 
+  skip_after_action :verify_authorized # public legacy proxies and redirects
+
   before_action :force_trailing_slash
 
   SITES = {

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   around_action :set_time_zone, if: :current_user
   # enforce policy for every action
-  after_action :verify_authorized, unless: -> { :active_admin_controller? }
+  after_action :verify_authorized, unless: :active_admin_controller?
 
   if Rails.env.development?
     around_action :n_plus_one_detection

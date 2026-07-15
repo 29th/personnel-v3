@@ -2,6 +2,7 @@ class DiscourseWebhooksController < ApplicationController
   SECRET_KEY = Settings.discourse.webhooks_secret
   before_action :verify_webhook_token
   skip_before_action :verify_authenticity_token
+  skip_after_action :verify_authorized # authenticated by webhook signature instead
 
   # When a forum account is activated (email confirmed), check the
   # personnel database for an existing user with that email (from
