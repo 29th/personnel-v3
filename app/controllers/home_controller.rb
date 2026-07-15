@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  skip_after_action :verify_authorized # public informational pages
+
   layout "about", except: :landing
 
   def landing

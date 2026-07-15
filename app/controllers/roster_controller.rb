@@ -1,4 +1,6 @@
 class RosterController < ApplicationController
+  skip_after_action :verify_authorized # the roster is public
+
   def index
     units = Unit.find_root.subtree.active
     @unit_tree = units.arrange(order: :order)
