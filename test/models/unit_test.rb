@@ -19,6 +19,41 @@ class UnitTest < ActiveSupport::TestCase
     refute unit.valid?
   end
 
+  # Slugs determine public URLs; changing them breaks bookmarks and v2 links
+
+  test "combat unit slug comes from abbr with HQ suffixes stripped" do
+    company_hq = create(:unit, abbr: "Able Co. HQ", classification: :combat)
+    platoon_hq = create(:unit, abbr: "1st Platoon HQ", classification: :combat)
+
+    assert_equal "able", company_hq.slug
+    assert_equal "1st-platoon", platoon_hq.slug
+  end
+
+  test "staff unit slug comes from name" do
+    unit = create(:unit, name: "Lighthouse", abbr: "LH", classification: :staff)
+
+    assert_equal "lighthouse", unit.slug
+  end
+
+  test "v2_slug strips Co, HQ, spaces and dots" do
+    assert_equal "Able", build(:unit, abbr: "Able Co. HQ").v2_slug
+    assert_equal "Bn", build(:unit, abbr: "Bn. HQ").v2_slug
+  end
+
+  test "subtree_abbr strips HQ suffix" do
+    assert_equal "Charlie Co.", build(:unit, abbr: "Charlie Co. HQ").subtree_abbr
+  end
+
+  test "legacy path column follows ancestry changes" do
+    parent = create(:unit)
+    child = create(:unit, parent: parent)
+    assert_equal "/#{parent.id}/", child[:path]
+
+    new_parent = create(:unit)
+    child.update!(parent: new_parent)
+    assert_equal "/#{new_parent.id}/", child[:path]
+  end
+
   test "end_assignments ends active assignments" do
     unit = create(:unit)
     active_assignments = [
