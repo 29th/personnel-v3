@@ -1,0 +1,2124 @@
+- id: 1
+  code: "dsc"
+  title: "Distinguished Service Cross"
+  description: "Exceptional in every regard. The highest honor attainable in the 29th Infantry Division."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/dsc.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/dsc_.gif"
+  bar: "http://personnel.29th.org/images/awards/dsc.gif"
+  active: true
+  order: 500
+  display_filename: "dsc.gif"
+  mini_filename: "dsc.gif"
+- id: 2
+  code: "sstar"
+  title: "Silver Star"
+  description: "This soldier has demonstrated perfect performance whilst engaging with the enemy, that not only single-handedly secured victory for his team, but demonstrated the core principles of being an effective soldier in the 29th Infantry Division. This medal is only awarded when the soldier's game-play was at a level of the highest calibre."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/sstar.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/sstar_.gif"
+  bar: "http://personnel.29th.org/images/awards/sstar.gif"
+  active: true
+  order: 390
+  display_filename: "sstar.gif"
+  mini_filename: "sstar.gif"
+- id: 3
+  code: "lom"
+  title: "Legion of Merit"
+  description: "Awarded for leading and winning an Official Scrimmage."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/lom.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/lom_.gif"
+  bar: "http://personnel.29th.org/images/awards/lom.gif"
+  active: true
+  order: 300
+  display_filename: "lom.gif"
+  mini_filename: "lom.gif"
+- id: 4
+  code: "sm"
+  title: "Soldier's Medal"
+  description: "This soldier's extensive preparation during practice or drills prior to a scrimmage or drill prevented casualties by providing vital intelligence or training for his team."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/sm.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/sm_.gif"
+  bar: "http://personnel.29th.org/images/awards/sm.gif"
+  active: true
+  order: 350
+  display_filename: "sm.gif"
+  mini_filename: "sm.gif"
+- id: 5
+  code: "bstar"
+  title: "Bronze Star"
+  description: "This soldier has demonstrated exemplary performance while engaging the enemy in a realism scrimmage. While not single handedly securing victory, his actions must have been of significance."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/bstar.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/bstar_.gif"
+  bar: "http://personnel.29th.org/images/awards/bstar.gif"
+  active: true
+  order: 370
+  display_filename: "bstar.gif"
+  mini_filename: "bstar.gif"
+- id: 6
+  code: "pheart"
+  title: "Purple Heart"
+  description: "This soldier has selflessly put him self in peril to successfully aid his comrades and in doing so was wounded or killed."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/pheart.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/pheart_.gif"
+  bar: "http://personnel.29th.org/images/awards/pheart.gif"
+  active: true
+  order: 340
+  display_filename: "pheart.gif"
+  mini_filename: "pheart.gif"
+- id: 7
+  code: "dsm"
+  title: "Distinguished Service Medal"
+  description: "Awarded to soldiers who have carried out duty successfully and responsibly. Contributing not only what is expected in the 29th, but who has made contributions above and beyond the expectations of any member in the 29th."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/dsm.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/dsm_.gif"
+  bar: "http://personnel.29th.org/images/awards/dsm.gif"
+  active: true
+  order: 470
+  display_filename: "dsm.gif"
+  mini_filename: "dsm.gif"
+- id: 8
+  code: "gcon"
+  title: "Good Conduct Medal"
+  description: "In addition to performing his duties with a clean record of discipline and exemplary attendance, this soldier's positive attitude and involvement in 29th related activities, other than his drills or staff commitments, has benefited the unit."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/gcon.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/gcon_.gif"
+  bar: "http://personnel.29th.org/images/awards/gcon.gif"
+  active: true
+  order: 215
+  display_filename: "gcon.gif"
+  mini_filename: "gcon.gif"
+- id: 9
+  code: "arcom"
+  title: "Army Commendation Medal"
+  description: "This soldier has maintained composure and made an effective contribution towards his teams victory without necessarily engaging the enemy. This award is for actions of significance not covered by a Bronze or Silver Star."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/acom.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/acom_.gif"
+  bar: "http://personnel.29th.org/images/awards/arcom.gif"
+  active: true
+  order: 360
+  display_filename: "arcom.gif"
+  mini_filename: "arcom.gif"
+- id: 10
+  code: "aocc"
+  title: "Army of Occupation Medal"
+  description: "Served six months of service in the 29th Infantry Division"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/aocc.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/aocc_.gif"
+  bar: "http://personnel.29th.org/images/awards/aocc.gif"
+  active: true
+  order: 131
+  display_filename: "aocc.gif"
+  mini_filename: "aocc.gif"
+- id: 11
+  code: "eamc"
+  title: "European-African-Middle Eastern Campaign Medal"
+  description: "Only awarded to the participants that win an attack round of an official scrimmage."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/eamc.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/eamc_.gif"
+  bar: "http://personnel.29th.org/images/awards/eamc.gif"
+  active: true
+  order: 290
+  display_filename: "eamc.gif"
+  mini_filename: "eamc.gif"
+- id: 12
+  code: "adef"
+  title: "American Defense Service Medal"
+  description: "Soldier has graduated the 29th ID's Basic Training program"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/adef.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/adef_.gif"
+  bar: "http://personnel.29th.org/images/awards/adef.gif"
+  active: true
+  order: 100
+  display_filename: "adef.gif"
+  mini_filename: "adef.gif"
+- id: 13
+  code: "french"
+  title: "French Croix de Guerre Medal"
+  description: "Awarded for leadership contributions that greatly benefit the Battalion as a whole."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/french.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/french_.gif"
+  bar: "http://personnel.29th.org/images/awards/french.gif"
+  active: true
+  order: 480
+  display_filename: "french.gif"
+  mini_filename: "french.gif"
+- id: 14
+  code: "m:rifle:dod"
+  title: "Marksman Badge: Rifle (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 15
+  code: "s:rifle:dod"
+  title: "Sharpshooter Badge: Rifle (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 16
+  code: "e:rifle:dod"
+  title: "Expert Badge: Rifle (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 17
+  code: "hdis"
+  title: "Honorably Discharged Badge"
+  description: "Awarded to all Honorably Discharged Retirees"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/retired.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/retired.gif"
+  bar: ""
+  active: false
+  order: 0
+  display_filename: ""
+  mini_filename: ""
+- id: 18
+  code: "drillsergeant"
+  title: "Drill Sergeant Badge"
+  description: "Unit Drill Sergeant"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/di.gif"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/di.gif"
+  bar: "http://personnel.29th.org/images/awards/drillsergeant.gif"
+  active: true
+  order: 153
+  display_filename: "drillsergeant.gif"
+  mini_filename: ""
+- id: 19
+  code: "cib1"
+  title: "Combat Infantry Badge, 1st Award"
+  description: "Awarded to a soldier after their 1st scrimmage with another realism unit."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cib1.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cib1_.gif"
+  bar: "http://personnel.29th.org/images/awards/cib1.gif"
+  active: true
+  order: 191
+  display_filename: "cib1.gif"
+  mini_filename: ""
+- id: 20
+  code: "cib2"
+  title: "Combat Infantry Badge, 2nd Award"
+  description: "Awarded to a soldier after their 3rd scrimmage with another realism unit."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cib2.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cib2_.gif"
+  bar: "http://personnel.29th.org/images/awards/cib2.gif"
+  active: true
+  order: 192
+  display_filename: "cib2.gif"
+  mini_filename: ""
+- id: 21
+  code: "cib3"
+  title: "Combat Infantry Badge, 3rd Award"
+  description: "Awarded to a soldier after their 5th scrimmage with another realism unit"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cib3.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cib3_.gif"
+  bar: "http://personnel.29th.org/images/awards/cib3.gif"
+  active: true
+  order: 193
+  display_filename: "cib3.gif"
+  mini_filename: ""
+- id: 22
+  code: "eib"
+  title: "Expert Infantry Badge"
+  description: "Awarded to men who prove themselves experts in all aspects of Infantry and is required for soldiers to participate in combat."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/eib.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/eib_.gif"
+  bar: "http://personnel.29th.org/images/awards/eib.gif"
+  active: true
+  order: 90
+  display_filename: "eib.gif"
+  mini_filename: ""
+- id: 23
+  code: "trenches"
+  title: "The Trenches Unit Participation"
+  description: "Participated in The Trenches Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/trenches.gif"
+  active: true
+  order: 111
+  display_filename: "trenches.png"
+  mini_filename: "tt.gif"
+- id: 24
+  code: "battlegrounds"
+  title: "Battlegrounds Unit Participation"
+  description: "Participated in the Battlegrounds Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/battlegrounds.gif"
+  active: true
+  order: 112
+  display_filename: "bg.png"
+  mini_filename: "bg.gif"
+- id: 25
+  code: "dod"
+  title: "Day of Defeat Unit Participation"
+  description: "Participated in the Day of Defeat Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/dod.gif"
+  active: true
+  order: 113
+  display_filename: "dod.png"
+  mini_filename: "dod.gif"
+- id: 26
+  code: "muc"
+  title: "Meritorious Unit Citation"
+  description: "Most exemplary and skilled squad in the company (Transfers every month)"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/munit.png"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/munit.png"
+  bar: "http://personnel.29th.org/images/awards/muc.gif"
+  active: true
+  order: 120
+  display_filename: "munit.png"
+  mini_filename: "muc.gif"
+- id: 27
+  code: "acamp"
+  title: "American Campaign Medal"
+  description: "Awarded for exemplary leadership on or off the battlefield."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/acamp.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/acamp_.gif"
+  bar: "http://personnel.29th.org/images/awards/acamp.gif"
+  active: true
+  order: 450
+  display_filename: "acamp.gif"
+  mini_filename: "acamp.gif"
+- id: 28
+  code: "cab1"
+  title: "Combat Action Badge, 1st Award"
+  description: "This will be awarded by the Recruitment Officer, to a member of the 29th Infantry Division who has successfully recruited 2 recruits for that week's Training Platoon."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cab1.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cab1_.gif"
+  bar: "http://personnel.29th.org/images/awards/cab1.gif"
+  active: true
+  order: 171
+  display_filename: "cab1.gif"
+  mini_filename: ""
+- id: 29
+  code: "cab2"
+  title: "Combat Action Badge, 2nd Award"
+  description: "This will be awarded by the Recruitment Officer, to a member of the 29th Infantry Division who has successfully recruited 5 recruits for that week's Training Platoon."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cab2.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cab2_.gif"
+  bar: "http://personnel.29th.org/images/awards/cab2.gif"
+  active: true
+  order: 172
+  display_filename: "cab2.gif"
+  mini_filename: ""
+- id: 30
+  code: "cab3"
+  title: "Combat Action Badge, 3rd Award"
+  description: "This will be awarded by the Recruitment Officer, to a member of the 29th Infantry Division who has successfully recruited 10 recruits for that week's Training Platoon."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cab3.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cab3_.gif"
+  bar: "http://personnel.29th.org/images/awards/cab3.gif"
+  active: true
+  order: 173
+  display_filename: "cab3.gif"
+  mini_filename: ""
+- id: 31
+  code: "cab4"
+  title: "Combat Action Badge, 4th Award"
+  description: "This will be awarded by the Recruitment Officer, to a member of the 29th Infantry Division who has successfully recruited 20 recruits for that week's Training Platoon."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/cab4.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/cab4_.gif"
+  bar: "http://personnel.29th.org/images/awards/cab4.gif"
+  active: true
+  order: 174
+  display_filename: "cab4.gif"
+  mini_filename: ""
+- id: 32
+  code: "recruiter"
+  title: "Recruiter Badge"
+  description: "Awarded for exceptional recruiting to the unit."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/recruiter.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/recruiter_.gif"
+  bar: "http://personnel.29th.org/images/awards/recruiter.gif"
+  active: true
+  order: 151
+  display_filename: "recruiter.gif"
+  mini_filename: ""
+- id: 33
+  code: "m:bar:dod"
+  title: "Marksman Badge: Automatic Rifle (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 34
+  code: "s:bar:dod"
+  title: "Sharpshooter Badge: Automatic Rifle (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 35
+  code: "e:bar:dod"
+  title: "Expert Badge: Automatic Rifle (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 36
+  code: "m:mg:dod"
+  title: "Marksman Badge: Machine Gun (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 37
+  code: "s:mg:dod"
+  title: "Sharpshooter Badge: Machine Gun (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 38
+  code: "e:mg:dod"
+  title: "Expert Badge: Machine Gun (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 39
+  code: "m:zook:dod"
+  title: "Marksman Badge: Combat Engineer (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 40
+  code: "s:zook:dod"
+  title: "Sharpshooter Badge: Combat Engineer (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 41
+  code: "e:zook:dod"
+  title: "Expert Badge: Combat Engineer (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 42
+  code: "m:smg:dod"
+  title: "Marksman Badge: Submachine Gun (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 43
+  code: "s:smg:dod"
+  title: "Sharpshooter Badge: Submachine Gun (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 44
+  code: "e:smg:dod"
+  title: "Expert Badge: Submachine Gun (DOD)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DOD"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 45
+  code: "m:rifle:dh"
+  title: "Marksman Badge: Rifle (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 46
+  code: "m:bar:dh"
+  title: "Marksman Badge: Automatic Rifle (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 47
+  code: "m:mg:dh"
+  title: "Marksman Badge: Machine Gun (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 48
+  code: "m:zook:dh"
+  title: "Marksman Badge: Combat Engineer (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 49
+  code: "m:smg:dh"
+  title: "Marksman Badge: Submachine Gun (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 50
+  code: "s:rifle:dh"
+  title: "Sharpshooter Badge: Rifle (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 51
+  code: "s:bar:dh"
+  title: "Sharpshooter Badge: Automatic Rifle (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 52
+  code: "s:mg:dh"
+  title: "Sharpshooter Badge: Machine Gun (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 53
+  code: "s:smg:dh"
+  title: "Sharpshooter Badge: Submachine Gun (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 54
+  code: "s:zook:dh"
+  title: "Sharpshooter Badge: Combat Engineer (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 55
+  code: "e:rifle:dh"
+  title: "Expert Badge: Rifle (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 56
+  code: "e:bar:dh"
+  title: "Expert Badge: Automatic Rifle (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 57
+  code: "e:mg:dh"
+  title: "Expert Badge: Machine Gun (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 58
+  code: "e:smg:dh"
+  title: "Expert Badge: Submachine Gun (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 59
+  code: "e:zook:dh"
+  title: "Expert Badge: Combat Engineer (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 60
+  code: "dh"
+  title: "Darkest Hour Unit Participation"
+  description: "Participated in the Darkest Hour Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/dh.gif"
+  active: true
+  order: 114
+  display_filename: "dh.png"
+  mini_filename: "dh.gif"
+- id: 61
+  code: "ww1v"
+  title: "World War I Victory Medal"
+  description: "This is to be awarded to members who have served for two years, and for each consecutive two years thereafter."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/ww1v.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/ww1v_.gif"
+  bar: "http://personnel.29th.org/images/awards/ww1v.gif"
+  active: true
+  order: 135
+  display_filename: "ww1v.gif"
+  mini_filename: ""
+- id: 62
+  code: "aach"
+  title: "Army Achievement Award"
+  description: "This soldier has consistently performed his duties in a staff position to the highest calibre and demonstrated the best of non-combat 29th values."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/aach.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/aach_.gif"
+  bar: "http://personnel.29th.org/images/awards/aach.gif"
+  active: true
+  order: 220
+  display_filename: "aach.gif"
+  mini_filename: "aach.gif"
+- id: 63
+  code: "mp"
+  title: "Military Police Badge"
+  description: "Awarded to Military Police Officers"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/mp.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/mp_.gif"
+  bar: "http://personnel.29th.org/images/awards/mp.gif"
+  active: true
+  order: 155
+  display_filename: "mp.gif"
+  mini_filename: ""
+- id: 64
+  code: "m:armor:dh"
+  title: "Marksman Badge: Armor (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 65
+  code: "s:armor:dh"
+  title: "Sharpshooter Badge: Armor (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 66
+  code: "e:armor:dh"
+  title: "Expert Badge: Armor (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 67
+  code: "m:sniper:dh"
+  title: "Marksman Badge: Sniper (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 68
+  code: "s:sniper:dh"
+  title: "Sharpshooter Badge: Sniper (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 69
+  code: "e:sniper:dh"
+  title: "Expert Badge: Sniper (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 70
+  code: "dms"
+  title: "Defense Meritorious Service Medal"
+  description: "Only awarded to the participants that win a defence round of an official scrimmage.\r\n"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/dmsm.gif"
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/dms.gif"
+  active: true
+  order: 280
+  display_filename: "dms.gif"
+  mini_filename: ""
+- id: 71
+  code: "ww2v"
+  title: "World War II (WWII) Victory Medal"
+  description: "Only awarded to the participants that win every round of a multi-round official scrimmage. Awarding of this medal supercedes the awarding of the African European Middle-Eastern Campaign Medal and the Defence Meritorious Service Medal Ribbon."
+  game: "N/A"
+  image: "http://i.imgur.com/6Etx8.png"
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/ww2v.gif"
+  active: true
+  order: 270
+  display_filename: "ww2v.gif"
+  mini_filename: "ww2v.gif"
+- id: 72
+  code: "m:mortar:dh"
+  title: "Marksman Badge: Mortar (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 73
+  code: "s:mortar:dh"
+  title: "Sharpshooter Badge: Mortar (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 74
+  code: "e:mortar:dh"
+  title: "Expert Badge: Mortar (DH)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "DH"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 75
+  code: "m:rifle:ro2"
+  title: "Marksman Badge: Rifle (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 76
+  code: "s:rifle:ro2"
+  title: "Sharpshooter Badge: Rifle (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 77
+  code: "e:rifle:ro2"
+  title: "Expert Badge: Rifle (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 78
+  code: "m:smg:ro2"
+  title: "Marksman Badge: Submachine Gun (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 79
+  code: "s:smg:ro2"
+  title: "Sharpshooter Badge: Submachine Gun (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 80
+  code: "e:smg:ro2"
+  title: "Expert Badge: Submachine Gun (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 81
+  code: "m:bar:ro2"
+  title: "Marksman Badge: Automatic Rifle (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 82
+  code: "s:bar:ro2"
+  title: "Sharpshooter Badge: Automatic Rifle (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 83
+  code: "e:bar:ro2"
+  title: "Expert Badge: Automatic Rifle (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 84
+  code: "m:mg:ro2"
+  title: "Marksman Badge: Machine Gun (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 85
+  code: "s:mg:ro2"
+  title: "Sharpshooter Badge: Machine Gun (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 86
+  code: "e:mg:ro2"
+  title: "Expert Badge: Machine Gun (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 87
+  code: "m:zook:ro2"
+  title: "Marksman Badge: Combat Engineer (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 88
+  code: "s:zook:ro2"
+  title: "Sharpshooter Badge: Combat Engineer (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 89
+  code: "e:zook:ro2"
+  title: "Expert Badge: Combat Engineer (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 90
+  code: "s:sniper:ro2"
+  title: "Sharpshooter Badge: Sniper (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 91
+  code: "m:sniper:ro2"
+  title: "Marksman Badge: Sniper (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 92
+  code: "e:sniper:ro2"
+  title: "Expert Badge: Sniper (RO2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 93
+  code: "m:rifle:a3"
+  title: "Marksman Badge: Rifle (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 94
+  code: "s:rifle:a3"
+  title: "Sharpshooter Badge: Rifle (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 95
+  code: "m:bar:a3"
+  title: "Marksman Badge: Automatic Rifle (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 96
+  code: "e:rifle:a3"
+  title: "Expert Badge: Rifle (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 97
+  code: "s:bar:a3"
+  title: "Sharpshooter Badge: Automatic Rifle (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 98
+  code: "e:bar:a3"
+  title: "Expert Badge: Automatic Rifle (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 99
+  code: "m:mg:a3"
+  title: "Marksman Badge: Machine Gun (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 100
+  code: "s:mg:a3"
+  title: "Sharpshooter Badge: Machine Gun (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 101
+  code: "e:mg:a3"
+  title: "Expert Badge: Machine Gun (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 102
+  code: "s:sniper:a3"
+  title: "Sharpshooter Badge: Sniper (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 103
+  code: "m:sniper:a3"
+  title: "Marksman Badge: Sniper (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 104
+  code: "e:sniper:a3"
+  title: "Expert Badge: Sniper (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 105
+  code: "m:armor:a3"
+  title: "Marksman Badge: Armor (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 106
+  code: "s:armor:a3"
+  title: "Sharpshooter Badge: Armor (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 107
+  code: "e:armor:a3"
+  title: "Expert Badge: Armor (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 108
+  code: "rs"
+  title: "Rising Storm Unit Participation"
+  description: "Participated in the Rising Storm Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/rs.gif"
+  active: true
+  order: 115
+  display_filename: "rs.png"
+  mini_filename: "rs.gif"
+- id: 109
+  code: "arma"
+  title: "ARMA Unit Participation"
+  description: "Participated in the ARMA Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org/images/awards/arma.gif"
+  active: true
+  order: 116
+  display_filename: ""
+  mini_filename: "arma.gif"
+- id: 110
+  code: "rd"
+  title: "Ruptured Duck"
+  description: "For Honourably Discharged members."
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: ""
+  active: false
+  order: 0
+  display_filename: ""
+  mini_filename: ""
+- id: 111
+  code: "anpdr"
+  title: "Army NCO Professional Development Ribbon"
+  description: "This soldier has passed through a Squad Leader Training Program."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/anpdr.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/anpdr_.gif"
+  bar: "http://personnel.29th.org/images/awards/anpdr.gif"
+  active: true
+  order: 410
+  display_filename: "anpdr.gif"
+  mini_filename: "anpdr.gif"
+- id: 112
+  code: "movsm"
+  title: "Military Outstanding Volunteer Service Medal"
+  description: "This soldier has been a major contributor to a large, important and successfully project in a staff office."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/movsm.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/movsm_.gif"
+  bar: "http://personnel.29th.org/images/awards/movsm.gif"
+  active: true
+  order: 230
+  display_filename: "movsm.gif"
+  mini_filename: "movsm.gif"
+- id: 113
+  code: "arcam"
+  title: "Army Reserve Components Achievement Medal"
+  description: "In addition to diligence and success in staff duties, this soldier's positive attitude and involvement in other 29th related activities has benefited the unit."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/arcam.gif"
+  thumbnail: "http://personnel.29th.org/images/awards/arcam_.gif"
+  bar: "http://personnel.29th.org/images/awards/arcam.gif"
+  active: false
+  order: 210
+  display_filename: "arcam.gif"
+  mini_filename: "arcam.gif"
+- id: 114
+  code: "m:smg:a3"
+  title: "Marksman Badge: SMG (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 115
+  code: "s:smg:a3"
+  title: "Sharpshooter Badge: SMG (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 116
+  code: "e:smg:a3"
+  title: "Expert Badge: SMG (A3)  "
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 117
+  code: "m:zook:a3"
+  title: "Marksman Badge: Combat Engineer (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 118
+  code: "s:zook:a3"
+  title: "Sharpshooter Badge: Combat Engineer (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 119
+  code: "e:zook:a3"
+  title: "Expert Badge: Combat Engineer (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 120
+  code: "m:pilot:a3"
+  title: "Marksman Badge: Pilot (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/wingsMark.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/wingsMark.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 121
+  code: "s:pilot:a3"
+  title: "Sharpshooter Badge: Pilot (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/wingsSharp.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/wingsSharp.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 122
+  code: "e:pilot:a3"
+  title: "Expert Badge: Pilot (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/wingsExpert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/wingsExpert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 123
+  code: "m:grenadier:a3"
+  title: "Marksman Badge: Grenadier (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 124
+  code: "s:grenadier:a3"
+  title: "Sharpshooter Badge: Grenadier (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 125
+  code: "e:grenadier:a3"
+  title: "Expert Badge: Grenadier (A3)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Arma 3"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 126
+  code: "m:armor:rs"
+  title: "Marksman Badge: Armor (RS)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 127
+  code: "s:armor:rs"
+  title: "Sharpshooter Badge: Armor (RS)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 128
+  code: "e:armor:rs"
+  title: "Expert Badge: Armor (RS)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 129
+  code: "afem"
+  title: "Armed Forces Expeditionary Medal"
+  description: "Awarded for participation in a non-official scrimmage event. Does not apply to public scrimmages. Must be private events that are organized and have a limited, selected roster of participants from 29th."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/afem.png"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/afem.png"
+  bar: "http://personnel.29th.org/images/awards/afem.gif"
+  active: true
+  order: 208
+  display_filename: "afem.png"
+  mini_filename: ""
+- id: 130
+  code: "afsm"
+  title: "Armed Forces Service Medal"
+  description: "For Soldiers whom perform staff related duties above and beyond what is required in a staff position."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/afsm.png"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/afsm.png"
+  bar: "http://personnel.29th.org/images/awards/afsm.gif"
+  active: true
+  order: 207
+  display_filename: "afsm.png"
+  mini_filename: ""
+- id: 131
+  code: "msm"
+  title: "Meritorious Service Medal"
+  description: "Awarded for Service in the 29th that is exemplary as a solid soldier whom has aided and put forth the time and effort to the 29th when asked and not asked."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/msm.png"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/msm.png"
+  bar: "http://personnel.29th.org/images/awards/msm.gif"
+  active: true
+  order: 206
+  display_filename: "msm.png"
+  mini_filename: ""
+- id: 132
+  code: "suc"
+  title: "Superior Unit Citation"
+  description: "Squad excels among all squads at a platoon level. Platoon HQ can award two Superior Citations a year (reviewed every six months). "
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/sunit.png"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/sunit.png"
+  bar: "http://personnel.29th.org/images/awards/suc.gif"
+  active: true
+  order: 119
+  display_filename: "sunit.png"
+  mini_filename: ""
+- id: 133
+  code: "mpsm"
+  title: "Meritorious Public Service Medal"
+  description: "Awarded in recognition of dedication through recurring financial contributions to the upkeep of the unit. Requires minimum contribution for recurring donation system. This medal remains on a members jacket only during active periods of contribution."
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/mpsm.gif"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/mpsm.gif"
+  bar: "http://personnel.29th.org/images/awards/mpsm.gif"
+  active: true
+  order: 204
+  display_filename: "mpsm.gif"
+  mini_filename: ""
+- id: 134
+  code: "m:rifle:rs2"
+  title: "Marksman Badge: Rifle (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 135
+  code: "s:rifle:rs2"
+  title: "Sharpshooter Badge: Rifle (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 136
+  code: "e:rifle:rs2"
+  title: "Expert Badge: Rifle (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 137
+  code: "m:rifle:sq"
+  title: "Marksman Badge: Rifle (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 138
+  code: "s:rifle:sq"
+  title: "Sharpshooter Badge: Rifle (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 139
+  code: "e:rifle:sq"
+  title: "Expert Badge: Rifle (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 140
+  code: "rs2"
+  title: "Rising Storm 2 Unit Participation"
+  description: "Participated in the Rising Storm 2: Vietnam Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org//images/awards/rs2.gif"
+  active: true
+  order: 117
+  display_filename: ""
+  mini_filename: "rs2.gif"
+- id: 141
+  code: "sq"
+  title: "Squad Unit Participation"
+  description: "Participated in the Squad Unit campaign"
+  game: "N/A"
+  image: ""
+  thumbnail: ""
+  bar: "http://personnel.29th.org//images/awards/sq.gif"
+  active: true
+  order: 118
+  display_filename: ""
+  mini_filename: "sq.gif"
+- id: 142
+  code: "m:smg:rs2"
+  title: "Marksman Badge: Submachine Gun (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 143
+  code: "s:smg:rs2"
+  title: "Sharpshooter Badge: Submachine Gun (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 144
+  code: "e:smg:rs2"
+  title: "Expert Badge: Submachine Gun (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge    "
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 145
+  code: "m:mg:rs2"
+  title: "Marksman Badge: Machine Gun (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 146
+  code: "s:mg:rs2"
+  title: "Sharpshooter Badge: Machine Gun (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 147
+  code: "e:mg:rs2"
+  title: "Expert Badge: Machine Gun (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 148
+  code: "m:zook:rs2"
+  title: "Marksman Badge: Combat Engineer (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 149
+  code: "s:zook:rs2"
+  title: "Sharpshooter Badge: Combat Engineer (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 150
+  code: "e:zook:rs2"
+  title: "Expert Badge: Combat Engineer (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 151
+  code: "m:sniper:rs2"
+  title: "Marksman Badge: Sniper (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge    "
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 152
+  code: "s:sniper:rs2"
+  title: "Sharpshooter Badge: Sniper (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 153
+  code: "e:sniper:rs2"
+  title: "Expert Badge: Sniper (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 154
+  code: "m:grenadier:rs2"
+  title: "Marksman Badge: Grenadier (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 155
+  code: "s:grenadier:rs2"
+  title: "Sharpshooter Badge: Grenadier (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 156
+  code: "e:grenadier:rs2"
+  title: "Expert Badge: Grenadier (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 157
+  code: "m:grenadier:sq"
+  title: "Marksman Badge: Grenadier (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 158
+  code: "s:grenadier:sq"
+  title: "Sharpshooter Badge: Grenadier (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 159
+  code: "e:grenadier:sq"
+  title: "Expert Badge: Grenadier (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 160
+  code: "m:zook:sq"
+  title: "Marksman Badge: Combat Engineer (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 161
+  code: "s:zook:sq"
+  title: "Sharpshooter Badge: Combat Engineer (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 162
+  code: "e:zook:sq"
+  title: "Expert Badge: Combat Engineer (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 163
+  code: "m:bar:sq"
+  title: "Marksman Badge: Automatic Rifle (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 164
+  code: "s:bar:sq"
+  title: "Sharpshooter Badge: Automatic Rifle (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 165
+  code: "e:bar:sq"
+  title: "Expert Badge: Automatic Rifle (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 166
+  code: "m:sniper:sq"
+  title: "Marksman Badge: Sniper (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 167
+  code: "s:sniper:sq"
+  title: "Sharpshooter Badge: Sniper (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 168
+  code: "e:sniper:sq"
+  title: "Expert Badge: Sniper (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 169
+  code: "m:armor:sq"
+  title: "Marksman Badge: Armor (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/marksman.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 170
+  code: "s:armor:sq"
+  title: "Sharpshooter Badge: Armor (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/sharpshooter.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 171
+  code: "e:armor:sq"
+  title: "Expert Badge: Armor (SQ)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "Squad"
+  image: "http://personnel.29th.org/images/badges/web/expert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/expert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 172
+  code: "m:pilot:rs2"
+  title: "Marksman Badge: Pilot (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/wingsMark.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/wingsMark.gif"
+  bar: "http://personnel.29th.org/images/awards/marks.gif"
+  active: true
+  order: 0
+  display_filename: "marks.gif"
+  mini_filename: "marks.gif"
+- id: 173
+  code: "s:pilot:rs2"
+  title: "Sharpshooter Badge: Pilot (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/wingsSharp.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/wingsSharp.gif"
+  bar: "http://personnel.29th.org/images/awards/sharps.gif"
+  active: true
+  order: 0
+  display_filename: "sharps.gif"
+  mini_filename: "sharps.gif"
+- id: 174
+  code: "e:pilot:rs2"
+  title: "Expert Badge: Pilot (RS2)"
+  description: "Meets all AIT standards of qualification designated for this badge"
+  game: "RS2"
+  image: "http://personnel.29th.org/images/badges/web/wingsExpert.gif"
+  thumbnail: "http://personnel.29th.org/images/badges/web/wingsExpert.gif"
+  bar: "http://personnel.29th.org/images/awards/expert.gif"
+  active: true
+  order: 0
+  display_filename: "expert.gif"
+  mini_filename: "expert.gif"
+- id: 175
+  code: "bicord"
+  title: "Blue Infantry Cord"
+  description: "Awarded for a $10 Recurring Donation"
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/bicord.png"
+  thumbnail: "http://personnel.29th.org/images/awards/bicord.png"
+  bar: "http://personnel.29th.org/images/awards/bicord.png"
+  active: true
+  order: 0
+  display_filename: ""
+  mini_filename: ""
+- id: 176
+  code: "suc_2"
+  title: "Superior Unit Citation (previous)"
+  description: "Squad excels among all squads at a platoon level. Platoon HQ can award two Superior Citations a year (reviewed every six months). "
+  game: "N/A"
+  image: "http://personnel.29th.org/images/awards_boxes/large/sunit.png"
+  thumbnail: "http://personnel.29th.org/images/awards_boxes/small/sunit.png"
+  bar: "http://personnel.29th.org/images/awards/suc.gif"
+  active: false
+  order: 119
+  display_filename: "sunit.png"
+  mini_filename: ""
+- id: 177
+  code: "ordinstructor"
+  title: "Ordnance Instructor Badge"
+  description: "Unit Ordnance Instructor"
+  game: "Squad"
+  image: ""
+  thumbnail: ""
+  bar: ""
+  active: true
+  order: 154
+  display_filename: null
+  mini_filename: null
