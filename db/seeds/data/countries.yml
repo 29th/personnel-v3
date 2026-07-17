@@ -1,0 +1,720 @@
+- id: 1
+  abbr: "AD"
+  name: "Andorra"
+- id: 2
+  abbr: "AE"
+  name: "United Arab Emirates"
+- id: 3
+  abbr: "AF"
+  name: "Afghanistan"
+- id: 4
+  abbr: "AG"
+  name: "Antigua and Barbuda"
+- id: 5
+  abbr: "AI"
+  name: "Anguilla"
+- id: 6
+  abbr: "AL"
+  name: "Albania"
+- id: 7
+  abbr: "AM"
+  name: "Armenia"
+- id: 8
+  abbr: "AN"
+  name: "Netherlands Antilles"
+- id: 9
+  abbr: "AO"
+  name: "Angola"
+- id: 10
+  abbr: "AQ"
+  name: "Antarctica"
+- id: 11
+  abbr: "AR"
+  name: "Argentina"
+- id: 12
+  abbr: "AS"
+  name: "American Samoa"
+- id: 13
+  abbr: "AT"
+  name: "Austria"
+- id: 14
+  abbr: "AU"
+  name: "Australia"
+- id: 15
+  abbr: "AW"
+  name: "Aruba"
+- id: 16
+  abbr: "AZ"
+  name: "Azerbaijan"
+- id: 17
+  abbr: "BA"
+  name: "Bosnia and Herzegovina"
+- id: 18
+  abbr: "BB"
+  name: "Barbados"
+- id: 19
+  abbr: "BD"
+  name: "Bangladesh"
+- id: 20
+  abbr: "BE"
+  name: "Belgium"
+- id: 21
+  abbr: "BF"
+  name: "Burkina Faso"
+- id: 22
+  abbr: "BG"
+  name: "Bulgaria"
+- id: 23
+  abbr: "BH"
+  name: "Bahrain"
+- id: 24
+  abbr: "BI"
+  name: "Burundi"
+- id: 25
+  abbr: "BJ"
+  name: "Benin"
+- id: 26
+  abbr: "BM"
+  name: "Bermuda"
+- id: 27
+  abbr: "BN"
+  name: "Brunei Darussalam"
+- id: 28
+  abbr: "BO"
+  name: "Bolivia"
+- id: 29
+  abbr: "BR"
+  name: "Brazil"
+- id: 30
+  abbr: "BS"
+  name: "Bahamas"
+- id: 31
+  abbr: "BT"
+  name: "Bhutan"
+- id: 32
+  abbr: "BV"
+  name: "Bouvet Island"
+- id: 33
+  abbr: "BW"
+  name: "Botswana"
+- id: 34
+  abbr: "BY"
+  name: "Belarus"
+- id: 35
+  abbr: "BZ"
+  name: "Belize"
+- id: 36
+  abbr: "CA"
+  name: "Canada"
+- id: 37
+  abbr: "CC"
+  name: "Cocos (Keeling) Islands"
+- id: 38
+  abbr: "CD"
+  name: "Congo, The Democratic Republic of the"
+- id: 39
+  abbr: "CF"
+  name: "Central African Republic"
+- id: 40
+  abbr: "CG"
+  name: "Congo"
+- id: 41
+  abbr: "CH"
+  name: "Switzerland"
+- id: 42
+  abbr: "CI"
+  name: "Cote d'Ivoire"
+- id: 43
+  abbr: "CK"
+  name: "Cook Islands"
+- id: 44
+  abbr: "CL"
+  name: "Chile"
+- id: 45
+  abbr: "CM"
+  name: "Cameroon"
+- id: 46
+  abbr: "CN"
+  name: "China"
+- id: 47
+  abbr: "CO"
+  name: "Colombia"
+- id: 48
+  abbr: "CR"
+  name: "Costa Rica"
+- id: 49
+  abbr: "RS"
+  name: "Serbia"
+- id: 50
+  abbr: "CU"
+  name: "Cuba"
+- id: 51
+  abbr: "CV"
+  name: "Cape Verde"
+- id: 52
+  abbr: "CX"
+  name: "Christmas Island"
+- id: 53
+  abbr: "CY"
+  name: "Cyprus"
+- id: 54
+  abbr: "CZ"
+  name: "Czech Republic"
+- id: 55
+  abbr: "DE"
+  name: "Germany"
+- id: 56
+  abbr: "DJ"
+  name: "Djibouti"
+- id: 57
+  abbr: "DK"
+  name: "Denmark"
+- id: 58
+  abbr: "DM"
+  name: "Dominica"
+- id: 59
+  abbr: "DO"
+  name: "Dominican Republic"
+- id: 60
+  abbr: "DZ"
+  name: "Algeria"
+- id: 61
+  abbr: "EC"
+  name: "Ecuador"
+- id: 62
+  abbr: "EE"
+  name: "Estonia"
+- id: 63
+  abbr: "EG"
+  name: "Egypt"
+- id: 64
+  abbr: "EH"
+  name: "Western Sahara"
+- id: 65
+  abbr: "ER"
+  name: "Eritrea"
+- id: 66
+  abbr: "ES"
+  name: "Spain"
+- id: 67
+  abbr: "ET"
+  name: "Ethiopia"
+- id: 68
+  abbr: "FI"
+  name: "Finland"
+- id: 69
+  abbr: "FJ"
+  name: "Fiji"
+- id: 70
+  abbr: "FK"
+  name: "Falkland Islands (Malvinas)"
+- id: 71
+  abbr: "FM"
+  name: "Micronesia, Federated States of"
+- id: 72
+  abbr: "FO"
+  name: "Faroe Islands"
+- id: 73
+  abbr: "FR"
+  name: "France"
+- id: 74
+  abbr: "GA"
+  name: "Gabon"
+- id: 75
+  abbr: "GB"
+  name: "United Kingdom"
+- id: 76
+  abbr: "GD"
+  name: "Grenada"
+- id: 77
+  abbr: "GE"
+  name: "Georgia"
+- id: 78
+  abbr: "GF"
+  name: "French Guiana"
+- id: 79
+  abbr: "GH"
+  name: "Ghana"
+- id: 80
+  abbr: "GI"
+  name: "Gibraltar"
+- id: 81
+  abbr: "GL"
+  name: "Greenland"
+- id: 82
+  abbr: "GM"
+  name: "Gambia"
+- id: 83
+  abbr: "GN"
+  name: "Guinea"
+- id: 84
+  abbr: "GP"
+  name: "Guadeloupe"
+- id: 85
+  abbr: "GQ"
+  name: "Equatorial Guinea"
+- id: 86
+  abbr: "GR"
+  name: "Greece"
+- id: 87
+  abbr: "GS"
+  name: "South Georgia and the South Sandwich Islands"
+- id: 88
+  abbr: "GT"
+  name: "Guatemala"
+- id: 89
+  abbr: "GU"
+  name: "Guam"
+- id: 90
+  abbr: "GW"
+  name: "Guinea-bissau"
+- id: 91
+  abbr: "GY"
+  name: "Guyana"
+- id: 92
+  abbr: "HK"
+  name: "Hong Kong"
+- id: 93
+  abbr: "HM"
+  name: "Heard Island and McDonald Islands"
+- id: 94
+  abbr: "HN"
+  name: "Honduras"
+- id: 95
+  abbr: "HR"
+  name: "Croatia"
+- id: 96
+  abbr: "HT"
+  name: "Haiti"
+- id: 97
+  abbr: "HU"
+  name: "Hungary"
+- id: 98
+  abbr: "ID"
+  name: "Indonesia"
+- id: 99
+  abbr: "IE"
+  name: "Ireland"
+- id: 100
+  abbr: "IL"
+  name: "Israel"
+- id: 101
+  abbr: "IN"
+  name: "India"
+- id: 102
+  abbr: "IO"
+  name: "British Indian Ocean Territory"
+- id: 103
+  abbr: "IQ"
+  name: "Iraq"
+- id: 104
+  abbr: "IR"
+  name: "Iran, Islamic Republic of"
+- id: 105
+  abbr: "IS"
+  name: "Iceland"
+- id: 106
+  abbr: "IT"
+  name: "Italy"
+- id: 107
+  abbr: "JM"
+  name: "Jamaica"
+- id: 108
+  abbr: "JO"
+  name: "Jordan"
+- id: 109
+  abbr: "JP"
+  name: "Japan"
+- id: 110
+  abbr: "KE"
+  name: "Kenya"
+- id: 111
+  abbr: "KG"
+  name: "Kyrgyzstan"
+- id: 112
+  abbr: "KH"
+  name: "Cambodia"
+- id: 113
+  abbr: "KI"
+  name: "Kiribati"
+- id: 114
+  abbr: "KM"
+  name: "Comoros"
+- id: 115
+  abbr: "KN"
+  name: "Saint Kitts and Nevis"
+- id: 116
+  abbr: "KP"
+  name: "Korea, Democratic People's Republic of"
+- id: 117
+  abbr: "KR"
+  name: "Korea, Republic of"
+- id: 118
+  abbr: "KW"
+  name: "Kuwait"
+- id: 119
+  abbr: "KY"
+  name: "Cayman Islands"
+- id: 120
+  abbr: "KZ"
+  name: "Kazakhstan"
+- id: 121
+  abbr: "LA"
+  name: "Lao People's Democratic Republic"
+- id: 122
+  abbr: "LB"
+  name: "Lebanon"
+- id: 123
+  abbr: "LC"
+  name: "Saint Lucia"
+- id: 124
+  abbr: "LI"
+  name: "Liechtenstein"
+- id: 125
+  abbr: "LK"
+  name: "Sri Lanka"
+- id: 126
+  abbr: "LR"
+  name: "Liberia"
+- id: 127
+  abbr: "LS"
+  name: "Lesotho"
+- id: 128
+  abbr: "LT"
+  name: "Lithuania"
+- id: 129
+  abbr: "LU"
+  name: "Luxembourg"
+- id: 130
+  abbr: "LV"
+  name: "Latvia"
+- id: 131
+  abbr: "LY"
+  name: "Libyan Arab Jamahiriya"
+- id: 132
+  abbr: "MA"
+  name: "Morocco"
+- id: 133
+  abbr: "MC"
+  name: "Monaco"
+- id: 134
+  abbr: "MD"
+  name: "Moldova, Republic of"
+- id: 135
+  abbr: "MG"
+  name: "Madagascar"
+- id: 136
+  abbr: "MH"
+  name: "Marshall Islands"
+- id: 137
+  abbr: "MK"
+  name: "Macedonia, the Former Yugoslav Republic of"
+- id: 138
+  abbr: "ML"
+  name: "Mali"
+- id: 139
+  abbr: "MM"
+  name: "Myanmar"
+- id: 140
+  abbr: "MN"
+  name: "Mongolia"
+- id: 141
+  abbr: "MO"
+  name: "Macao"
+- id: 142
+  abbr: "MP"
+  name: "Northern Mariana Islands"
+- id: 143
+  abbr: "MQ"
+  name: "Martinique"
+- id: 144
+  abbr: "MR"
+  name: "Mauritania"
+- id: 145
+  abbr: "MS"
+  name: "Montserrat"
+- id: 146
+  abbr: "MT"
+  name: "Malta"
+- id: 147
+  abbr: "MU"
+  name: "Mauritius"
+- id: 148
+  abbr: "MV"
+  name: "Maldives"
+- id: 149
+  abbr: "MW"
+  name: "Malawi"
+- id: 150
+  abbr: "MX"
+  name: "Mexico"
+- id: 151
+  abbr: "MY"
+  name: "Malaysia"
+- id: 152
+  abbr: "MZ"
+  name: "Mozambique"
+- id: 153
+  abbr: "NA"
+  name: "Namibia"
+- id: 154
+  abbr: "NC"
+  name: "New Caledonia"
+- id: 155
+  abbr: "NE"
+  name: "Niger"
+- id: 156
+  abbr: "NF"
+  name: "Norfolk Island"
+- id: 157
+  abbr: "NG"
+  name: "Nigeria"
+- id: 158
+  abbr: "NI"
+  name: "Nicaragua"
+- id: 159
+  abbr: "NL"
+  name: "Netherlands"
+- id: 160
+  abbr: "NO"
+  name: "Norway"
+- id: 161
+  abbr: "NP"
+  name: "Nepal"
+- id: 162
+  abbr: "NR"
+  name: "Nauru"
+- id: 163
+  abbr: "NU"
+  name: "Niue"
+- id: 164
+  abbr: "NZ"
+  name: "New Zealand"
+- id: 165
+  abbr: "OM"
+  name: "Oman"
+- id: 166
+  abbr: "PA"
+  name: "Panama"
+- id: 167
+  abbr: "PE"
+  name: "Peru"
+- id: 168
+  abbr: "PF"
+  name: "French Polynesia"
+- id: 169
+  abbr: "PG"
+  name: "Papua New Guinea"
+- id: 170
+  abbr: "PH"
+  name: "Philippines"
+- id: 171
+  abbr: "PK"
+  name: "Pakistan"
+- id: 172
+  abbr: "PL"
+  name: "Poland"
+- id: 173
+  abbr: "PM"
+  name: "Saint Pierre and Miquelon"
+- id: 174
+  abbr: "PN"
+  name: "Pitcairn"
+- id: 175
+  abbr: "PR"
+  name: "Puerto Rico"
+- id: 176
+  abbr: "PS"
+  name: "Palestinian Territory, Occupied"
+- id: 177
+  abbr: "PT"
+  name: "Portugal"
+- id: 178
+  abbr: "PW"
+  name: "Palau"
+- id: 179
+  abbr: "PY"
+  name: "Paraguay"
+- id: 180
+  abbr: "QA"
+  name: "Qatar"
+- id: 181
+  abbr: "RE"
+  name: "Reunion"
+- id: 182
+  abbr: "RO"
+  name: "Romania"
+- id: 183
+  abbr: "RU"
+  name: "Russian Federation"
+- id: 184
+  abbr: "RW"
+  name: "Rwanda"
+- id: 185
+  abbr: "SA"
+  name: "Saudi Arabia"
+- id: 186
+  abbr: "SB"
+  name: "Solomon Islands"
+- id: 187
+  abbr: "SC"
+  name: "Seychelles"
+- id: 188
+  abbr: "SD"
+  name: "Sudan"
+- id: 189
+  abbr: "SE"
+  name: "Sweden"
+- id: 190
+  abbr: "SG"
+  name: "Singapore"
+- id: 191
+  abbr: "SH"
+  name: "Saint Helena"
+- id: 192
+  abbr: "SI"
+  name: "Slovenia"
+- id: 193
+  abbr: "SJ"
+  name: "Svalbard and Jan Mayen"
+- id: 194
+  abbr: "SK"
+  name: "Slovakia"
+- id: 195
+  abbr: "SL"
+  name: "Sierra Leone"
+- id: 196
+  abbr: "SM"
+  name: "San Marino"
+- id: 197
+  abbr: "SN"
+  name: "Senegal"
+- id: 198
+  abbr: "SO"
+  name: "Somalia"
+- id: 199
+  abbr: "SR"
+  name: "Suriname"
+- id: 200
+  abbr: "ST"
+  name: "Sao Tome and Principe"
+- id: 201
+  abbr: "SV"
+  name: "El Salvador"
+- id: 202
+  abbr: "SY"
+  name: "Syrian Arab Republic"
+- id: 203
+  abbr: "SZ"
+  name: "Swaziland"
+- id: 204
+  abbr: "TC"
+  name: "Turks and Caicos Islands"
+- id: 205
+  abbr: "TD"
+  name: "Chad"
+- id: 206
+  abbr: "TF"
+  name: "French Southern Territories"
+- id: 207
+  abbr: "TG"
+  name: "Togo"
+- id: 208
+  abbr: "TH"
+  name: "Thailand"
+- id: 209
+  abbr: "TJ"
+  name: "Tajikistan"
+- id: 210
+  abbr: "TK"
+  name: "Tokelau"
+- id: 211
+  abbr: "TL"
+  name: "Timor-leste"
+- id: 212
+  abbr: "TM"
+  name: "Turkmenistan"
+- id: 213
+  abbr: "TN"
+  name: "Tunisia"
+- id: 214
+  abbr: "TO"
+  name: "Tonga"
+- id: 215
+  abbr: "TR"
+  name: "Turkey"
+- id: 216
+  abbr: "TT"
+  name: "Trinidad and Tobago"
+- id: 217
+  abbr: "TV"
+  name: "Tuvalu"
+- id: 218
+  abbr: "TW"
+  name: "Taiwan"
+- id: 219
+  abbr: "TZ"
+  name: "Tanzania, United Republic of"
+- id: 220
+  abbr: "UA"
+  name: "Ukraine"
+- id: 221
+  abbr: "UG"
+  name: "Uganda"
+- id: 222
+  abbr: "UM"
+  name: "United States Minor Outlying Islands"
+- id: 223
+  abbr: "US"
+  name: "United States"
+- id: 224
+  abbr: "UY"
+  name: "Uruguay"
+- id: 225
+  abbr: "UZ"
+  name: "Uzbekistan"
+- id: 226
+  abbr: "VA"
+  name: "Vatican City State"
+- id: 227
+  abbr: "VC"
+  name: "Saint Vincent and the Grenadines"
+- id: 228
+  abbr: "VE"
+  name: "Venezuela"
+- id: 229
+  abbr: "VG"
+  name: "Virgin Islands, British"
+- id: 230
+  abbr: "VI"
+  name: "Virgin Islands, U.S."
+- id: 231
+  abbr: "VN"
+  name: "Vietnam"
+- id: 232
+  abbr: "VU"
+  name: "Vanuatu"
+- id: 233
+  abbr: "WF"
+  name: "Wallis and Futuna"
+- id: 234
+  abbr: "WS"
+  name: "Samoa"
+- id: 235
+  abbr: "YE"
+  name: "Yemen"
+- id: 236
+  abbr: "YT"
+  name: "Mayotte"
+- id: 237
+  abbr: "ZA"
+  name: "South Africa"
+- id: 238
+  abbr: "ZM"
+  name: "Zambia"
+- id: 239
+  abbr: "ZW"
+  name: "Zimbabwe"
+- id: 240
+  abbr: "ME"
+  name: "Montenegro"

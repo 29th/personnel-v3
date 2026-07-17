@@ -1,0 +1,5022 @@
+- id: 1
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "General knowledge of common maps and positions via grid and compass"
+  details: null
+- id: 2
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Proper usage of secondary weapons and standard equipment"
+  details: "Pistols, grenades, etc."
+- id: 3
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Demonstrates understanding and obedience of orders while maintaining cohesion with their squad"
+  details: null
+- id: 4
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Effective communication of target locations"
+  details: "Using map grid and o'clock systems. Properly identifies targets; rarely commits teamkills"
+- id: 5
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Understands how and when to provide covering fire"
+  details: null
+- id: 6
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Ability to adjust stance appropriately to achieve effective firing position"
+  details: "Knows the time and place for leaning, crouching, and going prone"
+- id: 7
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Timely and safe reloading"
+  details: "Knows when, during combat, to take the time to reload, and maintains enough cover while reloading"
+- id: 8
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Discipline to break contact and/or flank"
+  details: "This is done when a strong opposition is met. Instead of staying put and hoping to get the first hit, the soldier should have the discipline to break contact and surprise the enemy from another location, or even regroup with another section of his team."
+- id: 9
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Automatically relocates after enemy knows his position"
+  details: "It is easy for a soldier to get caught up in racking up kills when he finds a good position, but word will quickly get around the enemy team and unless he relocates he will be taken out."
+- id: 11
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Knowledge of and able to perform actions not intended by game design"
+  details: "This includes all engine tricks and exploits"
+- id: 12
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Able to use map/scenario specific equipment when necessary"
+  details: "This includes weapon emplacements, vehicles, or any map specific usables"
+- id: 13
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Gathers accurate player teams and locations based on sounds"
+  details: null
+- id: 14
+  weapon: "EIB"
+  game: ""
+  badge: "N/A"
+  description: "Has earned an Arms Qualification badge with a weapon"
+  details: null
+- id: 15
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all rifles"
+  details: "How many shots they hold, how much damage they do, where to aim with them"
+- id: 16
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Aims for target's chest"
+  details: ""
+- id: 17
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Knows when and how to effectively use melee"
+  details: null
+- id: 18
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Does not get caught stuck to the bolt"
+  details: null
+- id: 19
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: ""
+- id: 20
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can differentiate gameplay style based on rifle"
+  details: ""
+- id: 22
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control with weapon"
+  details: ""
+- id: 23
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate at all ranges with iron sights"
+  details: null
+- id: 24
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate at short and medium ranges when firing from the hip"
+  details: ""
+- id: 26
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: "Leading a moving target refers to firing slightly in front of where they are moving so that by the time the bullet reaches them they will be in that position"
+- id: 27
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Properly uses cover to maintain an effective defensive position"
+  details: null
+- id: 28
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Implements important gameplay techniques into everyday play"
+  details: null
+- id: 29
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 30
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: "Soldier is defeated by lack of knowledge, not lack of skill"
+- id: 31
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 32
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 33
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all automatic rifles"
+  details: "How many shots they hold, how much damage they do, where to aim with them"
+- id: 34
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands recoil and the use of burst to control it"
+  details: ""
+- id: 35
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands concepts of and shows basic skills of building clearing"
+  details: ""
+- id: 36
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: ""
+- id: 37
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the effectiveness of pre-firing common positions"
+  details: ""
+- id: 38
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can locate effective defensive firing positions"
+  details: ""
+- id: 39
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control with weapon"
+  details: ""
+- id: 40
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium to long range with iron sights"
+  details: ""
+- id: 41
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium to long range with weapon deployed"
+  details: ""
+- id: 42
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at close and medium range while firing from the hip"
+  details: ""
+- id: 43
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Understands when to use single-shot and when to use burst fire"
+  details: ""
+- id: 44
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: ""
+- id: 46
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to effectively eliminate targets while on-the-move to destination"
+  details: ""
+- id: 47
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Frequently able to clear a building single-handedly"
+  details: ""
+- id: 50
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: ""
+- id: 51
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: "Soldier is defeated by lack of knowledge, not lack of skill"
+- id: 52
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: ""
+- id: 53
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: ""
+- id: 54
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the automatic rifle"
+  details: ""
+- id: 55
+  weapon: "Automatic Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: ""
+- id: 56
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all machine guns"
+  details: "How many shots they hold, how much damage they do, where to aim with them"
+- id: 57
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can effectively provide suppressive MG fire"
+  details: ""
+- id: 58
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands how and when to advance to support team"
+  details: null
+- id: 59
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "General understanding of timing involved in deploying/un-deploying"
+  details: null
+- id: 60
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Show an understanding of how to preserve MG barrels"
+  details: null
+- id: 61
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Frequently able to hold off an entire flank from an enclosed area of a map"
+  details: null
+- id: 62
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Deploys in areas providing as little visibility to the enemy as possible"
+  details: null
+- id: 63
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Frequently asks for support from another soldier to cover the flanks"
+  details: null
+- id: 64
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands what structures can be used for support"
+  details: ""
+- id: 65
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to locate effective vantage points and positions automatically"
+  details: null
+- id: 66
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to utilize a spotter to find targets"
+  details: null
+- id: 67
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Frequently able to hold off an entire flank from an unenclosed area of a map"
+  details: null
+- id: 68
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to effectively communicate with teammates to locate and eliminate distant targets"
+  details: null
+- id: 69
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to eliminate 3-5 targets before being spotted"
+  details: null
+- id: 70
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 71
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 72
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: "Soldier is defeated by lack of knowledge, not lack of skill"
+- id: 73
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 74
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 75
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 76
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all tanks"
+  details: null
+- id: 77
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Uses common communication techniques"
+  details: null
+- id: 78
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Displays mastery over the o'clock system"
+  details: null
+- id: 79
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Scans FOV for enemy, prioritizing anti-tank targets"
+  details: null
+- id: 80
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can identify enemy vehicle type"
+  details: null
+- id: 81
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands flex and arc"
+  details: "Flex meaning knowing how to adjust fire horizontally to 'lead' moving targets; Arc meaning knowing how to adjust fire vertically to compensate for range"
+- id: 82
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Knowledge of the BOW MG"
+  details: "5-7 second bursts, turning tank to face threat"
+- id: 83
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Understands the different shell types"
+  details: "Advantages/disadvantages"
+- id: 84
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Effective gunnery at long ranges"
+  details: null
+- id: 85
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to work with other tanks"
+  details: null
+- id: 86
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Effective as a one-man-tank when necessary"
+  details: null
+- id: 87
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Logically averts obstacles within scope of orders"
+  details: null
+- id: 88
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Understands how left/right adjustment of vehicle affects commander's aim"
+  details: null
+- id: 89
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Knowledge of obstacles and what a tank can traverse"
+  details: "Ditches and bushes"
+- id: 90
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Knows how to angle the tank to provide the most protection"
+  details: "Both when idle and when moving"
+- id: 91
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to identify the best tanking positions"
+  details: ""
+- id: 92
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Effective gunnery on the move"
+  details: null
+- id: 93
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Understands the different arc for different round velocities"
+  details: "Including moving targets"
+- id: 94
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Effective use of blind spots and dead ground"
+  details: "Areas where you can get to the enemy without them seeing you"
+- id: 95
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Knows the soft spots of enemy vehicles"
+  details: null
+- id: 96
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Understands land navigation and infantry interface"
+  details: ""
+- id: 97
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Prioritizes between enemy tanks and enemy infantry"
+  details: null
+- id: 98
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Accurately estimates range/timing to achieve first shot hits"
+  details: "Including moving targets"
+- id: 99
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness, crisis management, and aversion to friendly fire"
+  details: ""
+- id: 100
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the tank"
+  details: ""
+- id: 101
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all anti-tank weapons"
+  details: "Their range, how much damage they do, where to aim with them"
+- id: 102
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can effectively use secondary weapon assigned to Engineer class"
+  details: null
+- id: 103
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the basic mechanics behind damaging tanks"
+  details: "Where to aim for best results"
+- id: 104
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows basic knowledge of using the anti-tank for building clearing purposes"
+  details: null
+- id: 105
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands potential friendly fire damage from anti-tank explosion or exhaust"
+  details: null
+- id: 106
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 107
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the timing involved in reloading, deploying, etc."
+  details: null
+- id: 108
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 110
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate with anti-Tank at all ranges"
+  details: null
+- id: 111
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Effectively targets vulnerable areas on tanks"
+  details: null
+- id: 112
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Maintains teamwork with provided supplier for faster rate of fire"
+  details: null
+- id: 113
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 114
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Shows knowledge of how to close in and flank around armored vehicles"
+  details: null
+- id: 115
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively use the anti-tank to clear out fortified & window positions"
+  details: null
+- id: 116
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Indepth understanding of anti-tank splash-damage and anti-infantry tactics"
+  details: null
+- id: 117
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving vehicle"
+  details: null
+- id: 118
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Effectively uses each projectile range on the different anti-tank weapons"
+  details: null
+- id: 119
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Has a vast knowledge of tank statistics "
+  details: "Ammo types, speed, etc."
+- id: 120
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 121
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death "
+  details: "Soldier is defeated by lack of knowledge, not lack of skill"
+- id: 122
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 123
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 124
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 125
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the combat engineer class"
+  details: null
+- id: 126
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sub-machine guns"
+  details: "How many shots they hold, how much damage they do, where to aim with them"
+- id: 127
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows effectiveness in building clearing"
+  details: null
+- id: 128
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Able to provide effective cover fire with the submachine gun"
+  details: null
+- id: 129
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Able to identify and move into effective spotting positions"
+  details: null
+- id: 130
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Able to effectively relay information gathered from the use of binoculars"
+  details: null
+- id: 131
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands when to use each firing mode"
+  details: null
+- id: 132
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows proper use of smoke grenades to provide cover for teammates"
+  details: null
+- id: 133
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Able to eliminate multiple targets at a time"
+  details: null
+- id: 134
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 135
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 141
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium ranges while firing from the hip with sub-machine guns"
+  details: null
+- id: 142
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil with iron sights at medium range with sub-machine guns"
+  details: null
+- id: 143
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Frequently able to eliminate three or more targets at a time"
+  details: null
+- id: 144
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 145
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to master short 3-round bursts to conserve ammunition and control recoil"
+  details: null
+- id: 146
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Shows effectiveness in building clearing with no casualties"
+  details: null
+- id: 147
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 148
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: "Soldier is defeated by lack of knowledge, not lack of skill"
+- id: 149
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 150
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 151
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 152
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sniper rifles"
+  details: "Their scope, how much damage they do, where to aim with them"
+- id: 153
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can effectively use secondary weapon assigned to Sniper class"
+  details: null
+- id: 154
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Able to locate and report high priority target locations accurately"
+  details: null
+- id: 155
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the importance of maintaining distance from enemies"
+  details: null
+- id: 156
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Can effectively stalk and eliminate a target in territory with dense cover"
+  details: null
+- id: 157
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the importance of fire discipline"
+  details: null
+- id: 158
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 159
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate at short and medium ranges when firing from the hip"
+  details: null
+- id: 160
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate at the longest range with iron sights"
+  details: null
+- id: 161
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 162
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Ability to move from cover to cover without detection"
+  details: null
+- id: 163
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to evade and escape enemy contact if detected"
+  details: null
+- id: 164
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to articulate and relay enemy classes and positions accurately"
+  details: null
+- id: 165
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can stalk and eliminate a target in territory with sparse cover"
+  details: null
+- id: 166
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 167
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: "Soldier is defeated by lack of knowledge, not lack of skill"
+- id: 168
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 169
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 191
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 192
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the rifle"
+  details: null
+- id: 193
+  weapon: "Rifle"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 194
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 195
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to quickly switch between numerous areas of deployment"
+  details: null
+- id: 196
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Sufficient reflexes between very thin areas"
+  details: null
+- id: 197
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Always on the move; rarely in the same area for long"
+  details: null
+- id: 198
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the machine gun"
+  details: null
+- id: 199
+  weapon: "Machine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 200
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to defend an enclosed space alone"
+  details: null
+- id: 201
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the support class"
+  details: null
+- id: 202
+  weapon: "Submachine Gun"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 203
+  weapon: "Combat Engineer"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 204
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 205
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the sniper rifle"
+  details: null
+- id: 206
+  weapon: "Sniper"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 207
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Recognizes situations where firing would give away their position"
+  details: null
+- id: 208
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Moves tank only when directed"
+  details: null
+- id: 209
+  weapon: "Armor"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 210
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Understands to angle the hull to optimize the bow MG arc"
+  details: null
+- id: 211
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Can effectively maneuver against an enemy tank"
+  details: null
+- id: 212
+  weapon: "Armor"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Knows what ammunition is used on what target type"
+  details: null
+- id: 213
+  weapon: "Armor"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 214
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands the basics of mortars"
+  details: "This includes basics of aiming, shooting and the differences between the axis and allied mortars"
+- id: 215
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Marksman"
+  description: "Identify and mark a specific target safely as an observer"
+  details: null
+- id: 216
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Marksman"
+  description: "Understands concealment as both operator and observer"
+  details: null
+- id: 218
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Marksman"
+  description: "Properly uses mortar protocol as both operator and observer"
+  details: null
+- id: 219
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 220
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate against a static unmarked target using direct line of sight"
+  details: null
+- id: 221
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate against a static marked target without using direct line of sight"
+  details: null
+- id: 222
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Effectively mark moving targets as observer"
+  details: null
+- id: 223
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Accurate and correct use of mortar smoke"
+  details: "Smokescreens must be placed correctly on the right target and without big gaps between the clouds"
+- id: 224
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Correctly act upon orders for a fire mission as an operator"
+  details: null
+- id: 225
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Flawless communication with mortar squad"
+  details: "No matter if he is using a communication method via teamspeak or in-game chat"
+- id: 226
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Receive a fire request from leadership and correctly assign fire missions for the situation at hand as observer"
+  details: null
+- id: 227
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Read and create custom range tables"
+  details: null
+- id: 228
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Know and utilize various fire missions correctly and efficiently"
+  details: "Includes specific fire missions such as a barrage, wide barrage or a smokescreen"
+- id: 229
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Sharpshooter"
+  description: "Able to work independently of leadership and create and assign proper fire missions as observer"
+  details: null
+- id: 230
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Expert"
+  description: "Coordinate two mortars as a observer"
+  details: null
+- id: 231
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Expert"
+  description: "Work as an operator in tandem with a second operator"
+  details: null
+- id: 232
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Expert"
+  description: "Expertise mortar knowledge of maps"
+  details: "Includes common firing positions, map size and ranges, and various other areas of interest"
+- id: 233
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Expert"
+  description: "Memorize target locations and switch between them without the use of an observer"
+  details: null
+- id: 234
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the mortar"
+  details: null
+- id: 235
+  weapon: "Mortar"
+  game: "DH"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 254
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows general knowledge of all rifles"
+  details: null
+- id: 255
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Aims for targets chest"
+  details: null
+- id: 256
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Knows when and how to effectively use melee"
+  details: null
+- id: 257
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 258
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows basic understanding of common weapon-based tricks and techniques"
+  details: null
+- id: 259
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Properly adapts playstyle based on rifle"
+  details: null
+- id: 260
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 261
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Accurate at all ranges with iron sights"
+  details: null
+- id: 262
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively lead moving targets"
+  details: null
+- id: 263
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Shows solid reflexes and decision making"
+  details: null
+- id: 264
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Properly uses cover to maintain an effective defensive position"
+  details: null
+- id: 265
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Implements important gameplay techniques into everyday play"
+  details: null
+- id: 266
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sub-machine guns"
+  details: null
+- id: 267
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows effectiveness in building clearing"
+  details: null
+- id: 268
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Able to provide effective cover fire with the sub-machine gun"
+  details: null
+- id: 269
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands when to use each firing mode"
+  details: null
+- id: 270
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows basic understanding of effective sub-machine gun usage in offense and defence"
+  details: null
+- id: 271
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows proper use of smoke grenades to provide cover for teammates"
+  details: null
+- id: 272
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Able to eliminate multiple targets at a time"
+  details: null
+- id: 273
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 274
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 275
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to defend an enclosed space alone"
+  details: null
+- id: 276
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium ranges"
+  details: null
+- id: 277
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Frequently able to eliminate three or more targets at a time"
+  details: null
+- id: 278
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 279
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to master short 3-round bursts to conserve ammunition and control recoil"
+  details: null
+- id: 280
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Shows effectiveness in building clearing with no casualties"
+  details: null
+- id: 281
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows general knowledge of all heavies"
+  details: null
+- id: 282
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands recoil and the use of bursts to control it"
+  details: null
+- id: 283
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands concepts of and shows basic skills of building clearing"
+  details: null
+- id: 284
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 285
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands the effectiveness of pre-firing common positions"
+  details: null
+- id: 286
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Properly adapts playstyle based on heavy"
+  details: null
+- id: 287
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Can locate effective defensive positions"
+  details: null
+- id: 288
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 289
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium to long range with iron sights"
+  details: null
+- id: 290
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium to long range with deployed weapon"
+  details: null
+- id: 291
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at close and medium range when firing from the hip"
+  details: null
+- id: 292
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Understands when to use single-shot and when to use burst fire"
+  details: null
+- id: 293
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 294
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to effectively eliminate targets while on-the-move to destination"
+  details: null
+- id: 295
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Frequently able to clear a building single-handedly"
+  details: null
+- id: 296
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows general knowledge of all machine guns"
+  details: null
+- id: 297
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Can effectively provide suppressive MG fire"
+  details: null
+- id: 298
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands how and when to advance to support team"
+  details: null
+- id: 299
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "General understanding of timing involved in deploying/undeploying"
+  details: null
+- id: 300
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows an understanding of how to preserve MG barrels"
+  details: null
+- id: 301
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Frequently able to hold off an entire flank from an enclosed area of a map"
+  details: null
+- id: 302
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Deploys in areas providing as little visibility to the enemy as possible"
+  details: null
+- id: 303
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Frequently asks for support from another soldier to cover the flanks"
+  details: null
+- id: 304
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands what structures can be used for support"
+  details: null
+- id: 305
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 306
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to locate effective vantage points and positions automatically"
+  details: null
+- id: 307
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Frequently able to hold off an entire flank from an unenclosed area of a map"
+  details: null
+- id: 308
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to eliminate 3-5 targets before being spotted"
+  details: null
+- id: 309
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Always on the move; rarely in the same area for long"
+  details: null
+- id: 310
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 311
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to quickly switch between numerous areas of deployment"
+  details: null
+- id: 312
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Sufficient reflexes between very thin areas"
+  details: null
+- id: 313
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Can effectively use assigned secondary weapon"
+  details: null
+- id: 314
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows basic understanding of the advantages and limitations of each Engineer-specific weapon"
+  details: null
+- id: 315
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Properly utilizes splash damage for building clearing and building defense"
+  details: null
+- id: 316
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands potential friendly fire damage from anti-tank explosion or exhaust"
+  details: null
+- id: 317
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 318
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows basic understanding of common map positions and player positioning"
+  details: null
+- id: 319
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows basic understanding of Mortar firing modes and Flamethrower fire cone."
+  details: null
+- id: 320
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 321
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Accurate with Mortar at all ranges"
+  details: null
+- id: 322
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Shows indepth understanding of mortar projectile travel time"
+  details: null
+- id: 323
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Shows proper ammo management"
+  details: null
+- id: 324
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 325
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Shows knowledge of how to close in to flamethrower range"
+  details: null
+- id: 326
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively use mortar or flamethrower to effectively clear out fortified and window positions"
+  details: null
+- id: 327
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Indepth understanding of mortar splash-damage and flame behaviour/characteristics"
+  details: null
+- id: 328
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Shows vast knolwedge of common map positions and player positioning"
+  details: null
+- id: 330
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 331
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 332
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 333
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 334
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 335
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 336
+  weapon: "Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 337
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 338
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 339
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 340
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 341
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 342
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 343
+  weapon: "Submachine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 344
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 345
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 346
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 347
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 348
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 349
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 350
+  weapon: "Automatic Rifle"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 351
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 352
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 353
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 354
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 355
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 356
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 357
+  weapon: "Machine Gun"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 358
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 359
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 360
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 361
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 362
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 363
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 364
+  weapon: "Combat Engineer"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 365
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all rifles and attachments"
+  details: null
+- id: 366
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Aims for targets chest"
+  details: null
+- id: 367
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 368
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control with weapon"
+  details: null
+- id: 369
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Capable of making distance calls to adjust for different ranges"
+  details: null
+- id: 370
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Comfortable with AIT appropriate sights"
+  details: null
+- id: 371
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Manages stamina properly"
+  details: null
+- id: 372
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Accurate at all ranges with all sights"
+  details: null
+- id: 373
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 374
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Seeks effective firing positions"
+  details: null
+- id: 386
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can effectively use scripted abilities such as repair which are typically assigned to Engineer class"
+  details: null
+- id: 387
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all manner of anti-vehicle weapons and warhead types"
+  details: null
+- id: 388
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the basic mechanics behind damaging armored vehicles"
+  details: null
+- id: 389
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows competency with AT weapon for building clearing purposes"
+  details: null
+- id: 390
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands potential friendly fire damage from proximity to vehicle explosion"
+  details: null
+- id: 391
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 392
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the timing involved in reloading deploying etc"
+  details: null
+- id: 393
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 394
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Accurate with antitank at all ranges"
+  details: null
+- id: 395
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Effectively targets vulnerable areas of tanks"
+  details: null
+- id: 396
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 397
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Shows strategic knowledge of how to close and flank armored vehicles"
+  details: null
+- id: 398
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively use the antitank to clear out fortified & window positions with dependable accuracy"
+  details: null
+- id: 399
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "In-depth understanding of antitank splash damage and anti-infantry tactics"
+  details: null
+- id: 400
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving vehicle"
+  details: null
+- id: 401
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can defend oneself if downed"
+  details: null
+- id: 402
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all aircraft"
+  details: null
+- id: 403
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to determine landing zone safety"
+  details: null
+- id: 404
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Uses common communication techniques"
+  details: null
+- id: 405
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Displays competence over takeoff and landing"
+  details: null
+- id: 406
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Scans FOV for enemy, prioritizing antiaircraft targets"
+  details: null
+- id: 407
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can identify enemy ground and air vehicles by type"
+  details: null
+- id: 408
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Basic knowledge of all aircraft  mounted weapons"
+  details: null
+- id: 409
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to provide CAS and CAP at a competent level"
+  details: null
+- id: 410
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 411
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can instantly convert to effective ground unit if downed"
+  details: null
+- id: 412
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Shows advanced knowledge of all aircraft"
+  details: null
+- id: 413
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Advanced knowledge of all aircraft mounted weapons"
+  details: null
+- id: 414
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Effective gunnery with standoff and close support weapons"
+  details: null
+- id: 415
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to work with ground units seamlessly"
+  details: null
+- id: 416
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively command crew of aircraft"
+  details: null
+- id: 417
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Logically averts obstacles within scope of orders"
+  details: null
+- id: 418
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively maneuver against enemy aircraft"
+  details: null
+- id: 419
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Knows what weapon systems are used on what target type"
+  details: null
+- id: 420
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Chooses most effective angles of attack"
+  details: null
+- id: 421
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all tanks and armored vehicles"
+  details: null
+- id: 422
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Uses common communication techniques"
+  details: null
+- id: 423
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Displays mastery over the oclock system and compass"
+  details: null
+- id: 424
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Scans FOV for enemy prioritizing antitank targets"
+  details: null
+- id: 425
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can identify enemy vehicle type"
+  details: null
+- id: 426
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands flex and arc"
+  details: null
+- id: 427
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Basic knowledge of all vehicle mounted weapons "
+  details: null
+- id: 428
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Recognizes situations where firing would give away their position"
+  details: null
+- id: 429
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Moves tank only when directed"
+  details: null
+- id: 430
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 431
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands the different shell types"
+  details: null
+- id: 432
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Effective gunnery at long ranges"
+  details: null
+- id: 433
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to work with other tanks "
+  details: null
+- id: 434
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Effective as a ornamenting when necessary"
+  details: null
+- id: 435
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Logically averts obstacles within scope of orders"
+  details: null
+- id: 436
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively maneuver against an enemy tank"
+  details: null
+- id: 437
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Knows what ammunition is used on what target type"
+  details: null
+- id: 438
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Knowledge of obstacles and what a tank can traverse"
+  details: null
+- id: 439
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Knows how to angle or defilade the tank to provide the most protection"
+  details: null
+- id: 440
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 441
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 442
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 443
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 444
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 445
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 446
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 454
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 455
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 456
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 457
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 458
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 459
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 460
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 461
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all automatic rifles"
+  details: null
+- id: 462
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands recoil and the use of burst to control it"
+  details: null
+- id: 463
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the concepts of and shows basic skills of suppressive fire"
+  details: null
+- id: 464
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can locate effective overwatch firing positions"
+  details: null
+- id: 465
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can locate effective defensive firing positions"
+  details: null
+- id: 466
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control with weapon and optics"
+  details: null
+- id: 467
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium to long range with iron sights and optics"
+  details: null
+- id: 468
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands when to use single-shot and when to use burst fire"
+  details: null
+- id: 469
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 470
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can immobilize soft skinned or light armored vehicles"
+  details: null
+- id: 471
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 472
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 473
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 474
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 475
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 476
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 477
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 478
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sniper rifles"
+  details: null
+- id: 479
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Can effectively use base ironsights on a sniper rifle"
+  details: null
+- id: 480
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Able to locate and report high priority target locations accurately"
+  details: null
+- id: 481
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands and applies the fundamental elements of positioning"
+  details: null
+- id: 482
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Can effectively track and eliminate a target in territory with dense cover"
+  details: null
+- id: 483
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands the importance of fire discipline"
+  details: null
+- id: 484
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 485
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively manage bullet drop"
+  details: null
+- id: 486
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target at long range"
+  details: null
+- id: 487
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Ability to maneuver the battlefield undetected"
+  details: null
+- id: 488
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Ability to judge if the current position is compromised and disengage if need be"
+  details: null
+- id: 489
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can stalk and eliminate a specific target in enemy territory"
+  details: null
+- id: 490
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Able to quickly and efficiently eliminate multiple targets in quick succession"
+  details: null
+- id: 491
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 492
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 493
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 494
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 495
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 496
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the sniper rifle"
+  details: null
+- id: 497
+  weapon: "Sniper"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 498
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sniper rifles"
+  details: null
+- id: 499
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can effectively use base ironsights on a sniper rifle"
+  details: null
+- id: 500
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to locate and report high priority target locations accurately"
+  details: null
+- id: 501
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands and applies the fundamental elements of positioning"
+  details: null
+- id: 502
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can effectively track and eliminate a target in territory with dense cover"
+  details: null
+- id: 503
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the importance of fire discipline"
+  details: null
+- id: 504
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 505
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively manage bullet drop"
+  details: null
+- id: 506
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target at long range"
+  details: null
+- id: 507
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Ability to maneuver the battlefield undetected"
+  details: null
+- id: 508
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Ability to judge if the current position is compromised and disengage if need be"
+  details: null
+- id: 509
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can stalk and eliminate a specific target in enemy territory"
+  details: null
+- id: 510
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to quickly and efficiently eliminate multiple targets in quick succession"
+  details: null
+- id: 511
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 513
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 514
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 515
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 516
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the sniper rifle"
+  details: null
+- id: 517
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 518
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to identify the best tanking positions"
+  details: null
+- id: 519
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effective gunnery on the move"
+  details: null
+- id: 520
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effective use of blind spots and dead ground"
+  details: null
+- id: 521
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Knows the soft spots of enemy vehicles"
+  details: null
+- id: 522
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Understands land navigation and infantry interface"
+  details: null
+- id: 523
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Prioritizes between enemy tanks and enemy infantry"
+  details: null
+- id: 524
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Accurately estimates range/timing to achieve first shot hit"
+  details: null
+- id: 525
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness, crisis management, and aversion to friendly fire"
+  details: null
+- id: 526
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the tank"
+  details: null
+- id: 527
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 528
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Accurate at the longest ranges"
+  details: null
+- id: 529
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can effectively manage wind speed"
+  details: null
+- id: 530
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effective with sidearms"
+  details: null
+- id: 531
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can effectively range a target without using range finding capable equipment"
+  details: null
+- id: 532
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Demonstrates effective defensive maneuvering and use of countermeasures to defeat AA threats"
+  details: null
+- id: 533
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Capable of landing and taking off in an enclosed or restricted LZ"
+  details: null
+- id: 534
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "When tasked to, acts as an effective recon asset for ground forces including accurately marking targets"
+  details: null
+- id: 535
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Conducts correct type of attack for target and threat level"
+  details: null
+- id: 536
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near perfect control and accuracy with dumbfire weapons"
+  details: null
+- id: 537
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of aircraft"
+  details: null
+- id: 538
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near perfect situational awareness and crisis management"
+  details: null
+- id: 539
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished themselves on Battalion level"
+  details: null
+- id: 540
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 541
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 542
+  weapon: "Pilot"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 543
+  weapon: "Armor"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 544
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 545
+  weapon: "Sniper"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 546
+  weapon: "Automatic Rifle"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to effectively set-up and manoeuvre tripod mounted MG"
+  details: null
+- id: 547
+  weapon: "Combat Engineer"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to effectively set-up and manoeuvre tripod mounted Launchers"
+  details: null
+- id: 548
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Demonstrates skill with 40mm grenade launcher and ammo types"
+  details: null
+- id: 549
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Can effectively create a smokescreen for offensive purposes"
+  details: null
+- id: 550
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 551
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands the timing involved in reloading, deploying, etc"
+  details: null
+- id: 552
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 553
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to manage loadout weight while maintaining AIT effectiveness"
+  details: null
+- id: 554
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 555
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to effectively set-up and manoeuvre tripod mounted GMG"
+  details: null
+- id: 556
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Accurate at medium range with all sights"
+  details: null
+- id: 557
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively create a smokescreen for defensive purposes"
+  details: null
+- id: 558
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Seeks effective firing positions"
+  details: null
+- id: 559
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "General knowledge of all ammunition types"
+  details: null
+- id: 560
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 561
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands using the splash effect on entrenched enemy positions"
+  details: null
+- id: 562
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands minimum ranges and how to avoid friendly fire"
+  details: null
+- id: 563
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 564
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 565
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 566
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 567
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 568
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 569
+  weapon: "Grenadier"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 570
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sub-machine guns"
+  details: null
+- id: 571
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows effectiveness in building clearing"
+  details: null
+- id: 572
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to provide effective cover fire with the submachine gun"
+  details: null
+- id: 573
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Able to eliminate multiple targets at a time"
+  details: null
+- id: 574
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 575
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Understands when to use each firing mode"
+  details: null
+- id: 576
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 577
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Marksman"
+  description: "Uses hip fire when clearing buildings and in CQB"
+  details: null
+- id: 578
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium ranges while firing from the hip with sub-machine guns"
+  details: null
+- id: 579
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil with iron sights at medium range with sub-machine guns"
+  details: null
+- id: 580
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Frequently able to eliminate three or more targets at a time"
+  details: null
+- id: 581
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 582
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to master short 3-round bursts to conserve ammunition and control recoil"
+  details: null
+- id: 583
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Shows effectiveness in building clearing with no casualties"
+  details: null
+- id: 584
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Able to defend an enclosed space alone"
+  details: null
+- id: 585
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands how and when to fire \"around\" body armor"
+  details: null
+- id: 586
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 587
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Does not make game play errors that lead to death"
+  details: null
+- id: 588
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 589
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 590
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 591
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the support class"
+  details: null
+- id: 592
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 593
+  weapon: "Submachine Gun"
+  game: "Arma 3"
+  badge: "Expert"
+  description: "Able to be effective over 300 meters"
+  details: null
+- id: 594
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Moves tank when directed by leadership"
+  details: null
+- id: 595
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows general knowledge of tank maneuverability"
+  details: null
+- id: 596
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows understanding of the o'clock system"
+  details: null
+- id: 597
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Scans FOV for enemy, prioritizing anti-tank targets"
+  details: null
+- id: 598
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands flex and arc"
+  details: null
+- id: 599
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 600
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Coordinates with infantry to cover blind spots/flanks"
+  details: null
+- id: 601
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Understands when to provide supporting fire"
+  details: null
+- id: 602
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Aware of all the weak spots for each tank model"
+  details: null
+- id: 603
+  weapon: "Armor"
+  game: "RS"
+  badge: "Marksman"
+  description: "Knowledge of obstacles and what a tank can traverse"
+  details: null
+- id: 604
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Uses cover/dead space to protect the tank"
+  details: null
+- id: 605
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Consistently gauge distances accurately on first attempt"
+  details: null
+- id: 606
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Seamlessly coordinates with supporting platoon sized infantry teams"
+  details: null
+- id: 607
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Can effectively maneuver against an enemy tank"
+  details: null
+- id: 608
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Logically averts obstacles within scope of orders"
+  details: null
+- id: 609
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Knows how to angle the tank to provide the most protection"
+  details: null
+- id: 610
+  weapon: "Armor"
+  game: "RS"
+  badge: "Sharpshooter"
+  description: "Knows what ammunition is used on what target type"
+  details: null
+- id: 611
+  weapon: "Armor"
+  game: "RS"
+  badge: "Expert"
+  description: "Understands land navigation and infantry interface"
+  details: null
+- id: 612
+  weapon: "Armor"
+  game: "RS"
+  badge: "Expert"
+  description: "Prioritizes between enemy tanks and enemy infantry"
+  details: null
+- id: 613
+  weapon: "Armor"
+  game: "RS"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness, crisis management, and aversion to friendly fire"
+  details: null
+- id: 614
+  weapon: "Armor"
+  game: "RS"
+  badge: "Expert"
+  description: "Able to reliably operate both primary and secondary weapons while tank is in constant motion"
+  details: null
+- id: 615
+  weapon: "Armor"
+  game: "RS"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the tank"
+  details: null
+- id: 616
+  weapon: "Armor"
+  game: "RS"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 617
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Shows knowledge of and proficiency with attachments and optics"
+  details: null
+- id: 618
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands how to defeat body armour"
+  details: null
+- id: 619
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Always selects proper fire mode based on engagement type"
+  details: null
+- id: 620
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Understands bullet penetration for different calibres"
+  details: null
+- id: 621
+  weapon: "Rifle"
+  game: "Arma 3"
+  badge: "Sharpshooter"
+  description: "Maintains fire discipline at all times"
+  details: null
+- id: 622
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows general knowledge of all rifles"
+  details: "How many shots they hold, how much damage they do, where to aim with them"
+- id: 638
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 647
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control with weapon"
+  details: ""
+- id: 660
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Knows when and how to effectively use melee"
+  details: null
+- id: 661
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Knows when to use semi and full automatic fire."
+  details: null
+- id: 662
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 663
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows basic understanding of common weapon-based tricks and techniques"
+  details: null
+- id: 664
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Properly adapts playstyle based on rifle"
+  details: null
+- id: 665
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 666
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can effectively conserve ammo by burst fire when needed."
+  details: null
+- id: 667
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Accurate at all ranges with iron sights"
+  details: null
+- id: 668
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively lead moving targets"
+  details: null
+- id: 669
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows solid reflexes and decision making"
+  details: null
+- id: 670
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Properly uses cover to maintain an effective defensive position"
+  details: null
+- id: 671
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Implements important gameplay techniques into everyday play"
+  details: null
+- id: 672
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Always selects proper fire mode based on engagement type"
+  details: null
+- id: 673
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Understands bullet penetration"
+  details: null
+- id: 674
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Maintains fire discipline at all times"
+  details: null
+- id: 675
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 676
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 677
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 678
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 679
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 680
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 681
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows general knowledge of all CQC Weapons"
+  details: null
+- id: 682
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows effectiveness in building clearing"
+  details: null
+- id: 683
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Able to provide effective cover fire with the sub-machine gun"
+  details: null
+- id: 684
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows accurate knowledge of Shotgun ammo types and their effective usage"
+  details: null
+- id: 685
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows basic understanding of weapon usage in offense and defense"
+  details: null
+- id: 686
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows proper use of smoke grenades to provide cover for teammates"
+  details: null
+- id: 687
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Able to eliminate multiple targets at a time"
+  details: null
+- id: 688
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 689
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 690
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Uses hip fire when clearing buildings and in CQB"
+  details: null
+- id: 691
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to defend an enclosed space alone"
+  details: null
+- id: 692
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium ranges"
+  details: null
+- id: 693
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Frequently able to eliminate three or more targets at a time"
+  details: null
+- id: 694
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 695
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to master ammo conservation"
+  details: null
+- id: 696
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows effectiveness in building clearing with no casualties"
+  details: null
+- id: 697
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to master killing enemies without exposing self in building clearing"
+  details: null
+- id: 698
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 699
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 700
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 701
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 702
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 703
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 704
+  weapon: "Submachine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 705
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows general knowledge of all machine guns"
+  details: null
+- id: 706
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can effectively provide suppressive MG fire"
+  details: null
+- id: 707
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands how and when to advance to support team"
+  details: null
+- id: 708
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "General understanding of timing involved in deploying/undeploying"
+  details: null
+- id: 709
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows an understanding of how to preserve MG barrels"
+  details: null
+- id: 710
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Frequently able to hold off an entire flank from an enclosed area of a map"
+  details: null
+- id: 711
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Deploys in areas providing as little visibility to the enemy as possible"
+  details: null
+- id: 712
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Frequently asks for support from another soldier to cover the flanks"
+  details: null
+- id: 713
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 714
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to locate effective vantage points and positions automatically"
+  details: null
+- id: 715
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to utilize a spotter to find targets"
+  details: null
+- id: 716
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to eliminate 3-5 targets before being spotted"
+  details: null
+- id: 717
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Always on the move; rarely in the same area for long"
+  details: null
+- id: 718
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 719
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to quickly switch between numerous areas of deployment"
+  details: null
+- id: 720
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Sufficient reflexes between very thin areas"
+  details: null
+- id: 721
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Mastered mounted and unmounted aimed recoil."
+  details: null
+- id: 722
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 723
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 724
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 725
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 726
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 727
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 728
+  weapon: "Machine Gun"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 729
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can effectively use assigned secondary weapon / secondary functions"
+  details: null
+- id: 730
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows basic understanding of the advantages and limitations of each Engineer-specific weapon"
+  details: null
+- id: 731
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Properly utilizes splash damage for building clearing and building defense"
+  details: null
+- id: 732
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands potential friendly fire damage from AIT weapons"
+  details: null
+- id: 733
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 734
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows basic understanding of common map positions and player positioning"
+  details: null
+- id: 735
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 736
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Accurate with RPG and M79 Grenade Launcher at all ranges"
+  details: null
+- id: 737
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows in-depth understanding of Flamethrower fire cone and physic effects"
+  details: null
+- id: 738
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows proper ammo management"
+  details: null
+- id: 739
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 740
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows knowledge of how to close in to flamethrower range"
+  details: null
+- id: 741
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively use RPG / M79 / Flamethrower to effectively clear out fortified and window positions"
+  details: null
+- id: 742
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "In-depth understanding of explosive splash-damage and flame behavior/characteristics"
+  details: null
+- id: 743
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows vast knowledge of common map positions and player positioning"
+  details: null
+- id: 744
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 745
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 746
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 747
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 748
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 749
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 750
+  weapon: "Combat Engineer"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 751
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sniper rifles"
+  details: null
+- id: 752
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can effectively use base iron-sights / alternative sights on a sniper rifle"
+  details: null
+- id: 753
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Able to locate and report high priority target locations accurately"
+  details: null
+- id: 754
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands and applies the fundamental elements of positioning"
+  details: null
+- id: 755
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can effectively track and eliminate a target in territory with dense cover"
+  details: null
+- id: 756
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands the importance of fire discipline"
+  details: null
+- id: 757
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 758
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands the importance of maintaining distance from enemies"
+  details: null
+- id: 759
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively manage bullet drop"
+  details: null
+- id: 760
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target at long range"
+  details: null
+- id: 761
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Ability to maneuver the battlefield undetected"
+  details: null
+- id: 762
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Ability to give Squad Leader intelligence on enemy movement and positions"
+  details: null
+- id: 763
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Ability to judge if the current position is compromised and disengage if need be"
+  details: null
+- id: 764
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can stalk and eliminate a specific target in enemy territory"
+  details: null
+- id: 765
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Able to quickly and efficiently eliminate multiple targets in quick succession"
+  details: null
+- id: 766
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 767
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 768
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 769
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 770
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 771
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can instruct AIT users in the use of the sniper rifle"
+  details: null
+- id: 772
+  weapon: "Sniper"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 773
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows general knowledge of all rifles"
+  details: null
+- id: 774
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Aims for target`s chest"
+  details: null
+- id: 775
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Can effectively control full-auto recoil in close quarters situations"
+  details: null
+- id: 776
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Properly uses cover to maintain an effective fighting position"
+  details: null
+- id: 777
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Keeps track of the number of rounds left"
+  details: null
+- id: 778
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Can differentiate gameplay style based on rifle"
+  details: null
+- id: 779
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Shows proficency at all ranges with all sights"
+  details: null
+- id: 780
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively lead moving targets"
+  details: null
+- id: 781
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Shows solid reflexes and decision making skills"
+  details: null
+- id: 782
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Understands bullet penetration for different calibres"
+  details: null
+- id: 783
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Maintains fire discipline at all times"
+  details: null
+- id: 784
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Has distinguished himself at a Company level"
+  details: null
+- id: 785
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 786
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 787
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 788
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 789
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 790
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 791
+  weapon: "Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 792
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows general knowledge of all anti-tank weapons"
+  details: null
+- id: 793
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the basic mechanics behind damaging tanks"
+  details: null
+- id: 794
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows basic knowledge of using the anti-tank for building clearing purposes"
+  details: null
+- id: 795
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands potential friendly fire damage from anti-tank explosion or exhaust"
+  details: null
+- id: 796
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 797
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the timing involved in reloading, deploying, etc."
+  details: null
+- id: 798
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 799
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Accurate with anti-Tank at all ranges"
+  details: null
+- id: 801
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Maintains teamwork with provided supplier for faster rate of fire"
+  details: null
+- id: 802
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 803
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Shows knowledge of how to close in and flank around armored vehicles"
+  details: null
+- id: 804
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively use the anti-tank to clear out fortified & window positions"
+  details: null
+- id: 805
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Indepth understanding of anti-tank splash-damage and anti-infantry tactics"
+  details: null
+- id: 806
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving vehicle"
+  details: null
+- id: 807
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Effectively uses each projectile range on the different anti-tank weapons"
+  details: null
+- id: 808
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Has a vast knowledge of tank statistics"
+  details: null
+- id: 809
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 810
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 811
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 812
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 813
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 814
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 815
+  weapon: "Combat Engineer"
+  game: "Squad"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 816
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Demonstrates skill with the M203/GP-25"
+  details: null
+- id: 817
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Can effectively create a smokescreen for offensive purposes"
+  details: null
+- id: 818
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 819
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the timing involved in reloading, deploying, etc"
+  details: null
+- id: 820
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Effectively communicates with squad leaders to coordinate fire"
+  details: null
+- id: 821
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 822
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Accurate at medium range with all sights"
+  details: null
+- id: 823
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively create a smokescreen for defensive purposes"
+  details: null
+- id: 824
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Seeks effective firing positions"
+  details: null
+- id: 825
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 826
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Understands using the splash effect on entrenched enemy positions"
+  details: null
+- id: 827
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Understands minimum ranges and how to avoid friendly fire"
+  details: null
+- id: 828
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 829
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 830
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 831
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 832
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 833
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 834
+  weapon: "Grenadier"
+  game: "Squad"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 835
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows general knowledge of all automatic rifles"
+  details: null
+- id: 836
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands recoil and the use of burst to control it"
+  details: null
+- id: 837
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the concepts of and shows basic skills of suppressive fire"
+  details: null
+- id: 838
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands concepts of and shows basic skills of building clearing"
+  details: null
+- id: 839
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the idea of being a supporting element"
+  details: null
+- id: 840
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the effectiveness of pre-firing"
+  details: null
+- id: 841
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control with weapon"
+  details: null
+- id: 842
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Able to fire accurately and control recoil at medium to long range with iron sights and optics"
+  details: null
+- id: 843
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Understands when to use single-shot and when to use burst fire"
+  details: null
+- id: 844
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 845
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Seeks effective firing positions"
+  details: null
+- id: 846
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Shows solid ammo management skills"
+  details: null
+- id: 847
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Frequently able to clear a building single-handedly"
+  details: null
+- id: 848
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 849
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 850
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 851
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 852
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 853
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 854
+  weapon: "Automatic Rifle"
+  game: "Squad"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 855
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows general knowledge of all sniper rifles"
+  details: null
+- id: 856
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Can effectively use secondary weapon assigned to Sniper class"
+  details: null
+- id: 857
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Able to locate and report high priority target locations accurately"
+  details: null
+- id: 858
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the importance of maintaining distance from enemies"
+  details: null
+- id: 859
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Can effectively stalk and eliminate a target in territory with dense cover"
+  details: null
+- id: 860
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands the importance of fire discipline"
+  details: null
+- id: 861
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows acquired comfort and control"
+  details: null
+- id: 862
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Accurate at short and medium ranges when firing from the hip"
+  details: null
+- id: 863
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Accurate at the longest range with iron sights"
+  details: null
+- id: 864
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively lead a moving target"
+  details: null
+- id: 865
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Ability to move from cover to cover without detection"
+  details: null
+- id: 866
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Able to evade and escape enemy contact if detected"
+  details: null
+- id: 867
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Able to articulate and relay enemy classes and positions accurately"
+  details: null
+- id: 868
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can stalk and eliminate a target in territory with sparse cover"
+  details: null
+- id: 869
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Frequently outperforms his peers in pub play, drills, and scrimmages"
+  details: null
+- id: 870
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Does not make gameplay errors that lead to death"
+  details: null
+- id: 871
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Able to successfully carry out orders independently"
+  details: null
+- id: 872
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Effectively locates suitable cover and shooting locations while on the move to objectives"
+  details: null
+- id: 873
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Shows near-perfect situational awareness and crisis management"
+  details: null
+- id: 874
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Can instruct assigned users in the use of the AIT"
+  details: null
+- id: 875
+  weapon: "Sniper"
+  game: "Squad"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 876
+  weapon: "Rifle"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Aims for target's chest"
+  details: null
+- id: 877
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Reviewed and Discussed Lesson 1"
+  details: null
+- id: 878
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Reviewed and Discussed Lesson 2"
+  details: null
+- id: 879
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Reviewed and Discussed Lesson 3"
+  details: null
+- id: 880
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Reviewed and Discussed Lesson 4"
+  details: null
+- id: 881
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Reviewed and Discussed Lesson 5"
+  details: null
+- id: 882
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Completed Task 1"
+  details: null
+- id: 883
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Completed Task 2"
+  details: null
+- id: 884
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Completed Task 3"
+  details: null
+- id: 885
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Completed Task 4"
+  details: null
+- id: 886
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Has shown the ability to rationally interpret situations with impartiality."
+  details: null
+- id: 887
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Has maintained attendance, skills and decorum appropriate of a SLT candidate."
+  details: null
+- id: 888
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Has developed his/her own personal leadership style."
+  details: null
+- id: 889
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Understands how to be an effective link in the Chain of Command."
+  details: null
+- id: 890
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Understands the importance of Squad management both on and off the field."
+  details: null
+- id: 891
+  weapon: "SLT"
+  game: ""
+  badge: "N/A"
+  description: "Maintains positive relationships both in the 29th and its communities."
+  details: null
+- id: 892
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows general knowledge of all tanks and armored vehicles"
+  details: null
+- id: 893
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Constantly scans for potential targets, prioritizing enemy anti-tank targets"
+  details: null
+- id: 894
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Takes proper precautions when driving to avoid getting stuck or tipping over"
+  details: null
+- id: 895
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Shows general map knowledge regarding suitable driving routes"
+  details: null
+- id: 896
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Selects suitable ammunition types depending on target"
+  details: null
+- id: 897
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands how to use the range finder to land accurate shots at medium range"
+  details: null
+- id: 898
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Effectively uses commander's override to help gunner acquire targets"
+  details: null
+- id: 899
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Keeps tank properly positioned for maximum survivability while simultaneously supporting the team"
+  details: null
+- id: 900
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Understands basic concepts of being a supporting element for the infantry"
+  details: null
+- id: 901
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Maintains communication and coordination with team leadership"
+  details: null
+- id: 902
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Marksman"
+  description: "Does not endanger friendly forces with own weaponry"
+  details: null
+- id: 903
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Rarely makes driving mistakes which lead to getting the vehicle stuck or tipped over"
+  details: null
+- id: 904
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Automatically makes excellent decisions regarding tank positioning"
+  details: null
+- id: 905
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Effective gunnery at long ranges"
+  details: null
+- id: 906
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can accurately hit specific vulnerabilities on enemy vehicles"
+  details: null
+- id: 907
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can effectively manage multiple lines of communication between crew and team"
+  details: null
+- id: 908
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Can interpret team leader's orders and provide the most effective armor support possible"
+  details: null
+- id: 909
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Sharpshooter"
+  description: "Uses hard cover and hull down position to improve survivability"
+  details: null
+- id: 910
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Works closely with the gunner to move in and out of cover while engaging enemy"
+  details: null
+- id: 911
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Maintains situational awareness even in the confines of the driver position"
+  details: null
+- id: 912
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Effective gunnery on the move and at maximum ranges"
+  details: null
+- id: 913
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Efficiently uses ammunition of all types to avoid running dry and quickly neutralize the enemy"
+  details: null
+- id: 914
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Accurately predicts enemy decisions and movement"
+  details: null
+- id: 915
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Can instruct AIT users in armored warfare"
+  details: null
+- id: 916
+  weapon: "Armor"
+  game: "Squad"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level"
+  details: null
+- id: 917
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can identify good candidates for an LZ."
+  details: null
+- id: 918
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Uses the loach\u2019s spotting ability to recon effectively."
+  details: null
+- id: 919
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Able to evasively fly when under fire."
+  details: null
+- id: 920
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Shows general knowledge of all aircraft."
+  details: null
+- id: 921
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Constantly scans for potential targets, prioritizing enemy anti-air targets."
+  details: null
+- id: 922
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Understands basic concepts of being a supporting element for the infantry."
+  details: null
+- id: 923
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Maintains communication and coordination with team leadership."
+  details: null
+- id: 924
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Does not endanger friendly forces with own weaponry."
+  details: null
+- id: 925
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can effectively utilize the gunner position on attack helicopters."
+  details: null
+- id: 926
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Is able to efficiently land and deploy troops as a transport pilot."
+  details: null
+- id: 927
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Is able to effectively employ combat helicopter weapon systems."
+  details: null
+- id: 928
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Marksman"
+  description: "Can defend oneself if downed."
+  details: null
+- id: 929
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Knows placement of airbases and when to use them."
+  details: null
+- id: 930
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Is able to remain safe from SAM sites (<75 meters of altitude)."
+  details: null
+- id: 931
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can identify likely areas for enemy AA placement and enemy troop movement."
+  details: null
+- id: 932
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Rarely makes piloting mistakes that lead to the loss of the aircraft."
+  details: null
+- id: 933
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Effective gunnery at extremely long ranges."
+  details: null
+- id: 934
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can effectively manage multiple lines of communication between crew and team."
+  details: null
+- id: 935
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Can conserve airspeed and energy to return to base with damaged components."
+  details: null
+- id: 936
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Sharpshooter"
+  description: "Shows advanced knowledge of all aircraft."
+  details: null
+- id: 937
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has mastered all gun systems available."
+  details: null
+- id: 938
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can lead a moving spotting indicator to kill an enemy that is completely obscured."
+  details: null
+- id: 939
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can conserve airspeed and energy to return to base with totally destroyed components."
+  details: null
+- id: 940
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Works closely with the gunner to maximize weapons platform effectiveness."
+  details: null
+- id: 941
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Maintains situational awareness at all times."
+  details: null
+- id: 942
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can instruct AIT users in air asset warfare."
+  details: null
+- id: 943
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Can perform unorthodox troop insertion."
+  details: null
+- id: 944
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Shows near perfect situational awareness and crisis management."
+  details: null
+- id: 945
+  weapon: "Pilot"
+  game: "RS2"
+  badge: "Expert"
+  description: "Has distinguished himself at a Battalion level."
+  details: null

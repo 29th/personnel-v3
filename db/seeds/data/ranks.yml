@@ -1,0 +1,175 @@
+- id: 1
+  name: "Recruit"
+  abbr: "Rec."
+  grade: ""
+  filename: "pvt.png"
+  order: 1
+  description: "Recruits are uninitiated members of the unit. They are awaiting or completing their Basic Combat Training to earn the privileges of a full member of the unit. Upon completion of BCT, they are promoted to Private."
+- id: 2
+  name: "Private"
+  abbr: "Pvt."
+  grade: "E-1"
+  filename: "pvt.png"
+  order: 2
+  description: "Once cadets graduate basic combat training, they receive the 29th ID shoulder patch and serve to carry out orders to the best of their ability."
+- id: 3
+  name: "Private, First Class"
+  abbr: "PFC"
+  grade: "E-2"
+  filename: "pfc.png"
+  order: 3
+  description: "This rank is awarded to Privates who have become valuable to the Squad Leaders. They assist in drills, showing other Privates the ropes, and are next in line for leadership positions."
+- id: 4
+  name: "Technician, 5th Grade"
+  abbr: "T/5"
+  grade: "E-3"
+  filename: "t5.png"
+  order: 4
+  description: "Equivelant to Corporal, a T/5 has been qualified to specialize in a certain area, such as clerical or office work, or combat engineer weapons."
+- id: 5
+  name: "Corporal"
+  abbr: "Cpl."
+  grade: "E-3"
+  filename: "cpl.png"
+  order: 5
+  description: "The entry-level NCO rank, a corporal is a PFC who has proven himself in Leadership training and is capable of leading other soldiers. A Corporal is usually an Assistant Squad Leader, but can also lead squads if necessary. Usually does not discipline the men as much as a higher NCO, but acts as a team leader."
+- id: 6
+  name: "Technician, 4th Grade"
+  abbr: "T/4"
+  grade: "E-4"
+  filename: "t4.png"
+  order: 6
+  description: "Equivelant to Sergeant, this enlisted soldier is a proven specialist at a particular area, and often is in charge of training other specialists under him."
+- id: 7
+  name: "Sergeant"
+  abbr: "Sgt."
+  grade: "E-4"
+  filename: "sgt.png"
+  order: 7
+  description: "A Sergeant is a proven Corporal who is placed in charge of a squad and is in charge of his squad's discipline, appearance, and organization. Sergeants call practices and drills for their squad when necessary. In some cases, a Sergeant may be a part of a platoon headquarters."
+- id: 8
+  name: "Technician, 3rd Grade"
+  abbr: "T/3"
+  grade: "E-5"
+  filename: "t3.png"
+  order: 8
+  description: "Equivelant to Staff Sergeant, this enlisted soldier specializes in a certain area, such as head of a particular office in Headquarters Support Staff, Clerical Work, or even a highly proven Combat Engineer."
+- id: 9
+  name: "Staff Sergeant"
+  abbr: "SSgt."
+  grade: "E-5"
+  filename: "ssgt.png"
+  order: 9
+  description: "A Staff Sergeant has many of the same responsibilities as a Sergeant, but has even more exceptional leadership skills which come natural to him. Often has sergeants working under him and can lead a platoon or act as an advisor to the platoon leader."
+- id: 10
+  name: "Technical Sergeant"
+  abbr: "TSgt."
+  grade: "E-6"
+  filename: "tsgt.png"
+  order: 10
+  description: "A Technical Sergeant is a seasoned leader who typically serves as platoon sergeant in a highly distinguished capacity. In some cases, a Technical Sergeant can hold a Company HQ position. The key advisor to the platoon leader."
+- id: 11
+  name: "First Sergeant"
+  abbr: "FSgt."
+  grade: "E-8"
+  filename: "fsgt.png"
+  order: 12
+  description: "A key advisor to the Commander, the First Sergeant is often the most respected member of the company, and known as the \"Company Boss.\" Helps run the company by dispatching leadership training and has much experience under his belt."
+- id: 12
+  name: "Master Sergeant"
+  abbr: "MSgt."
+  grade: "E-8"
+  filename: "msgt.png"
+  order: 11
+  description: "A key advisor to the Commander, the Master Sergeant is the second highest ranking NCO rank possible in a company. Typically a Master Sergeant fulfills the same duties as a First Sergeant or acts as an assisting member of leadership to the First Sergeant. In the absence of a First Sergeant, the Master Sergeant is the Senior NCO of a company."
+- id: 13
+  name: "Warrant Officer 1"
+  abbr: "WO1"
+  grade: "W-1"
+  filename: "wo1.png"
+  order: 15
+  description: "Warrant Officer 1 fills the role of a Platoon Leader by someone who is typically in lieu of a 2nd Lieutenant."
+- id: 14
+  name: "Chief Warrant Officer 2"
+  abbr: "CW2"
+  grade: "W-2"
+  filename: "cw2.png"
+  order: 16
+  description: "Chief Warrant Officer 2 fills the role of an Company Executive Officer by someone who is typically in lieu of a 1st Lieutenant."
+- id: 15
+  name: "Chief Warrant Officer 3"
+  abbr: "CW3"
+  grade: "W-3"
+  filename: "cw3.png"
+  order: 17
+  description: "Chief Warrant Officer 3 fills the role of a Company Commander by someone who is typically in lieu of a Captain."
+- id: 16
+  name: "Chief Warrant Officer 4"
+  abbr: "CW4"
+  grade: "W-4"
+  filename: "cw4.png"
+  order: 18
+  description: "Chief Warrant Officer 4 fills the role of a Battalion Executive Officer by someone who is typically in lieu of a Major."
+- id: 17
+  name: "Chief Warrant Officer 5"
+  abbr: "CW5"
+  grade: "W-5"
+  filename: "cw5.png"
+  order: 19
+  description: "Chief Warrant Officer 5 fills the role of a Battalion Commander by someone who is typically in lieu of a Lieutenant Colonel."
+- id: 18
+  name: "Second Lieutenant"
+  abbr: "2Lt."
+  grade: "O-1"
+  filename: "2lt.png"
+  order: 20
+  description: "The entry-level Officer rank, who typically leads a platoon under the Company HQ's command.\r\n"
+- id: 19
+  name: "First Lieutenant"
+  abbr: "1Lt."
+  grade: "O-2"
+  filename: "1lt.png"
+  order: 21
+  description: "Usually the Executive Officer (XO) of the company, the First Lieutenant is second in command and executes orders from the Captain, but can be the Commanding Officer in absence of a Captain, or can lead a platoon if necessary.\r\n"
+- id: 20
+  name: "Captain"
+  abbr: "Cpt."
+  grade: "O-3"
+  filename: "cpt.png"
+  order: 22
+  description: "The Captain commands a Company, and is also referred to as the Company's Commanding Officer (CO). He does not lead a platoon, but is the highest rank in the Company HQ.\r\n"
+- id: 21
+  name: "Major"
+  abbr: "Maj."
+  grade: "O-4"
+  filename: "maj.png"
+  order: 23
+  description: "The Major is usually the Executive Officer of the Battalion, but can be the Commanding Officer in absence of a Lieutenant Colonel.\r\n"
+- id: 22
+  name: "Lieutenant Colonel"
+  abbr: "Lt. Col."
+  grade: "O-5"
+  filename: "ltcol.png"
+  order: 24
+  description: "The Lieutenant Colonel commands the entire Battalion, and is also referred to as the Commanding Officer, or CO, and does not lead a company, but is the highest rank in the Battalion HQ."
+- id: 24
+  name: "Sergeant Major"
+  abbr: "Sgt. Maj"
+  grade: "E-9"
+  filename: "sgtmaj.png"
+  order: 13
+  description: "A Sergeant Major is typically the Senior NCO for an entire Battalion. This rank is the second highest in the unit and is a mark of a distinguished and knowledgeable leader. The Sergeant Major is the go-to advisor for the battalion leader."
+- id: 25
+  name: "Command Sergeant Major"
+  abbr: "CSM"
+  grade: "E-9"
+  filename: "csm.png"
+  order: 14
+  description: "The Command Sergeant Major serves as the advisor to the regiment commander and is the highest NCO rank in the regiment. "
+- id: 26
+  name: "Colonel"
+  abbr: "Col."
+  grade: "O-6"
+  filename: "col.png"
+  order: 25
+  description: "The Colonel commands the entire Regiment, and is also referred to as the Commanding Officer, or CO."

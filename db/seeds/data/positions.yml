@@ -1,0 +1,2219 @@
+- id: 1
+  name: "Rifleman"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Rifle"
+- id: 2
+  name: "Second Class Automatic Rifleman"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Automatic Rifle"
+- id: 3
+  name: "First Class Automatic Rifleman"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Automatic Rifle"
+- id: 4
+  name: "Second Class Machine Gunner"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Machine Gun"
+- id: 5
+  name: "First Class Machine Gunner"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Machine Gun"
+- id: 6
+  name: "Combat Engineer"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Combat Engineer"
+- id: 7
+  name: "Submachine Gunner"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Submachine Gun"
+- id: 8
+  name: "Tanker"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Armor"
+- id: 9
+  name: "Mortarman"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Mortar"
+- id: 10
+  name: "Asst. Squad Leader"
+  active: true
+  order: 8
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 11
+  name: "Squad Leader"
+  active: true
+  order: 9
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 12
+  name: "Platoon Clerk"
+  active: true
+  order: 10
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 13
+  name: "Platoon Sniper"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Sniper"
+- id: 14
+  name: "Platoon Sergeant"
+  active: true
+  order: 18
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 15
+  name: "Platoon Leader"
+  active: true
+  order: 69
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 16
+  name: "Drill Instructor"
+  active: true
+  order: 68
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 17
+  name: "Company Clerk"
+  active: true
+  order: 0
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 18
+  name: "Company Sergeant"
+  active: true
+  order: 36
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 19
+  name: "Senior NCO"
+  active: true
+  order: 37
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 20
+  name: "Commanding Officer"
+  active: true
+  order: 39
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 21
+  name: "Battalion SNCO"
+  active: true
+  order: 80
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 22
+  name: "Battalion Executive Officer"
+  active: true
+  order: 96
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 23
+  name: "Battalion Commander"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 24
+  name: "Executive Officer"
+  active: true
+  order: 38
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 25
+  name: "Chief of Engineer Corps"
+  active: true
+  order: 99
+  description: "Responsible for guiding, invention, and overseeing of engineer projects.  Responsible for making sure Engineer Corps is producing quality work and meeting goals."
+  access_level: 10
+  AIT: "N/A"
+- id: 26
+  name: "Section Leader"
+  active: false
+  order: 0
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 27
+  name: "Battalion S-3"
+  active: true
+  order: 47
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 28
+  name: "Testing"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 29
+  name: "Battalion S-4"
+  active: true
+  order: 46
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 30
+  name: "Battalion Sergeant"
+  active: true
+  order: 41
+  description: ""
+  access_level: 10
+  AIT: "Leadership"
+- id: 31
+  name: "S-3"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 32
+  name: "S-3 Operations"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 33
+  name: "Reservist"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 34
+  name: "Reserve Platoon Leader"
+  active: false
+  order: 0
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 35
+  name: "Recruit"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 36
+  name: "Assistant Combat Engineer"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 37
+  name: "Asst. BAR Gunner"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Automatic Rifle"
+- id: 38
+  name: "BAR Gunner"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Automatic Rifle"
+- id: 39
+  name: "Bazooka"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Combat Engineer"
+- id: 40
+  name: "Chief"
+  active: false
+  order: 0
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 41
+  name: "Chief of Adjutant Corps"
+  active: true
+  order: 99
+  description: "Responsible for the smooth running of the office."
+  access_level: 10
+  AIT: "N/A"
+- id: 42
+  name: "Chief of Medical Corps"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 43
+  name: "Combat Technician"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Combat Engineer"
+- id: 44
+  name: "First Sergeant"
+  active: false
+  order: 0
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 45
+  name: "Grenadier"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Grenadier"
+- id: 46
+  name: "Machine Gunner"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Machine Gun"
+- id: 47
+  name: "Journalist"
+  active: true
+  order: 83
+  description: "The publications journalist is in charge of at least once a week posting a new announcement on the main website. Whether it be an article on OCS, an official scrim, recent promotions or simply a state of the unit announcement, each journalist will come up"
+  access_level: 0
+  AIT: "N/A"
+- id: 48
+  name: "Retired"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 49
+  name: "S-3 Secretary"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 50
+  name: "Shotgunner"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 51
+  name: "Sniper"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Sniper"
+- id: 52
+  name: "Heavy Gunner"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Automatic Rifle"
+- id: 53
+  name: "Special Assignment"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 54
+  name: "Advisor"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 55
+  name: "Adjutant Officer"
+  active: false
+  order: 59
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 56
+  name: "Calendar Secretary"
+  active: false
+  order: 46
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 57
+  name: "Senior Civil Affairs Editor"
+  active: true
+  order: 89
+  description: "Responsible for editing and proof-reading works written by Publications Journalists.  Will aid the Chief of Civil Affairs in maintaining regular publications and deadlines as well as acting as a liaison to HQ.  Must show good writing and language skills."
+  access_level: 5
+  AIT: "N/A"
+- id: 58
+  name: "Steam Event Secretary"
+  active: false
+  order: 35
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 59
+  name: "Steam Roster Secretary"
+  active: false
+  order: 38
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 60
+  name: "Chief of Civil Affairs Corps"
+  active: true
+  order: 99
+  description: "The Chief will oversee all actions and submissions in this office. After submissions have been approved and anything is ready for publishing to the website, the chief will approve it and then it will be posted as soon as humanly possible."
+  access_level: 10
+  AIT: "N/A"
+- id: 61
+  name: "Graphics Specialist"
+  active: true
+  order: 70
+  description: "The graphics staff will take all requests and make adjustments to photos or graphics as needed. All graphics can be requested and one will be picked. Many graphics will be needed for handbooks and website publications. The graphics staff is also able to m"
+  access_level: 0
+  AIT: "N/A"
+- id: 62
+  name: "Level Technician"
+  active: true
+  order: 85
+  description: "Designs levels for use in game"
+  access_level: 0
+  AIT: "N/A"
+- id: 63
+  name: "Access Technician"
+  active: false
+  order: 55
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 64
+  name: "Chief Finance Officer"
+  active: true
+  order: 99
+  description: "Responsible for the smooth running of all the finance office."
+  access_level: 10
+  AIT: "N/A"
+- id: 65
+  name: "Chief of Intelligence Corps"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 66
+  name: "Intelligence Officer"
+  active: true
+  order: 89
+  description: "An Intel Officer is someone who will go out on a regular basis, scoping out other realism units. An IO Also makes sure the current information on a unit is  up to date. Information on any unit should not by any circumstances be outdated."
+  access_level: 0
+  AIT: "N/A"
+- id: 67
+  name: "Chief of Lighthouse Corps"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 68
+  name: "Senior Drill Instructor"
+  active: true
+  order: 0
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 69
+  name: "Asst. Drill Instructor"
+  active: false
+  order: 66
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 70
+  name: "Enlistment Liaison"
+  active: false
+  order: 55
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 71
+  name: "Lighthouse Secretary"
+  active: true
+  order: 90
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 72
+  name: "Recruitment Secretary"
+  active: true
+  order: 38
+  description: "Keeps the recruitment record up-to-date, posting weekend passes for recruiters, as well as awarding Combat Action Badges to those eligible."
+  access_level: 0
+  AIT: "N/A"
+- id: 73
+  name: "Postal Secretary"
+  active: true
+  order: 25
+  description: "In charge of sending emails to cadets before the training platoon starts, while it is in training, and after the training platoon graduates. Is required to be online at certain times to make sure that the emails are sent promptly and on time."
+  access_level: 0
+  AIT: "N/A"
+- id: 74
+  name: "Steam Community Secretary"
+  active: true
+  order: 31
+  description: "Creates new Steam Community Groups for each Training Platoon, schedules events and reminders for each day of Basic Training, and ensures all cadets join the group."
+  access_level: 0
+  AIT: "N/A"
+- id: 75
+  name: "Medical Technician"
+  active: true
+  order: 84
+  description: "Tends to any technical difficulties or trouble with in-game technical operations, as well proactively suggests to the company ways to keep their computers running to their full potential.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 76
+  name: "Clerk"
+  active: true
+  order: 45
+  description: "Organizes the content and requests in the Medical Office, creating a layout that will provide easy answers to future problems.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 77
+  name: "Chief of Military Police Corps"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 78
+  name: "Senior Military Police Officer"
+  active: true
+  order: 89
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 79
+  name: "Chief of Operations Corps"
+  active: true
+  order: 99
+  description: "Overseer of all activities in the office."
+  access_level: 10
+  AIT: "N/A"
+- id: 80
+  name: "Operations Secretary"
+  active: false
+  order: 88
+  description: "Responsible for mantaining contact with members from outside of Operations."
+  access_level: 0
+  AIT: "N/A"
+- id: 81
+  name: "Chief of Quartermaster Corps"
+  active: true
+  order: 99
+  description: "Responsible for the smooth running of all the quartermaster office."
+  access_level: 10
+  AIT: "N/A"
+- id: 82
+  name: "Quartermaster"
+  active: true
+  order: 60
+  description: "Make stamps, signatures and videos as needed by other branches of the unit."
+  access_level: 0
+  AIT: "N/A"
+- id: 83
+  name: "Quartermaster Secretary"
+  active: true
+  order: 88
+  description: "In charge of adding awards and promotions to their assigned Platoon\\'s List of Tasks, as well as updating that Platoon\\'s Tour of Duties."
+  access_level: 5
+  AIT: "N/A"
+- id: 84
+  name: "Head of Operations"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 85
+  name: "Signal Corps Officer"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 86
+  name: "Chief of Signal Corps"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 87
+  name: "Intelligence Secretary"
+  active: true
+  order: 55
+  description: "Someone who will take the information given to them by the Intel Officers and organize it. They will make sure to remind officers to keep info up to date. Report any changes in the information."
+  access_level: 0
+  AIT: "N/A"
+- id: 88
+  name: "SOP Planner"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 89
+  name: "Signal Office Clerk"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 90
+  name: "Chief of Infantry School"
+  active: false
+  order: 0
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 91
+  name: "Infantry School Secretary"
+  active: false
+  order: 5
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 92
+  name: "S-3 Staff"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 93
+  name: "Head of Darkest Hour Public Relations"
+  active: false
+  order: 19
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 94
+  name: "Contact Registrar"
+  active: false
+  order: 48
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 95
+  name: "Soldier Inquirer"
+  active: true
+  order: 68
+  description: "Contacts any soldier who receives a general discharge due to attendance demerits."
+  access_level: 0
+  AIT: "N/A"
+- id: 96
+  name: "Test Secretary"
+  active: false
+  order: 36
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 97
+  name: "Tester"
+  active: false
+  order: 33
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 98
+  name: "Assistant Editor"
+  active: false
+  order: 85
+  description: "Will aid the Editor in Chief of Civil Affairs Corps in editing and proof-reading works written by Publications Journalists. Must show good writing and language skills.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 99
+  name: "Head Test Secretary"
+  active: false
+  order: 38
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 100
+  name: "Operations Clerk"
+  active: true
+  order: 85
+  description: "In charge of organising Operations internal administration, ensuring information is organised correctly within the Office. Writing skills are a necessity, and other skills such as photoshopping and excel will also be very useful."
+  access_level: 0
+  AIT: "N/A"
+- id: 101
+  name: "Operations Planner"
+  active: false
+  order: 82
+  description: "Responsible for coming up with various scenarios, as well as summarize their scenarios in order for them to be properly tested.\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 102
+  name: "Chief Clerk"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 103
+  name: "Asst. Chief of Adjutant Corps"
+  active: true
+  order: 97
+  description: "Aids the Chief in running the office."
+  access_level: 5
+  AIT: "N/A"
+- id: 104
+  name: "Senior Enlistment Liaison"
+  active: true
+  order: 59
+  description: "In charge of training and leading all Enlistment Liaisons."
+  access_level: 5
+  AIT: "N/A"
+- id: 105
+  name: "Adjutant Monitor"
+  active: true
+  order: 55
+  description: "Sends out emails to anybody in the unit who accumulates two AWOL's"
+  access_level: 0
+  AIT: "N/A"
+- id: 106
+  name: "Head Contact Registrar"
+  active: false
+  order: 74
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 107
+  name: "Head Soldier Inquirer"
+  active: false
+  order: 77
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 108
+  name: "Server Technician"
+  active: false
+  order: 60
+  description: "Keeps the 29th servers fresh with quality custom levels, content, and keeps the servers globalized with equal content."
+  access_level: 0
+  AIT: "N/A"
+- id: 109
+  name: "Code Technician"
+  active: false
+  order: 50
+  description: "Designs, writes, and releases coded content for the 29th."
+  access_level: 0
+  AIT: "N/A"
+- id: 110
+  name: "Deputy Engineer Chief"
+  active: false
+  order: 95
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 111
+  name: "3D Technician"
+  active: true
+  order: 30
+  description: "Designs models and animations for use in-game"
+  access_level: 0
+  AIT: "N/A"
+- id: 112
+  name: "Rifle School Cadre"
+  active: false
+  order: 11
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 113
+  name: "Auto Rifle School Cadre"
+  active: false
+  order: 12
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 114
+  name: "Mortar School Cadre"
+  active: false
+  order: 13
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 115
+  name: "CE School Cadre"
+  active: false
+  order: 14
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 116
+  name: "MG School Cadre"
+  active: false
+  order: 15
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 117
+  name: "Sniper School Cadre"
+  active: false
+  order: 16
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 118
+  name: "Senior Scrimmage Admin"
+  active: true
+  order: 68
+  description: "Sets the standards and oversees the training of the Scrimmage Admins.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 119
+  name: "Scrimmage Admin"
+  active: true
+  order: 64
+  description: "In charge of running Battalion Scrimmages in and out of the 29th. Has the permission and the Admin to start and lead Pub/29th only Scrims.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 120
+  name: "Darkest Hour Public Relations"
+  active: false
+  order: 18
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 121
+  name: "Attendance Adjutant"
+  active: false
+  order: 57
+  description: "Responsible for monitoring and reporting monthly attendance."
+  access_level: 0
+  AIT: "N/A"
+- id: 122
+  name: "Armored School Cadre"
+  active: false
+  order: 17
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 123
+  name: "Newsletter Contributor"
+  active: false
+  order: 54
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 124
+  name: "Newsletter Editor in Chief"
+  active: false
+  order: 58
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 125
+  name: "Asst. Chief of Engineer Corps"
+  active: true
+  order: 97
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 126
+  name: "Senior Attendance Adjutant"
+  active: true
+  order: 89
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 127
+  name: "Submachine Gun School Cadre"
+  active: false
+  order: 18
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 128
+  name: "Field Reporter"
+  active: false
+  order: 46
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 129
+  name: "Asst. Chief of Medical Corps"
+  active: true
+  order: 97
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 130
+  name: "Senior Medical Technician"
+  active: true
+  order: 88
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 131
+  name: "Assistant Chief of Lighthouse"
+  active: true
+  order: 97
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 132
+  name: "Military Police Officer"
+  active: true
+  order: 87
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 133
+  name: "Server Admin"
+  active: true
+  order: 55
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 134
+  name: "Civil Affairs Photographer"
+  active: true
+  order: 21
+  description: "Responsible for taking screenshots and videos of 29th events for publication."
+  access_level: 0
+  AIT: "N/A"
+- id: 135
+  name: "Senior Clerk"
+  active: true
+  order: 77
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 136
+  name: "Battalion Liason"
+  active: true
+  order: 93
+  description: "Responsible for reporting activities of the office to the Battalion."
+  access_level: 0
+  AIT: "N/A"
+- id: 137
+  name: "Project Admin"
+  active: true
+  order: 53
+  description: "Responsible for coming up, developing and running different events and scrimmage scenarios for the 29th.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 138
+  name: "Project Assistant"
+  active: true
+  order: 57
+  description: "Responsible for assisting the Project Admin in his projects.\r\n"
+  access_level: 0
+  AIT: "N/A"
+- id: 139
+  name: "Senior Recruitment Officer"
+  active: true
+  order: 35
+  description: "Responsible for improving 29th recruiting operations through events and incentives as well as assisting in any problems with recruiting on a soldier to soldier basis. Is also a resource for cadets in the 29th for any problems they have that go beyond the "
+  access_level: 5
+  AIT: "N/A"
+- id: 140
+  name: "Wiki Editor"
+  active: true
+  order: 18
+  description: "Responsible for keeping the 29th Wiki up to date and editing the Wiki when information becomes obsolete."
+  access_level: 0
+  AIT: "N/A"
+- id: 141
+  name: "Medic"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 142
+  name: "Finance Officer"
+  active: true
+  order: 88
+  description: "Responsible for the donation process, producing the topics in the 'Promotions and Awards' board."
+  access_level: 0
+  AIT: "N/A"
+- id: 143
+  name: "Radio Operator"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 144
+  name: "Fireteam Leader"
+  active: true
+  order: 7
+  description: ""
+  access_level: 0
+  AIT: "Leadership"
+- id: 145
+  name: "Assistant Chief Fundraising Officer"
+  active: true
+  order: 85
+  description: "Responsible for acknowledging posters and articles provided by the Fundraising Officers, and will be approved by the Chief."
+  access_level: 0
+  AIT: "N/A"
+- id: 146
+  name: "Fundraising Officer"
+  active: true
+  order: 81
+  description: "Responsible for the formulation of posters, articles and videos to increase donations in the 29th Infantry Division."
+  access_level: 0
+  AIT: "N/A"
+- id: 147
+  name: "Senior Drill Instructor - RS"
+  active: true
+  order: 89
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 148
+  name: "Senior Drill Instructor - DH"
+  active: false
+  order: 88
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 149
+  name: "Drill Instructor - DH"
+  active: false
+  order: 78
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 150
+  name: "Drill Instructor - RS2"
+  active: true
+  order: 76
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 151
+  name: "Drill Instructor - RS"
+  active: true
+  order: 79
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 152
+  name: "Drill Instructor - A3"
+  active: true
+  order: 77
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 153
+  name: "Enlistment Enforcement Officer"
+  active: true
+  order: 48
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 154
+  name: "Signal Corps Community Contact"
+  active: true
+  order: 65
+  description: "Responsible for obtaining, maintaining, and promoting cohesion between units outside the 29th as well as collecting data for that unit vital to maintain communication."
+  access_level: 0
+  AIT: "N/A"
+- id: 155
+  name: "Senior Community Contact - DH"
+  active: false
+  order: 80
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 156
+  name: "Senior Community Contact - RS"
+  active: true
+  order: 79
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 157
+  name: "Senior Community Contact - A3"
+  active: true
+  order: 78
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 158
+  name: "Realism Website Designer/Maintainer"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 159
+  name: "Signal Corps Clerk"
+  active: true
+  order: 87
+  description: "Signal Corp Clerks have the task of creating Signal Corps publications, data lists, meeting notes, inter-unit messages, etc\n"
+  access_level: 5
+  AIT: "N/A"
+- id: 160
+  name: "Fundraising Editor"
+  active: true
+  order: 43
+  description: "Provides grammatical and punctuation checks for posters and articles made by the Fundraising Officers."
+  access_level: 0
+  AIT: "N/A"
+- id: 161
+  name: "Finance Clerk"
+  active: true
+  order: 90
+  description: "Provides weapon passes to donators."
+  access_level: 0
+  AIT: "N/A"
+- id: 162
+  name: "Senior Drill Instructor - A3"
+  active: true
+  order: 87
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 163
+  name: "Signal Corps Lead Clerk"
+  active: true
+  order: 89
+  description: "Signal Corps Lead Clerk has the task of creating Signal Office publications, data lists, meeting notes, inter-unit messages, etc. as well as assigning tasks to other clerks in Signal Corps.   -Cannot Apply For-"
+  access_level: 0
+  AIT: "N/A"
+- id: 164
+  name: "Assistant Chief Finance Officer"
+  active: true
+  order: 97
+  description: "Responsible for acknowledging donations, covering all received donations and outgoing costs over a period of 2 weeks."
+  access_level: 10
+  AIT: "N/A"
+- id: 166
+  name: "Video Publications Specialist"
+  active: false
+  order: 76
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 167
+  name: "Assistant Video Publications Specialist"
+  active: false
+  order: 74
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 168
+  name: "Chief Reservist"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 169
+  name: "Support Staff"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 170
+  name: "Assistant Chief Finance Graphics Editor"
+  active: true
+  order: 45
+  description: "Responsible for supervising the graphics staff and sending up their work to the Chief."
+  access_level: 0
+  AIT: "N/A"
+- id: 171
+  name: "Finance Graphics Editor"
+  active: true
+  order: 22
+  description: "Provides the set of skills needed to make Fundraising posters and articles look nice, also creates graphics documents."
+  access_level: 0
+  AIT: "N/A"
+- id: 172
+  name: "Senior Medical Technician - DH"
+  active: false
+  order: 69
+  description: "Lead Technician in charge of all in-game issues within Darkest Hour."
+  access_level: 0
+  AIT: "N/A"
+- id: 173
+  name: "Senior Medical Technician - RS"
+  active: false
+  order: 68
+  description: "Lead Technician in charge of all issues in-game with Rising Storm."
+  access_level: 0
+  AIT: "N/A"
+- id: 174
+  name: "Senior Medical Technician - A3"
+  active: false
+  order: 67
+  description: "Lead Technician in charge of all in-game issues with Arma 3"
+  access_level: 0
+  AIT: "N/A"
+- id: 175
+  name: "Medical Technician - DH"
+  active: false
+  order: 64
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 176
+  name: "Medical Technician - RS"
+  active: true
+  order: 65
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 177
+  name: "Medical Technician - A3"
+  active: true
+  order: 63
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 178
+  name: "Mission Technician - A3"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 179
+  name: "Pilot"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Pilot"
+- id: 180
+  name: "AWOL Adjutant"
+  active: true
+  order: 50
+  description: "Responsible for posting demerits and AWOL's maintaining records pertaining to demerits"
+  access_level: 0
+  AIT: "N/A"
+- id: 181
+  name: "Lighthouse Support Staff"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 182
+  name: "Adjutant Clerk"
+  active: true
+  order: 42
+  description: "Responsible for keeping up to date the Adjutant Monitor and the Soldier Inquirer tasks as well as administrating the surveys to certain soldiers."
+  access_level: 0
+  AIT: "N/A"
+- id: 183
+  name: "Asst. Drill Instructor - A3"
+  active: true
+  order: 67
+  description: "Serves as the Drill Instructor's right hand man in Basic Combat Training, helping him teach the cadets, posting the drill report at the end of the night (attendance, etc.). If the Asst. DI does a good enough job he can be certified as a Drill Instructor."
+  access_level: 0
+  AIT: "N/A"
+- id: 184
+  name: "Asst. Drill Instructor - DH"
+  active: false
+  order: 68
+  description: "Serves as the Drill Instructor's right hand man in Basic Combat Training, helping him teach the cadets, posting the drill report at the end of the night (attendance, etc.). If the Asst. DI does a good enough job he can be certified as a Drill Instructor."
+  access_level: 0
+  AIT: "N/A"
+- id: 185
+  name: "Asst. Drill Instructor - RS"
+  active: true
+  order: 69
+  description: "Serves as the Drill Instructor's right hand man in Basic Combat Training, helping him teach the cadets, posting the drill report at the end of the night (attendance, etc.). If the Asst. DI does a good enough job he can be certified as a Drill Instructor."
+  access_level: 0
+  AIT: "N/A"
+- id: 186
+  name: "Civil Affairs Editor"
+  active: true
+  order: 83
+  description: "Will aid the Editor in Chief of Civil Affairs Corps in editing and proof-reading works written by Publicists and video works created by the Video Staff of Adjutant Corps for Civil Affairs. Must show good writing and language skills."
+  access_level: 0
+  AIT: "N/A"
+- id: 187
+  name: "Enlistment Liaison - DH"
+  active: false
+  order: 56
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 188
+  name: "Enlistment Liaison - A3"
+  active: true
+  order: 55
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 189
+  name: "Enlistment Liaison - RS"
+  active: false
+  order: 57
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 190
+  name: "Lead Journalist"
+  active: true
+  order: 84
+  description: "In charge of written projects for Civil Affairs. Works directly with Publicists to create and finalize projects for the 29th."
+  access_level: 5
+  AIT: "N/A"
+- id: 192
+  name: "Realism Website Designer/Maintainer - Lead"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 193
+  name: "Senior Postal Secretary"
+  active: true
+  order: 27
+  description: "Is in charge off all Postal Secretaries in LH, reports directly to Chief of LH as part of the senior staff."
+  access_level: 5
+  AIT: "N/A"
+- id: 194
+  name: "Chief of S-3"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 195
+  name: "Expert Infantry School Cadre"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 196
+  name: "Temporary"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 197
+  name: "Statistical Accountant"
+  active: true
+  order: 92
+  description: "Records donations of 29th members in an Excel sheet. "
+  access_level: 0
+  AIT: "N/A"
+- id: 198
+  name: "Battalion S-1"
+  active: true
+  order: 98
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 199
+  name: "Battalion S-2"
+  active: true
+  order: 48
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 202
+  name: "ELOA Adjutant"
+  active: true
+  order: 15
+  description: "Responsible for creating the new entries in the ELOA system."
+  access_level: 0
+  AIT: "N/A"
+- id: 203
+  name: "Finance Secretary"
+  active: true
+  order: 93
+  description: "Responsible for sending out a detailed PM to all members of a newly graduated Training Platoon explaining to them what the Finance Office is and what it's used for."
+  access_level: 5
+  AIT: "N/A"
+- id: 204
+  name: "Assistant Chief Quartermaster"
+  active: false
+  order: 80
+  description: "Responsible for quality control over any graphics work needed and aids the chief in the smooth running of the office."
+  access_level: 5
+  AIT: "N/A"
+- id: 205
+  name: "Chief of Ordnance Corps"
+  active: true
+  order: 99
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 206
+  name: "Ordnance Clerk"
+  active: true
+  order: 50
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 207
+  name: "SLT Candidate"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 208
+  name: "Senior Video Editor"
+  active: true
+  order: 85
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 209
+  name: "Video Editor"
+  active: true
+  order: 82
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 210
+  name: "Senior Quartermaster"
+  active: true
+  order: 65
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 212
+  name: "Camera Crew - RS"
+  active: false
+  order: 53
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 213
+  name: "Camera Crew - DH"
+  active: false
+  order: 54
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 214
+  name: "Camera Crew - A3"
+  active: true
+  order: 52
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 215
+  name: "Battalion Clerk"
+  active: true
+  order: 22
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 216
+  name: "Lead Publicist"
+  active: true
+  order: 85
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 217
+  name: "Publicist"
+  active: true
+  order: 82
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 218
+  name: "Field Reporter - DH"
+  active: false
+  order: 45
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 219
+  name: "Field Reporter - RS"
+  active: true
+  order: 46
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 220
+  name: "Field Reporter - A3"
+  active: true
+  order: 44
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 222
+  name: "Community Manager"
+  active: false
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 223
+  name: "AWOL Secretary"
+  active: true
+  order: 53
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 224
+  name: "Senior Wiki Editor"
+  active: true
+  order: 20
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 225
+  name: "Senior Level Technician"
+  active: true
+  order: 86
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 226
+  name: "Logistics Technician"
+  active: true
+  order: 79
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 227
+  name: "Tactical Technician"
+  active: true
+  order: 72
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 228
+  name: "Records Clerk"
+  active: true
+  order: 69
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 229
+  name: "Asst. Chief of Civil Affairs Office"
+  active: true
+  order: 95
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 230
+  name: "Operations Clerk"
+  active: false
+  order: 69
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 231
+  name: "Operations Record Keeper"
+  active: true
+  order: 69
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 232
+  name: "Tank Commander"
+  active: true
+  order: 50
+  description: ""
+  access_level: 0
+  AIT: "Armor"
+- id: 233
+  name: "First Class Tanker"
+  active: false
+  order: 40
+  description: ""
+  access_level: 0
+  AIT: "Armor"
+- id: 234
+  name: "Second Class Tanker"
+  active: false
+  order: 30
+  description: ""
+  access_level: 0
+  AIT: "Armor"
+- id: 235
+  name: "Mortar Operator"
+  active: true
+  order: 1
+  description: ""
+  access_level: 0
+  AIT: "Mortar"
+- id: 236
+  name: "Mortar Observer"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Mortar"
+- id: 237
+  name: "MP Secretary"
+  active: true
+  order: 46
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 238
+  name: "Assistant Chief of Military Police Corps"
+  active: true
+  order: 98
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 239
+  name: "Senior Tactical Technician"
+  active: true
+  order: 74
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 240
+  name: "Print Journalist"
+  active: true
+  order: 82
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 241
+  name: "Interview Journalist"
+  active: true
+  order: 81
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 242
+  name: "Senior Logistical Technician"
+  active: true
+  order: 75
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 243
+  name: "Signal Corps Assistant Liaison"
+  active: true
+  order: 34
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 244
+  name: "Senior AWOL Secretary"
+  active: true
+  order: 54
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 245
+  name: "Senior AWOL Adjutant"
+  active: true
+  order: 51
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 246
+  name: "Senior Adjutant Clerk"
+  active: true
+  order: 43
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 248
+  name: "Senior Field Reporter"
+  active: true
+  order: 47
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 249
+  name: "Senior Platoon Sniper"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "Sniper"
+- id: 250
+  name: "Senior ELOA Adjutant"
+  active: true
+  order: 16
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 251
+  name: "Adjutant Secretary"
+  active: true
+  order: 80
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 252
+  name: "Chief Server Administrator - RS"
+  active: true
+  order: 89
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 253
+  name: "Chief Server Administrator - DH"
+  active: false
+  order: 69
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 254
+  name: "Chief Server Administrator - A3"
+  active: true
+  order: 49
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 255
+  name: "Senior Code Technician - RS"
+  active: true
+  order: 87
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 256
+  name: "Code Technician - RS"
+  active: true
+  order: 84
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 257
+  name: "Level Technician - RS"
+  active: true
+  order: 77
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 258
+  name: "Server Level Technician - RS"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 259
+  name: "Senior Code Technician - DH"
+  active: false
+  order: 66
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 260
+  name: "Code Technician - DH"
+  active: true
+  order: 63
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 261
+  name: "Senior Level Technician - DH"
+  active: true
+  order: 60
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 262
+  name: "Level Technician - DH"
+  active: true
+  order: 58
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 263
+  name: "Senior Technician - A3"
+  active: true
+  order: 46
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 264
+  name: "Technician - A3"
+  active: true
+  order: 43
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 265
+  name: "Senior Web Technician"
+  active: true
+  order: 83
+  description: null
+  access_level: 5
+  AIT: "N/A"
+- id: 266
+  name: "Web Technician"
+  active: true
+  order: 82
+  description: null
+  access_level: 0
+  AIT: "N/A"
+- id: 267
+  name: "Senior Level Technician - RS"
+  active: true
+  order: 79
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 268
+  name: "Chief Web Technician"
+  active: true
+  order: 38
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 269
+  name: "Crewman First Class"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 270
+  name: "Crewman Second Class"
+  active: true
+  order: 0
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 271
+  name: "Staff Clerk"
+  active: true
+  order: 30
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 272
+  name: "Code Technician - A3"
+  active: true
+  order: 36
+  description: null
+  access_level: 0
+  AIT: "N/A"
+- id: 273
+  name: "Senior Drill Instructor - RS2"
+  active: true
+  order: 86
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 274
+  name: "Senior Drill Instructor - SQ"
+  active: true
+  order: 85
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 275
+  name: "Drill Instructor - SQ"
+  active: true
+  order: 75
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 276
+  name: "Asst. Drill Instructor - RS2"
+  active: true
+  order: 66
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 277
+  name: "Asst. Drill Instructor - SQ"
+  active: true
+  order: 65
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 278
+  name: "Enlistment Liaison - RS2"
+  active: true
+  order: 54
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 279
+  name: "Enlistment Liaison - SQ"
+  active: true
+  order: 53
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 280
+  name: "Field Reporter - RS2"
+  active: true
+  order: 43
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 281
+  name: "Field Reporter - SQ"
+  active: true
+  order: 42
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 282
+  name: "Medical Technician - RS2"
+  active: true
+  order: 62
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 283
+  name: "Medical Technician - SQ"
+  active: true
+  order: 61
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 284
+  name: "Medical Clerk"
+  active: true
+  order: 90
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 285
+  name: "Code Technician - RS2"
+  active: true
+  order: 34
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 286
+  name: "Code Technician - SQ"
+  active: true
+  order: 32
+  description: null
+  access_level: 0
+  AIT: "N/A"
+- id: 287
+  name: "Senior Level Technician - RS2"
+  active: true
+  order: 28
+  description: null
+  access_level: 0
+  AIT: "N/A"
+- id: 288
+  name: "Senior Level Technician - SQ"
+  active: true
+  order: 26
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 289
+  name: "Level Technician - RS2"
+  active: true
+  order: 27
+  description: null
+  access_level: 0
+  AIT: "N/A"
+- id: 290
+  name: "Level Technician - SQ"
+  active: true
+  order: 25
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 291
+  name: "Chief Server Administrator - RS2"
+  active: true
+  order: 39
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 292
+  name: "Chief Server Administrator - SQ"
+  active: true
+  order: 29
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 293
+  name: "Camera Crew - RS2"
+  active: true
+  order: 51
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 294
+  name: "Camera Crew - SQ"
+  active: true
+  order: 50
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 295
+  name: "Music Composer"
+  active: true
+  order: 40
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 296
+  name: "Senior Adjutant Monitor"
+  active: true
+  order: 56
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 297
+  name: "Senior Community Contact - RS2"
+  active: true
+  order: 77
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 298
+  name: "Senior Community Contact - SQ"
+  active: true
+  order: 76
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 299
+  name: "Engineer Office Clerk"
+  active: true
+  order: 92
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 300
+  name: "Senior Enlistment Clerk"
+  active: true
+  order: 52
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 301
+  name: "Enlistment Clerk"
+  active: true
+  order: 51
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 302
+  name: "Supervisor of Enlistment Corps"
+  active: true
+  order: 61
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 303
+  name: "Enlistment Clerk - A3"
+  active: true
+  order: 51
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 304
+  name: "Enlistment Clerk - RS2"
+  active: true
+  order: 50
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 305
+  name: "Enlistment Clerk - SQ"
+  active: true
+  order: 49
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 306
+  name: "Chief of Public Affairs Corps"
+  active: false
+  order: 99
+  description: "Responsible for hiring of all positions within the office and management of all operations within the office."
+  access_level: 10
+  AIT: "N/A"
+- id: 307
+  name: "Public Relations Officer"
+  active: true
+  order: 79
+  description: "Responsible for casting and commentary using the 29th\u2019s streaming platforms including Twitch and Youtube."
+  access_level: 0
+  AIT: "N/A"
+- id: 308
+  name: "Combat Cameraman"
+  active: false
+  order: 59
+  description: "Responsible for all camera work and streaming"
+  access_level: 0
+  AIT: "N/A"
+- id: 309
+  name: "Executive Producer"
+  active: true
+  order: 86
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 310
+  name: "Assistant Chief of Quartermaster Corps"
+  active: true
+  order: 98
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 311
+  name: "Senior Camera Crew"
+  active: true
+  order: 57
+  description: null
+  access_level: 5
+  AIT: "N/A"
+- id: 312
+  name: "Regiment SNCO"
+  active: true
+  order: 41
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 313
+  name: "Regiment Clerk"
+  active: true
+  order: 22
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 314
+  name: "Regiment Commander"
+  active: true
+  order: 100
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 315
+  name: "Ordnance Instructor"
+  active: true
+  order: 55
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 316
+  name: "Ordnance Senior Instructor"
+  active: true
+  order: 85
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 317
+  name: "Assistant Chief of Ordnance Corps"
+  active: true
+  order: 95
+  description: ""
+  access_level: 10
+  AIT: "N/A"
+- id: 318
+  name: "Senior Finance Officer"
+  active: true
+  order: 89
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 319
+  name: "Assistant Chief of Civil Affairs"
+  active: true
+  order: 95
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 320
+  name: "Senior War Correspondent"
+  active: true
+  order: 60
+  description: ""
+  access_level: 5
+  AIT: "N/A"
+- id: 321
+  name: "War Correspondent - A3"
+  active: true
+  order: 60
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 322
+  name: "Civil Affairs Monitor"
+  active: true
+  order: 60
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 323
+  name: "War Correspondent - RS2"
+  active: true
+  order: 60
+  description: ""
+  access_level: 0
+  AIT: "N/A"
+- id: 324
+  name: "War Correspondent - SQ"
+  active: true
+  order: 60
+  description: ""
+  access_level: 0
+  AIT: "N/A"

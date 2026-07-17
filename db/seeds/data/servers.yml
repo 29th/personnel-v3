@@ -1,0 +1,175 @@
+- id: 1
+  name: "Battalion Server"
+  abbr: "bn"
+  address: "127.0.0.1"
+  port: 27001
+  game: "DH"
+  active: false
+- id: 2
+  name: "Euro Server"
+  abbr: "eu"
+  address: "127.0.0.1"
+  port: 27002
+  game: "DH"
+  active: false
+- id: 3
+  name: "Company Server"
+  abbr: "co"
+  address: "127.0.0.1"
+  port: 27003
+  game: "DH"
+  active: false
+- id: 4
+  name: "Platoon Server"
+  abbr: "plt"
+  address: "127.0.0.1"
+  port: 27004
+  game: "DH"
+  active: false
+- id: 5
+  name: "Squad Server"
+  abbr: "sqd"
+  address: "127.0.0.1"
+  port: 27005
+  game: "DH"
+  active: false
+- id: 6
+  name: "BCT Server"
+  abbr: "bct"
+  address: "127.0.0.1"
+  port: 27006
+  game: "DH"
+  active: false
+- id: 7
+  name: "Battalion Server"
+  abbr: "bn"
+  address: "127.0.0.1"
+  port: 27007
+  game: "RS"
+  active: false
+- id: 8
+  name: "Platoon Server"
+  abbr: "plt"
+  address: "127.0.0.1"
+  port: 27008
+  game: "RS"
+  active: false
+- id: 9
+  name: "Squad Server"
+  abbr: "sqd"
+  address: "127.0.0.1"
+  port: 27009
+  game: "RS"
+  active: false
+- id: 10
+  name: "Battalion Server"
+  abbr: "bn"
+  address: "127.0.0.1"
+  port: 27010
+  game: "Arma 3"
+  active: true
+- id: 11
+  name: "Company Server"
+  abbr: "co"
+  address: "127.0.0.1"
+  port: 27011
+  game: "Arma 3"
+  active: true
+- id: 12
+  name: "Platoon Server"
+  abbr: "plt"
+  address: "127.0.0.1"
+  port: 27012
+  game: "Arma 3"
+  active: true
+- id: 13
+  name: "Squad Server"
+  abbr: "sqd"
+  address: "127.0.0.1"
+  port: 27013
+  game: "Arma 3"
+  active: false
+- id: 14
+  name: "Company Server"
+  abbr: "co"
+  address: "127.0.0.1"
+  port: 27014
+  game: "RS"
+  active: false
+- id: 15
+  name: "Company Server"
+  abbr: "co"
+  address: "127.0.0.1"
+  port: 27015
+  game: "RS2"
+  active: true
+- id: 16
+  name: "Company Server"
+  abbr: "co"
+  address: "127.0.0.1"
+  port: 27016
+  game: "Squad"
+  active: true
+- id: 17
+  name: "Platoon Server"
+  abbr: "plt"
+  address: "127.0.0.1"
+  port: 27017
+  game: "RS2"
+  active: true
+- id: 18
+  name: "Platoon Server"
+  abbr: "plt"
+  address: "127.0.0.1"
+  port: 27018
+  game: "Squad"
+  active: true
+- id: 19
+  name: "Public Server"
+  abbr: "pub"
+  address: "127.0.0.1"
+  port: 27019
+  game: "Squad"
+  active: false
+- id: 20
+  name: "Euro Server"
+  abbr: "eu"
+  address: "127.0.0.1"
+  port: 27020
+  game: "Squad"
+  active: false
+- id: 21
+  name: "Euro Server"
+  abbr: "eu"
+  address: "127.0.0.1"
+  port: 27021
+  game: "RS2"
+  active: true
+- id: 22
+  name: "Public Server 1"
+  abbr: "pub"
+  address: "127.0.0.1"
+  port: 27022
+  game: "RS2"
+  active: true
+- id: 23
+  name: "Public Server 2"
+  abbr: "pub"
+  address: "127.0.0.1"
+  port: 27023
+  game: "RS2"
+  active: true
+- id: 24
+  name: "Squad Server"
+  abbr: "sq"
+  address: "127.0.0.1"
+  port: 27024
+  game: "RS2"
+  active: true
+- id: 25
+  name: "Squad Server"
+  abbr: "sq"
+  address: "127.0.0.1"
+  port: 27025
+  game: "Squad"
+  active: true

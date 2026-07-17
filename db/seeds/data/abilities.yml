@@ -1,0 +1,276 @@
+- id: 1
+  name: "Edit Profile"
+  abbr: "profile_edit"
+  description: "<p>Edit a member's profile</p>"
+- id: 2
+  name: "Promote"
+  abbr: "promotion_add"
+  description: "Add a promotion to a member's record and change the member's rank to it if applicable"
+- id: 3
+  name: "Award"
+  abbr: "award_add"
+  description: "Give a member an award"
+- id: 4
+  name: "View Any Profile"
+  abbr: "profile_view_any"
+  description: "View any member's profile"
+- id: 5
+  name: "Delete Promotion"
+  abbr: "promotion_delete"
+  description: "Delete a member's promotion and demote them if applicable"
+- id: 6
+  name: "Give Award"
+  abbr: "awarding_add"
+  description: "Give a member an award"
+- id: 7
+  name: "Delete Awarding"
+  abbr: "awarding_delete"
+  description: "Remove an award from a member's record"
+- id: 8
+  name: "Give Qualification"
+  abbr: "qualification_add"
+  description: "Give qualification to a member"
+- id: 9
+  name: "Delete Qualification"
+  abbr: "qualification_delete"
+  description: "Delete a qualification from a member's service record"
+- id: 10
+  name: "Promote Any Member"
+  abbr: "promotion_add_any"
+  description: ""
+- id: 11
+  name: "Delete Any Promotion"
+  abbr: "promotion_delete_any"
+  description: ""
+- id: 12
+  name: "Give Award to Any Member"
+  abbr: "awarding_add_any"
+  description: ""
+- id: 13
+  name: "Delete Any Awarding"
+  abbr: "awarding_delete_any"
+  description: ""
+- id: 14
+  name: "Give Qualification to Any Member"
+  abbr: "qualification_add_any"
+  description: ""
+- id: 15
+  name: "Delete Any Qualification"
+  abbr: "qualification_delete_any"
+  description: ""
+- id: 16
+  name: "Assign Member"
+  abbr: "assignment_add"
+  description: ""
+- id: 17
+  name: "Assign Any Member"
+  abbr: "assignment_add_any"
+  description: ""
+- id: 18
+  name: "Delete Assignment"
+  abbr: "assignment_delete"
+  description: ""
+- id: 19
+  name: "Delete Any Assignment"
+  abbr: "assignment_delete_any"
+  description: ""
+- id: 20
+  name: "Add Unit"
+  abbr: "unit_add"
+  description: ""
+- id: 21
+  name: "Discharge Any Member"
+  abbr: "discharge_add_any"
+  description: ""
+- id: 22
+  name: "Admin"
+  abbr: "admin"
+  description: "<p>Full access, including admin panel</p>"
+- id: 23
+  name: "Post Event AAR"
+  abbr: "event_aar"
+  description: ""
+- id: 24
+  name: "Process Any Enlistment"
+  abbr: "enlistment_process_any"
+  description: ""
+- id: 25
+  name: "Edit Any Profile"
+  abbr: "profile_edit_any"
+  description: "Edit any member's profile"
+- id: 26
+  name: "Modify Any Enlistment"
+  abbr: "enlistment_edit_any"
+  description: "Modify any member's enlistment"
+- id: 27
+  name: "View Any Event"
+  abbr: "event_view_any"
+  description: ""
+- id: 28
+  name: "Post Any Event AAR"
+  abbr: "event_aar_any"
+  description: ""
+- id: 29
+  name: "View Any Unit Statistics"
+  abbr: "unit_stats_any"
+  description: ""
+- id: 30
+  name: "View Finances"
+  abbr: "finance_view_any"
+  description: ""
+- id: 31
+  name: "Assign Any Enlistment"
+  abbr: "enlistment_assign_any"
+  description: "Assign an enlistment to a liaison"
+- id: 32
+  name: "Admin Events"
+  abbr: "admin-events"
+  description: ""
+- id: 33
+  name: "Admin Promotions"
+  abbr: "admin-promotions"
+  description: ""
+- id: 34
+  name: "Admin Awardings"
+  abbr: "admin-awardings"
+  description: ""
+- id: 35
+  name: "Admin Discharges"
+  abbr: "admin-discharges"
+  description: ""
+- id: 36
+  name: "Admin Demerits"
+  abbr: "admin-demerits"
+  description: ""
+- id: 37
+  name: "Admin Finances"
+  abbr: "admin-finances"
+  description: ""
+- id: 38
+  name: "Admin Units"
+  abbr: "admin-units"
+  description: ""
+- id: 39
+  name: "Admin Ban Log"
+  abbr: "admin-banlog"
+  description: ""
+- id: 40
+  name: "View Any Extended LOA"
+  abbr: "eloa_view_any"
+  description: ""
+- id: 41
+  name: "Admin Extended LOAs"
+  abbr: "admin-eloas"
+  description: ""
+- id: 42
+  name: "Discharge Member"
+  abbr: "discharge_add"
+  description: ""
+- id: 43
+  name: "View Any Demerit"
+  abbr: "demerit_view_any"
+  description: ""
+- id: 44
+  name: "Add Event"
+  abbr: "event_add"
+  description: ""
+- id: 45
+  name: "Add Any Event"
+  abbr: "event_add_any"
+  description: ""
+- id: 46
+  name: "Admin Attendance"
+  abbr: "admin-attendance"
+  description: "API Admin access to Attendance"
+- id: 47
+  name: "ELOA Add"
+  abbr: "eloa_add"
+  description: ""
+- id: 48
+  name: "ELOA Add Any"
+  abbr: "eloa_add_any"
+  description: ""
+- id: 49
+  name: "Admin Enlistments"
+  abbr: "admin-enlistments"
+  description: "API admin for Enlistments"
+- id: 50
+  name: "View notes"
+  abbr: "note_view_any"
+  description: ""
+- id: 51
+  name: "View notes for all levels"
+  abbr: "note_view_all"
+  description: ""
+- id: 52
+  name: "View notes for MP Level"
+  abbr: "note_view_mp"
+  description: ""
+- id: 53
+  name: "View notes for Company Level"
+  abbr: "note_view_co"
+  description: ""
+- id: 54
+  name: "View notes for Platoon Level"
+  abbr: "note_view_pl"
+  description: ""
+- id: 55
+  name: "View notes for Squad Level"
+  abbr: "note_view_sq"
+  description: ""
+- id: 56
+  name: "View notes for Lighthouse"
+  abbr: "note_view_lh"
+  description: ""
+- id: 57
+  name: "Admin Notes"
+  abbr: "admin-notes"
+  description: ""
+- id: 58
+  name: "Admin Weapon Passes"
+  abbr: "admin-weapon_passes"
+  description: ""
+- id: 59
+  name: "View Ban Logs"
+  abbr: "banlog_view_any"
+  description: "View banlogs on front end."
+- id: 60
+  name: "Add/Edit Any Banlog"
+  abbr: "banlog_edit_any"
+  description: ""
+- id: 61
+  name: "Add demerit"
+  abbr: "demerit_add"
+  description: "Add demerit to members of my unit and all its children"
+- id: 62
+  name: "Add any demerit"
+  abbr: "demerit_add_any"
+  description: "Add demerit to any member"
+- id: 63
+  name: "View Any Qualification"
+  abbr: "qualification_view_any"
+  description: "View any qualification"
+- id: 64
+  name: "View Weapon Passes"
+  abbr: "pass_view_any"
+  description: ""
+- id: 65
+  name: "Add/Edit Any Weapon Pass"
+  abbr: "pass_edit_any"
+  description: ""
+- id: 66
+  name: "Add/Edit Weapon Pass"
+  abbr: "pass_edit"
+  description: "Add/Edit Weapon Pass for any member of this unit and ones below"
+- id: 67
+  name: "Add Finance Record"
+  abbr: "finance_add"
+  description: null
+- id: 68
+  name: "Manage"
+  abbr: "manage"
+  description: "Access the /manage/ section of the site"
+- id: 69
+  name: "View Any Restricted Name"
+  abbr: "restricted_name_view_any"
+  description: null
