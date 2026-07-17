@@ -25,6 +25,5 @@
   },
   "scripts": {
     "build": "webpack --config ./config/webpack/webpack.config.js"
-  },
-  "packageManager": "yarn@4.11.0"
+  }
 }

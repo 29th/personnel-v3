@@ -37,11 +37,8 @@ jobs:
         with:
           node-version-file: '.tool-versions'
 
-      - name: Enable corepack
-        run: corepack enable
-
       - name: Install node modules
-        run: yarn install --immutable
+        run: npm ci
 
       - name: Setup test database
         run: bundle exec rails db:setup
