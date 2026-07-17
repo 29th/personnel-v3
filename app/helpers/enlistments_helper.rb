@@ -15,7 +15,7 @@ module EnlistmentsHelper
 
   def game_opts
     [
-      ["Arma 3", "arma3"],
+      ["Arma Reforger", "arma_reforger"],
       ["Rising Storm 2: Vietnam", "rs2"],
       ["Squad", "squad"]
     ]
@@ -25,6 +25,7 @@ module EnlistmentsHelper
     [
       ["Arma 2", "Arma 2"],
       ["Arma 3", "Arma 3"],
+      ["Arma Reforger", "Arma Reforger"],
       ["Darkest Hour", "DH"],
       ["Day of Defeat", "DOD"],
       ["Day of Defeat: Source", "DODS"],

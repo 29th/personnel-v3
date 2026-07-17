@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_063526) do
+ActiveRecord::Schema[8.0].define(version: 2026_07_17_201329) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -104,7 +104,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_063526) do
     t.string "code", limit: 16, default: "", null: false
     t.string "title", default: "", null: false
     t.text "description", null: false
-    t.column "game", "enum('N/A','DH','DOD','Arma 3','RS','RS2','Squad')", null: false
+    t.column "game", "enum('N/A','DH','DOD','Arma 3','RS','RS2','Squad','Arma Reforger')", null: false
     t.string "image", default: "", null: false
     t.string "thumbnail", default: "", null: false
     t.string "bar", default: "", null: false
@@ -215,7 +215,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_063526) do
     t.string "age", limit: 8, null: false, comment: "Recruit's age"
     t.integer "country_id", limit: 2, comment: "Country ID"
     t.column "timezone", "enum('EST','GMT','PST','Any','None')", comment: "Prefered time zone"
-    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", comment: "Chosen game"
+    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad','Arma Reforger')", default: "DH", comment: "Chosen game"
     t.string "ingame_name", limit: 60, null: false, comment: "In-game Name"
     t.string "steam_name", limit: 60, comment: "Steamfriends Name"
     t.text "steam_id", size: :tiny, null: false
@@ -424,7 +424,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_063526) do
     t.string "abbr", limit: 4, null: false, comment: "Abbreviation of Server Name"
     t.string "address", limit: 15, null: false, comment: "IP address of server"
     t.integer "port", limit: 3, null: false, comment: "Port of Server"
-    t.column "game", "enum('DH','Arma 3','RS','RS2','Squad')", default: "DH", null: false, comment: "Type of game "
+    t.column "game", "enum('DH','Arma 3','RS','RS2','Squad','Arma Reforger')", default: "DH", null: false, comment: "Type of game "
     t.boolean "active", null: false, comment: "Is server active"
     t.string "battle_metrics_id", limit: 16
   end
@@ -437,7 +437,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_063526) do
 
   create_table "standards", id: { type: :integer, limit: 3, unsigned: true }, charset: "utf8mb3", comment: "Standards required to achieve a badge for AIT", force: :cascade do |t|
     t.column "weapon", "enum('EIB','Rifle','Automatic Rifle','Machine Gun','Armor','Sniper','Mortar','SLT','Combat Engineer','Submachine Gun','Pilot','Grenadier')", default: "Rifle", null: false
-    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", default: "DH", null: false
+    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad','Arma Reforger')", default: "DH", null: false
     t.column "badge", "enum('N/A','Marksman','Sharpshooter','Expert')", default: "Sharpshooter", null: false
     t.text "description", null: false
     t.text "details"
@@ -466,7 +466,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_063526) do
     t.string "old_path", limit: 32
     t.string "path", limit: 32, null: false
     t.integer "order", default: 0, null: false
-    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad')", comment: "Game "
+    t.column "game", "enum('DH','RS','Arma 3','RS2','Squad','Arma Reforger')", comment: "Game "
     t.string "timezone", limit: 3
     t.column "class", "enum('Combat','Staff','Training')", default: "Training", null: false, comment: "Type of unit"
     t.boolean "active", default: true, null: false
