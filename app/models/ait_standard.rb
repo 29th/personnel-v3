@@ -6,7 +6,7 @@ class AITStandard < ApplicationRecord
                 machine_gun: "Machine Gun", armor: "Armor", sniper: "Sniper",
                 mortar: "Mortar", slt: "SLT", combat_engineer: "Combat Engineer",
                 submachine_gun: "Submachine Gun", pilot: "Pilot", grenadier: "Grenadier"}
-  enum :game, {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
+  enum :game, {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad", arma_reforger: "Arma Reforger"}
   enum :badge, {notapplicable: "N/A", marksman: "Marksman", sharpshooter: "Sharpshooter",
                expert: "Expert"}
 

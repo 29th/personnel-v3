@@ -13,7 +13,7 @@ class Enlistment < ApplicationRecord
   enum :status, {pending: "Pending", accepted: "Accepted", denied: "Denied",
                 withdrawn: "Withdrawn", awol: "AWOL"}
   enum :timezone, {est: "EST", gmt: "GMT", pst: "PST", any_timezone: "Any", no_timezone: "None"}
-  enum :game, {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad"}
+  enum :game, {dh: "DH", rs: "RS", arma3: "Arma 3", rs2: "RS2", squad: "Squad", arma_reforger: "Arma Reforger"}
   VALID_AGES = ["Under 13", *13..99].map(&:to_s)
 
   normalizes :ingame_name, :recruiter, :comments, with: ->(attribute) { attribute.strip }

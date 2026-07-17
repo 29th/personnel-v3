@@ -29,7 +29,8 @@ class StandardProgressCalculator
   # Award codes' game suffix sometimes differs from Unit#game enum
   UNIT_GAME_TO_AWARD_CODE_GAME = {
     "arma3" => "a3",
-    "squad" => "sq"
+    "squad" => "sq",
+    "arma_reforger" => "ref"
   }
 
   def initialize(users, game)
