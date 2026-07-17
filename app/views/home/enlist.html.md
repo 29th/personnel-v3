@@ -17,7 +17,7 @@ you enough about your weapon to make you much better at the game. Some of the
 worst players in Darkest Hour have turned into some of the best riflemen after
 two or three weeks in the 29th.
 
-### English is our primary Language
+### We Communicate in English
 While we understand that not everyone’s first language is English, it is our standard 
 way of communicating with one another. Everything we do revolves around good communication 
 and teamwork. As such, we require that new members are able to understand and be understood 
