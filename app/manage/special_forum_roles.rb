@@ -15,7 +15,7 @@ ActiveAdmin.register SpecialForumRole do
     selectable_column
     column :special_attribute
     column :role_id do |record|
-      @roles[record.forum_id.to_sym][record.role_id]
+      @roles.dig(record.forum_id.to_sym, record.role_id)
     end
     column :forum_id
     actions

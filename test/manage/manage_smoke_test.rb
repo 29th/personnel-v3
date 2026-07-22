@@ -69,7 +69,9 @@ module Manage
       create(:restricted_name, name: "Reservedname") # fixed name so Faker can't collide
       create(:server)
       create(:special_forum_role)
+      create(:special_forum_role, forum_id: :vanilla)
       create(:unit_forum_role, unit: squad)
+      create(:unit_forum_role, forum_id: :vanilla, unit: squad)
       create(:user_award, user: member)
 
       tp = create(:unit, classification: :training,

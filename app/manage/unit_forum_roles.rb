@@ -17,7 +17,7 @@ ActiveAdmin.register UnitForumRole do
     column :unit
     column :access_level
     column :role_id do |record|
-      @roles[record.forum_id.to_sym][record.role_id]
+      @roles.dig(record.forum_id.to_sym, record.role_id)
     end
     column :forum_id
     actions
