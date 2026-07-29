@@ -437,6 +437,26 @@ class UserTest < ActiveSupport::TestCase
     refute user.honorably_discharged?
   end
 
+  test "latest_non_honorable_discharge returns each user's newest non-honorable discharge when preloaded" do
+    user = create(:user)
+    create(:discharge, user:, type: :general, date: 2.years.ago)
+    latest_discharge = create(:discharge, user:, type: :dishonorable, date: 1.year.ago)
+    create(:discharge, user:, type: :honorable, date: 6.months.ago)
+
+    other_user = create(:user)
+    other_latest_discharge = create(:discharge, user: other_user, type: :general, date: 1.month.ago)
+
+    assert_equal latest_discharge, user.latest_non_honorable_discharge
+
+    preloaded_users = User
+      .where(id: [user.id, other_user.id])
+      .includes(:latest_non_honorable_discharge)
+      .index_by(&:id)
+
+    assert_equal latest_discharge, preloaded_users[user.id].latest_non_honorable_discharge
+    assert_equal other_latest_discharge, preloaded_users[other_user.id].latest_non_honorable_discharge
+  end
+
   # service_duration
   test "service_duration sums duration from all assignments" do
     user = create(:user)

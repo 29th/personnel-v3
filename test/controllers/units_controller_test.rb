@@ -58,6 +58,33 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
     assert_match "Army of Occupation", response.body
   end
 
+  test "missing_awards respects each user's latest non-honorable discharge" do
+    create(:permission, abbr: "awarding_add", unit: @company)
+    awarder = create(:user)
+    create(:assignment, user: awarder, unit: @company)
+    army_of_occupation = create(:award, code: "aocc")
+
+    veteran = create(:user, last_name: "Veteranson")
+    create(:assignment, user: veteran, unit: @squad,
+      start_date: 3.years.ago, end_date: 2.years.ago)
+    create(:discharge, user: veteran, date: 2.years.ago, type: :general)
+    create(:assignment, user: veteran, unit: @squad, start_date: 8.months.ago)
+    create(:user_award, user: veteran, award: army_of_occupation, date: 7.months.ago)
+
+    another_veteran = create(:user)
+    create(:assignment, user: another_veteran, unit: @squad,
+      start_date: 18.months.ago, end_date: 1.year.ago)
+    create(:discharge, user: another_veteran, date: 1.year.ago, type: :general)
+    create(:assignment, user: another_veteran, unit: @squad, start_date: 1.month.ago)
+
+    sign_in_as awarder
+    get unit_missing_awards_url(@company)
+
+    assert_response :success
+    assert_no_match veteran.short_name, response.body
+    assert_match "No missing awards found", response.body
+  end
+
   test "missing_awards refuses members without awarding_add" do
     sign_in_as @member
     get unit_missing_awards_url(@company)

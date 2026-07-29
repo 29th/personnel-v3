@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :non_honorable_discharges, -> { non_honorable },
     class_name: "Discharge", foreign_key: "member_id"
   has_one :latest_non_honorable_discharge, -> {
-    non_honorable.order(date: :desc).limit(1)
+    non_honorable.order(date: :desc)
   }, class_name: "Discharge", foreign_key: "member_id"
 
   has_many :enlistments, foreign_key: "member_id", inverse_of: :user
