@@ -30,6 +30,17 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
     assert_match "Last 30 days:", response.body
   end
 
+  test "attendance handles legacy cancelled LOA records" do
+    event = create(:event, unit: @squad, starts_at: 1.week.ago)
+    create(:attendance_record, user: @member, event: event,
+      attended: nil, excused: false)
+
+    sign_in_as @member
+    get unit_attendance_url(@company)
+
+    assert_response :success
+  end
+
   test "awols groups recent awols by user" do
     event = create(:event, unit: @squad, mandatory: true, starts_at: 1.week.ago)
     create(:attendance_record, user: @member, event: event,

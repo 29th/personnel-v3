@@ -92,9 +92,14 @@ class EventTest < ActiveSupport::TestCase
     test "total_attended and total_absent coalesce to 0" do
       attended_event = create_attended_event(1.week.ago, attended: 1)
       unattended_event = create_attended_event(1.week.ago, absent: 1)
+      legacy_cancelled_loa_event = create(:event)
+      create(:attendance_record, event: legacy_cancelled_loa_event,
+        attended: nil, excused: false)
 
       assert_equal 0, attended_event.attendance_totals.total_absent
       assert_equal 0, unattended_event.attendance_totals.total_attended
+      assert_equal 0, legacy_cancelled_loa_event.attendance_totals.total_attended
+      assert_equal 0, legacy_cancelled_loa_event.attendance_totals.total_absent
     end
 
     private
