@@ -15,9 +15,9 @@ class AttendanceRecord < ApplicationRecord
   scope :totals_by_event, -> {
     group(:event_id)
       .select(:event_id)
-      .select("sum(attended = true) as total_attended")
+      .select("coalesce(sum(attended = true), 0) as total_attended")
       .select("count(*) as total_expected")
-      .select("sum(attended = false and excused = false) as total_absent")
+      .select("coalesce(sum(attended = false and excused = false), 0) as total_absent")
   }
   scope :by_unit, ->(unit) {
     includes(:event)
