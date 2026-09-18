@@ -38,7 +38,8 @@ class GenerateServiceCoatJob < ApplicationJob
       last_name: user.last_name,
       rank_abbr: user.rank&.abbr,
       unit_key: unit_key_for(unit),
-      awards_abbr: user.awards.pluck(:code),
+      awards_abbr: user.user_awards.since_latest_non_honorable_discharge
+        .includes(:award).map { |user_award| user_award.award.code },
       balance: FinanceRecord.user_donated(user)
     }.compact
   end

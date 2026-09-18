@@ -18,7 +18,7 @@ class GenerateServiceCoatJobTest < ActiveSupport::TestCase
           body["rank_abbr"] == "Cpl." &&
           body["unit_key"] == "Able" &&
           body["awards_abbr"] == ["aocc"] &&
-          body["balance"].to_f == 25.0
+          body["balance"].to_d == 25
       }
       .to_return(status: 200, body: FAKE_PNG,
         headers: {"Content-Type" => "image/png"})
@@ -29,6 +29,46 @@ class GenerateServiceCoatJobTest < ActiveSupport::TestCase
     user.reload
     assert user.service_coat.present?, "service coat should be attached"
     assert_equal FAKE_PNG, user.service_coat.read
+  end
+
+  %i[general dishonorable].each do |type|
+    test "only sends awards since the latest #{type} discharge" do
+      user = create(:user)
+      create(:discharge, user: user, type: type, date: 3.years.ago)
+      create(:discharge, user: user, type: type, date: 1.year.ago)
+      create(:discharge, user: user, type: :honorable, date: 1.month.ago)
+      create(:user_award, user: user, date: 2.years.ago,
+        award: create(:award, code: "eib"))
+      award = create(:award, code: "aocc")
+      create(:user_award, user: user, award: award, date: 1.year.ago)
+      create(:user_award, user: user, award: award, date: 6.months.ago)
+
+      generator_request = stub_request(:post, "#{BASE_URL}/")
+        .with { |request| JSON.parse(request.body)["awards_abbr"] == ["aocc", "aocc"] }
+        .to_return(status: 200, body: FAKE_PNG,
+          headers: {"Content-Type" => "image/png"})
+
+      GenerateServiceCoatJob.perform_now(user)
+
+      assert_requested generator_request
+      assert_equal 3, user.user_awards.count, "historical awardings should be retained"
+    end
+  end
+
+  test "keeps awards from before an honorable discharge" do
+    user = create(:user)
+    create(:discharge, user: user, type: :honorable, date: 1.year.ago)
+    create(:user_award, user: user, date: 2.years.ago,
+      award: create(:award, code: "eib"))
+
+    generator_request = stub_request(:post, "#{BASE_URL}/")
+      .with { |request| JSON.parse(request.body)["awards_abbr"] == ["eib"] }
+      .to_return(status: 200, body: FAKE_PNG,
+        headers: {"Content-Type" => "image/png"})
+
+    GenerateServiceCoatJob.perform_now(user)
+
+    assert_requested generator_request
   end
 
   test "uses the most recent past unit when user has no active assignment" do
