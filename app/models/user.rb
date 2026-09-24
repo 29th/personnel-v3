@@ -192,7 +192,7 @@ class User < ApplicationRecord
   end
 
   def has_pending_enlistment?
-    enlistments.pending.any?
+    enlistments.where(status: [:pending, :hq_review]).any?
   end
 
   def assigned_to_unit?(unit)
