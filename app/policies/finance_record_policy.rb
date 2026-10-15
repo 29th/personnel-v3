@@ -7,6 +7,11 @@ class FinanceRecordPolicy < ApplicationPolicy
     index?
   end
 
+  # Public ledger at /finances, also open to retired (honourably discharged) members
+  def ledger?
+    user.present? && (user.member? || user.honorably_discharged?)
+  end
+
   def new?
     user&.has_permission?("finance_add") ||
       user&.has_permission?("admin")

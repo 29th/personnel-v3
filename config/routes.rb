@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get "/servers" => "home#servers"
   get "/enlist" => "home#enlist"
 
+  get "/finances" => "finances#index"
+
   get "/roster" => "roster#index"
   get "/roster/squad.xml" => "roster#squad_xml"
 
