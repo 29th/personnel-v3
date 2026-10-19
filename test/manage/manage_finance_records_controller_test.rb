@@ -49,6 +49,19 @@ module Manage
       assert_no_enqueued_jobs only: GenerateServiceCoatJob
     end
 
+    test "retired member cannot view finance records even though they can see the public ledger" do
+      unit = create(:unit)
+      create(:permission, abbr: "manage", unit: unit)
+      retired = create(:user)
+      create(:assignment, user: retired, unit: unit, start_date: 1.year.ago, end_date: 1.month.ago)
+      create(:discharge, user: retired, type: :honorable, date: 1.month.ago)
+      sign_in_as retired
+
+      get manage_finance_records_url
+      assert_redirected_to root_url
+      assert_match(/not authorized/, flash[:alert])
+    end
+
     test "deleting a donation regenerates the donor's service coat" do
       finance_record = create(:finance_record, user: @donor)
 

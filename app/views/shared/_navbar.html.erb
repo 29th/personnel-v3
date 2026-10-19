@@ -32,7 +32,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to 'Calendar', events_path, class: 'dropdown-item' if policy(Event).index? %>
               <%= link_to 'Weapon passes', passes_path, class: 'dropdown-item' if policy(Pass).index? %>
-              <%= link_to 'Finances', finances_path, class: 'dropdown-item' if policy(FinanceRecord).ledger? %>
+              <%= link_to 'Finances', finances_path, class: 'dropdown-item' if policy(FinanceRecord).index? %>
               <% if current_user.active_admin_editor? %>
                 <%= link_to 'Ban logs', manage_ban_logs_path, class: 'dropdown-item' if policy(BanLog).index? %>
                 <%= link_to 'Enlistments', manage_enlistments_path, class: 'dropdown-item' if policy(Enlistment).index? %>

@@ -33,6 +33,17 @@ class FinancesControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", manage_finance_records_path, text: "Manage"
   end
 
+  test "should get index for retired member" do
+    retired = create(:user)
+    create(:assignment, user: retired, start_date: 1.year.ago, end_date: 1.month.ago)
+    create(:discharge, user: retired, type: :honorable, date: 1.month.ago)
+
+    sign_in_as retired
+    get finances_url
+
+    assert_response :success
+  end
+
   test "should deny anonymous visitor" do
     get finances_url
 

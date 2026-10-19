@@ -1,6 +1,6 @@
 class FinancesController < ApplicationController
   def index
-    authorize FinanceRecord, :ledger?
+    authorize FinanceRecord
     @balance = FinanceRecord.balance
     @finance_records = FinanceRecord
       .includes(user: :rank)

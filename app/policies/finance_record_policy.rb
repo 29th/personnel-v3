@@ -1,15 +1,10 @@
 class FinanceRecordPolicy < ApplicationPolicy
   def index?
-    user&.member?
+    user.present? && (user.member? || user.honorably_discharged?)
   end
 
   def show?
     index?
-  end
-
-  # Public ledger at /finances, also open to retired (honourably discharged) members
-  def ledger?
-    user.present? && (user.member? || user.honorably_discharged?)
   end
 
   def new?
