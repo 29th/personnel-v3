@@ -1,6 +1,6 @@
 class FinanceRecordPolicy < ApplicationPolicy
   def index?
-    user&.member?
+    user.present? && (user.member? || user.honorably_discharged?)
   end
 
   def show?

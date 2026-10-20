@@ -1,0 +1,42 @@
+<% content_for(:page_title) { "Finances" } %>
+
+<article>
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Finances</h1>
+    <div>
+      <% if policy(FinanceRecord).new? %>
+        <%= link_to 'Manage', manage_finance_records_path, class: 'btn btn-secondary' %>
+      <% end %>
+      <%= link_to 'Donate', donate_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <p>Ledger balance: <strong><%= number_to_currency(@balance || 0) %></strong></p>
+
+  <table class="table table-striped finance-ledger">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Entity</th>
+        <th scope="col">Amount Donated</th>
+        <th scope="col">Amount Paid</th>
+        <th scope="col">Fee</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @finance_records.each do |record| %>
+      <tr>
+        <td><%= link_to_forum_topic(record.date.strftime("%F"), record) %></td>
+        <td><%= record.user ? link_to(record.user) : FinanceRecord.vendors[record.vendor] %></td>
+        <td class="text-success"><%= number_to_currency(record.amount_received) %></td>
+        <td class="text-danger"><%= number_to_currency(record.amount_paid) %></td>
+        <td><%= number_to_currency(record.fee) %></td>
+        <td><%= record.notes %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @finance_records %>
+</article>
