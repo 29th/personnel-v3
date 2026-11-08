@@ -8,6 +8,11 @@
 
       <dt>Forum profile</dt>
       <dd><%= link_to "View profile", discourse_url(user: @user) %></dd>
+
+      <% if current_user&.active_admin_editor? %>
+        <dt>Admin Profile</dt>
+        <dd><%= link_to "View profile", manage_user_path(@user) %></dd>
+      <% end %>
       
       <dt>Steam ID</dt>
       <dd><%= link_to @user.steam_id, build_steam_link(@user.steam_id) if @user.steam_id.present? %></dd>
