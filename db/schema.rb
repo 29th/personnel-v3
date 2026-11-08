@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_07_17_201329) do
+ActiveRecord::Schema[8.0].define(version: 2026_09_22_120000) do
   create_table "__att1", id: { type: :integer, limit: 3, comment: "Attendance log ID", unsigned: true }, charset: "utf8mb3", comment: "Log of attendance", force: :cascade do |t|
     t.integer "event_id", limit: 3, null: false, comment: "Event ID", unsigned: true
     t.integer "member_id", limit: 3, null: false, comment: "Member ID", unsigned: true
@@ -208,7 +208,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_17_201329) do
     t.column "forum_id", "enum('PHPBB','SMF','Vanilla','Discourse')", comment: "Which forums"
     t.integer "topic_id", limit: 3, comment: "ID of forums topic "
     t.integer "unit_id", limit: 3, comment: "Unit ID of Training Platoon", unsigned: true
-    t.column "status", "enum('Pending','Accepted','Denied','Withdrawn','AWOL')", default: "Pending", null: false, comment: "Status of enlistment"
+    t.column "status", "enum('Pending','Accepted','Denied','Withdrawn','AWOL','HQ Review','Fail')", default: "Pending", null: false, comment: "Status of enlistment"
     t.string "first_name", limit: 30, null: false, comment: "Recruit's First Name"
     t.string "middle_name", limit: 1, comment: "Recruit's Middle Initial"
     t.string "last_name", limit: 40, null: false, comment: "Recruit's Last Name"

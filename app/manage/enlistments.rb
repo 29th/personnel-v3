@@ -26,10 +26,12 @@ ActiveAdmin.register Enlistment do
 
   scope :all, default: true
   scope :pending
+  scope "HQ Review", :hq_review
   scope :accepted
   scope :denied
   scope :withdrawn
   scope :awol
+  scope :fail
 
   filter :date
   filter :user_last_name_cont, label: "Last name"
