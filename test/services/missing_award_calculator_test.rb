@@ -7,6 +7,7 @@ class MissingAwardCalculatorTest < ActiveSupport::TestCase
     @user = create(:user)
     @aocc = create(:award, code: "aocc")
     @ww1v = create(:award, code: "ww1v")
+    @nmsm = create(:award, code: "nmsm")
     @cab1 = create(:award, code: "cab1")
     @cab2 = create(:award, code: "cab2")
     @cab3 = create(:award, code: "cab3")
@@ -66,6 +67,43 @@ class MissingAwardCalculatorTest < ActiveSupport::TestCase
 
       assert_equal 6, result[:aocc]
       assert_equal 1, result[:ww1v]
+    end
+
+    test "a user who is missing a NATO Meritorious Service medal" do
+      create(:assignment, user:, start_date: 11.years.ago)
+      create(:user_award, user:, award: @nmsm)
+
+      result = MissingAwardCalculator.call(@user)
+
+      assert_equal 1, result[:nmsm]
+    end
+
+    test "a user who has the correct amount of NATO Meritorious Service medals" do
+      create(:assignment, user:, start_date: 10.years.ago - 1.day)
+      create_list(:user_award, 2, user:, award: @nmsm)
+
+      result = MissingAwardCalculator.call(@user)
+
+      assert_equal 0, result[:nmsm]
+    end
+
+    test "a user with under five years of service isn't owed a NATO Meritorious Service medal" do
+      create(:assignment, user:, start_date: 4.years.ago)
+
+      result = MissingAwardCalculator.call(@user)
+
+      assert_equal 0, result[:nmsm]
+    end
+
+    test "NATO Meritorious Service medals prior to a past discharge are ignored" do
+      create(:assignment, user:, start_date: 12.years.ago, end_date: 6.years.ago)
+      create(:user_award, user:, award: @nmsm, date: 7.years.ago)
+      create(:discharge, user:, type: :general, date: 6.years.ago)
+      create(:assignment, user:, start_date: 6.years.ago)
+
+      result = MissingAwardCalculator.call(@user)
+
+      assert_equal 1, result[:nmsm]
     end
   end
 

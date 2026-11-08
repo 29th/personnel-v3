@@ -8,17 +8,14 @@
       <li>
         <strong><%= link_to user %></strong>
         <ul>
-          <% data[:missing_awards] => {aocc:, ww1v:, cab1:, cab2:, cab3:, cab4:} %>
-          <% if aocc > 0 || ww1v > 0 %>
+          <% data[:missing_awards] => {aocc:, ww1v:, nmsm:, cab1:, cab2:, cab3:, cab4:} %>
+          <% if aocc > 0 || ww1v > 0 || nmsm > 0 %>
             <li>
-              Missing 
-              <% if aocc > 0 %>
-                <%= aocc %> <em>Army of Occupation</em> <%= "medal".pluralize(aocc) %>
-                <%= "and" if ww1v > 0 %>
-              <% end %>
-              <% if ww1v > 0 %>
-                <%= ww1v %> <em>World War I Victory</em> <%= "medal".pluralize(ww1v) %>
-              <% end %>
+              <% missing_service_medals = [] %>
+              <% missing_service_medals << safe_join([aocc, " ", tag.em("Army of Occupation"), " ", "medal".pluralize(aocc)]) if aocc > 0 %>
+              <% missing_service_medals << safe_join([ww1v, " ", tag.em("World War I Victory"), " ", "medal".pluralize(ww1v)]) if ww1v > 0 %>
+              <% missing_service_medals << safe_join([nmsm, " ", tag.em("NATO Meritorious Service"), " ", "medal".pluralize(nmsm)]) if nmsm > 0 %>
+              Missing <%= to_sentence(missing_service_medals) %>
               <br>
               <small class="text-muted">
                 <%= format_service_duration(data[:service_duration]) %> of service

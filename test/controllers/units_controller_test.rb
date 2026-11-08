@@ -69,6 +69,22 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
     assert_match "Army of Occupation", response.body
   end
 
+  test "missing_awards lists users owed a NATO Meritorious Service medal" do
+    create(:permission, abbr: "awarding_add", unit: @company)
+    awarder = create(:user)
+    create(:assignment, user: awarder, unit: @company)
+
+    veteran = create(:user, last_name: "Veteranson")
+    create(:assignment, user: veteran, unit: @squad, start_date: 6.years.ago)
+
+    sign_in_as awarder
+    get unit_missing_awards_url(@company)
+
+    assert_response :success
+    assert_match veteran.short_name, response.body
+    assert_match "NATO Meritorious Service", response.body
+  end
+
   test "missing_awards respects each user's latest non-honorable discharge" do
     create(:permission, abbr: "awarding_add", unit: @company)
     awarder = create(:user)

@@ -23,6 +23,9 @@ class MissingAwardCalculator
     # For every 2 years of service, a user should be awarded a World War I Victory Medal (ww1v)
     expected_ww1v_count = (years_of_service / 2).floor
 
+    # For every 5 years of service, a user should be awarded a NATO Meritorious Service Medal (nmsm)
+    expected_nmsm_count = (years_of_service / 5).floor
+
     # Ignore awards given prior to non-honorable discharge
     discharge = @user.latest_non_honorable_discharge
     relevant_awards = if discharge.present?
@@ -35,12 +38,14 @@ class MissingAwardCalculator
     # Filter in memory to avoid N+1 queries
     actual_aocc_count = relevant_awards.count { |ua| ua.award.code == "aocc" }
     actual_ww1v_count = relevant_awards.count { |ua| ua.award.code == "ww1v" }
+    actual_nmsm_count = relevant_awards.count { |ua| ua.award.code == "nmsm" }
 
     # Calculate missing awards
     missing_aocc = [expected_aocc_count - actual_aocc_count, 0].max
     missing_ww1v = [expected_ww1v_count - actual_ww1v_count, 0].max
+    missing_nmsm = [expected_nmsm_count - actual_nmsm_count, 0].max
 
-    {aocc: missing_aocc, ww1v: missing_ww1v}
+    {aocc: missing_aocc, ww1v: missing_ww1v, nmsm: missing_nmsm}
   end
 
   def missing_recruitment_awards
