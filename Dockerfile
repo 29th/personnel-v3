@@ -1,4 +1,4 @@
-FROM ruby:3.2.2
+FROM ruby:3.4.13
 
 ENV NODE_MAJOR_VERSION 16
 
@@ -18,7 +18,7 @@ RUN curl --silent --show-error --location --retry 5 --retry-connrefuse --retry-d
 
 WORKDIR /usr/src/app
 
-COPY Gemfile Gemfile.lock ./
+COPY .ruby-version Gemfile Gemfile.lock ./
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install --jobs 4
 
